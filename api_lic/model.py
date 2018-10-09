@@ -134,11 +134,11 @@ class User(BaseModel, AuthUser, RbacUser, ModelUsingFiles):
     def init(cls):
         adm = cls.get(settings.ADMIN_UUID)
         if not adm:
-            cls(user_uuid=settings.ADMIN_UUID, email='admin@example.com', passwd='yoo5Iche',
+            cls(user_uuid=settings.ADMIN_UUID, email=settings.ADMIN_EMAIL, passwd=settings.ADMIN_PWD,
                 is_admin=True, is_active=True).save()
         test = cls.get(settings.TEST_USER_UUID)
         if not test:
-            cls(user_uuid=settings.TEST_USER_UUID, email='_novvv@mail.ru', passwd='yoo5Iche',
+            cls(user_uuid=settings.TEST_USER_UUID, email=settings.TEST_USER_EMAIL, passwd=settings.ADMIN_PWD,
                 is_admin=False, is_active=True).save()
 
     @hybrid_property

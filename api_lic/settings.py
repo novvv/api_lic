@@ -20,54 +20,31 @@ def conf_get(name,default,sec='DEFAULT'):
     else:
         return config[sec][name]
 
-# from falcon_rest.conf import settings
-REQUIRED_ENV_VARIABLES = ['LOG_FILE', 'LOG_LEVEL', 'API_BASE_PATH', 'DB_CONN_STRING', 'JWT_SIGNATURE',
-'FALCON_SETTING_MODULE','LOG_TO_CONSOLE','ALLOW_ORIGIN','API_HOST','API_SCHEMA','API_BASE_PATH',
-'CREATE_TABLES',
-'JWT_TTL_DAYS','DEFAULT_ITEMS_PER_PAGE','ALWAYS_ALLOWED_AUTH_IPS','FILES_UPLOAD_TO','UI_BASE_URL',
-'SMTP_HOST','SMTP_PORT','SMTP_USERNAME','SMTP_PASSWORD','SMTP_USE_TLS',]
-
-for var in REQUIRED_ENV_VARIABLES:  # pragma: no cover
-    if var not in os.environ:
-        if var.lower() in config['DEFAULT']:
-            os.environ[var]=config['DEFAULT'][var.lower()]
-            continue
-        err = '{} environment variable is not set, all required variables: {}'.format(var, REQUIRED_ENV_VARIABLES)
-        #raise EnvironmentError(err)
-        #_p_changed = True
-        continue
-    else:
-        if not var.lower() in config['DEFAULT']:
-            config['DEFAULT'][var.lower()] = os.environ[var]
-            #_p_changed = True
-        else:
-            os.environ[var] = config['DEFAULT'][var.lower()]
-
-LOG_FILE = os.environ.get('LOG_FILE','lic.log')
-LOG_LEVEL = os.environ.get('LOG_LEVEL','debug')
-LOG_TO_CONSOLE = True if os.environ.get('LOG_TO_CONSOLE') == 'True' else False
-LOG_FORMAT = os.environ.get('LOG_FORMAT', '%(asctime)s [%(levelname)s] \'%(message)s\' at %(filename)s: %(lineno)s')
-ALLOW_ORIGINS = os.environ.get('ALLOW_ORIGIN', '*').split(' ')
-ALLOW_ORIGIN = os.environ.get('ALLOW_ORIGIN', '*').split(' ')
+LOG_FILE = conf_get('LOG_FILE','lic.log')
+LOG_LEVEL = conf_get('LOG_LEVEL','debug')
+LOG_TO_CONSOLE = True if conf_get('LOG_TO_CONSOLE') == 'True' else False
+LOG_FORMAT = conf_get('LOG_FORMAT', '%(asctime)s [%(levelname)s] \'%(message)s\' at %(filename)s: %(lineno)s')
+ALLOW_ORIGINS = conf_get('ALLOW_ORIGIN', '*').split(' ')
+ALLOW_ORIGIN = conf_get('ALLOW_ORIGIN', '*').split(' ')
 API_TITLE = 'LICENSE API'
-API_HOST = os.environ.get('API_HOST', 'localhost:8012')
-API_SCHEME = os.environ.get('API_SCHEMA', 'http://')
-API_BASE_PATH = os.environ.get('API_BASE_PATH', '/v1')
-API_TEST_ROUTES = os.environ.get('API_TEST_ROUTES', 'False')
-DB_CONN_STRING = os.environ.get('DB_CONN_STRING')
-DB_CONN_STRING_TEST = os.environ.get('DB_CONN_STRING_TEST', '')
+API_HOST = conf_get('API_HOST', 'localhost:8012')
+API_SCHEME = conf_get('API_SCHEMA', 'http://')
+API_BASE_PATH = conf_get('API_BASE_PATH', '/v1')
+API_TEST_ROUTES = conf_get('API_TEST_ROUTES', 'False')
+DB_CONN_STRING = conf_get('DB_CONN_STRING')
+DB_CONN_STRING_TEST = conf_get('DB_CONN_STRING_TEST', '')
 
-CREATE_TABLES = True if os.environ.get('CREATE_TABLES', False) == 'True' else False
+CREATE_TABLES = True if conf_get('CREATE_TABLES', False) == 'True' else False
 
-JWT_SIGNATURE = os.environ.get('JWT_SIGNATURE')
-JWT_TTL_DAYS = int(os.environ.get('JWT_TTL_DAYS', 1))
-JWT_REFRESH_THRESHOLD_DAYS = int(os.environ.get('JWT_REFRESH_THRESHOLD_DAYS', 7))
+JWT_SIGNATURE = conf_get('JWT_SIGNATURE')
+JWT_TTL_DAYS = int(conf_get('JWT_TTL_DAYS', 1))
+JWT_REFRESH_THRESHOLD_DAYS = int(conf_get('JWT_REFRESH_THRESHOLD_DAYS', 7))
 
-DEFAULT_ITEMS_PER_PAGE = int(os.environ.get('DEFAULT_ITEMS_PER_PAGE', 30))
+DEFAULT_ITEMS_PER_PAGE = int(conf_get('DEFAULT_ITEMS_PER_PAGE', 30))
 
 AUTH_END_POINT = '/auth'
 
-FAST_TESTING = True if os.environ.get('FAST_TESTING', False) == 'True' else False
+FAST_TESTING = True if conf_get('FAST_TESTING', False) == 'True' else False
 
 VERSION = __version__
 
@@ -96,7 +73,7 @@ PATHS_NOT_NEEDED_AUTH = (
     '{}/swagger.json'.format(API_BASE_PATH)
 )
 
-ALWAYS_ALLOWED_AUTH_IPS = os.environ.get('ALWAYS_ALLOWED_AUTH_IPS', '127.0.0.1').split(' ')
+ALWAYS_ALLOWED_AUTH_IPS = conf_get('ALWAYS_ALLOWED_AUTH_IPS', '127.0.0.1').split(' ')
 
 GOOGLE_DRIVE =  {
 'application_name':'api_lic',
@@ -106,26 +83,26 @@ GOOGLE_DRIVE =  {
 }
 
 FILES = {
-    'upload_to': os.environ.get('FILES_UPLOAD_TO','files')
+    'upload_to': conf_get('FILES_UPLOAD_TO','files')
 }
 DONT_DELETE_DOWNLOAD_TOKEN = False
 
 CELERY  = {
-    'CELERY_BROKER_URL':os.environ.get('CELERY_BROKER_URL','redis://localhost:6379/0'),
-    'CELERY_RESULT_BACKEND':os.environ.get('CELERY_RESULT_BACKEND','redis://localhost:6379/0'),
-    'CELERYD_TASK_SOFT_TIME_LIMIT':os.environ.get('CELERYD_TASK_SOFT_TIME_LIMIT','300')
+    'CELERY_BROKER_URL':conf_get('CELERY_BROKER_URL','redis://localhost:6379/0'),
+    'CELERY_RESULT_BACKEND':conf_get('CELERY_RESULT_BACKEND','redis://localhost:6379/0'),
+    'CELERYD_TASK_SOFT_TIME_LIMIT':conf_get('CELERYD_TASK_SOFT_TIME_LIMIT','300')
 }
 
-SENTRY_URL = os.environ.get('SENTRY_URL',None)#'https://64918317b78149898d5d4c6940354140:81a4c63217ed4171ac616e03922a135d@sentry.io/231210'
+SENTRY_URL = conf_get('SENTRY_URL',None)#'https://64918317b78149898d5d4c6940354140:81a4c63217ed4171ac616e03922a135d@sentry.io/231210'
 
-UI_BASE_URL = os.environ.get('UI_BASE_URL', 'http://localhost')
+UI_BASE_URL = conf_get('UI_BASE_URL', 'http://localhost')
 MAILING = {
-    'host': os.environ.get('SMTP_HOST'),
-    'port': os.environ.get('SMTP_PORT'),
-    'username': os.environ.get('SMTP_USERNAME'),
-    'password': os.environ.get('SMTP_PASSWORD'),
-    'use_ssl': True if os.environ.get('SMTP_USE_SSL') == 'True' else False,
-    #'use_tls': True if os.environ.get('SMTP_USE_TLS') == 'True' else False
+    'host': conf_get('SMTP_HOST'),
+    'port': conf_get('SMTP_PORT'),
+    'username': conf_get('SMTP_USERNAME'),
+    'password': conf_get('SMTP_PASSWORD'),
+    'use_ssl': True if conf_get('SMTP_USE_SSL') == 'True' else False,
+    #'use_tls': True if conf_get('SMTP_USE_TLS') == 'True' else False
 }
 
 KANNEL ={
@@ -134,14 +111,17 @@ KANNEL ={
     'password': conf_get('password','yoo5Iche','KANNEL'),
     'service': conf_get('service','denovo','KANNEL'),
 }
-SENTRY_URL = conf_get('sentry_url',
-                      'http://333847b311294619934d0c770796ebc4:c675902daf5742c389e2d2e31e065f2c@sentry.denovolab.com:9000/2')
+SENTRY_URL = conf_get('sentry_url','False')
 
 if SENTRY_URL=='False':
     SENTRY_URL=None
 
-ADMIN_UUID = '17209cf7-0274-4443-9db7-747db6d77e11'
-TEST_USER_UUID = '17209cf7-0274-4443-9db7-747db6d77e12'
+ADMIN_UUID = conf_get('ADMIN_UUID','17209cf7-0274-4443-9db7-747db6d77e11')
+ADMIN_EMAIL = conf_get('ADMIN_EMAIL','admin@xamle.com')
+ADMIN_PWD = conf_get('ADMIN_PWD','17209cf7-0274-4443-9db7-747db6d77e11')
+TEST_USER_UUID = conf_get('TEST_USER_UUID','17209cf7-0274-4443-9db7-747db6d77e12')
+TEST_USER_EMAIL = conf_get('TEST_USER_EMAIL','_novvv@mail.ru')
+
 
 if _p_changed:
     with open(API_INI, 'w') as configfile:
