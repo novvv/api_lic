@@ -22,7 +22,7 @@ def conf_get(name,default,sec='DEFAULT'):
 
 LOG_FILE = conf_get('LOG_FILE','lic.log')
 LOG_LEVEL = conf_get('LOG_LEVEL','debug')
-LOG_TO_CONSOLE = True if conf_get('LOG_TO_CONSOLE') == 'True' else False
+LOG_TO_CONSOLE = True if conf_get('LOG_TO_CONSOLE','True') == 'True' else False
 LOG_FORMAT = conf_get('LOG_FORMAT', '%(asctime)s [%(levelname)s] \'%(message)s\' at %(filename)s: %(lineno)s')
 ALLOW_ORIGINS = conf_get('ALLOW_ORIGIN', '*').split(' ')
 ALLOW_ORIGIN = conf_get('ALLOW_ORIGIN', '*').split(' ')
@@ -31,20 +31,20 @@ API_HOST = conf_get('API_HOST', 'localhost:8012')
 API_SCHEME = conf_get('API_SCHEMA', 'http://')
 API_BASE_PATH = conf_get('API_BASE_PATH', '/v1')
 API_TEST_ROUTES = conf_get('API_TEST_ROUTES', 'False')
-DB_CONN_STRING = conf_get('DB_CONN_STRING')
+DB_CONN_STRING = conf_get('DB_CONN_STRING','')
 DB_CONN_STRING_TEST = conf_get('DB_CONN_STRING_TEST', '')
 
-CREATE_TABLES = True if conf_get('CREATE_TABLES', False) == 'True' else False
+CREATE_TABLES = True if conf_get('CREATE_TABLES', 'False') == 'True' else False
 
-JWT_SIGNATURE = conf_get('JWT_SIGNATURE')
-JWT_TTL_DAYS = int(conf_get('JWT_TTL_DAYS', 1))
-JWT_REFRESH_THRESHOLD_DAYS = int(conf_get('JWT_REFRESH_THRESHOLD_DAYS', 7))
+JWT_SIGNATURE = conf_get('JWT_SIGNATURE','')
+JWT_TTL_DAYS = int(conf_get('JWT_TTL_DAYS', '1'))
+JWT_REFRESH_THRESHOLD_DAYS = int(conf_get('JWT_REFRESH_THRESHOLD_DAYS', '7'))
 
-DEFAULT_ITEMS_PER_PAGE = int(conf_get('DEFAULT_ITEMS_PER_PAGE', 30))
+DEFAULT_ITEMS_PER_PAGE = int(conf_get('DEFAULT_ITEMS_PER_PAGE', '30'))
 
 AUTH_END_POINT = '/auth'
 
-FAST_TESTING = True if conf_get('FAST_TESTING', False) == 'True' else False
+FAST_TESTING = True if conf_get('FAST_TESTING', 'False') == 'True' else False
 
 VERSION = __version__
 
@@ -93,24 +93,18 @@ CELERY  = {
     'CELERYD_TASK_SOFT_TIME_LIMIT':conf_get('CELERYD_TASK_SOFT_TIME_LIMIT','300')
 }
 
-SENTRY_URL = conf_get('SENTRY_URL',None)#'https://64918317b78149898d5d4c6940354140:81a4c63217ed4171ac616e03922a135d@sentry.io/231210'
+SENTRY_URL = conf_get('SENTRY_URL',None)
 
 UI_BASE_URL = conf_get('UI_BASE_URL', 'http://localhost')
 MAILING = {
-    'host': conf_get('SMTP_HOST'),
-    'port': conf_get('SMTP_PORT'),
-    'username': conf_get('SMTP_USERNAME'),
-    'password': conf_get('SMTP_PASSWORD'),
-    'use_ssl': True if conf_get('SMTP_USE_SSL') == 'True' else False,
+    'host': conf_get('SMTP_HOST',''),
+    'port': conf_get('SMTP_PORT',''),
+    'username': conf_get('SMTP_USERNAME',''),
+    'password': conf_get('SMTP_PASSWORD',''),
+    'use_ssl': True if conf_get('SMTP_USE_SSL','') == 'True' else False,
     #'use_tls': True if conf_get('SMTP_USE_TLS') == 'True' else False
 }
 
-KANNEL ={
-    'send_url': conf_get('send_url','http://localhost:13013/cgi-bin/cgi-bin/sendsms','KANNEL'),
-    'username': conf_get('username','denovo','KANNEL'),
-    'password': conf_get('password','yoo5Iche','KANNEL'),
-    'service': conf_get('service','denovo','KANNEL'),
-}
 SENTRY_URL = conf_get('sentry_url','False')
 
 if SENTRY_URL=='False':
@@ -120,7 +114,7 @@ ADMIN_UUID = conf_get('ADMIN_UUID','17209cf7-0274-4443-9db7-747db6d77e11')
 ADMIN_EMAIL = conf_get('ADMIN_EMAIL','admin@xamle.com')
 ADMIN_PWD = conf_get('ADMIN_PWD','17209cf7-0274-4443-9db7-747db6d77e11')
 TEST_USER_UUID = conf_get('TEST_USER_UUID','17209cf7-0274-4443-9db7-747db6d77e12')
-TEST_USER_EMAIL = conf_get('TEST_USER_EMAIL','_novvv@mail.ru')
+TEST_USER_EMAIL = conf_get('TEST_USER_EMAIL','test_user@example.com')
 
 
 if _p_changed:
