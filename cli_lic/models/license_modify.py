@@ -31,22 +31,79 @@ class LicenseModify(object):
                             and the value is json key in definition.
     """
     swagger_types = {
-        'rate_uuid': 'str'
+        'lrn': 'LicenseLrn',
+        'periods': 'list[LicensePeriod]',
+        'rate_uuid': 'str',
+        'switch': 'LicenseSwitch'
     }
 
     attribute_map = {
-        'rate_uuid': 'rate_uuid'
+        'lrn': 'lrn',
+        'periods': 'periods',
+        'rate_uuid': 'rate_uuid',
+        'switch': 'switch'
     }
 
-    def __init__(self, rate_uuid=None):
+    def __init__(self, lrn=None, periods=None, rate_uuid=None, switch=None):
         """
         LicenseModify - a model defined in Swagger
         """
 
+        self._lrn = None
+        self._periods = None
         self._rate_uuid = None
+        self._switch = None
 
+        if lrn is not None:
+          self.lrn = lrn
+        if periods is not None:
+          self.periods = periods
         if rate_uuid is not None:
           self.rate_uuid = rate_uuid
+        if switch is not None:
+          self.switch = switch
+
+    @property
+    def lrn(self):
+        """
+        Gets the lrn of this LicenseModify.
+
+        :return: The lrn of this LicenseModify.
+        :rtype: LicenseLrn
+        """
+        return self._lrn
+
+    @lrn.setter
+    def lrn(self, lrn):
+        """
+        Sets the lrn of this LicenseModify.
+
+        :param lrn: The lrn of this LicenseModify.
+        :type: LicenseLrn
+        """
+
+        self._lrn = lrn
+
+    @property
+    def periods(self):
+        """
+        Gets the periods of this LicenseModify.
+
+        :return: The periods of this LicenseModify.
+        :rtype: list[LicensePeriod]
+        """
+        return self._periods
+
+    @periods.setter
+    def periods(self, periods):
+        """
+        Sets the periods of this LicenseModify.
+
+        :param periods: The periods of this LicenseModify.
+        :type: list[LicensePeriod]
+        """
+
+        self._periods = periods
 
     @property
     def rate_uuid(self):
@@ -70,6 +127,27 @@ class LicenseModify(object):
             raise ValueError("Invalid value for `rate_uuid`, length must be less than or equal to `36`")
 
         self._rate_uuid = rate_uuid
+
+    @property
+    def switch(self):
+        """
+        Gets the switch of this LicenseModify.
+
+        :return: The switch of this LicenseModify.
+        :rtype: LicenseSwitch
+        """
+        return self._switch
+
+    @switch.setter
+    def switch(self, switch):
+        """
+        Sets the switch of this LicenseModify.
+
+        :param switch: The switch of this LicenseModify.
+        :type: LicenseSwitch
+        """
+
+        self._switch = switch
 
     def to_dict(self):
         """

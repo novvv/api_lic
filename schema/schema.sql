@@ -198,7 +198,8 @@ CREATE TABLE public.license_period (
     license_uuid character varying(36),
     start_time timestamp with time zone DEFAULT now() NOT NULL,
     end_time timestamp with time zone,
-    cost numeric DEFAULT '0'::numeric NOT NULL
+    cost numeric DEFAULT '0'::numeric NOT NULL,
+    ordered_amount integer
 );
 
 
@@ -232,7 +233,7 @@ CREATE TABLE public.notification (
 
 CREATE TABLE public.object_revision (
     id bigint NOT NULL,
-    user_id integer NOT NULL,
+    user_id character varying(36) NOT NULL,
     entity_name character varying(64) NOT NULL,
     entity_pk character varying(64) NOT NULL,
     action character varying(16) NOT NULL,

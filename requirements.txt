@@ -7,7 +7,6 @@ apispec == 0.34.0
 falcon-rest >= 1.0.13
 alembic == 0.9.1
 pytz >= 2017.2
-paramiko == 1.17.6
 py-bcrypt == 0.4
 pycrypto >= 2.6.1
 Jinja2 >= 2.9.6
@@ -28,3 +27,4 @@ pydub >= 0.21.0
 psycopg2 >= 2.7.5
 PyYAML==3.12
 gunicorn>=19.7.1
+paypalrestsdk >= 1.13.1

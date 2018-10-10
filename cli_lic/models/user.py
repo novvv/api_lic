@@ -31,62 +31,62 @@ class User(object):
                             and the value is json key in definition.
     """
     swagger_types = {
-        'passwd': 'str',
+        'is_active': 'bool',
         'logo_file_uuid': 'str',
-        'is_admin': 'bool',
+        'passwd': 'str',
         'email': 'str',
-        'is_active': 'bool'
+        'is_admin': 'bool'
     }
 
     attribute_map = {
-        'passwd': 'passwd',
+        'is_active': 'is_active',
         'logo_file_uuid': 'logo_file_uuid',
-        'is_admin': 'is_admin',
+        'passwd': 'passwd',
         'email': 'email',
-        'is_active': 'is_active'
+        'is_admin': 'is_admin'
     }
 
-    def __init__(self, passwd=None, logo_file_uuid=None, is_admin=None, email=None, is_active=None):
+    def __init__(self, is_active=None, logo_file_uuid=None, passwd=None, email=None, is_admin=None):
         """
         User - a model defined in Swagger
         """
 
-        self._passwd = None
-        self._logo_file_uuid = None
-        self._is_admin = None
-        self._email = None
         self._is_active = None
+        self._logo_file_uuid = None
+        self._passwd = None
+        self._email = None
+        self._is_admin = None
 
-        if passwd is not None:
-          self.passwd = passwd
-        if logo_file_uuid is not None:
-          self.logo_file_uuid = logo_file_uuid
-        if is_admin is not None:
-          self.is_admin = is_admin
-        self.email = email
         if is_active is not None:
           self.is_active = is_active
+        if logo_file_uuid is not None:
+          self.logo_file_uuid = logo_file_uuid
+        if passwd is not None:
+          self.passwd = passwd
+        self.email = email
+        if is_admin is not None:
+          self.is_admin = is_admin
 
     @property
-    def passwd(self):
+    def is_active(self):
         """
-        Gets the passwd of this User.
+        Gets the is_active of this User.
 
-        :return: The passwd of this User.
-        :rtype: str
+        :return: The is_active of this User.
+        :rtype: bool
         """
-        return self._passwd
+        return self._is_active
 
-    @passwd.setter
-    def passwd(self, passwd):
+    @is_active.setter
+    def is_active(self, is_active):
         """
-        Sets the passwd of this User.
+        Sets the is_active of this User.
 
-        :param passwd: The passwd of this User.
-        :type: str
+        :param is_active: The is_active of this User.
+        :type: bool
         """
 
-        self._passwd = passwd
+        self._is_active = is_active
 
     @property
     def logo_file_uuid(self):
@@ -110,25 +110,25 @@ class User(object):
         self._logo_file_uuid = logo_file_uuid
 
     @property
-    def is_admin(self):
+    def passwd(self):
         """
-        Gets the is_admin of this User.
+        Gets the passwd of this User.
 
-        :return: The is_admin of this User.
-        :rtype: bool
+        :return: The passwd of this User.
+        :rtype: str
         """
-        return self._is_admin
+        return self._passwd
 
-    @is_admin.setter
-    def is_admin(self, is_admin):
+    @passwd.setter
+    def passwd(self, passwd):
         """
-        Sets the is_admin of this User.
+        Sets the passwd of this User.
 
-        :param is_admin: The is_admin of this User.
-        :type: bool
+        :param passwd: The passwd of this User.
+        :type: str
         """
 
-        self._is_admin = is_admin
+        self._passwd = passwd
 
     @property
     def email(self):
@@ -154,25 +154,25 @@ class User(object):
         self._email = email
 
     @property
-    def is_active(self):
+    def is_admin(self):
         """
-        Gets the is_active of this User.
+        Gets the is_admin of this User.
 
-        :return: The is_active of this User.
+        :return: The is_admin of this User.
         :rtype: bool
         """
-        return self._is_active
+        return self._is_admin
 
-    @is_active.setter
-    def is_active(self, is_active):
+    @is_admin.setter
+    def is_admin(self, is_admin):
         """
-        Sets the is_active of this User.
+        Sets the is_admin of this User.
 
-        :param is_active: The is_active of this User.
+        :param is_admin: The is_admin of this User.
         :type: bool
         """
 
-        self._is_active = is_active
+        self._is_admin = is_admin
 
     def to_dict(self):
         """

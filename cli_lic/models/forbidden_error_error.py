@@ -32,31 +32,31 @@ class ForbiddenErrorError(object):
     """
     swagger_types = {
         'message': 'str',
-        'code': 'int',
-        'reason': 'str'
+        'reason': 'str',
+        'code': 'int'
     }
 
     attribute_map = {
         'message': 'message',
-        'code': 'code',
-        'reason': 'reason'
+        'reason': 'reason',
+        'code': 'code'
     }
 
-    def __init__(self, message=None, code=None, reason=None):
+    def __init__(self, message=None, reason=None, code=None):
         """
         ForbiddenErrorError - a model defined in Swagger
         """
 
         self._message = None
-        self._code = None
         self._reason = None
+        self._code = None
 
         if message is not None:
           self.message = message
-        if code is not None:
-          self.code = code
         if reason is not None:
           self.reason = reason
+        if code is not None:
+          self.code = code
 
     @property
     def message(self):
@@ -80,27 +80,6 @@ class ForbiddenErrorError(object):
         self._message = message
 
     @property
-    def code(self):
-        """
-        Gets the code of this ForbiddenErrorError.
-
-        :return: The code of this ForbiddenErrorError.
-        :rtype: int
-        """
-        return self._code
-
-    @code.setter
-    def code(self, code):
-        """
-        Sets the code of this ForbiddenErrorError.
-
-        :param code: The code of this ForbiddenErrorError.
-        :type: int
-        """
-
-        self._code = code
-
-    @property
     def reason(self):
         """
         Gets the reason of this ForbiddenErrorError.
@@ -120,6 +99,27 @@ class ForbiddenErrorError(object):
         """
 
         self._reason = reason
+
+    @property
+    def code(self):
+        """
+        Gets the code of this ForbiddenErrorError.
+
+        :return: The code of this ForbiddenErrorError.
+        :rtype: int
+        """
+        return self._code
+
+    @code.setter
+    def code(self, code):
+        """
+        Sets the code of this ForbiddenErrorError.
+
+        :param code: The code of this ForbiddenErrorError.
+        :type: int
+        """
+
+        self._code = code
 
     def to_dict(self):
         """

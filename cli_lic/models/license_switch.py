@@ -31,27 +31,54 @@ class LicenseSwitch(object):
                             and the value is json key in definition.
     """
     swagger_types = {
-        'ip': 'str',
-        'type': 'str'
+        'type': 'str',
+        'ip': 'str'
     }
 
     attribute_map = {
-        'ip': 'ip',
-        'type': 'type'
+        'type': 'type',
+        'ip': 'ip'
     }
 
-    def __init__(self, ip=None, type='pay per port'):
+    def __init__(self, type='switch pay per port', ip=None):
         """
         LicenseSwitch - a model defined in Swagger
         """
 
-        self._ip = None
         self._type = None
+        self._ip = None
 
-        if ip is not None:
-          self.ip = ip
         if type is not None:
           self.type = type
+        if ip is not None:
+          self.ip = ip
+
+    @property
+    def type(self):
+        """
+        Gets the type of this LicenseSwitch.
+
+        :return: The type of this LicenseSwitch.
+        :rtype: str
+        """
+        return self._type
+
+    @type.setter
+    def type(self, type):
+        """
+        Sets the type of this LicenseSwitch.
+
+        :param type: The type of this LicenseSwitch.
+        :type: str
+        """
+        allowed_values = ["switch pay per port", "switch pay per minute"]
+        if type not in allowed_values:
+            raise ValueError(
+                "Invalid value for `type` ({0}), must be one of {1}"
+                .format(type, allowed_values)
+            )
+
+        self._type = type
 
     @property
     def ip(self):
@@ -75,33 +102,6 @@ class LicenseSwitch(object):
             raise ValueError("Invalid value for `ip`, length must be less than or equal to `16`")
 
         self._ip = ip
-
-    @property
-    def type(self):
-        """
-        Gets the type of this LicenseSwitch.
-
-        :return: The type of this LicenseSwitch.
-        :rtype: str
-        """
-        return self._type
-
-    @type.setter
-    def type(self, type):
-        """
-        Sets the type of this LicenseSwitch.
-
-        :param type: The type of this LicenseSwitch.
-        :type: str
-        """
-        allowed_values = ["pay per port", "pay per minute"]
-        if type not in allowed_values:
-            raise ValueError(
-                "Invalid value for `type` ({0}), must be one of {1}"
-                .format(type, allowed_values)
-            )
-
-        self._type = type
 
     def to_dict(self):
         """

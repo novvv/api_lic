@@ -40,7 +40,7 @@ class LicenseLrnModify(object):
         'type': 'type'
     }
 
-    def __init__(self, cps=None, type='pay per CPS'):
+    def __init__(self, cps=None, type='LRN pay per CPS'):
         """
         LicenseLrnModify - a model defined in Swagger
         """
@@ -92,7 +92,7 @@ class LicenseLrnModify(object):
         :param type: The type of this LicenseLrnModify.
         :type: str
         """
-        allowed_values = ["pay per CPS", "pay per DIP"]
+        allowed_values = ["LRN pay per CPS", "LRN pay per DIP"]
         if type not in allowed_values:
             raise ValueError(
                 "Invalid value for `type` ({0}), must be one of {1}"

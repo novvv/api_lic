@@ -31,53 +31,32 @@ class ForbiddenError(object):
                             and the value is json key in definition.
     """
     swagger_types = {
-        'error_type': 'str',
         'success': 'bool',
-        'error': 'ForbiddenErrorError'
+        'error': 'OperationErrorError',
+        'error_type': 'str'
     }
 
     attribute_map = {
-        'error_type': 'error_type',
         'success': 'success',
-        'error': 'error'
+        'error': 'error',
+        'error_type': 'error_type'
     }
 
-    def __init__(self, error_type='forbidden_error', success=False, error=None):
+    def __init__(self, success=False, error=None, error_type='forbidden_error'):
         """
         ForbiddenError - a model defined in Swagger
         """
 
-        self._error_type = None
         self._success = None
         self._error = None
+        self._error_type = None
 
-        if error_type is not None:
-          self.error_type = error_type
         if success is not None:
           self.success = success
         if error is not None:
           self.error = error
-
-    @property
-    def error_type(self):
-        """
-        Gets the error_type of this ForbiddenError.
-
-        :return: The error_type of this ForbiddenError.
-        :rtype: str
-        """
-        return self._error_type
-
-    @error_type.setter
-    def error_type(self, error_type):
-        """
-        Sets the error_type of this ForbiddenError.
-
-        :param error_type: The error_type of this ForbiddenError.
-        :type: str
-        """
-
-        self._error_type = error_type
+        if error_type is not None:
+          self.error_type = error_type
 
     @property
     def success(self):
@@ -106,7 +85,7 @@ class ForbiddenError(object):
         Gets the error of this ForbiddenError.
 
         :return: The error of this ForbiddenError.
-        :rtype: ForbiddenErrorError
+        :rtype: OperationErrorError
         """
         return self._error
 
@@ -116,10 +95,31 @@ class ForbiddenError(object):
         Sets the error of this ForbiddenError.
 
         :param error: The error of this ForbiddenError.
-        :type: ForbiddenErrorError
+        :type: OperationErrorError
         """
 
         self._error = error
+
+    @property
+    def error_type(self):
+        """
+        Gets the error_type of this ForbiddenError.
+
+        :return: The error_type of this ForbiddenError.
+        :rtype: str
+        """
+        return self._error_type
+
+    @error_type.setter
+    def error_type(self, error_type):
+        """
+        Sets the error_type of this ForbiddenError.
+
+        :param error_type: The error_type of this ForbiddenError.
+        :type: str
+        """
+
+        self._error_type = error_type
 
     def to_dict(self):
         """

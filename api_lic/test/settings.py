@@ -3,7 +3,8 @@ from datetime import datetime,timedelta
 from pytz import UTC
 import json
 import pprint
-#cli_lic.configuration.host='http://158.69.221.111/api_lic/v1'
+cli_lic.configuration.verify_ssl=False
+cli_lic.configuration.host='https://158.69.221.111/api_lic/v1'
 #cli_lic.configuration.host='http://localhost:8002/v1'
 admin_token=None
 tokens={}

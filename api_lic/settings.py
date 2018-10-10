@@ -116,6 +116,12 @@ ADMIN_PWD = conf_get('ADMIN_PWD','17209cf7-0274-4443-9db7-747db6d77e11')
 TEST_USER_UUID = conf_get('TEST_USER_UUID','17209cf7-0274-4443-9db7-747db6d77e12')
 TEST_USER_EMAIL = conf_get('TEST_USER_EMAIL','test_user@example.com')
 
+PAYPAL = {
+    'client_id':conf_get('client_id','EBWKjlELKMYqRNQ6sYvFo64FtaRLRR5BdHEESmha49TM','PAYPAL'),
+    'client_secret':conf_get('client_secret','EO422dn3gQLgDbuwqTjzrFgFtaRLRR5BdHEESmha49TM','PAYPAL'),
+    'mode':conf_get('mode','sandbox','PAYPAL')
+}
+
 
 if _p_changed:
     with open(API_INI, 'w') as configfile:

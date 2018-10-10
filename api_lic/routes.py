@@ -80,7 +80,7 @@ PRODUCTION_ROUTES = OrderedDict([
 {'path': '/payment', 'method': 'post', 'resource': api_lic.views.user.PaymentCreate()},
 {'path': '/payment/{payment_uuid}', 'method': 'path', 'resource': api_lic.views.user.PaymentResource()},
 {'path': '/payment/list', 'method': 'get', 'resource': api_lic.views.user.PaymentList()},
-
+{'path': '/payment/webhook', 'method': 'post', 'resource': api_lic.views.user.PaymentWebhook()},
 
         ]
 

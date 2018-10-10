@@ -32,40 +32,40 @@ class UserInfoGet(object):
     """
     swagger_types = {
         'last_login': 'datetime',
-        'user_uuid': 'str',
         'user_type': 'str',
+        'passwd': 'str',
         'email': 'str',
-        'passwd': 'str'
+        'user_uuid': 'str'
     }
 
     attribute_map = {
         'last_login': 'last_login',
-        'user_uuid': 'user_uuid',
         'user_type': 'user_type',
+        'passwd': 'passwd',
         'email': 'email',
-        'passwd': 'passwd'
+        'user_uuid': 'user_uuid'
     }
 
-    def __init__(self, last_login=None, user_uuid=None, user_type=None, email=None, passwd=None):
+    def __init__(self, last_login=None, user_type=None, passwd=None, email=None, user_uuid=None):
         """
         UserInfoGet - a model defined in Swagger
         """
 
         self._last_login = None
-        self._user_uuid = None
         self._user_type = None
-        self._email = None
         self._passwd = None
+        self._email = None
+        self._user_uuid = None
 
         if last_login is not None:
           self.last_login = last_login
-        if user_uuid is not None:
-          self.user_uuid = user_uuid
         if user_type is not None:
           self.user_type = user_type
+        self.passwd = passwd
         if email is not None:
           self.email = email
-        self.passwd = passwd
+        if user_uuid is not None:
+          self.user_uuid = user_uuid
 
     @property
     def last_login(self):
@@ -89,29 +89,6 @@ class UserInfoGet(object):
         self._last_login = last_login
 
     @property
-    def user_uuid(self):
-        """
-        Gets the user_uuid of this UserInfoGet.
-
-        :return: The user_uuid of this UserInfoGet.
-        :rtype: str
-        """
-        return self._user_uuid
-
-    @user_uuid.setter
-    def user_uuid(self, user_uuid):
-        """
-        Sets the user_uuid of this UserInfoGet.
-
-        :param user_uuid: The user_uuid of this UserInfoGet.
-        :type: str
-        """
-        if user_uuid is not None and len(user_uuid) > 36:
-            raise ValueError("Invalid value for `user_uuid`, length must be less than or equal to `36`")
-
-        self._user_uuid = user_uuid
-
-    @property
     def user_type(self):
         """
         Gets the user_type of this UserInfoGet.
@@ -131,27 +108,6 @@ class UserInfoGet(object):
         """
 
         self._user_type = user_type
-
-    @property
-    def email(self):
-        """
-        Gets the email of this UserInfoGet.
-
-        :return: The email of this UserInfoGet.
-        :rtype: str
-        """
-        return self._email
-
-    @email.setter
-    def email(self, email):
-        """
-        Sets the email of this UserInfoGet.
-
-        :param email: The email of this UserInfoGet.
-        :type: str
-        """
-
-        self._email = email
 
     @property
     def passwd(self):
@@ -175,6 +131,50 @@ class UserInfoGet(object):
             raise ValueError("Invalid value for `passwd`, must not be `None`")
 
         self._passwd = passwd
+
+    @property
+    def email(self):
+        """
+        Gets the email of this UserInfoGet.
+
+        :return: The email of this UserInfoGet.
+        :rtype: str
+        """
+        return self._email
+
+    @email.setter
+    def email(self, email):
+        """
+        Sets the email of this UserInfoGet.
+
+        :param email: The email of this UserInfoGet.
+        :type: str
+        """
+
+        self._email = email
+
+    @property
+    def user_uuid(self):
+        """
+        Gets the user_uuid of this UserInfoGet.
+
+        :return: The user_uuid of this UserInfoGet.
+        :rtype: str
+        """
+        return self._user_uuid
+
+    @user_uuid.setter
+    def user_uuid(self, user_uuid):
+        """
+        Sets the user_uuid of this UserInfoGet.
+
+        :param user_uuid: The user_uuid of this UserInfoGet.
+        :type: str
+        """
+        if user_uuid is not None and len(user_uuid) > 36:
+            raise ValueError("Invalid value for `user_uuid`, length must be less than or equal to `36`")
+
+        self._user_uuid = user_uuid
 
     def to_dict(self):
         """

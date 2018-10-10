@@ -31,48 +31,27 @@ class RateModify(object):
                             and the value is json key in definition.
     """
     swagger_types = {
-        'rate': 'float',
-        'type': 'str'
+        'type': 'str',
+        'rate': 'float'
     }
 
     attribute_map = {
-        'rate': 'rate',
-        'type': 'type'
+        'type': 'type',
+        'rate': 'rate'
     }
 
-    def __init__(self, rate=None, type='switch pay per port'):
+    def __init__(self, type='switch pay per port', rate=None):
         """
         RateModify - a model defined in Swagger
         """
 
-        self._rate = None
         self._type = None
+        self._rate = None
 
-        if rate is not None:
-          self.rate = rate
         if type is not None:
           self.type = type
-
-    @property
-    def rate(self):
-        """
-        Gets the rate of this RateModify.
-
-        :return: The rate of this RateModify.
-        :rtype: float
-        """
-        return self._rate
-
-    @rate.setter
-    def rate(self, rate):
-        """
-        Sets the rate of this RateModify.
-
-        :param rate: The rate of this RateModify.
-        :type: float
-        """
-
-        self._rate = rate
+        if rate is not None:
+          self.rate = rate
 
     @property
     def type(self):
@@ -100,6 +79,27 @@ class RateModify(object):
             )
 
         self._type = type
+
+    @property
+    def rate(self):
+        """
+        Gets the rate of this RateModify.
+
+        :return: The rate of this RateModify.
+        :rtype: float
+        """
+        return self._rate
+
+    @rate.setter
+    def rate(self, rate):
+        """
+        Sets the rate of this RateModify.
+
+        :param rate: The rate of this RateModify.
+        :type: float
+        """
+
+        self._rate = rate
 
     def to_dict(self):
         """

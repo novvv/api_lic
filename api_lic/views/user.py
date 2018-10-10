@@ -304,6 +304,8 @@ class NotificationList(List):
         return filt, ret
 
 
+import paypalrestsdk
+
 class PaymentCreate(Create):
     scheme_class = PaymentScheme
     model_class = model.Payment
@@ -319,6 +321,7 @@ class PaymentCreate(Create):
             raise ValidationError({'license_uuid': ['not owned by current user!']})
         # obj.created_by=user.name
         # obj.created_on=datetime.now(UTC)
+
         return obj
 
 
@@ -356,3 +359,21 @@ class PaymentList(List):
             cls = self.model_class
             ret = ret.filter(cls.user_uuid == user.user_uuid)
         return filt, ret
+
+
+class PaymentWebhook(CustomPostAction):
+    scheme_class = PaymentScheme
+    model_class = model.Payment
+    entity = 'Payment'
+    path_parameters = ()
+    security = (DEFAULT_SECURITY)
+    restrict = ()
+
+    no_auth_needed = True
+
+    def on_post(self, req, resp, **kwargs):
+        return self.proceed(req, resp, **kwargs)
+
+    def proceed(self, req, resp, **kwargs):
+        log.debug('webhook called request data {} kwargs {}'.format(req.data,kwargs))
+        return True

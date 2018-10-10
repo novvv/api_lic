@@ -31,76 +31,27 @@ class LicensePeriod(object):
                             and the value is json key in definition.
     """
     swagger_types = {
-        'license_uuid': 'str',
-        'end_time': 'datetime',
-        'start_time': 'datetime'
+        'start_time': 'datetime',
+        'end_time': 'datetime'
     }
 
     attribute_map = {
-        'license_uuid': 'license_uuid',
-        'end_time': 'end_time',
-        'start_time': 'start_time'
+        'start_time': 'start_time',
+        'end_time': 'end_time'
     }
 
-    def __init__(self, license_uuid=None, end_time=None, start_time=None):
+    def __init__(self, start_time=None, end_time=None):
         """
         LicensePeriod - a model defined in Swagger
         """
 
-        self._license_uuid = None
-        self._end_time = None
         self._start_time = None
+        self._end_time = None
 
-        if license_uuid is not None:
-          self.license_uuid = license_uuid
-        if end_time is not None:
-          self.end_time = end_time
         if start_time is not None:
           self.start_time = start_time
-
-    @property
-    def license_uuid(self):
-        """
-        Gets the license_uuid of this LicensePeriod.
-
-        :return: The license_uuid of this LicensePeriod.
-        :rtype: str
-        """
-        return self._license_uuid
-
-    @license_uuid.setter
-    def license_uuid(self, license_uuid):
-        """
-        Sets the license_uuid of this LicensePeriod.
-
-        :param license_uuid: The license_uuid of this LicensePeriod.
-        :type: str
-        """
-        if license_uuid is not None and len(license_uuid) > 36:
-            raise ValueError("Invalid value for `license_uuid`, length must be less than or equal to `36`")
-
-        self._license_uuid = license_uuid
-
-    @property
-    def end_time(self):
-        """
-        Gets the end_time of this LicensePeriod.
-
-        :return: The end_time of this LicensePeriod.
-        :rtype: datetime
-        """
-        return self._end_time
-
-    @end_time.setter
-    def end_time(self, end_time):
-        """
-        Sets the end_time of this LicensePeriod.
-
-        :param end_time: The end_time of this LicensePeriod.
-        :type: datetime
-        """
-
-        self._end_time = end_time
+        if end_time is not None:
+          self.end_time = end_time
 
     @property
     def start_time(self):
@@ -122,6 +73,27 @@ class LicensePeriod(object):
         """
 
         self._start_time = start_time
+
+    @property
+    def end_time(self):
+        """
+        Gets the end_time of this LicensePeriod.
+
+        :return: The end_time of this LicensePeriod.
+        :rtype: datetime
+        """
+        return self._end_time
+
+    @end_time.setter
+    def end_time(self, end_time):
+        """
+        Sets the end_time of this LicensePeriod.
+
+        :param end_time: The end_time of this LicensePeriod.
+        :type: datetime
+        """
+
+        self._end_time = end_time
 
     def to_dict(self):
         """

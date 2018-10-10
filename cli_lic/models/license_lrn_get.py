@@ -32,34 +32,34 @@ class LicenseLrnGet(object):
     """
     swagger_types = {
         'cps': 'int',
-        'license_uuid': 'str',
         'type': 'str',
+        'license_uuid': 'str',
         'license': 'License'
     }
 
     attribute_map = {
         'cps': 'cps',
-        'license_uuid': 'license_uuid',
         'type': 'type',
+        'license_uuid': 'license_uuid',
         'license': 'license'
     }
 
-    def __init__(self, cps=None, license_uuid=None, type='pay per CPS', license=None):
+    def __init__(self, cps=None, type='LRN pay per CPS', license_uuid=None, license=None):
         """
         LicenseLrnGet - a model defined in Swagger
         """
 
         self._cps = None
-        self._license_uuid = None
         self._type = None
+        self._license_uuid = None
         self._license = None
 
         if cps is not None:
           self.cps = cps
-        if license_uuid is not None:
-          self.license_uuid = license_uuid
         if type is not None:
           self.type = type
+        if license_uuid is not None:
+          self.license_uuid = license_uuid
         if license is not None:
           self.license = license
 
@@ -85,6 +85,33 @@ class LicenseLrnGet(object):
         self._cps = cps
 
     @property
+    def type(self):
+        """
+        Gets the type of this LicenseLrnGet.
+
+        :return: The type of this LicenseLrnGet.
+        :rtype: str
+        """
+        return self._type
+
+    @type.setter
+    def type(self, type):
+        """
+        Sets the type of this LicenseLrnGet.
+
+        :param type: The type of this LicenseLrnGet.
+        :type: str
+        """
+        allowed_values = ["LRN pay per CPS", "LRN pay per DIP"]
+        if type not in allowed_values:
+            raise ValueError(
+                "Invalid value for `type` ({0}), must be one of {1}"
+                .format(type, allowed_values)
+            )
+
+        self._type = type
+
+    @property
     def license_uuid(self):
         """
         Gets the license_uuid of this LicenseLrnGet.
@@ -106,33 +133,6 @@ class LicenseLrnGet(object):
             raise ValueError("Invalid value for `license_uuid`, length must be less than or equal to `36`")
 
         self._license_uuid = license_uuid
-
-    @property
-    def type(self):
-        """
-        Gets the type of this LicenseLrnGet.
-
-        :return: The type of this LicenseLrnGet.
-        :rtype: str
-        """
-        return self._type
-
-    @type.setter
-    def type(self, type):
-        """
-        Sets the type of this LicenseLrnGet.
-
-        :param type: The type of this LicenseLrnGet.
-        :type: str
-        """
-        allowed_values = ["pay per CPS", "pay per DIP"]
-        if type not in allowed_values:
-            raise ValueError(
-                "Invalid value for `type` ({0}), must be one of {1}"
-                .format(type, allowed_values)
-            )
-
-        self._type = type
 
     @property
     def license(self):

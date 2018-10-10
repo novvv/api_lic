@@ -32,36 +32,36 @@ class NotificationModify(object):
     """
     swagger_types = {
         'content': 'str',
+        'created_on': 'datetime',
         'user_uuid': 'str',
-        'subject': 'str',
-        'created_on': 'datetime'
+        'subject': 'str'
     }
 
     attribute_map = {
         'content': 'content',
+        'created_on': 'created_on',
         'user_uuid': 'user_uuid',
-        'subject': 'subject',
-        'created_on': 'created_on'
+        'subject': 'subject'
     }
 
-    def __init__(self, content=None, user_uuid=None, subject=None, created_on=None):
+    def __init__(self, content=None, created_on=None, user_uuid=None, subject=None):
         """
         NotificationModify - a model defined in Swagger
         """
 
         self._content = None
+        self._created_on = None
         self._user_uuid = None
         self._subject = None
-        self._created_on = None
 
         if content is not None:
           self.content = content
+        if created_on is not None:
+          self.created_on = created_on
         if user_uuid is not None:
           self.user_uuid = user_uuid
         if subject is not None:
           self.subject = subject
-        if created_on is not None:
-          self.created_on = created_on
 
     @property
     def content(self):
@@ -83,6 +83,27 @@ class NotificationModify(object):
         """
 
         self._content = content
+
+    @property
+    def created_on(self):
+        """
+        Gets the created_on of this NotificationModify.
+
+        :return: The created_on of this NotificationModify.
+        :rtype: datetime
+        """
+        return self._created_on
+
+    @created_on.setter
+    def created_on(self, created_on):
+        """
+        Sets the created_on of this NotificationModify.
+
+        :param created_on: The created_on of this NotificationModify.
+        :type: datetime
+        """
+
+        self._created_on = created_on
 
     @property
     def user_uuid(self):
@@ -129,27 +150,6 @@ class NotificationModify(object):
             raise ValueError("Invalid value for `subject`, length must be less than or equal to `64`")
 
         self._subject = subject
-
-    @property
-    def created_on(self):
-        """
-        Gets the created_on of this NotificationModify.
-
-        :return: The created_on of this NotificationModify.
-        :rtype: datetime
-        """
-        return self._created_on
-
-    @created_on.setter
-    def created_on(self, created_on):
-        """
-        Sets the created_on of this NotificationModify.
-
-        :param created_on: The created_on of this NotificationModify.
-        :type: datetime
-        """
-
-        self._created_on = created_on
 
     def to_dict(self):
         """
