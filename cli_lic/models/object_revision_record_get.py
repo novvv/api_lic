@@ -31,56 +31,31 @@ class ObjectRevisionRecordGet(object):
                             and the value is json key in definition.
     """
     swagger_types = {
-        'field_name': 'str',
         'old_value': 'str',
-        'new_value': 'str'
+        'new_value': 'str',
+        'field_name': 'str'
     }
 
     attribute_map = {
-        'field_name': 'field_name',
         'old_value': 'old_value',
-        'new_value': 'new_value'
+        'new_value': 'new_value',
+        'field_name': 'field_name'
     }
 
-    def __init__(self, field_name=None, old_value=None, new_value=None):
+    def __init__(self, old_value=None, new_value=None, field_name=None):
         """
         ObjectRevisionRecordGet - a model defined in Swagger
         """
 
-        self._field_name = None
         self._old_value = None
         self._new_value = None
+        self._field_name = None
 
-        self.field_name = field_name
         if old_value is not None:
           self.old_value = old_value
         if new_value is not None:
           self.new_value = new_value
-
-    @property
-    def field_name(self):
-        """
-        Gets the field_name of this ObjectRevisionRecordGet.
-
-        :return: The field_name of this ObjectRevisionRecordGet.
-        :rtype: str
-        """
-        return self._field_name
-
-    @field_name.setter
-    def field_name(self, field_name):
-        """
-        Sets the field_name of this ObjectRevisionRecordGet.
-
-        :param field_name: The field_name of this ObjectRevisionRecordGet.
-        :type: str
-        """
-        if field_name is None:
-            raise ValueError("Invalid value for `field_name`, must not be `None`")
-        if field_name is not None and len(field_name) > 64:
-            raise ValueError("Invalid value for `field_name`, length must be less than or equal to `64`")
-
-        self._field_name = field_name
+        self.field_name = field_name
 
     @property
     def old_value(self):
@@ -123,6 +98,31 @@ class ObjectRevisionRecordGet(object):
         """
 
         self._new_value = new_value
+
+    @property
+    def field_name(self):
+        """
+        Gets the field_name of this ObjectRevisionRecordGet.
+
+        :return: The field_name of this ObjectRevisionRecordGet.
+        :rtype: str
+        """
+        return self._field_name
+
+    @field_name.setter
+    def field_name(self, field_name):
+        """
+        Sets the field_name of this ObjectRevisionRecordGet.
+
+        :param field_name: The field_name of this ObjectRevisionRecordGet.
+        :type: str
+        """
+        if field_name is None:
+            raise ValueError("Invalid value for `field_name`, must not be `None`")
+        if field_name is not None and len(field_name) > 64:
+            raise ValueError("Invalid value for `field_name`, length must be less than or equal to `64`")
+
+        self._field_name = field_name
 
     def to_dict(self):
         """

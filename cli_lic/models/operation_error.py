@@ -31,53 +31,32 @@ class OperationError(object):
                             and the value is json key in definition.
     """
     swagger_types = {
-        'success': 'bool',
-        'error': 'OperationErrorError',
-        'error_type': 'str'
+        'error': 'UnauthenticatedErrorError',
+        'error_type': 'str',
+        'success': 'bool'
     }
 
     attribute_map = {
-        'success': 'success',
         'error': 'error',
-        'error_type': 'error_type'
+        'error_type': 'error_type',
+        'success': 'success'
     }
 
-    def __init__(self, success=False, error=None, error_type='operation_error'):
+    def __init__(self, error=None, error_type='operation_error', success=False):
         """
         OperationError - a model defined in Swagger
         """
 
-        self._success = None
         self._error = None
         self._error_type = None
+        self._success = None
 
-        if success is not None:
-          self.success = success
         if error is not None:
           self.error = error
         if error_type is not None:
           self.error_type = error_type
-
-    @property
-    def success(self):
-        """
-        Gets the success of this OperationError.
-
-        :return: The success of this OperationError.
-        :rtype: bool
-        """
-        return self._success
-
-    @success.setter
-    def success(self, success):
-        """
-        Sets the success of this OperationError.
-
-        :param success: The success of this OperationError.
-        :type: bool
-        """
-
-        self._success = success
+        if success is not None:
+          self.success = success
 
     @property
     def error(self):
@@ -85,7 +64,7 @@ class OperationError(object):
         Gets the error of this OperationError.
 
         :return: The error of this OperationError.
-        :rtype: OperationErrorError
+        :rtype: UnauthenticatedErrorError
         """
         return self._error
 
@@ -95,7 +74,7 @@ class OperationError(object):
         Sets the error of this OperationError.
 
         :param error: The error of this OperationError.
-        :type: OperationErrorError
+        :type: UnauthenticatedErrorError
         """
 
         self._error = error
@@ -120,6 +99,27 @@ class OperationError(object):
         """
 
         self._error_type = error_type
+
+    @property
+    def success(self):
+        """
+        Gets the success of this OperationError.
+
+        :return: The success of this OperationError.
+        :rtype: bool
+        """
+        return self._success
+
+    @success.setter
+    def success(self, success):
+        """
+        Sets the success of this OperationError.
+
+        :param success: The success of this OperationError.
+        :type: bool
+        """
+
+        self._success = success
 
     def to_dict(self):
         """

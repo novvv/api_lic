@@ -31,37 +31,60 @@ class LicenseSwitchGet(object):
                             and the value is json key in definition.
     """
     swagger_types = {
-        'type': 'str',
-        'ip': 'str',
         'license_uuid': 'str',
-        'license': 'License'
+        'type': 'str',
+        'license': 'License',
+        'ip': 'str'
     }
 
     attribute_map = {
-        'type': 'type',
-        'ip': 'ip',
         'license_uuid': 'license_uuid',
-        'license': 'license'
+        'type': 'type',
+        'license': 'license',
+        'ip': 'ip'
     }
 
-    def __init__(self, type='switch pay per port', ip=None, license_uuid=None, license=None):
+    def __init__(self, license_uuid=None, type='switch pay per port', license=None, ip=None):
         """
         LicenseSwitchGet - a model defined in Swagger
         """
 
-        self._type = None
-        self._ip = None
         self._license_uuid = None
+        self._type = None
         self._license = None
+        self._ip = None
 
-        if type is not None:
-          self.type = type
-        if ip is not None:
-          self.ip = ip
         if license_uuid is not None:
           self.license_uuid = license_uuid
+        if type is not None:
+          self.type = type
         if license is not None:
           self.license = license
+        if ip is not None:
+          self.ip = ip
+
+    @property
+    def license_uuid(self):
+        """
+        Gets the license_uuid of this LicenseSwitchGet.
+
+        :return: The license_uuid of this LicenseSwitchGet.
+        :rtype: str
+        """
+        return self._license_uuid
+
+    @license_uuid.setter
+    def license_uuid(self, license_uuid):
+        """
+        Sets the license_uuid of this LicenseSwitchGet.
+
+        :param license_uuid: The license_uuid of this LicenseSwitchGet.
+        :type: str
+        """
+        if license_uuid is not None and len(license_uuid) > 36:
+            raise ValueError("Invalid value for `license_uuid`, length must be less than or equal to `36`")
+
+        self._license_uuid = license_uuid
 
     @property
     def type(self):
@@ -91,6 +114,27 @@ class LicenseSwitchGet(object):
         self._type = type
 
     @property
+    def license(self):
+        """
+        Gets the license of this LicenseSwitchGet.
+
+        :return: The license of this LicenseSwitchGet.
+        :rtype: License
+        """
+        return self._license
+
+    @license.setter
+    def license(self, license):
+        """
+        Sets the license of this LicenseSwitchGet.
+
+        :param license: The license of this LicenseSwitchGet.
+        :type: License
+        """
+
+        self._license = license
+
+    @property
     def ip(self):
         """
         Gets the ip of this LicenseSwitchGet.
@@ -112,50 +156,6 @@ class LicenseSwitchGet(object):
             raise ValueError("Invalid value for `ip`, length must be less than or equal to `16`")
 
         self._ip = ip
-
-    @property
-    def license_uuid(self):
-        """
-        Gets the license_uuid of this LicenseSwitchGet.
-
-        :return: The license_uuid of this LicenseSwitchGet.
-        :rtype: str
-        """
-        return self._license_uuid
-
-    @license_uuid.setter
-    def license_uuid(self, license_uuid):
-        """
-        Sets the license_uuid of this LicenseSwitchGet.
-
-        :param license_uuid: The license_uuid of this LicenseSwitchGet.
-        :type: str
-        """
-        if license_uuid is not None and len(license_uuid) > 36:
-            raise ValueError("Invalid value for `license_uuid`, length must be less than or equal to `36`")
-
-        self._license_uuid = license_uuid
-
-    @property
-    def license(self):
-        """
-        Gets the license of this LicenseSwitchGet.
-
-        :return: The license of this LicenseSwitchGet.
-        :rtype: License
-        """
-        return self._license
-
-    @license.setter
-    def license(self, license):
-        """
-        Sets the license of this LicenseSwitchGet.
-
-        :param license: The license of this LicenseSwitchGet.
-        :type: License
-        """
-
-        self._license = license
 
     def to_dict(self):
         """

@@ -31,37 +31,83 @@ class Notification(object):
                             and the value is json key in definition.
     """
     swagger_types = {
-        'content': 'str',
-        'created_on': 'datetime',
+        'subject': 'str',
         'user_uuid': 'str',
-        'subject': 'str'
+        'content': 'str',
+        'created_on': 'datetime'
     }
 
     attribute_map = {
-        'content': 'content',
-        'created_on': 'created_on',
+        'subject': 'subject',
         'user_uuid': 'user_uuid',
-        'subject': 'subject'
+        'content': 'content',
+        'created_on': 'created_on'
     }
 
-    def __init__(self, content=None, created_on=None, user_uuid=None, subject=None):
+    def __init__(self, subject=None, user_uuid=None, content=None, created_on=None):
         """
         Notification - a model defined in Swagger
         """
 
+        self._subject = None
+        self._user_uuid = None
         self._content = None
         self._created_on = None
-        self._user_uuid = None
-        self._subject = None
 
+        if subject is not None:
+          self.subject = subject
+        if user_uuid is not None:
+          self.user_uuid = user_uuid
         if content is not None:
           self.content = content
         if created_on is not None:
           self.created_on = created_on
-        if user_uuid is not None:
-          self.user_uuid = user_uuid
-        if subject is not None:
-          self.subject = subject
+
+    @property
+    def subject(self):
+        """
+        Gets the subject of this Notification.
+
+        :return: The subject of this Notification.
+        :rtype: str
+        """
+        return self._subject
+
+    @subject.setter
+    def subject(self, subject):
+        """
+        Sets the subject of this Notification.
+
+        :param subject: The subject of this Notification.
+        :type: str
+        """
+        if subject is not None and len(subject) > 64:
+            raise ValueError("Invalid value for `subject`, length must be less than or equal to `64`")
+
+        self._subject = subject
+
+    @property
+    def user_uuid(self):
+        """
+        Gets the user_uuid of this Notification.
+
+        :return: The user_uuid of this Notification.
+        :rtype: str
+        """
+        return self._user_uuid
+
+    @user_uuid.setter
+    def user_uuid(self, user_uuid):
+        """
+        Sets the user_uuid of this Notification.
+
+        :param user_uuid: The user_uuid of this Notification.
+        :type: str
+        """
+        if user_uuid is not None and len(user_uuid) > 36:
+            raise ValueError("Invalid value for `user_uuid`, length must be less than or equal to `36`")
+
+        self._user_uuid = user_uuid
 
     @property
     def content(self):
@@ -104,52 +150,6 @@ class Notification(object):
         """
 
         self._created_on = created_on
-
-    @property
-    def user_uuid(self):
-        """
-        Gets the user_uuid of this Notification.
-
-        :return: The user_uuid of this Notification.
-        :rtype: str
-        """
-        return self._user_uuid
-
-    @user_uuid.setter
-    def user_uuid(self, user_uuid):
-        """
-        Sets the user_uuid of this Notification.
-
-        :param user_uuid: The user_uuid of this Notification.
-        :type: str
-        """
-        if user_uuid is not None and len(user_uuid) > 36:
-            raise ValueError("Invalid value for `user_uuid`, length must be less than or equal to `36`")
-
-        self._user_uuid = user_uuid
-
-    @property
-    def subject(self):
-        """
-        Gets the subject of this Notification.
-
-        :return: The subject of this Notification.
-        :rtype: str
-        """
-        return self._subject
-
-    @subject.setter
-    def subject(self, subject):
-        """
-        Sets the subject of this Notification.
-
-        :param subject: The subject of this Notification.
-        :type: str
-        """
-        if subject is not None and len(subject) > 64:
-            raise ValueError("Invalid value for `subject`, length must be less than or equal to `64`")
-
-        self._subject = subject
 
     def to_dict(self):
         """

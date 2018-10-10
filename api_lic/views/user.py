@@ -375,5 +375,16 @@ class PaymentWebhook(CustomPostAction):
         return self.proceed(req, resp, **kwargs)
 
     def proceed(self, req, resp, **kwargs):
+        paypalrestsdk.configure(settings.PAYPAL)
         log.debug('webhook called request data {} kwargs {}'.format(req.data,kwargs))
+        data=req.data
+        if "event_type" in data:
+            if data["event_type"] == 'PAYMENT.SALE.PENDING':
+                pay_id = data['resource']['parent_payment']
+                pay=paypalrestsdk.Payment.find(pay_id)
+                log.debug('pay {}'.format(pay))
+            else:
+                log.debug('---event {}'.format(data["event_type"]))
+        else:
+            raise NoResultFound
         return True

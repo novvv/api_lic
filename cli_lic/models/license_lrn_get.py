@@ -31,58 +31,60 @@ class LicenseLrnGet(object):
                             and the value is json key in definition.
     """
     swagger_types = {
-        'cps': 'int',
-        'type': 'str',
         'license_uuid': 'str',
-        'license': 'License'
+        'type': 'str',
+        'license': 'License',
+        'cps': 'int'
     }
 
     attribute_map = {
-        'cps': 'cps',
-        'type': 'type',
         'license_uuid': 'license_uuid',
-        'license': 'license'
+        'type': 'type',
+        'license': 'license',
+        'cps': 'cps'
     }
 
-    def __init__(self, cps=None, type='LRN pay per CPS', license_uuid=None, license=None):
+    def __init__(self, license_uuid=None, type='LRN pay per CPS', license=None, cps=None):
         """
         LicenseLrnGet - a model defined in Swagger
         """
 
-        self._cps = None
-        self._type = None
         self._license_uuid = None
+        self._type = None
         self._license = None
+        self._cps = None
 
-        if cps is not None:
-          self.cps = cps
-        if type is not None:
-          self.type = type
         if license_uuid is not None:
           self.license_uuid = license_uuid
+        if type is not None:
+          self.type = type
         if license is not None:
           self.license = license
+        if cps is not None:
+          self.cps = cps
 
     @property
-    def cps(self):
+    def license_uuid(self):
         """
-        Gets the cps of this LicenseLrnGet.
+        Gets the license_uuid of this LicenseLrnGet.
 
-        :return: The cps of this LicenseLrnGet.
-        :rtype: int
+        :return: The license_uuid of this LicenseLrnGet.
+        :rtype: str
         """
-        return self._cps
+        return self._license_uuid
 
-    @cps.setter
-    def cps(self, cps):
+    @license_uuid.setter
+    def license_uuid(self, license_uuid):
         """
-        Sets the cps of this LicenseLrnGet.
+        Sets the license_uuid of this LicenseLrnGet.
 
-        :param cps: The cps of this LicenseLrnGet.
-        :type: int
+        :param license_uuid: The license_uuid of this LicenseLrnGet.
+        :type: str
         """
+        if license_uuid is not None and len(license_uuid) > 36:
+            raise ValueError("Invalid value for `license_uuid`, length must be less than or equal to `36`")
 
-        self._cps = cps
+        self._license_uuid = license_uuid
 
     @property
     def type(self):
@@ -112,29 +114,6 @@ class LicenseLrnGet(object):
         self._type = type
 
     @property
-    def license_uuid(self):
-        """
-        Gets the license_uuid of this LicenseLrnGet.
-
-        :return: The license_uuid of this LicenseLrnGet.
-        :rtype: str
-        """
-        return self._license_uuid
-
-    @license_uuid.setter
-    def license_uuid(self, license_uuid):
-        """
-        Sets the license_uuid of this LicenseLrnGet.
-
-        :param license_uuid: The license_uuid of this LicenseLrnGet.
-        :type: str
-        """
-        if license_uuid is not None and len(license_uuid) > 36:
-            raise ValueError("Invalid value for `license_uuid`, length must be less than or equal to `36`")
-
-        self._license_uuid = license_uuid
-
-    @property
     def license(self):
         """
         Gets the license of this LicenseLrnGet.
@@ -154,6 +133,27 @@ class LicenseLrnGet(object):
         """
 
         self._license = license
+
+    @property
+    def cps(self):
+        """
+        Gets the cps of this LicenseLrnGet.
+
+        :return: The cps of this LicenseLrnGet.
+        :rtype: int
+        """
+        return self._cps
+
+    @cps.setter
+    def cps(self, cps):
+        """
+        Sets the cps of this LicenseLrnGet.
+
+        :param cps: The cps of this LicenseLrnGet.
+        :type: int
+        """
+
+        self._cps = cps
 
     def to_dict(self):
         """

@@ -31,63 +31,42 @@ class LicensePeriodGet(object):
                             and the value is json key in definition.
     """
     swagger_types = {
-        'start_time': 'datetime',
         'license_uuid': 'str',
-        'license_period_uuid': 'str',
+        'start_time': 'datetime',
         'user_uuid': 'str',
+        'license_period_uuid': 'str',
         'end_time': 'datetime'
     }
 
     attribute_map = {
-        'start_time': 'start_time',
         'license_uuid': 'license_uuid',
-        'license_period_uuid': 'license_period_uuid',
+        'start_time': 'start_time',
         'user_uuid': 'user_uuid',
+        'license_period_uuid': 'license_period_uuid',
         'end_time': 'end_time'
     }
 
-    def __init__(self, start_time=None, license_uuid=None, license_period_uuid=None, user_uuid=None, end_time=None):
+    def __init__(self, license_uuid=None, start_time=None, user_uuid=None, license_period_uuid=None, end_time=None):
         """
         LicensePeriodGet - a model defined in Swagger
         """
 
-        self._start_time = None
         self._license_uuid = None
-        self._license_period_uuid = None
+        self._start_time = None
         self._user_uuid = None
+        self._license_period_uuid = None
         self._end_time = None
 
-        if start_time is not None:
-          self.start_time = start_time
         if license_uuid is not None:
           self.license_uuid = license_uuid
-        if license_period_uuid is not None:
-          self.license_period_uuid = license_period_uuid
+        if start_time is not None:
+          self.start_time = start_time
         if user_uuid is not None:
           self.user_uuid = user_uuid
+        if license_period_uuid is not None:
+          self.license_period_uuid = license_period_uuid
         if end_time is not None:
           self.end_time = end_time
-
-    @property
-    def start_time(self):
-        """
-        Gets the start_time of this LicensePeriodGet.
-
-        :return: The start_time of this LicensePeriodGet.
-        :rtype: datetime
-        """
-        return self._start_time
-
-    @start_time.setter
-    def start_time(self, start_time):
-        """
-        Sets the start_time of this LicensePeriodGet.
-
-        :param start_time: The start_time of this LicensePeriodGet.
-        :type: datetime
-        """
-
-        self._start_time = start_time
 
     @property
     def license_uuid(self):
@@ -113,27 +92,25 @@ class LicensePeriodGet(object):
         self._license_uuid = license_uuid
 
     @property
-    def license_period_uuid(self):
+    def start_time(self):
         """
-        Gets the license_period_uuid of this LicensePeriodGet.
+        Gets the start_time of this LicensePeriodGet.
 
-        :return: The license_period_uuid of this LicensePeriodGet.
-        :rtype: str
+        :return: The start_time of this LicensePeriodGet.
+        :rtype: datetime
         """
-        return self._license_period_uuid
+        return self._start_time
 
-    @license_period_uuid.setter
-    def license_period_uuid(self, license_period_uuid):
+    @start_time.setter
+    def start_time(self, start_time):
         """
-        Sets the license_period_uuid of this LicensePeriodGet.
+        Sets the start_time of this LicensePeriodGet.
 
-        :param license_period_uuid: The license_period_uuid of this LicensePeriodGet.
-        :type: str
+        :param start_time: The start_time of this LicensePeriodGet.
+        :type: datetime
         """
-        if license_period_uuid is not None and len(license_period_uuid) > 36:
-            raise ValueError("Invalid value for `license_period_uuid`, length must be less than or equal to `36`")
 
-        self._license_period_uuid = license_period_uuid
+        self._start_time = start_time
 
     @property
     def user_uuid(self):
@@ -155,6 +132,29 @@ class LicensePeriodGet(object):
         """
 
         self._user_uuid = user_uuid
+
+    @property
+    def license_period_uuid(self):
+        """
+        Gets the license_period_uuid of this LicensePeriodGet.
+
+        :return: The license_period_uuid of this LicensePeriodGet.
+        :rtype: str
+        """
+        return self._license_period_uuid
+
+    @license_period_uuid.setter
+    def license_period_uuid(self, license_period_uuid):
+        """
+        Sets the license_period_uuid of this LicensePeriodGet.
+
+        :param license_period_uuid: The license_period_uuid of this LicensePeriodGet.
+        :type: str
+        """
+        if license_period_uuid is not None and len(license_period_uuid) > 36:
+            raise ValueError("Invalid value for `license_period_uuid`, length must be less than or equal to `36`")
+
+        self._license_period_uuid = license_period_uuid
 
     @property
     def end_time(self):

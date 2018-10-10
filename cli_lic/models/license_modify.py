@@ -31,37 +31,58 @@ class LicenseModify(object):
                             and the value is json key in definition.
     """
     swagger_types = {
+        'switch': 'LicenseSwitch',
         'lrn': 'LicenseLrn',
         'periods': 'list[LicensePeriod]',
-        'rate_uuid': 'str',
-        'switch': 'LicenseSwitch'
+        'rate_uuid': 'str'
     }
 
     attribute_map = {
+        'switch': 'switch',
         'lrn': 'lrn',
         'periods': 'periods',
-        'rate_uuid': 'rate_uuid',
-        'switch': 'switch'
+        'rate_uuid': 'rate_uuid'
     }
 
-    def __init__(self, lrn=None, periods=None, rate_uuid=None, switch=None):
+    def __init__(self, switch=None, lrn=None, periods=None, rate_uuid=None):
         """
         LicenseModify - a model defined in Swagger
         """
 
+        self._switch = None
         self._lrn = None
         self._periods = None
         self._rate_uuid = None
-        self._switch = None
 
+        if switch is not None:
+          self.switch = switch
         if lrn is not None:
           self.lrn = lrn
         if periods is not None:
           self.periods = periods
         if rate_uuid is not None:
           self.rate_uuid = rate_uuid
-        if switch is not None:
-          self.switch = switch
+
+    @property
+    def switch(self):
+        """
+        Gets the switch of this LicenseModify.
+
+        :return: The switch of this LicenseModify.
+        :rtype: LicenseSwitch
+        """
+        return self._switch
+
+    @switch.setter
+    def switch(self, switch):
+        """
+        Sets the switch of this LicenseModify.
+
+        :param switch: The switch of this LicenseModify.
+        :type: LicenseSwitch
+        """
+
+        self._switch = switch
 
     @property
     def lrn(self):
@@ -127,27 +148,6 @@ class LicenseModify(object):
             raise ValueError("Invalid value for `rate_uuid`, length must be less than or equal to `36`")
 
         self._rate_uuid = rate_uuid
-
-    @property
-    def switch(self):
-        """
-        Gets the switch of this LicenseModify.
-
-        :return: The switch of this LicenseModify.
-        :rtype: LicenseSwitch
-        """
-        return self._switch
-
-    @switch.setter
-    def switch(self, switch):
-        """
-        Sets the switch of this LicenseModify.
-
-        :param switch: The switch of this LicenseModify.
-        :type: LicenseSwitch
-        """
-
-        self._switch = switch
 
     def to_dict(self):
         """
