@@ -37,7 +37,7 @@ def get_token(user, ttl=None):
     token = jwt.encode(token_data, settings.JWT_SIGNATURE, algorithm='HS256')
     if hasattr(user, 'on_token_created'):
         user.on_token_created(token_data.get('jti'), token, valid_till)
-    return token
+    return token.decode('utf-8')
 
 
 def get_user_from_token(token):

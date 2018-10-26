@@ -32,41 +32,41 @@ class PaymentGet(object):
     """
     swagger_types = {
         'payment_uuid': 'str',
-        'type': 'str',
+        'period': 'LicensePeriod',
         'user_uuid': 'str',
         'license_period_uuid': 'str',
-        'period': 'LicensePeriod'
+        'type': 'str'
     }
 
     attribute_map = {
         'payment_uuid': 'payment_uuid',
-        'type': 'type',
+        'period': 'period',
         'user_uuid': 'user_uuid',
         'license_period_uuid': 'license_period_uuid',
-        'period': 'period'
+        'type': 'type'
     }
 
-    def __init__(self, payment_uuid=None, type='paypal', user_uuid=None, license_period_uuid=None, period=None):
+    def __init__(self, payment_uuid=None, period=None, user_uuid=None, license_period_uuid=None, type='paypal'):
         """
         PaymentGet - a model defined in Swagger
         """
 
         self._payment_uuid = None
-        self._type = None
+        self._period = None
         self._user_uuid = None
         self._license_period_uuid = None
-        self._period = None
+        self._type = None
 
         if payment_uuid is not None:
           self.payment_uuid = payment_uuid
-        if type is not None:
-          self.type = type
+        if period is not None:
+          self.period = period
         if user_uuid is not None:
           self.user_uuid = user_uuid
         if license_period_uuid is not None:
           self.license_period_uuid = license_period_uuid
-        if period is not None:
-          self.period = period
+        if type is not None:
+          self.type = type
 
     @property
     def payment_uuid(self):
@@ -92,31 +92,25 @@ class PaymentGet(object):
         self._payment_uuid = payment_uuid
 
     @property
-    def type(self):
+    def period(self):
         """
-        Gets the type of this PaymentGet.
+        Gets the period of this PaymentGet.
 
-        :return: The type of this PaymentGet.
-        :rtype: str
+        :return: The period of this PaymentGet.
+        :rtype: LicensePeriod
         """
-        return self._type
+        return self._period
 
-    @type.setter
-    def type(self, type):
+    @period.setter
+    def period(self, period):
         """
-        Sets the type of this PaymentGet.
+        Sets the period of this PaymentGet.
 
-        :param type: The type of this PaymentGet.
-        :type: str
+        :param period: The period of this PaymentGet.
+        :type: LicensePeriod
         """
-        allowed_values = ["paypal", "strip"]
-        if type not in allowed_values:
-            raise ValueError(
-                "Invalid value for `type` ({0}), must be one of {1}"
-                .format(type, allowed_values)
-            )
 
-        self._type = type
+        self._period = period
 
     @property
     def user_uuid(self):
@@ -163,25 +157,31 @@ class PaymentGet(object):
         self._license_period_uuid = license_period_uuid
 
     @property
-    def period(self):
+    def type(self):
         """
-        Gets the period of this PaymentGet.
+        Gets the type of this PaymentGet.
 
-        :return: The period of this PaymentGet.
-        :rtype: LicensePeriod
+        :return: The type of this PaymentGet.
+        :rtype: str
         """
-        return self._period
+        return self._type
 
-    @period.setter
-    def period(self, period):
+    @type.setter
+    def type(self, type):
         """
-        Sets the period of this PaymentGet.
+        Sets the type of this PaymentGet.
 
-        :param period: The period of this PaymentGet.
-        :type: LicensePeriod
+        :param type: The type of this PaymentGet.
+        :type: str
         """
+        allowed_values = ["paypal", "strip"]
+        if type not in allowed_values:
+            raise ValueError(
+                "Invalid value for `type` ({0}), must be one of {1}"
+                .format(type, allowed_values)
+            )
 
-        self._period = period
+        self._type = type
 
     def to_dict(self):
         """

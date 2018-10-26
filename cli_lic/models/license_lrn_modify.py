@@ -31,27 +31,48 @@ class LicenseLrnModify(object):
                             and the value is json key in definition.
     """
     swagger_types = {
-        'type': 'str',
-        'cps': 'int'
+        'cps': 'int',
+        'type': 'str'
     }
 
     attribute_map = {
-        'type': 'type',
-        'cps': 'cps'
+        'cps': 'cps',
+        'type': 'type'
     }
 
-    def __init__(self, type='LRN pay per CPS', cps=None):
+    def __init__(self, cps=None, type='LRN pay per CPS'):
         """
         LicenseLrnModify - a model defined in Swagger
         """
 
-        self._type = None
         self._cps = None
+        self._type = None
 
-        if type is not None:
-          self.type = type
         if cps is not None:
           self.cps = cps
+        if type is not None:
+          self.type = type
+
+    @property
+    def cps(self):
+        """
+        Gets the cps of this LicenseLrnModify.
+
+        :return: The cps of this LicenseLrnModify.
+        :rtype: int
+        """
+        return self._cps
+
+    @cps.setter
+    def cps(self, cps):
+        """
+        Sets the cps of this LicenseLrnModify.
+
+        :param cps: The cps of this LicenseLrnModify.
+        :type: int
+        """
+
+        self._cps = cps
 
     @property
     def type(self):
@@ -79,27 +100,6 @@ class LicenseLrnModify(object):
             )
 
         self._type = type
-
-    @property
-    def cps(self):
-        """
-        Gets the cps of this LicenseLrnModify.
-
-        :return: The cps of this LicenseLrnModify.
-        :rtype: int
-        """
-        return self._cps
-
-    @cps.setter
-    def cps(self, cps):
-        """
-        Sets the cps of this LicenseLrnModify.
-
-        :param cps: The cps of this LicenseLrnModify.
-        :type: int
-        """
-
-        self._cps = cps
 
     def to_dict(self):
         """

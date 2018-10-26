@@ -46,6 +46,8 @@ PRODUCTION_ROUTES = OrderedDict([
         {'path': '/rate/{rate_uuid}', 'method': 'path','resource': views.RateResource()},
         {'path': '/notification', 'method': 'post', 'resource': views.NotificationCreate()},
         {'path': '/notification/{notification_uuid}', 'method': 'path', 'resource': views.NotificationResource()},
+        {'path': '/email_template/{name}', 'method': 'path','resource': views.EmailTemplateResource()},
+        {'path': '/email_template/list', 'method': 'get','resource': views.EmailTemplateList()},
             ]}
  ),
     ('Public', {
@@ -80,8 +82,8 @@ PRODUCTION_ROUTES = OrderedDict([
 {'path': '/payment', 'method': 'post', 'resource': api_lic.views.user.PaymentCreate()},
 {'path': '/payment/{payment_uuid}', 'method': 'path', 'resource': api_lic.views.user.PaymentResource()},
 {'path': '/payment/list', 'method': 'get', 'resource': api_lic.views.user.PaymentList()},
-{'path': '/payment/webhook', 'method': 'post', 'resource': api_lic.views.user.PaymentWebhook()},
-
+{'path': '/payment/paypal', 'method': 'post', 'resource': api_lic.views.user.PaypalWebhook()},
+{'path': '/payment/stripe', 'method': 'post', 'resource': api_lic.views.user.StripeWebhook()},
         ]
 
     }),

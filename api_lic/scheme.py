@@ -157,11 +157,12 @@ class UserScheme(BaseModelScheme):
 
     class Meta:
         model = model.User
-        fields = ('email', 'passwd', 'is_admin', 'is_active','logo_file_uuid')
+        fields = ('email', 'passwd', 'is_admin', 'is_active', 'logo_file_uuid')
 
 
 class UserSchemeGet(UserScheme):
     role_name = Str(validate=validate.OneOf(('admin', 'user')))
+
     class Meta:
         fields = ('user_uuid', 'created_on', 'last_login',
                   'role_name') + UserScheme.Meta.fields
@@ -275,15 +276,21 @@ class LicenseScheme(BaseModelScheme):
 
     class Meta:
         model = model.License
-        fields = ('rate_uuid','lrn','switch','periods')
+        fields = ('rate_uuid', 'lrn', 'switch', 'periods')
 
 
 class LicenseSchemeGet(LicenseScheme):
     periods = Nested('LicensePeriodSchemeGet', many=True)
+    type = String()
+    is_lrn_license = Bool()
+    is_switch_license = Bool()
+
     class Meta:
         model = model.License
-        fields = ('license_uuid', 'rate_uuid', 'periods', 'lrn', 'switch','periods','user_uuid', 'user_email')
-        search_fields = ('license_uuid', 'rate_uuid', 'user_uuid', 'user_email')
+        fields = ('license_uuid', 'rate_uuid', 'periods', 'lrn', 'switch', 'periods', 'user_uuid', 'user_email', 'type',
+                  'is_lrn_license', 'is_switch_license')
+        search_fields = (
+        'license_uuid', 'rate_uuid', 'user_uuid', 'user_email', 'type', 'is_lrn_license', 'is_switch_license')
 
 
 class LicenseSchemeModify(LicenseScheme):
@@ -334,13 +341,14 @@ class LicensePeriodScheme(BaseModelScheme):
 class LicensePeriodSchemeGet(LicensePeriodScheme):
     class Meta:
         model = model.LicensePeriod
-        fields = ('license_period_uuid', 'license_uuid', 'user_uuid')+LicensePeriodScheme.Meta.fields
-        search_fields = ('license_period_uuid', 'license_uuid','user_uuid')
+        fields = ('license_period_uuid', 'license_uuid', 'user_uuid') + LicensePeriodScheme.Meta.fields
+        search_fields = ('license_period_uuid', 'license_uuid', 'user_uuid')
         query_fields = ('start_time_gt', 'start_time_lt', 'end_time_gt', 'end_time_lt', 'cost_gt', 'cost_lt',)
 
 
 class LicensePeriodSchemeModify(LicensePeriodScheme):
     pass
+
 
 # ---LicensePeriod---
 # +++LicenseSwitch+++
@@ -410,8 +418,8 @@ class PaymentScheme(BaseModelScheme):
 class PaymentSchemeGet(PaymentScheme):
     class Meta:
         model = model.Payment
-        fields = ('payment_uuid', 'license_period_uuid', 'type', 'period','user_uuid')
-        search_fields = ('payment_uuid', 'license_period_uuid', 'type', 'period','user_uuid')
+        fields = ('payment_uuid', 'license_period_uuid', 'type', 'period', 'user_uuid')
+        search_fields = ('payment_uuid', 'license_period_uuid', 'type', 'period', 'user_uuid')
         query_fields = ('amount_gt', 'amount_lt', 'paid_time_gt', 'paid_time_lt',)
 
 

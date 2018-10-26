@@ -30,6 +30,7 @@ from falcon_rest.resources.resources import swagger, ResourcesBaseClass, DEFAULT
 from falcon_rest.responses import errors
 # from .tasks import *
 from api_lic import model
+from api_lic import settings
 from api_lic.resources.resources import Resource, CustomAction, Create, List
 from api_lic.scheme import UserInfoScheme, UserInfoSchemeGet, UserResetPasswordLetterScheme
 from api_lic.view import DEFAULT_SECURITY
@@ -41,7 +42,8 @@ from ..scheme import *
 from ..scheme import _valid
 from ..resources.resources import Create, Resource, List, CustomAction, CustomPostAction
 from ..rbac.rbac_role import UserRole, AdminRole
-
+import paypalrestsdk
+import stripe
 
 class UserConfirmRegister(CustomPostAction):
     scheme_class = UserConfirmRegisterScheme
@@ -64,6 +66,7 @@ class UserConfirmRegister(CustomPostAction):
         try:
             if obj:
                 obj.confirmed_on = datetime.now(UTC)
+                obj.is_active = True
                 obj.save()
                 self.set_response(resp, responses.SuccessResponseJustOk())
                 return True
@@ -304,7 +307,6 @@ class NotificationList(List):
         return filt, ret
 
 
-import paypalrestsdk
 
 class PaymentCreate(Create):
     scheme_class = PaymentScheme
@@ -361,7 +363,7 @@ class PaymentList(List):
         return filt, ret
 
 
-class PaymentWebhook(CustomPostAction):
+class PaypalWebhook(CustomPostAction):
     scheme_class = PaymentScheme
     model_class = model.Payment
     entity = 'Payment'
@@ -385,6 +387,43 @@ class PaymentWebhook(CustomPostAction):
                 log.debug('pay {}'.format(pay))
             else:
                 log.debug('---event {}'.format(data["event_type"]))
+        else:
+            raise NoResultFound
+        return True
+
+
+class StripeWebhook(CustomPostAction):
+    scheme_class = PaymentScheme
+    model_class = model.Payment
+    entity = 'Payment'
+    path_parameters = ()
+    security = (DEFAULT_SECURITY)
+    restrict = ()
+
+    no_auth_needed = True
+
+    def on_post(self, req, resp, **kwargs):
+        return self.proceed(req, resp, **kwargs)
+
+    def proceed(self, req, resp, **kwargs):
+        stripe.api_key = settings.STRIPE['api_key']
+        log.debug('webhook called request data {} kwargs {}'.format(req.data,kwargs))
+        data=req.data
+        if "type" in data:
+            if data["type"] == 'charge.succeeded':
+                try:
+                    charge_id = data['data']['object']['id']
+                    charge = stripe.Charge.retrieve(charge_id)
+                    ucls=model.User
+                    u=ucls.filter(ucls.email==charge['source']['name'])
+                    if u:
+                        pay=model.Payment(user_uuid=u.user_uuid,amount=charge['amount']/100,type='stripe',
+                                          description=charge['description'])
+                except Exception as e:
+                    self.set_response(resp,OperationalError(e))
+                    return False
+            else:
+                log.debug('---event {}'.format(data["type"]))
         else:
             raise NoResultFound
         return True

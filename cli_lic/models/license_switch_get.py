@@ -31,37 +31,58 @@ class LicenseSwitchGet(object):
                             and the value is json key in definition.
     """
     swagger_types = {
-        'license_uuid': 'str',
-        'type': 'str',
         'license': 'License',
-        'ip': 'str'
+        'license_uuid': 'str',
+        'ip': 'str',
+        'type': 'str'
     }
 
     attribute_map = {
-        'license_uuid': 'license_uuid',
-        'type': 'type',
         'license': 'license',
-        'ip': 'ip'
+        'license_uuid': 'license_uuid',
+        'ip': 'ip',
+        'type': 'type'
     }
 
-    def __init__(self, license_uuid=None, type='switch pay per port', license=None, ip=None):
+    def __init__(self, license=None, license_uuid=None, ip=None, type='switch pay per port'):
         """
         LicenseSwitchGet - a model defined in Swagger
         """
 
-        self._license_uuid = None
-        self._type = None
         self._license = None
+        self._license_uuid = None
         self._ip = None
+        self._type = None
 
-        if license_uuid is not None:
-          self.license_uuid = license_uuid
-        if type is not None:
-          self.type = type
         if license is not None:
           self.license = license
+        if license_uuid is not None:
+          self.license_uuid = license_uuid
         if ip is not None:
           self.ip = ip
+        if type is not None:
+          self.type = type
+
+    @property
+    def license(self):
+        """
+        Gets the license of this LicenseSwitchGet.
+
+        :return: The license of this LicenseSwitchGet.
+        :rtype: License
+        """
+        return self._license
+
+    @license.setter
+    def license(self, license):
+        """
+        Sets the license of this LicenseSwitchGet.
+
+        :param license: The license of this LicenseSwitchGet.
+        :type: License
+        """
+
+        self._license = license
 
     @property
     def license_uuid(self):
@@ -85,6 +106,29 @@ class LicenseSwitchGet(object):
             raise ValueError("Invalid value for `license_uuid`, length must be less than or equal to `36`")
 
         self._license_uuid = license_uuid
+
+    @property
+    def ip(self):
+        """
+        Gets the ip of this LicenseSwitchGet.
+
+        :return: The ip of this LicenseSwitchGet.
+        :rtype: str
+        """
+        return self._ip
+
+    @ip.setter
+    def ip(self, ip):
+        """
+        Sets the ip of this LicenseSwitchGet.
+
+        :param ip: The ip of this LicenseSwitchGet.
+        :type: str
+        """
+        if ip is not None and len(ip) > 16:
+            raise ValueError("Invalid value for `ip`, length must be less than or equal to `16`")
+
+        self._ip = ip
 
     @property
     def type(self):
@@ -112,50 +156,6 @@ class LicenseSwitchGet(object):
             )
 
         self._type = type
-
-    @property
-    def license(self):
-        """
-        Gets the license of this LicenseSwitchGet.
-
-        :return: The license of this LicenseSwitchGet.
-        :rtype: License
-        """
-        return self._license
-
-    @license.setter
-    def license(self, license):
-        """
-        Sets the license of this LicenseSwitchGet.
-
-        :param license: The license of this LicenseSwitchGet.
-        :type: License
-        """
-
-        self._license = license
-
-    @property
-    def ip(self):
-        """
-        Gets the ip of this LicenseSwitchGet.
-
-        :return: The ip of this LicenseSwitchGet.
-        :rtype: str
-        """
-        return self._ip
-
-    @ip.setter
-    def ip(self, ip):
-        """
-        Sets the ip of this LicenseSwitchGet.
-
-        :param ip: The ip of this LicenseSwitchGet.
-        :type: str
-        """
-        if ip is not None and len(ip) > 16:
-            raise ValueError("Invalid value for `ip`, length must be less than or equal to `16`")
-
-        self._ip = ip
 
     def to_dict(self):
         """

@@ -31,37 +31,102 @@ class PaymentModify(object):
                             and the value is json key in definition.
     """
     swagger_types = {
-        'type': 'str',
-        'amount': 'float',
         'license_period_uuid': 'str',
-        'paid_time': 'datetime'
+        'amount': 'float',
+        'paid_time': 'datetime',
+        'type': 'str'
     }
 
     attribute_map = {
-        'type': 'type',
-        'amount': 'amount',
         'license_period_uuid': 'license_period_uuid',
-        'paid_time': 'paid_time'
+        'amount': 'amount',
+        'paid_time': 'paid_time',
+        'type': 'type'
     }
 
-    def __init__(self, type='paypal', amount=None, license_period_uuid=None, paid_time=None):
+    def __init__(self, license_period_uuid=None, amount=None, paid_time=None, type='paypal'):
         """
         PaymentModify - a model defined in Swagger
         """
 
-        self._type = None
-        self._amount = None
         self._license_period_uuid = None
+        self._amount = None
         self._paid_time = None
+        self._type = None
 
-        if type is not None:
-          self.type = type
-        if amount is not None:
-          self.amount = amount
         if license_period_uuid is not None:
           self.license_period_uuid = license_period_uuid
+        if amount is not None:
+          self.amount = amount
         if paid_time is not None:
           self.paid_time = paid_time
+        if type is not None:
+          self.type = type
+
+    @property
+    def license_period_uuid(self):
+        """
+        Gets the license_period_uuid of this PaymentModify.
+
+        :return: The license_period_uuid of this PaymentModify.
+        :rtype: str
+        """
+        return self._license_period_uuid
+
+    @license_period_uuid.setter
+    def license_period_uuid(self, license_period_uuid):
+        """
+        Sets the license_period_uuid of this PaymentModify.
+
+        :param license_period_uuid: The license_period_uuid of this PaymentModify.
+        :type: str
+        """
+        if license_period_uuid is not None and len(license_period_uuid) > 36:
+            raise ValueError("Invalid value for `license_period_uuid`, length must be less than or equal to `36`")
+
+        self._license_period_uuid = license_period_uuid
+
+    @property
+    def amount(self):
+        """
+        Gets the amount of this PaymentModify.
+
+        :return: The amount of this PaymentModify.
+        :rtype: float
+        """
+        return self._amount
+
+    @amount.setter
+    def amount(self, amount):
+        """
+        Sets the amount of this PaymentModify.
+
+        :param amount: The amount of this PaymentModify.
+        :type: float
+        """
+
+        self._amount = amount
+
+    @property
+    def paid_time(self):
+        """
+        Gets the paid_time of this PaymentModify.
+
+        :return: The paid_time of this PaymentModify.
+        :rtype: datetime
+        """
+        return self._paid_time
+
+    @paid_time.setter
+    def paid_time(self, paid_time):
+        """
+        Sets the paid_time of this PaymentModify.
+
+        :param paid_time: The paid_time of this PaymentModify.
+        :type: datetime
+        """
+
+        self._paid_time = paid_time
 
     @property
     def type(self):
@@ -89,71 +154,6 @@ class PaymentModify(object):
             )
 
         self._type = type
-
-    @property
-    def amount(self):
-        """
-        Gets the amount of this PaymentModify.
-
-        :return: The amount of this PaymentModify.
-        :rtype: float
-        """
-        return self._amount
-
-    @amount.setter
-    def amount(self, amount):
-        """
-        Sets the amount of this PaymentModify.
-
-        :param amount: The amount of this PaymentModify.
-        :type: float
-        """
-
-        self._amount = amount
-
-    @property
-    def license_period_uuid(self):
-        """
-        Gets the license_period_uuid of this PaymentModify.
-
-        :return: The license_period_uuid of this PaymentModify.
-        :rtype: str
-        """
-        return self._license_period_uuid
-
-    @license_period_uuid.setter
-    def license_period_uuid(self, license_period_uuid):
-        """
-        Sets the license_period_uuid of this PaymentModify.
-
-        :param license_period_uuid: The license_period_uuid of this PaymentModify.
-        :type: str
-        """
-        if license_period_uuid is not None and len(license_period_uuid) > 36:
-            raise ValueError("Invalid value for `license_period_uuid`, length must be less than or equal to `36`")
-
-        self._license_period_uuid = license_period_uuid
-
-    @property
-    def paid_time(self):
-        """
-        Gets the paid_time of this PaymentModify.
-
-        :return: The paid_time of this PaymentModify.
-        :rtype: datetime
-        """
-        return self._paid_time
-
-    @paid_time.setter
-    def paid_time(self, paid_time):
-        """
-        Sets the paid_time of this PaymentModify.
-
-        :param paid_time: The paid_time of this PaymentModify.
-        :type: datetime
-        """
-
-        self._paid_time = paid_time
 
     def to_dict(self):
         """

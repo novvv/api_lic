@@ -1,4 +1,6 @@
-2d3470cd5603 -> 68a956c4de09 (head), period ordered_amount
+56c8b65dd6a3 -> 802754132737 (head), payment user_uuid
+68a956c4de09 -> 56c8b65dd6a3, license_update_history
+2d3470cd5603 -> 68a956c4de09, period ordered_amount
 d7b99512de3c -> 2d3470cd5603, email log
 cb4c870de32e -> d7b99512de3c, license_lrn type
 d72cae15953e -> cb4c870de32e, license

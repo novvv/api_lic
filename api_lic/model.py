@@ -299,7 +299,7 @@ class EmailTemplate(BaseModel):
     __tablename__ = 'email_template'
 
     TEMPLATES = {'retrieve_password': 'Hi {{user.name}} your reset password url is {{user.reset_password_url}}',
-                 'registration': 'Hi {{user.name}} your confirm registration url is {{user.confirm_url}}',
+                 'registration': 'Hi {{user.name}} your confirm registration url is {{user.token}}',
                  'welcome': 'WELCOME {{user.name}} ,your login url is {{user.login_url}}',
                  }
     name = Column(String(64), primary_key=True)
@@ -360,12 +360,14 @@ class Payment(BaseModel):
     TYPE = {1: 'paypal', 2: 'strip'}
     payment_uuid = Column(String(36), primary_key=True, default=generate_uuid_str(),
                           server_default=func.uuid_generate_v4())
+    user_uuid = Column(ForeignKey('user.user_uuid', ondelete='CASCADE'), index=True)
     license_period_uuid = Column(ForeignKey('license_period.license_period_uuid', ondelete='CASCADE'), nullable=True,
                                  index=True)
     amount = Column(Numeric, nullable=False, server_default='0')
     paid_time = Column(DateTime(True), nullable=False, server_default=func.now())
     type = Column(ChoiceType(TYPE), default=1)
     period = relationship('LicensePeriod', uselist=False, back_populates='payment')
+    description=Column(Text)
 
 
 class LicensePeriod(BaseModel):
@@ -419,6 +421,12 @@ class License(BaseModel):
     switch = relationship('LicenseSwitch', uselist=False, back_populates='license')
     user_email = column_property(
         select([User.email]).where(user_uuid == User.user_uuid).correlate_except(User))
+    type = column_property(func.coalesce(
+        select([LicenseLrn.type]).where(LicenseLrn.license_uuid == license_uuid).as_scalar(),
+        select([LicenseSwitch.type]).where(LicenseSwitch.license_uuid == license_uuid).as_scalar()
+    ))
+    is_lrn_license = column_property(select([func.count() > 0]).where(LicenseLrn.license_uuid == license_uuid))
+    is_switch_license = column_property(select([func.count() > 0]).where(LicenseSwitch.license_uuid == license_uuid))
 
 
 LicensePeriod.user_uuid = column_property(
@@ -426,3 +434,40 @@ LicensePeriod.user_uuid = column_property(
 Payment.user_uuid = column_property(
     select([LicensePeriod.user_uuid]).where(
         Payment.license_period_uuid == LicensePeriod.license_period_uuid).correlate_except(LicensePeriod))
+
+
+class LicenseUpdateHistory(BaseModel):
+    __tablename__ = 'license_update_history'
+    ACTION = {0: 'Increase/Modify the license', 1: 'Set to expired'}
+    STATUS = {0: 'Initial', 1: 'Update completed', 2: 'Update failed'}
+    id = Column(Integer, primary_key=True)
+    uuid = Column(String(100), index=True)
+    license_channel = Column(Integer)
+    license_cps = Column(Integer)
+    license_day = Column(Integer)
+    client_name = Column(String(100))
+    remarks = Column(String(100))
+    action = Column(SmallInteger, nullable=False, server_default='0')
+    status_1 = Column(SmallInteger, index=True, nullable=False, server_default='0')
+    status_2 = Column(SmallInteger, index=True, nullable=False, server_default='0')
+    progress = Column(String(200))
+    operator = Column(String(50))
+    create_on = Column(DateTime(True), nullable=False, server_default=func.now())
+    remain = Column(String)
+
+
+class LrnPermissionUpdateHistory(BaseModel):
+    __tablename__ = 'lrn_permission_update_history'
+    ACTION = {0: 'Increase/Modify the license', 1: 'Forbidden'}
+    STATUS = {0: 'Initial', 1: 'Update completed', 2: 'Update failed'}
+    id = Column(Integer, primary_key=True)
+    switch_ip = Column(String(16))
+    permit_cps = Column(Integer)
+    client_name = Column(String(100))
+    remarks = Column(String(200))
+    action = Column(SmallInteger, nullable=False, server_default='0')
+    status_1 = Column(SmallInteger, index=True, nullable=False, server_default='0')
+    progress = Column(String(200), index=True, nullable=False, server_default='0')
+    operator = Column(String(50))
+    create_on = Column(DateTime(True), nullable=False, server_default=func.now())
+    remain = Column(String)

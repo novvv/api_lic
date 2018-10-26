@@ -167,17 +167,17 @@ class TestUserApi(unittest.TestCase):
         """
         pass
 
-    def test_payment_post(self):
+    def test_payment_paypal_post(self):
         """
-        Test case for payment_post
+        Test case for payment_paypal_post
 
         
         """
         pass
 
-    def test_payment_webhook_post(self):
+    def test_payment_post(self):
         """
-        Test case for payment_webhook_post
+        Test case for payment_post
 
         
         """

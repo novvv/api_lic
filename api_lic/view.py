@@ -76,13 +76,11 @@ class UserRegisterCreate(Create):
     entity = 'Company registration'
     no_auth_needed = True
 
-    def before_create(self, obj, **kwargs):
-        user = obj
+    def after_create(self,object_id, req, resp, **kwargs):
+        user = model.User.get(object_id)
         user.token = auth.get_token(user)
         if user:
             user.apply_mail('registration')
-        return obj
-
 
 class UserResource(Resource):
     model_class = model.User

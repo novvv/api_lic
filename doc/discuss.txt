@@ -1,0 +1,69 @@
+anne [8:15 PM]
+hello
+
+@novvvster
+can i explain you how the LRN and license work ?
+
+novvvster [8:15 PM]
+i here
+
+anne [8:16 PM]
+ok
+there are two tables
+one for LRN license
+one for Switch licene
+all the action related to : create new license, extend period, stop license , you need to insert it to the license server netchange table
+there is a C program
+that read those 2 tables , and update the real license DB accordingly
+do you understand this part
+then, you need to understand there are two kinds of licnese for switch :  per-port-per month and per-minute
+and two kinds of license for LRN : per-port- per month  and per request
+do you understand ?
+
+novvvster [8:20 PM]
+yes
+
+anne [8:25 PM]
+could you finish the remainign api for vladimir to finish UI ?
+if you have any questino, pls ask me
+
+novvvster [8:26 PM]
+where is all endpoints needed?
+
+anne [8:26 PM]
+"all endpoints" mean?
+do you want to see the invision?
+would you like to take a look?
+
+novvvster [8:28 PM]
+vladimir ask about payments - it is not in the docs. so i need to manage client balance?
+i not seen those invision
+
+anne [8:34 PM]
+for the pay port per month , the user pay XX amount for YY months, then you just extend the license period
+no need to keep balance
+for pay per request or pay per minute,
+you keep track of how many remaining request or how many remaining minustes left
+they pay and buy "remaining minute " or "remaining request"
+you just need to deduct it regularly
+the license DB has that usage data , you just need to deduct regularyly
+@novvvster is it clear ?
+
+novvvster [8:38 PM]
+>> how many remaining minustes left....clear
+but >> keep track of how many remaining request...
+
+anne [8:38 PM]
+yes , on a daily basic,
+
+novvvster [8:38 PM]
+how track requests?
+
+anne [8:38 PM]
+the license DB will write the usage of each switch_uuid to the DB
+there you can read and deduct
+i will get the exact table name
+i forgot the very detail
+but once i give you, it is clear
+you just need to show daily usage in UI and deduct daily
+it is ok, if they over use for one day

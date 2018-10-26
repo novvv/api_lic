@@ -111,7 +111,7 @@ if SENTRY_URL=='False':
     SENTRY_URL=None
 
 ADMIN_UUID = conf_get('ADMIN_UUID','17209cf7-0274-4443-9db7-747db6d77e11')
-ADMIN_EMAIL = conf_get('ADMIN_EMAIL','admin@xamle.com')
+ADMIN_EMAIL = conf_get('ADMIN_EMAIL','admin@example.com')
 ADMIN_PWD = conf_get('ADMIN_PWD','17209cf7-0274-4443-9db7-747db6d77e11')
 TEST_USER_UUID = conf_get('TEST_USER_UUID','17209cf7-0274-4443-9db7-747db6d77e12')
 TEST_USER_EMAIL = conf_get('TEST_USER_EMAIL','test_user@example.com')
@@ -122,6 +122,9 @@ PAYPAL = {
     'mode':conf_get('mode','sandbox','PAYPAL')
 }
 
+STRIPE = {
+    'api_key':conf_get('api_key','pk_test_0JEARRXZBg8F8kDxtFfWAjxy','STRIPE')
+}
 
 if _p_changed:
     with open(API_INI, 'w') as configfile:

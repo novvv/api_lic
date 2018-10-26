@@ -31,48 +31,25 @@ class Credentials(object):
                             and the value is json key in definition.
     """
     swagger_types = {
-        'email_or_name': 'str',
-        'password': 'str'
+        'password': 'str',
+        'email_or_name': 'str'
     }
 
     attribute_map = {
-        'email_or_name': 'email_or_name',
-        'password': 'password'
+        'password': 'password',
+        'email_or_name': 'email_or_name'
     }
 
-    def __init__(self, email_or_name=None, password=None):
+    def __init__(self, password=None, email_or_name=None):
         """
         Credentials - a model defined in Swagger
         """
 
-        self._email_or_name = None
         self._password = None
+        self._email_or_name = None
 
-        self.email_or_name = email_or_name
         self.password = password
-
-    @property
-    def email_or_name(self):
-        """
-        Gets the email_or_name of this Credentials.
-
-        :return: The email_or_name of this Credentials.
-        :rtype: str
-        """
-        return self._email_or_name
-
-    @email_or_name.setter
-    def email_or_name(self, email_or_name):
-        """
-        Sets the email_or_name of this Credentials.
-
-        :param email_or_name: The email_or_name of this Credentials.
-        :type: str
-        """
-        if email_or_name is None:
-            raise ValueError("Invalid value for `email_or_name`, must not be `None`")
-
-        self._email_or_name = email_or_name
+        self.email_or_name = email_or_name
 
     @property
     def password(self):
@@ -96,6 +73,29 @@ class Credentials(object):
             raise ValueError("Invalid value for `password`, must not be `None`")
 
         self._password = password
+
+    @property
+    def email_or_name(self):
+        """
+        Gets the email_or_name of this Credentials.
+
+        :return: The email_or_name of this Credentials.
+        :rtype: str
+        """
+        return self._email_or_name
+
+    @email_or_name.setter
+    def email_or_name(self, email_or_name):
+        """
+        Sets the email_or_name of this Credentials.
+
+        :param email_or_name: The email_or_name of this Credentials.
+        :type: str
+        """
+        if email_or_name is None:
+            raise ValueError("Invalid value for `email_or_name`, must not be `None`")
+
+        self._email_or_name = email_or_name
 
     def to_dict(self):
         """

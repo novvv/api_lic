@@ -31,53 +31,32 @@ class AuthTokenInner(object):
                             and the value is json key in definition.
     """
     swagger_types = {
-        'exp': 'datetime',
         'token': 'str',
+        'exp': 'datetime',
         'user_type': 'str'
     }
 
     attribute_map = {
-        'exp': 'exp',
         'token': 'token',
+        'exp': 'exp',
         'user_type': 'user_type'
     }
 
-    def __init__(self, exp=None, token=None, user_type=None):
+    def __init__(self, token=None, exp=None, user_type=None):
         """
         AuthTokenInner - a model defined in Swagger
         """
 
-        self._exp = None
         self._token = None
+        self._exp = None
         self._user_type = None
 
-        if exp is not None:
-          self.exp = exp
         if token is not None:
           self.token = token
+        if exp is not None:
+          self.exp = exp
         if user_type is not None:
           self.user_type = user_type
-
-    @property
-    def exp(self):
-        """
-        Gets the exp of this AuthTokenInner.
-
-        :return: The exp of this AuthTokenInner.
-        :rtype: datetime
-        """
-        return self._exp
-
-    @exp.setter
-    def exp(self, exp):
-        """
-        Sets the exp of this AuthTokenInner.
-
-        :param exp: The exp of this AuthTokenInner.
-        :type: datetime
-        """
-
-        self._exp = exp
 
     @property
     def token(self):
@@ -99,6 +78,27 @@ class AuthTokenInner(object):
         """
 
         self._token = token
+
+    @property
+    def exp(self):
+        """
+        Gets the exp of this AuthTokenInner.
+
+        :return: The exp of this AuthTokenInner.
+        :rtype: datetime
+        """
+        return self._exp
+
+    @exp.setter
+    def exp(self, exp):
+        """
+        Sets the exp of this AuthTokenInner.
+
+        :param exp: The exp of this AuthTokenInner.
+        :type: datetime
+        """
+
+        self._exp = exp
 
     @property
     def user_type(self):

@@ -31,100 +31,58 @@ class ObjectRevisionFilterGet(object):
                             and the value is json key in definition.
     """
     swagger_types = {
-        'revision_time': 'datetime',
-        'changes': 'list[ObjectRevisionRecordGet]',
         'entity_pk': 'str',
+        'revision_time': 'datetime',
         'entity_name': 'str',
-        'revision_number': 'int',
+        'action': 'str',
+        'changes': 'list[ObjectRevisionRecordGet]',
         'user_id': 'int',
         'restored_from_revision_id': 'int',
         'id': 'int',
-        'action': 'str'
+        'revision_number': 'int'
     }
 
     attribute_map = {
-        'revision_time': 'revision_time',
-        'changes': 'changes',
         'entity_pk': 'entity_pk',
+        'revision_time': 'revision_time',
         'entity_name': 'entity_name',
-        'revision_number': 'revision_number',
+        'action': 'action',
+        'changes': 'changes',
         'user_id': 'user_id',
         'restored_from_revision_id': 'restored_from_revision_id',
         'id': 'id',
-        'action': 'action'
+        'revision_number': 'revision_number'
     }
 
-    def __init__(self, revision_time=None, changes=None, entity_pk=None, entity_name=None, revision_number=None, user_id=None, restored_from_revision_id=None, id=None, action=None):
+    def __init__(self, entity_pk=None, revision_time=None, entity_name=None, action=None, changes=None, user_id=None, restored_from_revision_id=None, id=None, revision_number=None):
         """
         ObjectRevisionFilterGet - a model defined in Swagger
         """
 
-        self._revision_time = None
-        self._changes = None
         self._entity_pk = None
+        self._revision_time = None
         self._entity_name = None
-        self._revision_number = None
+        self._action = None
+        self._changes = None
         self._user_id = None
         self._restored_from_revision_id = None
         self._id = None
-        self._action = None
+        self._revision_number = None
 
+        self.entity_pk = entity_pk
         if revision_time is not None:
           self.revision_time = revision_time
+        self.entity_name = entity_name
+        if action is not None:
+          self.action = action
         if changes is not None:
           self.changes = changes
-        self.entity_pk = entity_pk
-        self.entity_name = entity_name
-        self.revision_number = revision_number
         self.user_id = user_id
         if restored_from_revision_id is not None:
           self.restored_from_revision_id = restored_from_revision_id
         if id is not None:
           self.id = id
-        if action is not None:
-          self.action = action
-
-    @property
-    def revision_time(self):
-        """
-        Gets the revision_time of this ObjectRevisionFilterGet.
-
-        :return: The revision_time of this ObjectRevisionFilterGet.
-        :rtype: datetime
-        """
-        return self._revision_time
-
-    @revision_time.setter
-    def revision_time(self, revision_time):
-        """
-        Sets the revision_time of this ObjectRevisionFilterGet.
-
-        :param revision_time: The revision_time of this ObjectRevisionFilterGet.
-        :type: datetime
-        """
-
-        self._revision_time = revision_time
-
-    @property
-    def changes(self):
-        """
-        Gets the changes of this ObjectRevisionFilterGet.
-
-        :return: The changes of this ObjectRevisionFilterGet.
-        :rtype: list[ObjectRevisionRecordGet]
-        """
-        return self._changes
-
-    @changes.setter
-    def changes(self, changes):
-        """
-        Sets the changes of this ObjectRevisionFilterGet.
-
-        :param changes: The changes of this ObjectRevisionFilterGet.
-        :type: list[ObjectRevisionRecordGet]
-        """
-
-        self._changes = changes
+        self.revision_number = revision_number
 
     @property
     def entity_pk(self):
@@ -152,6 +110,27 @@ class ObjectRevisionFilterGet(object):
         self._entity_pk = entity_pk
 
     @property
+    def revision_time(self):
+        """
+        Gets the revision_time of this ObjectRevisionFilterGet.
+
+        :return: The revision_time of this ObjectRevisionFilterGet.
+        :rtype: datetime
+        """
+        return self._revision_time
+
+    @revision_time.setter
+    def revision_time(self, revision_time):
+        """
+        Sets the revision_time of this ObjectRevisionFilterGet.
+
+        :param revision_time: The revision_time of this ObjectRevisionFilterGet.
+        :type: datetime
+        """
+
+        self._revision_time = revision_time
+
+    @property
     def entity_name(self):
         """
         Gets the entity_name of this ObjectRevisionFilterGet.
@@ -177,27 +156,52 @@ class ObjectRevisionFilterGet(object):
         self._entity_name = entity_name
 
     @property
-    def revision_number(self):
+    def action(self):
         """
-        Gets the revision_number of this ObjectRevisionFilterGet.
+        Gets the action of this ObjectRevisionFilterGet.
 
-        :return: The revision_number of this ObjectRevisionFilterGet.
-        :rtype: int
+        :return: The action of this ObjectRevisionFilterGet.
+        :rtype: str
         """
-        return self._revision_number
+        return self._action
 
-    @revision_number.setter
-    def revision_number(self, revision_number):
+    @action.setter
+    def action(self, action):
         """
-        Sets the revision_number of this ObjectRevisionFilterGet.
+        Sets the action of this ObjectRevisionFilterGet.
 
-        :param revision_number: The revision_number of this ObjectRevisionFilterGet.
-        :type: int
+        :param action: The action of this ObjectRevisionFilterGet.
+        :type: str
         """
-        if revision_number is None:
-            raise ValueError("Invalid value for `revision_number`, must not be `None`")
+        allowed_values = ["create", "update", "delete", "restore"]
+        if action not in allowed_values:
+            raise ValueError(
+                "Invalid value for `action` ({0}), must be one of {1}"
+                .format(action, allowed_values)
+            )
 
-        self._revision_number = revision_number
+        self._action = action
+
+    @property
+    def changes(self):
+        """
+        Gets the changes of this ObjectRevisionFilterGet.
+
+        :return: The changes of this ObjectRevisionFilterGet.
+        :rtype: list[ObjectRevisionRecordGet]
+        """
+        return self._changes
+
+    @changes.setter
+    def changes(self, changes):
+        """
+        Sets the changes of this ObjectRevisionFilterGet.
+
+        :param changes: The changes of this ObjectRevisionFilterGet.
+        :type: list[ObjectRevisionRecordGet]
+        """
+
+        self._changes = changes
 
     @property
     def user_id(self):
@@ -265,31 +269,27 @@ class ObjectRevisionFilterGet(object):
         self._id = id
 
     @property
-    def action(self):
+    def revision_number(self):
         """
-        Gets the action of this ObjectRevisionFilterGet.
+        Gets the revision_number of this ObjectRevisionFilterGet.
 
-        :return: The action of this ObjectRevisionFilterGet.
-        :rtype: str
+        :return: The revision_number of this ObjectRevisionFilterGet.
+        :rtype: int
         """
-        return self._action
+        return self._revision_number
 
-    @action.setter
-    def action(self, action):
+    @revision_number.setter
+    def revision_number(self, revision_number):
         """
-        Sets the action of this ObjectRevisionFilterGet.
+        Sets the revision_number of this ObjectRevisionFilterGet.
 
-        :param action: The action of this ObjectRevisionFilterGet.
-        :type: str
+        :param revision_number: The revision_number of this ObjectRevisionFilterGet.
+        :type: int
         """
-        allowed_values = ["create", "update", "delete", "restore"]
-        if action not in allowed_values:
-            raise ValueError(
-                "Invalid value for `action` ({0}), must be one of {1}"
-                .format(action, allowed_values)
-            )
+        if revision_number is None:
+            raise ValueError("Invalid value for `revision_number`, must not be `None`")
 
-        self._action = action
+        self._revision_number = revision_number
 
     def to_dict(self):
         """

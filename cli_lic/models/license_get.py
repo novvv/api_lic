@@ -31,119 +31,67 @@ class LicenseGet(object):
                             and the value is json key in definition.
     """
     swagger_types = {
-        'license_uuid': 'str',
-        'lrn': 'LicenseLrn',
-        'rate_uuid': 'str',
         'user_uuid': 'str',
+        'license_uuid': 'str',
         'switch': 'LicenseSwitch',
-        'user_email': 'str',
-        'periods': 'list[LicensePeriodGet]'
+        'lrn': 'LicenseLrn',
+        'is_switch_license': 'bool',
+        'periods': 'list[LicensePeriodGet]',
+        'type': 'str',
+        'rate_uuid': 'str',
+        'is_lrn_license': 'bool',
+        'user_email': 'str'
     }
 
     attribute_map = {
-        'license_uuid': 'license_uuid',
-        'lrn': 'lrn',
-        'rate_uuid': 'rate_uuid',
         'user_uuid': 'user_uuid',
+        'license_uuid': 'license_uuid',
         'switch': 'switch',
-        'user_email': 'user_email',
-        'periods': 'periods'
+        'lrn': 'lrn',
+        'is_switch_license': 'is_switch_license',
+        'periods': 'periods',
+        'type': 'type',
+        'rate_uuid': 'rate_uuid',
+        'is_lrn_license': 'is_lrn_license',
+        'user_email': 'user_email'
     }
 
-    def __init__(self, license_uuid=None, lrn=None, rate_uuid=None, user_uuid=None, switch=None, user_email=None, periods=None):
+    def __init__(self, user_uuid=None, license_uuid=None, switch=None, lrn=None, is_switch_license=None, periods=None, type=None, rate_uuid=None, is_lrn_license=None, user_email=None):
         """
         LicenseGet - a model defined in Swagger
         """
 
-        self._license_uuid = None
-        self._lrn = None
-        self._rate_uuid = None
         self._user_uuid = None
+        self._license_uuid = None
         self._switch = None
-        self._user_email = None
+        self._lrn = None
+        self._is_switch_license = None
         self._periods = None
+        self._type = None
+        self._rate_uuid = None
+        self._is_lrn_license = None
+        self._user_email = None
 
-        if license_uuid is not None:
-          self.license_uuid = license_uuid
-        if lrn is not None:
-          self.lrn = lrn
-        if rate_uuid is not None:
-          self.rate_uuid = rate_uuid
         if user_uuid is not None:
           self.user_uuid = user_uuid
+        if license_uuid is not None:
+          self.license_uuid = license_uuid
         if switch is not None:
           self.switch = switch
-        if user_email is not None:
-          self.user_email = user_email
+        if lrn is not None:
+          self.lrn = lrn
+        if is_switch_license is not None:
+          self.is_switch_license = is_switch_license
         if periods is not None:
           self.periods = periods
-
-    @property
-    def license_uuid(self):
-        """
-        Gets the license_uuid of this LicenseGet.
-
-        :return: The license_uuid of this LicenseGet.
-        :rtype: str
-        """
-        return self._license_uuid
-
-    @license_uuid.setter
-    def license_uuid(self, license_uuid):
-        """
-        Sets the license_uuid of this LicenseGet.
-
-        :param license_uuid: The license_uuid of this LicenseGet.
-        :type: str
-        """
-        if license_uuid is not None and len(license_uuid) > 36:
-            raise ValueError("Invalid value for `license_uuid`, length must be less than or equal to `36`")
-
-        self._license_uuid = license_uuid
-
-    @property
-    def lrn(self):
-        """
-        Gets the lrn of this LicenseGet.
-
-        :return: The lrn of this LicenseGet.
-        :rtype: LicenseLrn
-        """
-        return self._lrn
-
-    @lrn.setter
-    def lrn(self, lrn):
-        """
-        Sets the lrn of this LicenseGet.
-
-        :param lrn: The lrn of this LicenseGet.
-        :type: LicenseLrn
-        """
-
-        self._lrn = lrn
-
-    @property
-    def rate_uuid(self):
-        """
-        Gets the rate_uuid of this LicenseGet.
-
-        :return: The rate_uuid of this LicenseGet.
-        :rtype: str
-        """
-        return self._rate_uuid
-
-    @rate_uuid.setter
-    def rate_uuid(self, rate_uuid):
-        """
-        Sets the rate_uuid of this LicenseGet.
-
-        :param rate_uuid: The rate_uuid of this LicenseGet.
-        :type: str
-        """
-        if rate_uuid is not None and len(rate_uuid) > 36:
-            raise ValueError("Invalid value for `rate_uuid`, length must be less than or equal to `36`")
-
-        self._rate_uuid = rate_uuid
+        if type is not None:
+          self.type = type
+        if rate_uuid is not None:
+          self.rate_uuid = rate_uuid
+        if is_lrn_license is not None:
+          self.is_lrn_license = is_lrn_license
+        if user_email is not None:
+          self.user_email = user_email
 
     @property
     def user_uuid(self):
@@ -169,6 +117,29 @@ class LicenseGet(object):
         self._user_uuid = user_uuid
 
     @property
+    def license_uuid(self):
+        """
+        Gets the license_uuid of this LicenseGet.
+
+        :return: The license_uuid of this LicenseGet.
+        :rtype: str
+        """
+        return self._license_uuid
+
+    @license_uuid.setter
+    def license_uuid(self, license_uuid):
+        """
+        Sets the license_uuid of this LicenseGet.
+
+        :param license_uuid: The license_uuid of this LicenseGet.
+        :type: str
+        """
+        if license_uuid is not None and len(license_uuid) > 36:
+            raise ValueError("Invalid value for `license_uuid`, length must be less than or equal to `36`")
+
+        self._license_uuid = license_uuid
+
+    @property
     def switch(self):
         """
         Gets the switch of this LicenseGet.
@@ -190,25 +161,46 @@ class LicenseGet(object):
         self._switch = switch
 
     @property
-    def user_email(self):
+    def lrn(self):
         """
-        Gets the user_email of this LicenseGet.
+        Gets the lrn of this LicenseGet.
 
-        :return: The user_email of this LicenseGet.
-        :rtype: str
+        :return: The lrn of this LicenseGet.
+        :rtype: LicenseLrn
         """
-        return self._user_email
+        return self._lrn
 
-    @user_email.setter
-    def user_email(self, user_email):
+    @lrn.setter
+    def lrn(self, lrn):
         """
-        Sets the user_email of this LicenseGet.
+        Sets the lrn of this LicenseGet.
 
-        :param user_email: The user_email of this LicenseGet.
-        :type: str
+        :param lrn: The lrn of this LicenseGet.
+        :type: LicenseLrn
         """
 
-        self._user_email = user_email
+        self._lrn = lrn
+
+    @property
+    def is_switch_license(self):
+        """
+        Gets the is_switch_license of this LicenseGet.
+
+        :return: The is_switch_license of this LicenseGet.
+        :rtype: bool
+        """
+        return self._is_switch_license
+
+    @is_switch_license.setter
+    def is_switch_license(self, is_switch_license):
+        """
+        Sets the is_switch_license of this LicenseGet.
+
+        :param is_switch_license: The is_switch_license of this LicenseGet.
+        :type: bool
+        """
+
+        self._is_switch_license = is_switch_license
 
     @property
     def periods(self):
@@ -230,6 +222,92 @@ class LicenseGet(object):
         """
 
         self._periods = periods
+
+    @property
+    def type(self):
+        """
+        Gets the type of this LicenseGet.
+
+        :return: The type of this LicenseGet.
+        :rtype: str
+        """
+        return self._type
+
+    @type.setter
+    def type(self, type):
+        """
+        Sets the type of this LicenseGet.
+
+        :param type: The type of this LicenseGet.
+        :type: str
+        """
+
+        self._type = type
+
+    @property
+    def rate_uuid(self):
+        """
+        Gets the rate_uuid of this LicenseGet.
+
+        :return: The rate_uuid of this LicenseGet.
+        :rtype: str
+        """
+        return self._rate_uuid
+
+    @rate_uuid.setter
+    def rate_uuid(self, rate_uuid):
+        """
+        Sets the rate_uuid of this LicenseGet.
+
+        :param rate_uuid: The rate_uuid of this LicenseGet.
+        :type: str
+        """
+        if rate_uuid is not None and len(rate_uuid) > 36:
+            raise ValueError("Invalid value for `rate_uuid`, length must be less than or equal to `36`")
+
+        self._rate_uuid = rate_uuid
+
+    @property
+    def is_lrn_license(self):
+        """
+        Gets the is_lrn_license of this LicenseGet.
+
+        :return: The is_lrn_license of this LicenseGet.
+        :rtype: bool
+        """
+        return self._is_lrn_license
+
+    @is_lrn_license.setter
+    def is_lrn_license(self, is_lrn_license):
+        """
+        Sets the is_lrn_license of this LicenseGet.
+
+        :param is_lrn_license: The is_lrn_license of this LicenseGet.
+        :type: bool
+        """
+
+        self._is_lrn_license = is_lrn_license
+
+    @property
+    def user_email(self):
+        """
+        Gets the user_email of this LicenseGet.
+
+        :return: The user_email of this LicenseGet.
+        :rtype: str
+        """
+        return self._user_email
+
+    @user_email.setter
+    def user_email(self, user_email):
+        """
+        Sets the user_email of this LicenseGet.
+
+        :param user_email: The user_email of this LicenseGet.
+        :type: str
+        """
+
+        self._user_email = user_email
 
     def to_dict(self):
         """

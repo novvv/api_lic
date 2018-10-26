@@ -31,27 +31,50 @@ class LicenseSwitchModify(object):
                             and the value is json key in definition.
     """
     swagger_types = {
-        'type': 'str',
-        'ip': 'str'
+        'ip': 'str',
+        'type': 'str'
     }
 
     attribute_map = {
-        'type': 'type',
-        'ip': 'ip'
+        'ip': 'ip',
+        'type': 'type'
     }
 
-    def __init__(self, type='switch pay per port', ip=None):
+    def __init__(self, ip=None, type='switch pay per port'):
         """
         LicenseSwitchModify - a model defined in Swagger
         """
 
-        self._type = None
         self._ip = None
+        self._type = None
 
-        if type is not None:
-          self.type = type
         if ip is not None:
           self.ip = ip
+        if type is not None:
+          self.type = type
+
+    @property
+    def ip(self):
+        """
+        Gets the ip of this LicenseSwitchModify.
+
+        :return: The ip of this LicenseSwitchModify.
+        :rtype: str
+        """
+        return self._ip
+
+    @ip.setter
+    def ip(self, ip):
+        """
+        Sets the ip of this LicenseSwitchModify.
+
+        :param ip: The ip of this LicenseSwitchModify.
+        :type: str
+        """
+        if ip is not None and len(ip) > 16:
+            raise ValueError("Invalid value for `ip`, length must be less than or equal to `16`")
+
+        self._ip = ip
 
     @property
     def type(self):
@@ -79,29 +102,6 @@ class LicenseSwitchModify(object):
             )
 
         self._type = type
-
-    @property
-    def ip(self):
-        """
-        Gets the ip of this LicenseSwitchModify.
-
-        :return: The ip of this LicenseSwitchModify.
-        :rtype: str
-        """
-        return self._ip
-
-    @ip.setter
-    def ip(self, ip):
-        """
-        Sets the ip of this LicenseSwitchModify.
-
-        :param ip: The ip of this LicenseSwitchModify.
-        :type: str
-        """
-        if ip is not None and len(ip) > 16:
-            raise ValueError("Invalid value for `ip`, length must be less than or equal to `16`")
-
-        self._ip = ip
 
     def to_dict(self):
         """

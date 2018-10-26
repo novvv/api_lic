@@ -570,8 +570,11 @@ class UserApi(object):
         :param int per_page:
         :param str order_by:
         :param str order_dir:
+        :param bool is_lrn_license:
+        :param bool is_switch_license:
         :param str license_uuid:
         :param str rate_uuid:
+        :param str type:
         :param str user_email:
         :param str user_uuid:
         :return: InlineResponse2009
@@ -602,8 +605,11 @@ class UserApi(object):
         :param int per_page:
         :param str order_by:
         :param str order_dir:
+        :param bool is_lrn_license:
+        :param bool is_switch_license:
         :param str license_uuid:
         :param str rate_uuid:
+        :param str type:
         :param str user_email:
         :param str user_uuid:
         :return: InlineResponse2009
@@ -611,7 +617,7 @@ class UserApi(object):
                  returns the request thread.
         """
 
-        all_params = ['page', 'per_page', 'order_by', 'order_dir', 'license_uuid', 'rate_uuid', 'user_email', 'user_uuid']
+        all_params = ['page', 'per_page', 'order_by', 'order_dir', 'is_lrn_license', 'is_switch_license', 'license_uuid', 'rate_uuid', 'type', 'user_email', 'user_uuid']
         all_params.append('callback')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
@@ -641,10 +647,16 @@ class UserApi(object):
             query_params.append(('order_by', params['order_by']))
         if 'order_dir' in params:
             query_params.append(('order_dir', params['order_dir']))
+        if 'is_lrn_license' in params:
+            query_params.append(('is_lrn_license', params['is_lrn_license']))
+        if 'is_switch_license' in params:
+            query_params.append(('is_switch_license', params['is_switch_license']))
         if 'license_uuid' in params:
             query_params.append(('license_uuid', params['license_uuid']))
         if 'rate_uuid' in params:
             query_params.append(('rate_uuid', params['rate_uuid']))
+        if 'type' in params:
+            query_params.append(('type', params['type']))
         if 'user_email' in params:
             query_params.append(('user_email', params['user_email']))
         if 'user_uuid' in params:
@@ -1947,6 +1959,102 @@ class UserApi(object):
                                         _request_timeout=params.get('_request_timeout'),
                                         collection_formats=collection_formats)
 
+    def payment_paypal_post(self, **kwargs):
+        """
+        
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please define a `callback` function
+        to be invoked when receiving the response.
+        >>> def callback_function(response):
+        >>>     pprint(response)
+        >>>
+        >>> thread = api.payment_paypal_post(callback=callback_function)
+
+        :param callback function: The callback function
+            for asynchronous request. (optional)
+        :return: Success
+                 If the method is called asynchronously,
+                 returns the request thread.
+        """
+        kwargs['_return_http_data_only'] = True
+        if kwargs.get('callback'):
+            return self.payment_paypal_post_with_http_info(**kwargs)
+        else:
+            (data) = self.payment_paypal_post_with_http_info(**kwargs)
+            return data
+
+    def payment_paypal_post_with_http_info(self, **kwargs):
+        """
+        
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please define a `callback` function
+        to be invoked when receiving the response.
+        >>> def callback_function(response):
+        >>>     pprint(response)
+        >>>
+        >>> thread = api.payment_paypal_post_with_http_info(callback=callback_function)
+
+        :param callback function: The callback function
+            for asynchronous request. (optional)
+        :return: Success
+                 If the method is called asynchronously,
+                 returns the request thread.
+        """
+
+        all_params = []
+        all_params.append('callback')
+        all_params.append('_return_http_data_only')
+        all_params.append('_preload_content')
+        all_params.append('_request_timeout')
+
+        params = locals()
+        for key, val in iteritems(params['kwargs']):
+            if key not in all_params:
+                raise TypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method payment_paypal_post" % key
+                )
+            params[key] = val
+        del params['kwargs']
+
+        collection_formats = {}
+
+        path_params = {}
+
+        query_params = []
+
+        header_params = {}
+
+        form_params = []
+        local_var_files = {}
+
+        body_params = None
+        # HTTP header `Accept`
+        header_params['Accept'] = self.api_client.\
+            select_header_accept(['application/json'])
+
+        # HTTP header `Content-Type`
+        header_params['Content-Type'] = self.api_client.\
+            select_header_content_type(['application/json'])
+
+        # Authentication setting
+        auth_settings = ['auth_token']
+
+        return self.api_client.call_api('/payment/paypal', 'POST',
+                                        path_params,
+                                        query_params,
+                                        header_params,
+                                        body=body_params,
+                                        post_params=form_params,
+                                        files=local_var_files,
+                                        response_type='Success',
+                                        auth_settings=auth_settings,
+                                        callback=params.get('callback'),
+                                        _return_http_data_only=params.get('_return_http_data_only'),
+                                        _preload_content=params.get('_preload_content', True),
+                                        _request_timeout=params.get('_request_timeout'),
+                                        collection_formats=collection_formats)
+
     def payment_post(self, **kwargs):
         """
         Creates new payment
@@ -2041,102 +2149,6 @@ class UserApi(object):
                                         post_params=form_params,
                                         files=local_var_files,
                                         response_type='ObjectCreatedUuidAsPk',
-                                        auth_settings=auth_settings,
-                                        callback=params.get('callback'),
-                                        _return_http_data_only=params.get('_return_http_data_only'),
-                                        _preload_content=params.get('_preload_content', True),
-                                        _request_timeout=params.get('_request_timeout'),
-                                        collection_formats=collection_formats)
-
-    def payment_webhook_post(self, **kwargs):
-        """
-        
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please define a `callback` function
-        to be invoked when receiving the response.
-        >>> def callback_function(response):
-        >>>     pprint(response)
-        >>>
-        >>> thread = api.payment_webhook_post(callback=callback_function)
-
-        :param callback function: The callback function
-            for asynchronous request. (optional)
-        :return: Success
-                 If the method is called asynchronously,
-                 returns the request thread.
-        """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('callback'):
-            return self.payment_webhook_post_with_http_info(**kwargs)
-        else:
-            (data) = self.payment_webhook_post_with_http_info(**kwargs)
-            return data
-
-    def payment_webhook_post_with_http_info(self, **kwargs):
-        """
-        
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please define a `callback` function
-        to be invoked when receiving the response.
-        >>> def callback_function(response):
-        >>>     pprint(response)
-        >>>
-        >>> thread = api.payment_webhook_post_with_http_info(callback=callback_function)
-
-        :param callback function: The callback function
-            for asynchronous request. (optional)
-        :return: Success
-                 If the method is called asynchronously,
-                 returns the request thread.
-        """
-
-        all_params = []
-        all_params.append('callback')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
-
-        params = locals()
-        for key, val in iteritems(params['kwargs']):
-            if key not in all_params:
-                raise TypeError(
-                    "Got an unexpected keyword argument '%s'"
-                    " to method payment_webhook_post" % key
-                )
-            params[key] = val
-        del params['kwargs']
-
-        collection_formats = {}
-
-        path_params = {}
-
-        query_params = []
-
-        header_params = {}
-
-        form_params = []
-        local_var_files = {}
-
-        body_params = None
-        # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.\
-            select_header_accept(['application/json'])
-
-        # HTTP header `Content-Type`
-        header_params['Content-Type'] = self.api_client.\
-            select_header_content_type(['application/json'])
-
-        # Authentication setting
-        auth_settings = ['auth_token']
-
-        return self.api_client.call_api('/payment/webhook', 'POST',
-                                        path_params,
-                                        query_params,
-                                        header_params,
-                                        body=body_params,
-                                        post_params=form_params,
-                                        files=local_var_files,
-                                        response_type='Success',
                                         auth_settings=auth_settings,
                                         callback=params.get('callback'),
                                         _return_http_data_only=params.get('_return_http_data_only'),

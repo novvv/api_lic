@@ -382,9 +382,7 @@ CREATE TABLE public.payment (
     license_period_uuid character varying(36),
     amount numeric DEFAULT '0'::numeric NOT NULL,
     paid_time timestamp with time zone DEFAULT now() NOT NULL,
-    type integer,
-    description text,
-    user_uuid character varying(36)
+    type integer
 );
 
 
@@ -737,13 +735,6 @@ CREATE INDEX ix_payment_license_period_uuid ON public.payment USING btree (licen
 
 
 --
--- Name: ix_payment_user_uuid; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX ix_payment_user_uuid ON public.payment USING btree (user_uuid);
-
-
---
 -- Name: ix_user_email; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -812,14 +803,6 @@ ALTER TABLE ONLY public.object_revision_record
 
 ALTER TABLE ONLY public.payment
     ADD CONSTRAINT payment_license_period_uuid_fkey FOREIGN KEY (license_period_uuid) REFERENCES public.license_period(license_period_uuid) ON DELETE CASCADE;
-
-
---
--- Name: payment payment_user_uuid_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.payment
-    ADD CONSTRAINT payment_user_uuid_fkey FOREIGN KEY (user_uuid) REFERENCES public."user"(user_uuid) ON DELETE CASCADE;
 
 
 --

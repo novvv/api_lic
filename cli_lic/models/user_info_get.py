@@ -31,62 +31,62 @@ class UserInfoGet(object):
                             and the value is json key in definition.
     """
     swagger_types = {
-        'last_login': 'datetime',
-        'user_uuid': 'str',
-        'passwd': 'str',
         'email': 'str',
+        'user_uuid': 'str',
+        'last_login': 'datetime',
+        'passwd': 'str',
         'user_type': 'str'
     }
 
     attribute_map = {
-        'last_login': 'last_login',
-        'user_uuid': 'user_uuid',
-        'passwd': 'passwd',
         'email': 'email',
+        'user_uuid': 'user_uuid',
+        'last_login': 'last_login',
+        'passwd': 'passwd',
         'user_type': 'user_type'
     }
 
-    def __init__(self, last_login=None, user_uuid=None, passwd=None, email=None, user_type=None):
+    def __init__(self, email=None, user_uuid=None, last_login=None, passwd=None, user_type=None):
         """
         UserInfoGet - a model defined in Swagger
         """
 
-        self._last_login = None
-        self._user_uuid = None
-        self._passwd = None
         self._email = None
+        self._user_uuid = None
+        self._last_login = None
+        self._passwd = None
         self._user_type = None
 
-        if last_login is not None:
-          self.last_login = last_login
-        if user_uuid is not None:
-          self.user_uuid = user_uuid
-        self.passwd = passwd
         if email is not None:
           self.email = email
+        if user_uuid is not None:
+          self.user_uuid = user_uuid
+        if last_login is not None:
+          self.last_login = last_login
+        self.passwd = passwd
         if user_type is not None:
           self.user_type = user_type
 
     @property
-    def last_login(self):
+    def email(self):
         """
-        Gets the last_login of this UserInfoGet.
+        Gets the email of this UserInfoGet.
 
-        :return: The last_login of this UserInfoGet.
-        :rtype: datetime
+        :return: The email of this UserInfoGet.
+        :rtype: str
         """
-        return self._last_login
+        return self._email
 
-    @last_login.setter
-    def last_login(self, last_login):
+    @email.setter
+    def email(self, email):
         """
-        Sets the last_login of this UserInfoGet.
+        Sets the email of this UserInfoGet.
 
-        :param last_login: The last_login of this UserInfoGet.
-        :type: datetime
+        :param email: The email of this UserInfoGet.
+        :type: str
         """
 
-        self._last_login = last_login
+        self._email = email
 
     @property
     def user_uuid(self):
@@ -112,6 +112,27 @@ class UserInfoGet(object):
         self._user_uuid = user_uuid
 
     @property
+    def last_login(self):
+        """
+        Gets the last_login of this UserInfoGet.
+
+        :return: The last_login of this UserInfoGet.
+        :rtype: datetime
+        """
+        return self._last_login
+
+    @last_login.setter
+    def last_login(self, last_login):
+        """
+        Sets the last_login of this UserInfoGet.
+
+        :param last_login: The last_login of this UserInfoGet.
+        :type: datetime
+        """
+
+        self._last_login = last_login
+
+    @property
     def passwd(self):
         """
         Gets the passwd of this UserInfoGet.
@@ -133,27 +154,6 @@ class UserInfoGet(object):
             raise ValueError("Invalid value for `passwd`, must not be `None`")
 
         self._passwd = passwd
-
-    @property
-    def email(self):
-        """
-        Gets the email of this UserInfoGet.
-
-        :return: The email of this UserInfoGet.
-        :rtype: str
-        """
-        return self._email
-
-    @email.setter
-    def email(self, email):
-        """
-        Sets the email of this UserInfoGet.
-
-        :param email: The email of this UserInfoGet.
-        :type: str
-        """
-
-        self._email = email
 
     @property
     def user_type(self):

@@ -1,3 +1,6 @@
+ver 1.0.2
+GET/email_template/{name}
+PATCH/email_template/{name} <-- edit email templates LLP-11
 
 ver 1.0.1
 initial commit

@@ -75,6 +75,7 @@ from .object_revision_record_get import ObjectRevisionRecordGet
 from .objects_list import ObjectsList
 from .objects_list_payload import ObjectsListPayload
 from .operation_error import OperationError
+from .operation_error_error import OperationErrorError
 from .password_check import PasswordCheck
 from .payment import Payment
 from .payment_get import PaymentGet
@@ -85,7 +86,6 @@ from .rate_modify import RateModify
 from .success import Success
 from .token_check import TokenCheck
 from .unauthenticated_error import UnauthenticatedError
-from .unauthenticated_error_error import UnauthenticatedErrorError
 from .user import User
 from .user_confirm_register import UserConfirmRegister
 from .user_credentials import UserCredentials

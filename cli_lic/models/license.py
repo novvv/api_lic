@@ -31,58 +31,37 @@ class License(object):
                             and the value is json key in definition.
     """
     swagger_types = {
-        'switch': 'LicenseSwitch',
         'lrn': 'LicenseLrn',
         'periods': 'list[LicensePeriod]',
-        'rate_uuid': 'str'
+        'rate_uuid': 'str',
+        'switch': 'LicenseSwitch'
     }
 
     attribute_map = {
-        'switch': 'switch',
         'lrn': 'lrn',
         'periods': 'periods',
-        'rate_uuid': 'rate_uuid'
+        'rate_uuid': 'rate_uuid',
+        'switch': 'switch'
     }
 
-    def __init__(self, switch=None, lrn=None, periods=None, rate_uuid=None):
+    def __init__(self, lrn=None, periods=None, rate_uuid=None, switch=None):
         """
         License - a model defined in Swagger
         """
 
-        self._switch = None
         self._lrn = None
         self._periods = None
         self._rate_uuid = None
+        self._switch = None
 
-        if switch is not None:
-          self.switch = switch
         if lrn is not None:
           self.lrn = lrn
         if periods is not None:
           self.periods = periods
         if rate_uuid is not None:
           self.rate_uuid = rate_uuid
-
-    @property
-    def switch(self):
-        """
-        Gets the switch of this License.
-
-        :return: The switch of this License.
-        :rtype: LicenseSwitch
-        """
-        return self._switch
-
-    @switch.setter
-    def switch(self, switch):
-        """
-        Sets the switch of this License.
-
-        :param switch: The switch of this License.
-        :type: LicenseSwitch
-        """
-
-        self._switch = switch
+        if switch is not None:
+          self.switch = switch
 
     @property
     def lrn(self):
@@ -148,6 +127,27 @@ class License(object):
             raise ValueError("Invalid value for `rate_uuid`, length must be less than or equal to `36`")
 
         self._rate_uuid = rate_uuid
+
+    @property
+    def switch(self):
+        """
+        Gets the switch of this License.
+
+        :return: The switch of this License.
+        :rtype: LicenseSwitch
+        """
+        return self._switch
+
+    @switch.setter
+    def switch(self, switch):
+        """
+        Sets the switch of this License.
+
+        :param switch: The switch of this License.
+        :type: LicenseSwitch
+        """
+
+        self._switch = switch
 
     def to_dict(self):
         """

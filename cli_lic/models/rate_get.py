@@ -31,27 +31,50 @@ class RateGet(object):
                             and the value is json key in definition.
     """
     swagger_types = {
-        'type': 'str',
-        'rate_uuid': 'str'
+        'rate_uuid': 'str',
+        'type': 'str'
     }
 
     attribute_map = {
-        'type': 'type',
-        'rate_uuid': 'rate_uuid'
+        'rate_uuid': 'rate_uuid',
+        'type': 'type'
     }
 
-    def __init__(self, type='switch pay per port', rate_uuid=None):
+    def __init__(self, rate_uuid=None, type='switch pay per port'):
         """
         RateGet - a model defined in Swagger
         """
 
-        self._type = None
         self._rate_uuid = None
+        self._type = None
 
-        if type is not None:
-          self.type = type
         if rate_uuid is not None:
           self.rate_uuid = rate_uuid
+        if type is not None:
+          self.type = type
+
+    @property
+    def rate_uuid(self):
+        """
+        Gets the rate_uuid of this RateGet.
+
+        :return: The rate_uuid of this RateGet.
+        :rtype: str
+        """
+        return self._rate_uuid
+
+    @rate_uuid.setter
+    def rate_uuid(self, rate_uuid):
+        """
+        Sets the rate_uuid of this RateGet.
+
+        :param rate_uuid: The rate_uuid of this RateGet.
+        :type: str
+        """
+        if rate_uuid is not None and len(rate_uuid) > 36:
+            raise ValueError("Invalid value for `rate_uuid`, length must be less than or equal to `36`")
+
+        self._rate_uuid = rate_uuid
 
     @property
     def type(self):
@@ -79,29 +102,6 @@ class RateGet(object):
             )
 
         self._type = type
-
-    @property
-    def rate_uuid(self):
-        """
-        Gets the rate_uuid of this RateGet.
-
-        :return: The rate_uuid of this RateGet.
-        :rtype: str
-        """
-        return self._rate_uuid
-
-    @rate_uuid.setter
-    def rate_uuid(self, rate_uuid):
-        """
-        Sets the rate_uuid of this RateGet.
-
-        :param rate_uuid: The rate_uuid of this RateGet.
-        :type: str
-        """
-        if rate_uuid is not None and len(rate_uuid) > 36:
-            raise ValueError("Invalid value for `rate_uuid`, length must be less than or equal to `36`")
-
-        self._rate_uuid = rate_uuid
 
     def to_dict(self):
         """
