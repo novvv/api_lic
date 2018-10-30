@@ -1,11 +1,18 @@
 ver 1.0.3
-POST/package_lrn
+DELETE/package_switch/{package_switch_uuid} <-- delete switch package LLP-23
+PATCH/package_switch/{package_switch_uuid}  <-- enable/disable switch package LLP-20
+PATCH/package_switch/{package_switch_uuid}  <-- manage switch package LLP-19
+PATCH/package_switch/{package_switch_uuid}  <-- manage switch package LLP-17
+POST/package_switch <-- create switch package (plan)  LLP-18
+PATCH/package_lrn/{package_lrn_uuid} <-- enable/disable LRN package LLP-24
+POST/package_lrn  <-- create LRN package LLP-26
 GET/package_lrn/{package_lrn_uuid}
-DELETE/package_lrn/{package_lrn_uuid}
+DELETE/package_lrn/{package_lrn_uuid} <-- delete LRN package LLP-28
 PATCH/package_lrn/{package_lrn_uuid} <-- modify LRN package LLP-27
 GET/user_by_email/{email}
 DELETE/user_by_email/{email}
 PATCH/user_by_email/{email} <-- edit user by email LLP-21
+
 ver 1.0.2
 GET/email_template/{name}
 PATCH/email_template/{name} <-- edit email templates LLP-11
