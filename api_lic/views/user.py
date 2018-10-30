@@ -31,13 +31,7 @@ from falcon_rest.responses import errors
 # from .tasks import *
 from api_lic import model
 from api_lic import settings
-from api_lic.resources.resources import Resource, CustomAction, Create, List
-from api_lic.scheme import UserInfoScheme, UserInfoSchemeGet, UserResetPasswordLetterScheme
 from api_lic.view import DEFAULT_SECURITY
-from api_lic.views.admin import LicenseScheme, LicenseSchemeGet, LicenseSchemeModify, LicenseLrnScheme, \
-    LicenseLrnSchemeGet, LicenseLrnSchemeModify, LicensePeriodScheme, LicensePeriodSchemeGet, LicensePeriodSchemeModify, \
-    LicenseSwitchScheme, LicenseSwitchSchemeGet, LicenseSwitchSchemeModify, NotificationSchemeGet, PaymentScheme, \
-    PaymentSchemeGet, PaymentSchemeModify
 from ..scheme import *
 from ..scheme import _valid
 from ..resources.resources import Create, Resource, List, CustomAction, CustomPostAction
@@ -184,112 +178,6 @@ class UserResetPasswordEmail(CustomAction):
             # model.MailSender.apply_mail(user, 'retrieve_password', obj.client.billing_email)
 
 
-class LicenseCreate(Create):
-    scheme_class = LicenseScheme
-    model_class = model.License
-    entity = 'License'
-    path_parameters = ()
-    security = (DEFAULT_SECURITY)
-    restrict = ()
-
-    def before_create(self, obj, **kwargs):
-        user = self.get_user(self.req)
-        obj.user_uuid=user.user_uuid
-        # obj.created_by=user.name
-        # obj.created_on=datetime.now(UTC)
-        return obj
-
-
-class LicenseResource(Resource):
-    model_class = model.License
-    scheme_class = LicenseScheme
-    scheme_class_get = LicenseSchemeGet
-    scheme_class_modify = LicenseSchemeModify
-    entity = 'License'
-    id_field = 'license_uuid'
-    security = (DEFAULT_SECURITY)
-    path_parameters = ()
-    restrict = ()
-
-    def get_object(self, resp, model_class, **kwargs):
-        obj = super().get_object(resp, model_class, **kwargs)
-        user = self.get_user(self.req)
-        if user.get_role() == UserRole and obj.user_uuid != user.user_user_uuid:
-            raise NoResultFound
-        return obj
-
-
-class LicenseList(List):
-    scheme_class = LicenseSchemeGet
-    model_class = model.License
-    entity_plural = 'Licenses'
-    path_parameters = ()
-    security = (DEFAULT_SECURITY)
-    restrict = ()
-
-    def modify_query_from_filtering_for_list(self, filtering, **kwargs):
-        filt, ret = super().modify_query_from_filtering_for_list(filtering, **kwargs)
-        user = self.get_user(self.req)
-        if user.get_role() != AdminRole:
-            cls = self.model_class
-            ret = ret.filter(cls.user_uuid == user.user_uuid)
-        return filt, ret
-
-
-class LicensePeriodCreate(Create):
-    scheme_class = LicensePeriodScheme
-    model_class = model.LicensePeriod
-    entity = 'LicensePeriod'
-    path_parameters = ()
-    security = (DEFAULT_SECURITY)
-    restrict = ()
-
-    def before_create(self, obj, **kwargs):
-        user = self.get_user(self.req)
-        lic = model.License.get(obj.license_uuid)
-        if lic.user_uuid != user.user_uuid:
-            raise ValidationError({'license_uuid':['not owned by current user!']})
-        # obj.created_by=user.name
-        # obj.created_on=datetime.now(UTC)
-        return obj
-
-
-class LicensePeriodResource(Resource):
-    model_class = model.LicensePeriod
-    scheme_class = LicensePeriodScheme
-    scheme_class_get = LicensePeriodSchemeGet
-    scheme_class_modify = LicensePeriodSchemeModify
-    entity = 'LicensePeriod'
-    id_field = 'license_period_uuid'
-    security = (DEFAULT_SECURITY)
-    path_parameters = ()
-    restrict = ()
-
-    def get_object(self, resp, model_class, **kwargs):
-        obj = super().get_object(resp, model_class, **kwargs)
-        user = self.get_user(self.req)
-        if user.get_role() == UserRole and obj.user_uuid != user.user_user_uuid:
-            raise NoResultFound
-        return obj
-
-
-class LicensePeriodList(List):
-    scheme_class = LicensePeriodSchemeGet
-    model_class = model.LicensePeriod
-    entity_plural = 'LicensePeriods'
-    path_parameters = ()
-    security = (DEFAULT_SECURITY)
-    restrict = ()
-
-    def modify_query_from_filtering_for_list(self, filtering, **kwargs):
-        filt, ret = super().modify_query_from_filtering_for_list(filtering, **kwargs)
-        user = self.get_user(self.req)
-        if user.get_role() != AdminRole:
-            cls = self.model_class
-            ret = ret.filter(cls.user_uuid == user.user_uuid)
-        return filt, ret
-
-
 class NotificationList(List):
     scheme_class = NotificationSchemeGet
     model_class = model.Notification
@@ -427,3 +315,102 @@ class StripeWebhook(CustomPostAction):
         else:
             raise NoResultFound
         return True
+
+
+# +++LicenseLrn+++
+class LicenseLrnCreate(Create):
+    scheme_class = LicenseLrnScheme
+    model_class = model.LicenseLrn
+    entity = 'LicenseLrn'
+    path_parameters = ()
+    security = (DEFAULT_SECURITY)
+    restrict = ()
+
+    def before_create(self, obj, **kwargs):
+        user = self.get_user(self.req)
+        obj.user_uuid=user.user_uuid
+        # obj.created_by=user.name
+        if not obj.start_time:
+            obj.start_time=datetime.now(UTC)
+        return obj
+
+
+class LicenseLrnResource(Resource):
+    model_class = model.LicenseLrn
+    scheme_class = LicenseLrnScheme
+    scheme_class_get = LicenseLrnSchemeGet
+    scheme_class_modify = LicenseLrnSchemeModify
+    entity = 'LicenseLrn'
+    id_field = 'license_lrn_uuid'
+    security = (DEFAULT_SECURITY)
+    path_parameters = ()
+    restrict = ()
+
+
+class LicenseLrnList(List):
+    scheme_class = LicenseLrnSchemeGet
+    model_class = model.LicenseLrn
+    entity_plural = 'LicenseLrns'
+    path_parameters = ()
+    security = (DEFAULT_SECURITY)
+    restrict = ()
+
+    def modify_query_from_filtering_for_list(self, filtering, **kwargs):
+        filt, ret = super().modify_query_from_filtering_for_list(filtering, **kwargs)
+        user = self.get_user(self.req)
+        if not user.is_admin:
+            cls = self.model_class
+            ret = ret.filter(cls.user_uuid == user.user_uuid)
+        return filt, ret
+
+
+# ---LicenseLrn---
+
+# +++LicenseSwitch+++
+class LicenseSwitchCreate(Create):
+    scheme_class = LicenseSwitchScheme
+    model_class = model.LicenseSwitch
+    entity = 'LicenseSwitch'
+    path_parameters = ()
+    security = (DEFAULT_SECURITY)
+    restrict = ()
+
+    def before_create(self, obj, **kwargs):
+        user = self.get_user(self.req)
+        obj.user_uuid = user.user_uuid
+        # obj.created_by=user.name
+        if not obj.start_time:
+            obj.start_time = datetime.now(UTC)
+        return obj
+
+
+class LicenseSwitchResource(Resource):
+    model_class = model.LicenseSwitch
+    scheme_class = LicenseSwitchScheme
+    scheme_class_get = LicenseSwitchSchemeGet
+    scheme_class_modify = LicenseSwitchSchemeModify
+    entity = 'LicenseSwitch'
+    id_field = 'license_switch_uuid'
+    security = (DEFAULT_SECURITY)
+    path_parameters = ()
+    restrict = ()
+
+
+class LicenseSwitchList(List):
+    scheme_class = LicenseSwitchSchemeGet
+    model_class = model.LicenseSwitch
+    entity_plural = 'LicenseSwitchs'
+    path_parameters = ()
+    security = (DEFAULT_SECURITY)
+    restrict = ()
+
+    def modify_query_from_filtering_for_list(self, filtering, **kwargs):
+        filt, ret = super().modify_query_from_filtering_for_list(filtering, **kwargs)
+        user = self.get_user(self.req)
+        if not user.is_admin:
+            cls = self.model_class
+            ret = ret.filter(cls.user_uuid == user.user_uuid)
+        return filt, ret
+
+
+# ---LicenseSwitch---

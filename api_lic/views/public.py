@@ -30,9 +30,7 @@ from falcon_rest.resources.base_resource import OperationalError
 from falcon_rest.resources.resources import swagger, ResourcesBaseClass, DEFAULT_SECURITY, ATTRIBUTE_ERROR_RE
 from falcon_rest.responses import errors
 # from .tasks import *
-from api_lic import model
-from api_lic.resources.resources import List
-from api_lic.views.admin import RateSchemeGet
+from .. import model
 from ..scheme import *
 from ..scheme import _valid
 from ..resources.resources import Create, Resource, List, CustomAction, CustomGetAction, CustomPostAction, \
@@ -115,20 +113,3 @@ class SimpleFileGet(CustomGetAction):
         except Exception as e:
             self.set_response(resp, OperationalError(e))
             return False
-
-
-class RateList(List):
-    scheme_class = RateSchemeGet
-    model_class = model.Rate
-    entity_plural = 'Rates'
-    path_parameters = ()
-    security = (DEFAULT_SECURITY)
-    restrict = ()
-
-    def modify_query_from_filtering_for_list(self, filtering, **kwargs):
-        filt, ret = super().modify_query_from_filtering_for_list(filtering, **kwargs)
-        user = self.get_user(self.req)
-        if not user.is_admin:
-            cls = self.model_class
-            # ret = ret.filter(cls.pool_id != 0)#TODO:filter for user
-        return filt, ret

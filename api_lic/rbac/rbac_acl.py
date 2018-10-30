@@ -25,11 +25,18 @@ acl = RbacAcl(
 #public
 acl.add_rule_multiple(resources=(UserRegisterCreate, UserResetPassword, UserConfirmRegister), roles=(RbacRoleNoRole,), perm=Allow)
 # auth
-acl.add_rule_multiple(resources=(UserCreate,UserResource,UserList),roles=(AdminRole,),perm=Allow)
+acl.add_rule_multiple(resources=(UserCreate,UserResource,UserList,UserByEmailResource),roles=(AdminRole,),perm=Allow)
 
 acl.add_rule_multiple(resources=(UserInfoResource,UserResetPasswordEmail,UserResetPassword),methods=('get','patch'),roles=(UserRole,CompanyAdminRole,AdminRole),perm=Allow)
 acl.add_rule_multiple(resources=(ObjectRevisionList,),roles=(AdminRole,UserRole),perm=Allow)
+
 #admin
-acl.add_rule_multiple(resources=(EmailTemplateResource, EmailTemplateList,RateCreate,RateResource,NotificationCreate,NotificationResource),
+acl.add_rule_multiple(resources=(EmailTemplateResource, EmailTemplateList,PlanCreate,PlanResource,NotificationCreate,NotificationResource),
                       roles=(AdminRole,),perm=Allow)
-acl.add_rule_multiple(resources=(PaymentCreate,PaymentResource,LicenseCreate,LicenseResource,LicensePeriodCreate,LicensePeriodResource),roles=(UserRole,),perm=Allow)
+acl.add_rule_multiple(resources=(PackageSwitchCreate,PackageSwitchResource,PackageLrnCreate,PackageLrnResource),
+                      roles=(AdminRole,),perm=Allow)
+#user
+acl.add_rule_multiple(resources=(PaymentCreate,PaymentResource),roles=(UserRole,),perm=Allow)
+
+#admin&user
+acl.add_rule_multiple(resources=(PackageSwitchList,PackageLrnList,NotificationList,PaymentList),roles=(AdminRole,UserRole),perm=Allow)

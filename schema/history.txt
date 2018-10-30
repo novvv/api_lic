@@ -1,4 +1,6 @@
-56c8b65dd6a3 -> 802754132737 (head), payment user_uuid
+4b09277baffb -> 79580b1c9691 (head), package_lrn package_switch
+802754132737 -> 4b09277baffb, plan
+56c8b65dd6a3 -> 802754132737, payment user_uuid
 68a956c4de09 -> 56c8b65dd6a3, license_update_history
 2d3470cd5603 -> 68a956c4de09, period ordered_amount
 d7b99512de3c -> 2d3470cd5603, email log

@@ -97,7 +97,39 @@ class UserResource(Resource):
     def delete_object(self, req, resp, model_class, **kwargs):
         if kwargs['user_uuid'] == settings.ADMIN_UUID:
             return True
-        return super(UserResource, self).delete_object(req, resp, model_class, **kwargs)
+        return super().delete_object(req, resp, model_class, **kwargs)
+
+    def before_update(self, obj, req):
+        return obj
+
+class UserByEmailResource(Resource):
+    model_class = model.User
+    scheme_class = UserScheme
+    scheme_class_get = UserSchemeGet
+    scheme_class_modify = UserSchemeModify
+    entity = 'User'
+    id_field = 'email'
+    has_update_by = True
+    unique_field = 'user_uuid'
+    security = (DEFAULT_SECURITY)
+    restrict = ()
+
+    def get_object(self, resp, model_class, **kwargs):
+        q=model.User.filter(func.lower(model.User.email)==kwargs['email'].lower()).first()
+        if q:
+
+            kwargs={'user_uuid':q.user_uuid}
+            return super().get_object(resp, model_class, **kwargs)
+        return None
+
+    def delete_object(self, req, resp, model_class, **kwargs):
+        q = model.User.filter(func.lower(model.User.email) == kwargs['email'].lower()).first()
+        if q:
+            kwargs = {'user_uuid': q.user_uuid}
+            if kwargs['user_uuid'] == settings.ADMIN_UUID:
+                return True
+            return super().get_object(resp, model_class, **kwargs)
+        return None
 
     def before_update(self, obj, req):
         return obj

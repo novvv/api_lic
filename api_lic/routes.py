@@ -32,6 +32,7 @@ PRODUCTION_ROUTES = OrderedDict([
            {'path': '/auth/reset_password/{token}', 'method': 'post','resource': views.UserResetPassword()},
            {'path': '/user', 'resource': view.UserCreate(), 'method': 'post'},
            {'path': '/user/{user_uuid}', 'resource': view.UserResource(), 'method': 'path'},
+           {'path': '/user_by_email/{email}', 'resource': view.UserByEmailResource(), 'method': 'path'},
            {'path': '/user/list', 'resource': view.UserList(), 'method': 'get'},
 
            {'path': '/registration', 'resource': view.UserRegisterCreate(), 'method': 'post'},
@@ -42,13 +43,19 @@ PRODUCTION_ROUTES = OrderedDict([
 ('Admin', {
         'description': 'public info',
         'routes': [
-        {'path': '/rate', 'method': 'post','resource': views.RateCreate()},
-        {'path': '/rate/{rate_uuid}', 'method': 'path','resource': views.RateResource()},
-        {'path': '/notification', 'method': 'post', 'resource': views.NotificationCreate()},
-        {'path': '/notification/{notification_uuid}', 'method': 'path', 'resource': views.NotificationResource()},
-        {'path': '/email_template/{name}', 'method': 'path','resource': views.EmailTemplateResource()},
-        {'path': '/email_template/list', 'method': 'get','resource': views.EmailTemplateList()},
-            ]}
+            {'path': '/plan', 'method': 'post','resource': views.PlanCreate()},
+            {'path': '/plan/{plan_uuid}', 'method': 'path','resource': views.PlanResource()},
+            {'path': '/notification', 'method': 'post', 'resource': views.NotificationCreate()},
+            {'path': '/notification/{notification_uuid}', 'method': 'path', 'resource': views.NotificationResource()},
+            {'path': '/email_template/{name}', 'method': 'path','resource': views.EmailTemplateResource()},
+            {'path': '/email_template/list', 'method': 'get','resource': views.EmailTemplateList()},
+            {'path': '/package_lrn', 'method': 'post','resource': views.PackageLrnCreate()},
+            {'path': '/package_lrn/{package_lrn_uuid}', 'method': 'path','resource': views.PackageLrnResource()},
+            {'path': '/package_switch', 'method': 'post','resource': views.PackageSwitchCreate()},
+            {'path': '/package_switch/{package_switch_uuid}', 'method': 'path','resource': views.PackageSwitchResource()},
+
+
+        ]}
  ),
     ('Public', {
         'description': 'public info',
@@ -61,8 +68,8 @@ PRODUCTION_ROUTES = OrderedDict([
             {'path': '/file/{file_uuid}', 'method': 'get', 'resource': file.file_show},
             {'path': '/file/list', 'method': 'get', 'resource': file.ListFiles()},
             {'path': '/file/list_tmp', 'method': 'get', 'resource': file.ListTmpFiles()},
-            {'path': '/rate/list', 'method': 'get','resource': api_lic.views.public.RateList()},
-
+            {'path': '/package_lrn/list', 'method': 'get', 'resource': views.PackageLrnList()},
+            {'path': '/package_switch/list', 'method': 'get','resource': views.PackageSwitchList()},
           ]
 
     }),
@@ -71,19 +78,22 @@ PRODUCTION_ROUTES = OrderedDict([
         'routes': [
             {'path': '/home', 'resource': views.user.UserInfoResource(), 'method': 'path'},
 
-{'path': '/license', 'method': 'post', 'resource': api_lic.views.user.LicenseCreate()},
-{'path': '/license/{license_uuid}', 'method': 'path', 'resource': api_lic.views.user.LicenseResource()},
-{'path': '/license/list', 'method': 'get', 'resource': api_lic.views.user.LicenseList()},
-{'path': '/license_period', 'method': 'post', 'resource': api_lic.views.user.LicensePeriodCreate()},
-{'path': '/license_period/{license_period_uuid}', 'method': 'path', 'resource': api_lic.views.user.LicensePeriodResource()},
-{'path': '/license_period/list', 'method': 'get', 'resource': api_lic.views.user.LicensePeriodList()},
+            {'path': '/notification/list', 'method': 'get', 'resource': api_lic.views.user.NotificationList()},
+            {'path': '/payment', 'method': 'post', 'resource': api_lic.views.user.PaymentCreate()},
+            {'path': '/payment/{payment_uuid}', 'method': 'path', 'resource': api_lic.views.user.PaymentResource()},
+            {'path': '/payment/list', 'method': 'get', 'resource': api_lic.views.user.PaymentList()},
+            {'path': '/payment/paypal', 'method': 'post', 'resource': api_lic.views.user.PaypalWebhook()},
+            {'path': '/payment/stripe', 'method': 'post', 'resource': api_lic.views.user.StripeWebhook()},
 
-{'path': '/notification/list', 'method': 'get', 'resource': api_lic.views.user.NotificationList()},
-{'path': '/payment', 'method': 'post', 'resource': api_lic.views.user.PaymentCreate()},
-{'path': '/payment/{payment_uuid}', 'method': 'path', 'resource': api_lic.views.user.PaymentResource()},
-{'path': '/payment/list', 'method': 'get', 'resource': api_lic.views.user.PaymentList()},
-{'path': '/payment/paypal', 'method': 'post', 'resource': api_lic.views.user.PaypalWebhook()},
-{'path': '/payment/stripe', 'method': 'post', 'resource': api_lic.views.user.StripeWebhook()},
+            {'path': '/license_lrn', 'method': 'post', 'resource': views.LicenseLrnCreate()},
+            {'path': '/license_lrn/{license_lrn_uuid}', 'method': 'path', 'resource': views.LicenseLrnResource()},
+            {'path': '/license_lrn/list', 'method': 'get', 'resource': views.LicenseLrnList()},
+
+            {'path': '/license_switch', 'method': 'post', 'resource': views.LicenseSwitchCreate()},
+            {'path': '/license_switch/{license_switch_uuid}', 'method': 'path', 'resource': views.LicenseSwitchResource()},
+            {'path': '/license_switch/list', 'method': 'get', 'resource': views.LicenseSwitchList()},
+
+
         ]
 
     }),

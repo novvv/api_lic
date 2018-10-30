@@ -345,14 +345,14 @@ class Notification(BaseModel, ModelUsingFiles):
     created_on = Column(DateTime(True), nullable=False, server_default=func.now())
 
 
-class Rate(BaseModel):
-    __tablename__ = 'rate'
+class Plan(BaseModel):
+    __tablename__ = 'plan'
     TYPE = {1: 'switch pay per port', 2: 'switch pay per minute', 3: 'LRN pay per CPS', 4: 'LRN pay per DIP'}
-    rate_uuid = Column(String(36), primary_key=True, default=generate_uuid_str(),
+    plan_uuid = Column(String(36), primary_key=True, default=generate_uuid_str(),
                        server_default=func.uuid_generate_v4())
 
     type = Column(ChoiceType(TYPE), default=1)
-    rate = Column(Numeric, nullable=False, server_default='0')
+    amount = Column(Numeric, nullable=False, server_default='0')
 
 
 class Payment(BaseModel):
@@ -361,79 +361,109 @@ class Payment(BaseModel):
     payment_uuid = Column(String(36), primary_key=True, default=generate_uuid_str(),
                           server_default=func.uuid_generate_v4())
     user_uuid = Column(ForeignKey('user.user_uuid', ondelete='CASCADE'), index=True)
-    license_period_uuid = Column(ForeignKey('license_period.license_period_uuid', ondelete='CASCADE'), nullable=True,
+    license_lrn_uuid = Column(ForeignKey('license_lrn.license_lrn_uuid', ondelete='CASCADE'), nullable=True,
                                  index=True)
+    license_switch_uuid = Column(ForeignKey('license_switch.license_switch_uuid', ondelete='CASCADE'),
+                                   nullable=True,
+                                   index=True)
     amount = Column(Numeric, nullable=False, server_default='0')
     paid_time = Column(DateTime(True), nullable=False, server_default=func.now())
     type = Column(ChoiceType(TYPE), default=1)
-    period = relationship('LicensePeriod', uselist=False, back_populates='payment')
     description=Column(Text)
 
 
-class LicensePeriod(BaseModel):
-    __tablename__ = 'license_period'
-    license_period_uuid = Column(String(36), primary_key=True, default=generate_uuid_str(),
-                                 server_default=func.uuid_generate_v4())
-    license_uuid = Column(ForeignKey('license.license_uuid', ondelete='CASCADE'), nullable=True, index=True)
-
-    start_time = Column(DateTime(True), nullable=False, server_default=func.now())
-    end_time = Column(DateTime(True), nullable=True)
-    ordered_amount = Column(Integer)
-    cost = Column(Numeric, nullable=False, server_default='0')
-    license = relationship('License', uselist=False, back_populates='periods')
-    payment = relationship('Payment', uselist=False, back_populates='period')
-    is_active = column_property(select([and_(start_time < func.now(), end_time < func.now(),
-                                             func.sum(Payment.amount) == cost)]).where(
-        Payment.license_period_uuid == license_period_uuid).correlate_except(Payment))
 
 
-class LicenseSwitch(BaseModel):
-    __tablename__ = 'license_switch'
-    TYPE = {1: 'switch pay per port', 2: 'switch pay per minute'}
-    license_uuid = Column(ForeignKey('license.license_uuid', ondelete='CASCADE'), primary_key=True, nullable=True,
-                          index=True)
-    ip = Column(String(16), nullable=False)
-    type = Column(ChoiceType(TYPE), default=1)
-    license = relationship('License', uselist=False, back_populates='switch')
+class PackageLrn(BaseModel):
+    __tablename__ = 'package_lrn'
+    TYPE = {3: 'LRN pay per CPS', 4: 'LRN pay per DIP'}
+    package_lrn_uuid = Column \
+        (String(36), primary_key=True, default=generate_uuid_str(),
+         server_default=func.uuid_generate_v4())
+    package_name = Column(String(64),unique=True)
+    cps = Column(Integer())
+    type = Column(ChoiceType(TYPE), default=3)
+    lrn_ip = Column(String(16), nullable=False)
+    lrn_port = Column(Integer())
+    dip_count = Column(Integer())
+    amount = Column(Integer())
+    enabled = Column(Boolean,default=True)
+    licenses = relationship('LicenseLrn', uselist=True, back_populates='package')
 
 
 class LicenseLrn(BaseModel):
     __tablename__ = 'license_lrn'
-    TYPE = {3: 'LRN pay per CPS', 4: 'LRN pay per DIP'}
-    license_uuid = Column(ForeignKey('license.license_uuid', ondelete='CASCADE'), primary_key=True, nullable=True,
-                          index=True)
-    cps = Column(Integer())
-    type = Column(ChoiceType(TYPE), default=3)
-    license = relationship('License', uselist=False, back_populates='lrn')
-
-
-class License(BaseModel):
-    __tablename__ = 'license'
-
-    license_uuid = Column \
+    license_lrn_uuid = Column \
         (String(36), primary_key=True, default=generate_uuid_str(),
          server_default=func.uuid_generate_v4())
-    rate_uuid = Column(ForeignKey('rate.rate_uuid', ondelete='CASCADE'), nullable=True, index=True)
+    package_lrn_uuid = Column(ForeignKey('package_lrn.package_lrn_uuid', ondelete='CASCADE'), index=True)
     user_uuid = Column(ForeignKey('user.user_uuid', ondelete='CASCADE'), index=True)
-    periods = relationship(LicensePeriod, uselist=True, back_populates='license', single_parent=True,
-                           cascade="all, delete-orphan")
-    lrn = relationship('LicenseLrn', uselist=False, back_populates='license')
-    switch = relationship('LicenseSwitch', uselist=False, back_populates='license')
+    plan_uuid = Column(ForeignKey('plan.plan_uuid', ondelete='CASCADE'), nullable=True, index=True)
+    start_time = Column(DateTime(True), nullable=False, server_default=func.now())
+    end_time = Column(DateTime(True), nullable=True)
+    ordered_amount = Column(Integer)
+    cost = Column(Numeric, nullable=False, server_default='0')
+
+    package = relationship('PackageLrn', uselist=False, back_populates='licenses')
+    
     user_email = column_property(
         select([User.email]).where(user_uuid == User.user_uuid).correlate_except(User))
-    type = column_property(func.coalesce(
-        select([LicenseLrn.type]).where(LicenseLrn.license_uuid == license_uuid).as_scalar(),
-        select([LicenseSwitch.type]).where(LicenseSwitch.license_uuid == license_uuid).as_scalar()
-    ))
-    is_lrn_license = column_property(select([func.count() > 0]).where(LicenseLrn.license_uuid == license_uuid))
-    is_switch_license = column_property(select([func.count() > 0]).where(LicenseSwitch.license_uuid == license_uuid))
+    cps = column_property(select([PackageLrn.cps]).where(package_lrn_uuid==PackageLrn.package_lrn_uuid).correlate_except(PackageLrn))
+    type = column_property(select([PackageLrn.type]).where(package_lrn_uuid==PackageLrn.package_lrn_uuid).correlate_except(PackageLrn))
+    lrn_ip = column_property(select([PackageLrn.lrn_ip]).where(package_lrn_uuid==PackageLrn.package_lrn_uuid).correlate_except(PackageLrn))
+    lrn_port = column_property(select([PackageLrn.lrn_port]).where(package_lrn_uuid==PackageLrn.package_lrn_uuid).correlate_except(PackageLrn))
+    dip_count = column_property(select([PackageLrn.dip_count]).where(package_lrn_uuid==PackageLrn.package_lrn_uuid).correlate_except(PackageLrn))
+    amount = column_property(select([PackageLrn.amount]).where(package_lrn_uuid==PackageLrn.package_lrn_uuid).correlate_except(PackageLrn))
+    
 
 
-LicensePeriod.user_uuid = column_property(
-    select([License.user_uuid]).where(LicensePeriod.license_uuid == License.license_uuid).correlate_except(License))
-Payment.user_uuid = column_property(
-    select([LicensePeriod.user_uuid]).where(
-        Payment.license_period_uuid == LicensePeriod.license_period_uuid).correlate_except(LicensePeriod))
+class PackageSwitch(BaseModel):
+    __tablename__ = 'package_switch'
+    TYPE = {1: 'switch pay per port', 2: 'switch pay per minute'}
+    package_switch_uuid = Column \
+        (String(36), primary_key=True, default=generate_uuid_str(),
+         server_default=func.uuid_generate_v4())
+
+    package_name = Column(String(64),unique=True)
+
+    type = Column(ChoiceType(TYPE), default=1)
+    switch_ip = Column(String(16), nullable=False)
+    switch_port = Column(Integer())
+    minute_count = Column(Integer())
+    amount = Column(Integer())
+    enabled = Column(Boolean,default=True)
+    licenses = relationship('LicenseSwitch', uselist=True, back_populates='package')
+
+
+class LicenseSwitch(BaseModel):
+    __tablename__ = 'license_switch'
+    license_switch_uuid = Column \
+        (String(36), primary_key=True, default=generate_uuid_str(),
+         server_default=func.uuid_generate_v4())
+    package_switch_uuid = Column(ForeignKey('package_switch.package_switch_uuid', ondelete='CASCADE'), index=True)
+    user_uuid = Column(ForeignKey('user.user_uuid', ondelete='CASCADE'), index=True)
+    plan_uuid = Column(ForeignKey('plan.plan_uuid', ondelete='CASCADE'), nullable=True, index=True)
+    start_time = Column(DateTime(True), nullable=False, server_default=func.now())
+    end_time = Column(DateTime(True), nullable=True)
+    ordered_amount = Column(Integer)
+    cost = Column(Numeric, nullable=False, server_default='0')
+    package = relationship('PackageSwitch', uselist=False, back_populates='licenses')
+
+    user_email = column_property(
+        select([User.email]).where(user_uuid == User.user_uuid).correlate_except(User))
+
+    type = column_property(
+        select([PackageSwitch.type]).where(package_switch_uuid == PackageSwitch.package_switch_uuid).correlate_except(PackageSwitch))
+    switch_ip = column_property(
+        select([PackageSwitch.switch_ip]).where(package_switch_uuid == PackageSwitch.package_switch_uuid).correlate_except(PackageSwitch))
+    switch_port = column_property(
+        select([PackageSwitch.switch_port]).where(package_switch_uuid == PackageSwitch.package_switch_uuid).correlate_except(
+            PackageSwitch))
+    minute_count = column_property(
+        select([PackageSwitch.minute_count]).where(package_switch_uuid == PackageSwitch.package_switch_uuid).correlate_except(
+            PackageSwitch))
+    amount = column_property(
+        select([PackageSwitch.amount]).where(package_switch_uuid == PackageSwitch.package_switch_uuid).correlate_except(PackageSwitch))
 
 
 class LicenseUpdateHistory(BaseModel):

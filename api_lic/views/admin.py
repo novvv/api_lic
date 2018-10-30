@@ -79,11 +79,11 @@ class NotificationResource(Resource):
 
 # ---Notification---
 
-# +++Rate+++
-class RateCreate(Create):
-    scheme_class = RateScheme
-    model_class = model.Rate
-    entity = 'Rate'
+# +++Plan+++
+class PlanCreate(Create):
+    scheme_class = PlanScheme
+    model_class = model.Plan
+    entity = 'Plan'
     path_parameters = ()
     security = (DEFAULT_SECURITY)
     restrict = ()
@@ -95,15 +95,95 @@ class RateCreate(Create):
         return obj
 
 
-class RateResource(Resource):
-    model_class = model.Rate
-    scheme_class = RateScheme
-    scheme_class_get = RateSchemeGet
-    scheme_class_modify = RateSchemeModify
-    entity = 'Rate'
-    id_field = 'rate_uuid'
+class PlanResource(Resource):
+    model_class = model.Plan
+    scheme_class = PlanScheme
+    scheme_class_get = PlanSchemeGet
+    scheme_class_modify = PlanSchemeModify
+    entity = 'Plan'
+    id_field = 'plan_uuid'
     security = (DEFAULT_SECURITY)
     path_parameters = ()
     restrict = ()
 
-# ---Rate---
+# ---Plan---
+# +++PackageLrn+++
+class PackageLrnCreate(Create):
+    scheme_class = PackageLrnScheme
+    model_class = model.PackageLrn
+    entity = 'PackageLrn'
+    path_parameters = ()
+    security = (DEFAULT_SECURITY)
+    restrict = ()
+    unique_field = 'package_name'
+    def before_create(self, obj, **kwargs):
+        user = self.get_user(self.req)
+        #obj.created_by=user.name
+        #obj.created_on=datetime.now(UTC)
+        return obj
+class PackageLrnResource(Resource):
+    model_class = model.PackageLrn
+    scheme_class = PackageLrnScheme
+    scheme_class_get = PackageLrnSchemeGet
+    scheme_class_modify = PackageLrnSchemeModify
+    entity = 'PackageLrn'
+    id_field = 'package_lrn_uuid'
+    unique_field = 'package_name'
+    security = (DEFAULT_SECURITY)
+    path_parameters = ()
+    restrict = ()
+class PackageLrnList(List):
+    scheme_class = PackageLrnSchemeGet
+    model_class = model.PackageLrn
+    entity_plural = 'PackageLrns'
+    path_parameters = ()
+    security = (DEFAULT_SECURITY)
+    restrict = ()
+    def modify_query_from_filtering_for_list(self, filtering, **kwargs):
+        filt, ret = super().modify_query_from_filtering_for_list(filtering, **kwargs)
+        user = self.get_user(self.req)
+        if not user.is_admin:
+            cls = self.model_class
+            #ret = ret.filter(cls.pool_id != 0)#TODO:filter for user
+        return filt, ret
+# ---PackageLrn---
+# +++PackageSwitch+++
+class PackageSwitchCreate(Create):
+    scheme_class = PackageSwitchScheme
+    model_class = model.PackageSwitch
+    entity = 'PackageSwitch'
+    unique_field = 'package_name'
+    path_parameters = ()
+    security = (DEFAULT_SECURITY)
+    restrict = ()
+    def before_create(self, obj, **kwargs):
+        user = self.get_user(self.req)
+        #obj.created_by=user.name
+        #obj.created_on=datetime.now(UTC)
+        return obj
+class PackageSwitchResource(Resource):
+    model_class = model.PackageSwitch
+    scheme_class = PackageSwitchScheme
+    scheme_class_get = PackageSwitchSchemeGet
+    scheme_class_modify = PackageSwitchSchemeModify
+    entity = 'PackageSwitch'
+    id_field = 'package_switch_uuid'
+    unique_field = 'package_name'
+    security = (DEFAULT_SECURITY)
+    path_parameters = ()
+    restrict = ()
+class PackageSwitchList(List):
+    scheme_class = PackageSwitchSchemeGet
+    model_class = model.PackageSwitch
+    entity_plural = 'PackageSwitchs'
+    path_parameters = ()
+    security = (DEFAULT_SECURITY)
+    restrict = ()
+    def modify_query_from_filtering_for_list(self, filtering, **kwargs):
+        filt, ret = super().modify_query_from_filtering_for_list(filtering, **kwargs)
+        user = self.get_user(self.req)
+        if not user.is_admin:
+            cls = self.model_class
+            #ret = ret.filter(cls.pool_id != 0)#TODO:filter for user
+        return filt, ret
+# ---PackageSwitch---

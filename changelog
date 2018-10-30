@@ -1,3 +1,7 @@
+ver 1.0.3
+GET/user_by_email/{email}
+DELETE/user_by_email/{email}
+PATCH/user_by_email/{email} <-- edit user by email LLP-21
 ver 1.0.2
 GET/email_template/{name}
 PATCH/email_template/{name} <-- edit email templates LLP-11

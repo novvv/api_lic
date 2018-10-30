@@ -168,18 +168,38 @@ ALTER SEQUENCE public.file_download_token_id_seq OWNED BY public.file_download_t
 
 
 --
+-- Name: license; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.license (
+    license_uuid character varying(36) DEFAULT public.uuid_generate_v4() NOT NULL,
+    user_uuid character varying(36),
+    plan_uuid character varying(36)
+);
+
+
+--
 -- Name: license_lrn; Type: TABLE; Schema: public; Owner: -
 --
 
 CREATE TABLE public.license_lrn (
-    cost numeric DEFAULT '0'::numeric NOT NULL,
-    end_time timestamp with time zone,
-    license_lrn_uuid character varying(36) DEFAULT public.uuid_generate_v4() NOT NULL,
-    ordered_amount integer,
-    package_lrn_uuid character varying(36),
-    plan_uuid character varying(36),
+    license_uuid character varying(36) NOT NULL,
+    cps integer,
+    type integer
+);
+
+
+--
+-- Name: license_period; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.license_period (
+    license_period_uuid character varying(36) DEFAULT public.uuid_generate_v4() NOT NULL,
+    license_uuid character varying(36),
     start_time timestamp with time zone DEFAULT now() NOT NULL,
-    user_uuid character varying(36)
+    end_time timestamp with time zone,
+    cost numeric DEFAULT '0'::numeric NOT NULL,
+    ordered_amount integer
 );
 
 
@@ -188,14 +208,9 @@ CREATE TABLE public.license_lrn (
 --
 
 CREATE TABLE public.license_switch (
-    cost numeric DEFAULT '0'::numeric NOT NULL,
-    end_time timestamp with time zone,
-    license_switch_uuid character varying(36) DEFAULT public.uuid_generate_v4() NOT NULL,
-    ordered_amount integer,
-    package_switch_uuid character varying(36),
-    plan_uuid character varying(36),
-    start_time timestamp with time zone DEFAULT now() NOT NULL,
-    user_uuid character varying(36)
+    license_uuid character varying(36) NOT NULL,
+    ip character varying(16) NOT NULL,
+    type integer
 );
 
 
@@ -359,51 +374,17 @@ ALTER SEQUENCE public.object_revision_record_id_seq OWNED BY public.object_revis
 
 
 --
--- Name: package_lrn; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE public.package_lrn (
-    package_lrn_uuid character varying(36) DEFAULT public.uuid_generate_v4() NOT NULL,
-    package_name character varying(64),
-    cps integer,
-    type integer,
-    lrn_ip character varying(16) NOT NULL,
-    lrn_port integer,
-    dip_count integer,
-    amount integer,
-    enabled boolean
-);
-
-
---
--- Name: package_switch; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE public.package_switch (
-    package_switch_uuid character varying(36) DEFAULT public.uuid_generate_v4() NOT NULL,
-    package_name character varying(64),
-    type integer,
-    switch_ip character varying(16) NOT NULL,
-    switch_port integer,
-    minute_count integer,
-    amount integer,
-    enabled boolean
-);
-
-
---
 -- Name: payment; Type: TABLE; Schema: public; Owner: -
 --
 
 CREATE TABLE public.payment (
     payment_uuid character varying(36) DEFAULT public.uuid_generate_v4() NOT NULL,
+    license_period_uuid character varying(36),
     amount numeric DEFAULT '0'::numeric NOT NULL,
     paid_time timestamp with time zone DEFAULT now() NOT NULL,
     type integer,
     description text,
-    user_uuid character varying(36),
-    license_lrn_uuid character varying(36),
-    license_switch_uuid character varying(36)
+    user_uuid character varying(36)
 );
 
 
@@ -534,19 +515,35 @@ ALTER TABLE ONLY public.file
 
 
 --
--- Name: license_lrn license_lrn_pk; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: license_lrn license_lrn_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.license_lrn
-    ADD CONSTRAINT license_lrn_pk PRIMARY KEY (license_lrn_uuid);
+    ADD CONSTRAINT license_lrn_pkey PRIMARY KEY (license_uuid);
 
 
 --
--- Name: license_switch license_switch_pk; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: license_period license_period_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.license_period
+    ADD CONSTRAINT license_period_pkey PRIMARY KEY (license_period_uuid);
+
+
+--
+-- Name: license license_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.license
+    ADD CONSTRAINT license_pkey PRIMARY KEY (license_uuid);
+
+
+--
+-- Name: license_switch license_switch_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.license_switch
-    ADD CONSTRAINT license_switch_pk PRIMARY KEY (license_switch_uuid);
+    ADD CONSTRAINT license_switch_pkey PRIMARY KEY (license_uuid);
 
 
 --
@@ -590,38 +587,6 @@ ALTER TABLE ONLY public.object_revision_record
 
 
 --
--- Name: package_lrn package_lrn_package_name_key; Type: CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.package_lrn
-    ADD CONSTRAINT package_lrn_package_name_key UNIQUE (package_name);
-
-
---
--- Name: package_lrn package_lrn_pkey; Type: CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.package_lrn
-    ADD CONSTRAINT package_lrn_pkey PRIMARY KEY (package_lrn_uuid);
-
-
---
--- Name: package_switch package_switch_package_name_key; Type: CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.package_switch
-    ADD CONSTRAINT package_switch_package_name_key UNIQUE (package_name);
-
-
---
--- Name: package_switch package_switch_pkey; Type: CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.package_switch
-    ADD CONSTRAINT package_switch_pkey PRIMARY KEY (package_switch_uuid);
-
-
---
 -- Name: payment payment_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -653,45 +618,31 @@ CREATE INDEX ix_email_log_name ON public.email_log USING btree (name);
 
 
 --
--- Name: ix_license_lrn_package_lrn_uuid; Type: INDEX; Schema: public; Owner: -
+-- Name: ix_license_lrn_license_uuid; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX ix_license_lrn_package_lrn_uuid ON public.license_lrn USING btree (package_lrn_uuid);
-
-
---
--- Name: ix_license_lrn_plan_uuid; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX ix_license_lrn_plan_uuid ON public.license_lrn USING btree (plan_uuid);
+CREATE INDEX ix_license_lrn_license_uuid ON public.license_lrn USING btree (license_uuid);
 
 
 --
--- Name: ix_license_lrn_user_uuid; Type: INDEX; Schema: public; Owner: -
+-- Name: ix_license_period_license_uuid; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX ix_license_lrn_user_uuid ON public.license_lrn USING btree (user_uuid);
-
-
---
--- Name: ix_license_switch_package_switch_uuid; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX ix_license_switch_package_switch_uuid ON public.license_switch USING btree (package_switch_uuid);
+CREATE INDEX ix_license_period_license_uuid ON public.license_period USING btree (license_uuid);
 
 
 --
--- Name: ix_license_switch_plan_uuid; Type: INDEX; Schema: public; Owner: -
+-- Name: ix_license_plan_uuid; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX ix_license_switch_plan_uuid ON public.license_switch USING btree (plan_uuid);
+CREATE INDEX ix_license_plan_uuid ON public.license USING btree (plan_uuid);
 
 
 --
--- Name: ix_license_switch_user_uuid; Type: INDEX; Schema: public; Owner: -
+-- Name: ix_license_switch_license_uuid; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX ix_license_switch_user_uuid ON public.license_switch USING btree (user_uuid);
+CREATE INDEX ix_license_switch_license_uuid ON public.license_switch USING btree (license_uuid);
 
 
 --
@@ -713,6 +664,13 @@ CREATE INDEX ix_license_update_history_status_2 ON public.license_update_history
 --
 
 CREATE INDEX ix_license_update_history_uuid ON public.license_update_history USING btree (uuid);
+
+
+--
+-- Name: ix_license_user_uuid; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX ix_license_user_uuid ON public.license USING btree (user_uuid);
 
 
 --
@@ -772,17 +730,10 @@ CREATE INDEX ix_object_revision_user_id ON public.object_revision USING btree (u
 
 
 --
--- Name: ix_payment_license_lrn_uuid; Type: INDEX; Schema: public; Owner: -
+-- Name: ix_payment_license_period_uuid; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX ix_payment_license_lrn_uuid ON public.payment USING btree (license_lrn_uuid);
-
-
---
--- Name: ix_payment_license_switch_uuid; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX ix_payment_license_switch_uuid ON public.payment USING btree (license_switch_uuid);
+CREATE INDEX ix_payment_license_period_uuid ON public.payment USING btree (license_period_uuid);
 
 
 --
@@ -800,51 +751,43 @@ CREATE UNIQUE INDEX ix_user_email ON public."user" USING btree (email);
 
 
 --
--- Name: license_lrn license_lrn_package_lrn_uuid_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
+-- Name: license_lrn license_lrn_license_uuid_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.license_lrn
-    ADD CONSTRAINT license_lrn_package_lrn_uuid_fkey FOREIGN KEY (package_lrn_uuid) REFERENCES public.package_lrn(package_lrn_uuid) ON DELETE CASCADE;
+    ADD CONSTRAINT license_lrn_license_uuid_fkey FOREIGN KEY (license_uuid) REFERENCES public.license(license_uuid) ON DELETE CASCADE;
 
 
 --
--- Name: license_lrn license_lrn_plan_uuid_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
+-- Name: license_period license_period_license_uuid_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY public.license_lrn
-    ADD CONSTRAINT license_lrn_plan_uuid_fkey FOREIGN KEY (plan_uuid) REFERENCES public.plan(plan_uuid) ON DELETE CASCADE;
-
-
---
--- Name: license_lrn license_lrn_user_uuid_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.license_lrn
-    ADD CONSTRAINT license_lrn_user_uuid_fkey FOREIGN KEY (user_uuid) REFERENCES public."user"(user_uuid) ON DELETE CASCADE;
+ALTER TABLE ONLY public.license_period
+    ADD CONSTRAINT license_period_license_uuid_fkey FOREIGN KEY (license_uuid) REFERENCES public.license(license_uuid) ON DELETE CASCADE;
 
 
 --
--- Name: license_switch license_switch_package_switch_uuid_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
+-- Name: license license_plan_uuid_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY public.license_switch
-    ADD CONSTRAINT license_switch_package_switch_uuid_fkey FOREIGN KEY (package_switch_uuid) REFERENCES public.package_switch(package_switch_uuid) ON DELETE CASCADE;
+ALTER TABLE ONLY public.license
+    ADD CONSTRAINT license_plan_uuid_fkey FOREIGN KEY (plan_uuid) REFERENCES public.plan(plan_uuid) ON DELETE CASCADE;
 
 
 --
--- Name: license_switch license_switch_plan_uuid_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
+-- Name: license_switch license_switch_license_uuid_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.license_switch
-    ADD CONSTRAINT license_switch_plan_uuid_fkey FOREIGN KEY (plan_uuid) REFERENCES public.plan(plan_uuid) ON DELETE CASCADE;
+    ADD CONSTRAINT license_switch_license_uuid_fkey FOREIGN KEY (license_uuid) REFERENCES public.license(license_uuid) ON DELETE CASCADE;
 
 
 --
--- Name: license_switch license_switch_user_uuid_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
+-- Name: license license_user_uuid_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY public.license_switch
-    ADD CONSTRAINT license_switch_user_uuid_fkey FOREIGN KEY (user_uuid) REFERENCES public."user"(user_uuid) ON DELETE CASCADE;
+ALTER TABLE ONLY public.license
+    ADD CONSTRAINT license_user_uuid_fkey FOREIGN KEY (user_uuid) REFERENCES public."user"(user_uuid) ON DELETE CASCADE;
 
 
 --
@@ -864,19 +807,11 @@ ALTER TABLE ONLY public.object_revision_record
 
 
 --
--- Name: payment payment_license_lrn_uuid_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
+-- Name: payment payment_license_period_uuid_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.payment
-    ADD CONSTRAINT payment_license_lrn_uuid_fkey FOREIGN KEY (license_lrn_uuid) REFERENCES public.license_lrn(license_lrn_uuid) ON DELETE CASCADE;
-
-
---
--- Name: payment payment_license_switch_uuid_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.payment
-    ADD CONSTRAINT payment_license_switch_uuid_fkey FOREIGN KEY (license_switch_uuid) REFERENCES public.license_switch(license_switch_uuid) ON DELETE CASCADE;
+    ADD CONSTRAINT payment_license_period_uuid_fkey FOREIGN KEY (license_period_uuid) REFERENCES public.license_period(license_period_uuid) ON DELETE CASCADE;
 
 
 --
