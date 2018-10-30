@@ -32,81 +32,81 @@ class LicenseLrnGet(object):
     """
     swagger_types = {
         'license_lrn_uuid': 'str',
-        'dip_count': 'int',
-        'package': 'PackageLrn',
         'lrn_port': 'int',
-        'user_uuid': 'str',
-        'package_lrn_uuid': 'str',
-        'amount': 'int',
-        'type': 'int',
-        'plan_uuid': 'str',
-        'user_email': 'str',
-        'cps': 'int',
+        'lrn_ip': 'str',
         'ordered_amount': 'int',
-        'lrn_ip': 'str'
+        'cps': 'int',
+        'user_email': 'str',
+        'package_lrn_uuid': 'str',
+        'package': 'PackageLrn',
+        'dip_count': 'int',
+        'type': 'int',
+        'user_uuid': 'str',
+        'amount': 'int',
+        'plan_uuid': 'str'
     }
 
     attribute_map = {
         'license_lrn_uuid': 'license_lrn_uuid',
-        'dip_count': 'dip_count',
-        'package': 'package',
         'lrn_port': 'lrn_port',
-        'user_uuid': 'user_uuid',
-        'package_lrn_uuid': 'package_lrn_uuid',
-        'amount': 'amount',
-        'type': 'type',
-        'plan_uuid': 'plan_uuid',
-        'user_email': 'user_email',
-        'cps': 'cps',
+        'lrn_ip': 'lrn_ip',
         'ordered_amount': 'ordered_amount',
-        'lrn_ip': 'lrn_ip'
+        'cps': 'cps',
+        'user_email': 'user_email',
+        'package_lrn_uuid': 'package_lrn_uuid',
+        'package': 'package',
+        'dip_count': 'dip_count',
+        'type': 'type',
+        'user_uuid': 'user_uuid',
+        'amount': 'amount',
+        'plan_uuid': 'plan_uuid'
     }
 
-    def __init__(self, license_lrn_uuid=None, dip_count=None, package=None, lrn_port=None, user_uuid=None, package_lrn_uuid=None, amount=None, type=None, plan_uuid=None, user_email=None, cps=None, ordered_amount=None, lrn_ip=None):
+    def __init__(self, license_lrn_uuid=None, lrn_port=None, lrn_ip=None, ordered_amount=None, cps=None, user_email=None, package_lrn_uuid=None, package=None, dip_count=None, type=None, user_uuid=None, amount=None, plan_uuid=None):
         """
         LicenseLrnGet - a model defined in Swagger
         """
 
         self._license_lrn_uuid = None
-        self._dip_count = None
-        self._package = None
         self._lrn_port = None
-        self._user_uuid = None
-        self._package_lrn_uuid = None
-        self._amount = None
-        self._type = None
-        self._plan_uuid = None
-        self._user_email = None
-        self._cps = None
-        self._ordered_amount = None
         self._lrn_ip = None
+        self._ordered_amount = None
+        self._cps = None
+        self._user_email = None
+        self._package_lrn_uuid = None
+        self._package = None
+        self._dip_count = None
+        self._type = None
+        self._user_uuid = None
+        self._amount = None
+        self._plan_uuid = None
 
         if license_lrn_uuid is not None:
           self.license_lrn_uuid = license_lrn_uuid
-        if dip_count is not None:
-          self.dip_count = dip_count
-        if package is not None:
-          self.package = package
         if lrn_port is not None:
           self.lrn_port = lrn_port
-        if user_uuid is not None:
-          self.user_uuid = user_uuid
-        if package_lrn_uuid is not None:
-          self.package_lrn_uuid = package_lrn_uuid
-        if amount is not None:
-          self.amount = amount
-        if type is not None:
-          self.type = type
-        if plan_uuid is not None:
-          self.plan_uuid = plan_uuid
-        if user_email is not None:
-          self.user_email = user_email
-        if cps is not None:
-          self.cps = cps
-        if ordered_amount is not None:
-          self.ordered_amount = ordered_amount
         if lrn_ip is not None:
           self.lrn_ip = lrn_ip
+        if ordered_amount is not None:
+          self.ordered_amount = ordered_amount
+        if cps is not None:
+          self.cps = cps
+        if user_email is not None:
+          self.user_email = user_email
+        if package_lrn_uuid is not None:
+          self.package_lrn_uuid = package_lrn_uuid
+        if package is not None:
+          self.package = package
+        if dip_count is not None:
+          self.dip_count = dip_count
+        if type is not None:
+          self.type = type
+        if user_uuid is not None:
+          self.user_uuid = user_uuid
+        if amount is not None:
+          self.amount = amount
+        if plan_uuid is not None:
+          self.plan_uuid = plan_uuid
 
     @property
     def license_lrn_uuid(self):
@@ -132,48 +132,6 @@ class LicenseLrnGet(object):
         self._license_lrn_uuid = license_lrn_uuid
 
     @property
-    def dip_count(self):
-        """
-        Gets the dip_count of this LicenseLrnGet.
-
-        :return: The dip_count of this LicenseLrnGet.
-        :rtype: int
-        """
-        return self._dip_count
-
-    @dip_count.setter
-    def dip_count(self, dip_count):
-        """
-        Sets the dip_count of this LicenseLrnGet.
-
-        :param dip_count: The dip_count of this LicenseLrnGet.
-        :type: int
-        """
-
-        self._dip_count = dip_count
-
-    @property
-    def package(self):
-        """
-        Gets the package of this LicenseLrnGet.
-
-        :return: The package of this LicenseLrnGet.
-        :rtype: PackageLrn
-        """
-        return self._package
-
-    @package.setter
-    def package(self, package):
-        """
-        Sets the package of this LicenseLrnGet.
-
-        :param package: The package of this LicenseLrnGet.
-        :type: PackageLrn
-        """
-
-        self._package = package
-
-    @property
     def lrn_port(self):
         """
         Gets the lrn_port of this LicenseLrnGet.
@@ -195,115 +153,69 @@ class LicenseLrnGet(object):
         self._lrn_port = lrn_port
 
     @property
-    def user_uuid(self):
+    def lrn_ip(self):
         """
-        Gets the user_uuid of this LicenseLrnGet.
+        Gets the lrn_ip of this LicenseLrnGet.
 
-        :return: The user_uuid of this LicenseLrnGet.
+        :return: The lrn_ip of this LicenseLrnGet.
         :rtype: str
         """
-        return self._user_uuid
+        return self._lrn_ip
 
-    @user_uuid.setter
-    def user_uuid(self, user_uuid):
+    @lrn_ip.setter
+    def lrn_ip(self, lrn_ip):
         """
-        Sets the user_uuid of this LicenseLrnGet.
+        Sets the lrn_ip of this LicenseLrnGet.
 
-        :param user_uuid: The user_uuid of this LicenseLrnGet.
+        :param lrn_ip: The lrn_ip of this LicenseLrnGet.
         :type: str
         """
-        if user_uuid is not None and len(user_uuid) > 36:
-            raise ValueError("Invalid value for `user_uuid`, length must be less than or equal to `36`")
+        if lrn_ip is not None and len(lrn_ip) > 16:
+            raise ValueError("Invalid value for `lrn_ip`, length must be less than or equal to `16`")
 
-        self._user_uuid = user_uuid
-
-    @property
-    def package_lrn_uuid(self):
-        """
-        Gets the package_lrn_uuid of this LicenseLrnGet.
-
-        :return: The package_lrn_uuid of this LicenseLrnGet.
-        :rtype: str
-        """
-        return self._package_lrn_uuid
-
-    @package_lrn_uuid.setter
-    def package_lrn_uuid(self, package_lrn_uuid):
-        """
-        Sets the package_lrn_uuid of this LicenseLrnGet.
-
-        :param package_lrn_uuid: The package_lrn_uuid of this LicenseLrnGet.
-        :type: str
-        """
-        if package_lrn_uuid is not None and len(package_lrn_uuid) > 36:
-            raise ValueError("Invalid value for `package_lrn_uuid`, length must be less than or equal to `36`")
-
-        self._package_lrn_uuid = package_lrn_uuid
+        self._lrn_ip = lrn_ip
 
     @property
-    def amount(self):
+    def ordered_amount(self):
         """
-        Gets the amount of this LicenseLrnGet.
+        Gets the ordered_amount of this LicenseLrnGet.
 
-        :return: The amount of this LicenseLrnGet.
+        :return: The ordered_amount of this LicenseLrnGet.
         :rtype: int
         """
-        return self._amount
+        return self._ordered_amount
 
-    @amount.setter
-    def amount(self, amount):
+    @ordered_amount.setter
+    def ordered_amount(self, ordered_amount):
         """
-        Sets the amount of this LicenseLrnGet.
+        Sets the ordered_amount of this LicenseLrnGet.
 
-        :param amount: The amount of this LicenseLrnGet.
+        :param ordered_amount: The ordered_amount of this LicenseLrnGet.
         :type: int
         """
 
-        self._amount = amount
+        self._ordered_amount = ordered_amount
 
     @property
-    def type(self):
+    def cps(self):
         """
-        Gets the type of this LicenseLrnGet.
+        Gets the cps of this LicenseLrnGet.
 
-        :return: The type of this LicenseLrnGet.
+        :return: The cps of this LicenseLrnGet.
         :rtype: int
         """
-        return self._type
+        return self._cps
 
-    @type.setter
-    def type(self, type):
+    @cps.setter
+    def cps(self, cps):
         """
-        Sets the type of this LicenseLrnGet.
+        Sets the cps of this LicenseLrnGet.
 
-        :param type: The type of this LicenseLrnGet.
+        :param cps: The cps of this LicenseLrnGet.
         :type: int
         """
 
-        self._type = type
-
-    @property
-    def plan_uuid(self):
-        """
-        Gets the plan_uuid of this LicenseLrnGet.
-
-        :return: The plan_uuid of this LicenseLrnGet.
-        :rtype: str
-        """
-        return self._plan_uuid
-
-    @plan_uuid.setter
-    def plan_uuid(self, plan_uuid):
-        """
-        Sets the plan_uuid of this LicenseLrnGet.
-
-        :param plan_uuid: The plan_uuid of this LicenseLrnGet.
-        :type: str
-        """
-        if plan_uuid is not None and len(plan_uuid) > 36:
-            raise ValueError("Invalid value for `plan_uuid`, length must be less than or equal to `36`")
-
-        self._plan_uuid = plan_uuid
+        self._cps = cps
 
     @property
     def user_email(self):
@@ -329,69 +241,157 @@ class LicenseLrnGet(object):
         self._user_email = user_email
 
     @property
-    def cps(self):
+    def package_lrn_uuid(self):
         """
-        Gets the cps of this LicenseLrnGet.
+        Gets the package_lrn_uuid of this LicenseLrnGet.
 
-        :return: The cps of this LicenseLrnGet.
-        :rtype: int
-        """
-        return self._cps
-
-    @cps.setter
-    def cps(self, cps):
-        """
-        Sets the cps of this LicenseLrnGet.
-
-        :param cps: The cps of this LicenseLrnGet.
-        :type: int
-        """
-
-        self._cps = cps
-
-    @property
-    def ordered_amount(self):
-        """
-        Gets the ordered_amount of this LicenseLrnGet.
-
-        :return: The ordered_amount of this LicenseLrnGet.
-        :rtype: int
-        """
-        return self._ordered_amount
-
-    @ordered_amount.setter
-    def ordered_amount(self, ordered_amount):
-        """
-        Sets the ordered_amount of this LicenseLrnGet.
-
-        :param ordered_amount: The ordered_amount of this LicenseLrnGet.
-        :type: int
-        """
-
-        self._ordered_amount = ordered_amount
-
-    @property
-    def lrn_ip(self):
-        """
-        Gets the lrn_ip of this LicenseLrnGet.
-
-        :return: The lrn_ip of this LicenseLrnGet.
+        :return: The package_lrn_uuid of this LicenseLrnGet.
         :rtype: str
         """
-        return self._lrn_ip
+        return self._package_lrn_uuid
 
-    @lrn_ip.setter
-    def lrn_ip(self, lrn_ip):
+    @package_lrn_uuid.setter
+    def package_lrn_uuid(self, package_lrn_uuid):
         """
-        Sets the lrn_ip of this LicenseLrnGet.
+        Sets the package_lrn_uuid of this LicenseLrnGet.
 
-        :param lrn_ip: The lrn_ip of this LicenseLrnGet.
+        :param package_lrn_uuid: The package_lrn_uuid of this LicenseLrnGet.
         :type: str
         """
-        if lrn_ip is not None and len(lrn_ip) > 16:
-            raise ValueError("Invalid value for `lrn_ip`, length must be less than or equal to `16`")
+        if package_lrn_uuid is not None and len(package_lrn_uuid) > 36:
+            raise ValueError("Invalid value for `package_lrn_uuid`, length must be less than or equal to `36`")
 
-        self._lrn_ip = lrn_ip
+        self._package_lrn_uuid = package_lrn_uuid
+
+    @property
+    def package(self):
+        """
+        Gets the package of this LicenseLrnGet.
+
+        :return: The package of this LicenseLrnGet.
+        :rtype: PackageLrn
+        """
+        return self._package
+
+    @package.setter
+    def package(self, package):
+        """
+        Sets the package of this LicenseLrnGet.
+
+        :param package: The package of this LicenseLrnGet.
+        :type: PackageLrn
+        """
+
+        self._package = package
+
+    @property
+    def dip_count(self):
+        """
+        Gets the dip_count of this LicenseLrnGet.
+
+        :return: The dip_count of this LicenseLrnGet.
+        :rtype: int
+        """
+        return self._dip_count
+
+    @dip_count.setter
+    def dip_count(self, dip_count):
+        """
+        Sets the dip_count of this LicenseLrnGet.
+
+        :param dip_count: The dip_count of this LicenseLrnGet.
+        :type: int
+        """
+
+        self._dip_count = dip_count
+
+    @property
+    def type(self):
+        """
+        Gets the type of this LicenseLrnGet.
+
+        :return: The type of this LicenseLrnGet.
+        :rtype: int
+        """
+        return self._type
+
+    @type.setter
+    def type(self, type):
+        """
+        Sets the type of this LicenseLrnGet.
+
+        :param type: The type of this LicenseLrnGet.
+        :type: int
+        """
+
+        self._type = type
+
+    @property
+    def user_uuid(self):
+        """
+        Gets the user_uuid of this LicenseLrnGet.
+
+        :return: The user_uuid of this LicenseLrnGet.
+        :rtype: str
+        """
+        return self._user_uuid
+
+    @user_uuid.setter
+    def user_uuid(self, user_uuid):
+        """
+        Sets the user_uuid of this LicenseLrnGet.
+
+        :param user_uuid: The user_uuid of this LicenseLrnGet.
+        :type: str
+        """
+        if user_uuid is not None and len(user_uuid) > 36:
+            raise ValueError("Invalid value for `user_uuid`, length must be less than or equal to `36`")
+
+        self._user_uuid = user_uuid
+
+    @property
+    def amount(self):
+        """
+        Gets the amount of this LicenseLrnGet.
+
+        :return: The amount of this LicenseLrnGet.
+        :rtype: int
+        """
+        return self._amount
+
+    @amount.setter
+    def amount(self, amount):
+        """
+        Sets the amount of this LicenseLrnGet.
+
+        :param amount: The amount of this LicenseLrnGet.
+        :type: int
+        """
+
+        self._amount = amount
+
+    @property
+    def plan_uuid(self):
+        """
+        Gets the plan_uuid of this LicenseLrnGet.
+
+        :return: The plan_uuid of this LicenseLrnGet.
+        :rtype: str
+        """
+        return self._plan_uuid
+
+    @plan_uuid.setter
+    def plan_uuid(self, plan_uuid):
+        """
+        Sets the plan_uuid of this LicenseLrnGet.
+
+        :param plan_uuid: The plan_uuid of this LicenseLrnGet.
+        :type: str
+        """
+        if plan_uuid is not None and len(plan_uuid) > 36:
+            raise ValueError("Invalid value for `plan_uuid`, length must be less than or equal to `36`")
+
+        self._plan_uuid = plan_uuid
 
     def to_dict(self):
         """

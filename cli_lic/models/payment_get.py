@@ -31,68 +31,47 @@ class PaymentGet(object):
                             and the value is json key in definition.
     """
     swagger_types = {
-        'period': 'str',
         'license_lrn_uuid': 'str',
-        'license_switch_uuid': 'str',
-        'user_uuid': 'str',
         'payment_uuid': 'str',
-        'type': 'str'
+        'license_switch_uuid': 'str',
+        'type': 'str',
+        'user_uuid': 'str',
+        'period': 'str'
     }
 
     attribute_map = {
-        'period': 'period',
         'license_lrn_uuid': 'license_lrn_uuid',
-        'license_switch_uuid': 'license_switch_uuid',
-        'user_uuid': 'user_uuid',
         'payment_uuid': 'payment_uuid',
-        'type': 'type'
+        'license_switch_uuid': 'license_switch_uuid',
+        'type': 'type',
+        'user_uuid': 'user_uuid',
+        'period': 'period'
     }
 
-    def __init__(self, period=None, license_lrn_uuid=None, license_switch_uuid=None, user_uuid=None, payment_uuid=None, type='paypal'):
+    def __init__(self, license_lrn_uuid=None, payment_uuid=None, license_switch_uuid=None, type='paypal', user_uuid=None, period=None):
         """
         PaymentGet - a model defined in Swagger
         """
 
-        self._period = None
         self._license_lrn_uuid = None
-        self._license_switch_uuid = None
-        self._user_uuid = None
         self._payment_uuid = None
+        self._license_switch_uuid = None
         self._type = None
+        self._user_uuid = None
+        self._period = None
 
-        if period is not None:
-          self.period = period
         if license_lrn_uuid is not None:
           self.license_lrn_uuid = license_lrn_uuid
-        if license_switch_uuid is not None:
-          self.license_switch_uuid = license_switch_uuid
-        if user_uuid is not None:
-          self.user_uuid = user_uuid
         if payment_uuid is not None:
           self.payment_uuid = payment_uuid
+        if license_switch_uuid is not None:
+          self.license_switch_uuid = license_switch_uuid
         if type is not None:
           self.type = type
-
-    @property
-    def period(self):
-        """
-        Gets the period of this PaymentGet.
-
-        :return: The period of this PaymentGet.
-        :rtype: str
-        """
-        return self._period
-
-    @period.setter
-    def period(self, period):
-        """
-        Sets the period of this PaymentGet.
-
-        :param period: The period of this PaymentGet.
-        :type: str
-        """
-
-        self._period = period
+        if user_uuid is not None:
+          self.user_uuid = user_uuid
+        if period is not None:
+          self.period = period
 
     @property
     def license_lrn_uuid(self):
@@ -118,50 +97,6 @@ class PaymentGet(object):
         self._license_lrn_uuid = license_lrn_uuid
 
     @property
-    def license_switch_uuid(self):
-        """
-        Gets the license_switch_uuid of this PaymentGet.
-
-        :return: The license_switch_uuid of this PaymentGet.
-        :rtype: str
-        """
-        return self._license_switch_uuid
-
-    @license_switch_uuid.setter
-    def license_switch_uuid(self, license_switch_uuid):
-        """
-        Sets the license_switch_uuid of this PaymentGet.
-
-        :param license_switch_uuid: The license_switch_uuid of this PaymentGet.
-        :type: str
-        """
-        if license_switch_uuid is not None and len(license_switch_uuid) > 36:
-            raise ValueError("Invalid value for `license_switch_uuid`, length must be less than or equal to `36`")
-
-        self._license_switch_uuid = license_switch_uuid
-
-    @property
-    def user_uuid(self):
-        """
-        Gets the user_uuid of this PaymentGet.
-
-        :return: The user_uuid of this PaymentGet.
-        :rtype: str
-        """
-        return self._user_uuid
-
-    @user_uuid.setter
-    def user_uuid(self, user_uuid):
-        """
-        Sets the user_uuid of this PaymentGet.
-
-        :param user_uuid: The user_uuid of this PaymentGet.
-        :type: str
-        """
-
-        self._user_uuid = user_uuid
-
-    @property
     def payment_uuid(self):
         """
         Gets the payment_uuid of this PaymentGet.
@@ -183,6 +118,29 @@ class PaymentGet(object):
             raise ValueError("Invalid value for `payment_uuid`, length must be less than or equal to `36`")
 
         self._payment_uuid = payment_uuid
+
+    @property
+    def license_switch_uuid(self):
+        """
+        Gets the license_switch_uuid of this PaymentGet.
+
+        :return: The license_switch_uuid of this PaymentGet.
+        :rtype: str
+        """
+        return self._license_switch_uuid
+
+    @license_switch_uuid.setter
+    def license_switch_uuid(self, license_switch_uuid):
+        """
+        Sets the license_switch_uuid of this PaymentGet.
+
+        :param license_switch_uuid: The license_switch_uuid of this PaymentGet.
+        :type: str
+        """
+        if license_switch_uuid is not None and len(license_switch_uuid) > 36:
+            raise ValueError("Invalid value for `license_switch_uuid`, length must be less than or equal to `36`")
+
+        self._license_switch_uuid = license_switch_uuid
 
     @property
     def type(self):
@@ -210,6 +168,48 @@ class PaymentGet(object):
             )
 
         self._type = type
+
+    @property
+    def user_uuid(self):
+        """
+        Gets the user_uuid of this PaymentGet.
+
+        :return: The user_uuid of this PaymentGet.
+        :rtype: str
+        """
+        return self._user_uuid
+
+    @user_uuid.setter
+    def user_uuid(self, user_uuid):
+        """
+        Sets the user_uuid of this PaymentGet.
+
+        :param user_uuid: The user_uuid of this PaymentGet.
+        :type: str
+        """
+
+        self._user_uuid = user_uuid
+
+    @property
+    def period(self):
+        """
+        Gets the period of this PaymentGet.
+
+        :return: The period of this PaymentGet.
+        :rtype: str
+        """
+        return self._period
+
+    @period.setter
+    def period(self, period):
+        """
+        Sets the period of this PaymentGet.
+
+        :param period: The period of this PaymentGet.
+        :type: str
+        """
+
+        self._period = period
 
     def to_dict(self):
         """

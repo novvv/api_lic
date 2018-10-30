@@ -32,43 +32,43 @@ class FalconRestContribFilesFileTmp(object):
     """
     swagger_types = {
         'belongs_to_table': 'str',
+        'public': 'bool',
+        'path': 'str',
         'uuid': 'str',
         'belongs_to_field': 'str',
-        'uploaded_on': 'datetime',
-        'public': 'bool',
-        'path': 'str'
+        'uploaded_on': 'datetime'
     }
 
     attribute_map = {
         'belongs_to_table': 'belongs_to_table',
+        'public': 'public',
+        'path': 'path',
         'uuid': 'uuid',
         'belongs_to_field': 'belongs_to_field',
-        'uploaded_on': 'uploaded_on',
-        'public': 'public',
-        'path': 'path'
+        'uploaded_on': 'uploaded_on'
     }
 
-    def __init__(self, belongs_to_table=None, uuid=None, belongs_to_field=None, uploaded_on=None, public=None, path=None):
+    def __init__(self, belongs_to_table=None, public=None, path=None, uuid=None, belongs_to_field=None, uploaded_on=None):
         """
         FalconRestContribFilesFileTmp - a model defined in Swagger
         """
 
         self._belongs_to_table = None
+        self._public = None
+        self._path = None
         self._uuid = None
         self._belongs_to_field = None
         self._uploaded_on = None
-        self._public = None
-        self._path = None
 
         self.belongs_to_table = belongs_to_table
+        if public is not None:
+          self.public = public
+        self.path = path
         if uuid is not None:
           self.uuid = uuid
         self.belongs_to_field = belongs_to_field
         if uploaded_on is not None:
           self.uploaded_on = uploaded_on
-        if public is not None:
-          self.public = public
-        self.path = path
 
     @property
     def belongs_to_table(self):
@@ -94,6 +94,52 @@ class FalconRestContribFilesFileTmp(object):
             raise ValueError("Invalid value for `belongs_to_table`, length must be less than or equal to `255`")
 
         self._belongs_to_table = belongs_to_table
+
+    @property
+    def public(self):
+        """
+        Gets the public of this FalconRestContribFilesFileTmp.
+
+        :return: The public of this FalconRestContribFilesFileTmp.
+        :rtype: bool
+        """
+        return self._public
+
+    @public.setter
+    def public(self, public):
+        """
+        Sets the public of this FalconRestContribFilesFileTmp.
+
+        :param public: The public of this FalconRestContribFilesFileTmp.
+        :type: bool
+        """
+
+        self._public = public
+
+    @property
+    def path(self):
+        """
+        Gets the path of this FalconRestContribFilesFileTmp.
+
+        :return: The path of this FalconRestContribFilesFileTmp.
+        :rtype: str
+        """
+        return self._path
+
+    @path.setter
+    def path(self, path):
+        """
+        Sets the path of this FalconRestContribFilesFileTmp.
+
+        :param path: The path of this FalconRestContribFilesFileTmp.
+        :type: str
+        """
+        if path is None:
+            raise ValueError("Invalid value for `path`, must not be `None`")
+        if path is not None and len(path) > 1024:
+            raise ValueError("Invalid value for `path`, length must be less than or equal to `1024`")
+
+        self._path = path
 
     @property
     def uuid(self):
@@ -163,52 +209,6 @@ class FalconRestContribFilesFileTmp(object):
         """
 
         self._uploaded_on = uploaded_on
-
-    @property
-    def public(self):
-        """
-        Gets the public of this FalconRestContribFilesFileTmp.
-
-        :return: The public of this FalconRestContribFilesFileTmp.
-        :rtype: bool
-        """
-        return self._public
-
-    @public.setter
-    def public(self, public):
-        """
-        Sets the public of this FalconRestContribFilesFileTmp.
-
-        :param public: The public of this FalconRestContribFilesFileTmp.
-        :type: bool
-        """
-
-        self._public = public
-
-    @property
-    def path(self):
-        """
-        Gets the path of this FalconRestContribFilesFileTmp.
-
-        :return: The path of this FalconRestContribFilesFileTmp.
-        :rtype: str
-        """
-        return self._path
-
-    @path.setter
-    def path(self, path):
-        """
-        Sets the path of this FalconRestContribFilesFileTmp.
-
-        :param path: The path of this FalconRestContribFilesFileTmp.
-        :type: str
-        """
-        if path is None:
-            raise ValueError("Invalid value for `path`, must not be `None`")
-        if path is not None and len(path) > 1024:
-            raise ValueError("Invalid value for `path`, length must be less than or equal to `1024`")
-
-        self._path = path
 
     def to_dict(self):
         """

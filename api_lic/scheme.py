@@ -364,12 +364,37 @@ class PackageLrnSchemeGet(PackageLrnScheme):
 class PackageLrnSchemeModify(PackageLrnScheme):
     pass
 # ---PackageLrn---
+
+# +++Switch+++
+class SwitchScheme(BaseModelScheme):
+    switch_uuid = Str(validate=[validate.Length(max=36)])
+    switch_ip = Str(validate=[validate.Length(max=16)])
+    enabled = Bool()
+    current_port_count = Int()
+    minute_remaining = Int()
+    expired_on = DateTime()
+    email = Str(validate=[validate.Length(max=256)])
+    packages = Nested('PackageSwitchScheme',many=True)
+    class Meta:
+        model = model.Switch
+        fields = ('switch_ip','enabled','current_port_count','minute_remaining','expired_on','email',)
+class SwitchSchemeGet(SwitchScheme):
+    class Meta:
+        model = model.Switch
+        fields = ('switch_uuid','switch_ip','enabled','current_port_count','minute_remaining','email','packages',)
+        search_fields = ('switch_uuid','switch_ip','enabled','current_port_count','minute_remaining','email','packages',)
+        query_fields=('expired_on_gt','expired_on_lt',)
+class SwitchSchemeModify(SwitchScheme):
+    pass
+# ---Switch---
+
 # +++PackageSwitch+++
 class PackageSwitchScheme(BaseModelScheme):
     package_switch_uuid = Str(validate=[validate.Length(max=36)])
     package_name = Str(validate=[validate.Length(max=64)])
     type = Choice()
-    switch_ip = Str(validate=[validate.Length(max=16)])
+    switch_uuid = Str(
+        validate=[validate.Length(max=36), lambda value: _valid('Switch', 'switch_uuid', value)])
     switch_port = Int()
     minute_count = Int()
     amount = Int()
@@ -377,12 +402,12 @@ class PackageSwitchScheme(BaseModelScheme):
     licenses = Nested('LicenseSwitchScheme',many=True)
     class Meta:
         model = model.PackageSwitch
-        fields = ('package_name','type','switch_ip','switch_port','minute_count','amount','enabled',)
+        fields = ('package_name','type','switch_uuid','switch_port','minute_count','amount','enabled',)
 class PackageSwitchSchemeGet(PackageSwitchScheme):
     class Meta:
         model = model.PackageSwitch
-        fields = ('package_switch_uuid','package_name','type','switch_ip','switch_port','minute_count','amount','enabled')
-        search_fields = ('package_switch_uuid','package_name','type','switch_ip','switch_port','minute_count','amount','enabled')
+        fields = ('package_switch_uuid','package_name','type','switch_uuid','switch_port','minute_count','amount','enabled')
+        search_fields = ('package_switch_uuid','package_name','type','switch_uuid','switch_port','minute_count','amount','enabled')
 class PackageSwitchSchemeModify(PackageSwitchScheme):
     pass
 # ---PackageSwitch---

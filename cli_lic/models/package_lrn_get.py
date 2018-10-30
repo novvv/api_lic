@@ -32,61 +32,61 @@ class PackageLrnGet(object):
     """
     swagger_types = {
         'package_name': 'str',
-        'type': 'str',
         'dip_count': 'int',
         'enabled': 'bool',
         'lrn_port': 'int',
-        'cps': 'int',
+        'lrn_ip': 'str',
         'package_lrn_uuid': 'str',
         'amount': 'int',
-        'lrn_ip': 'str'
+        'cps': 'int',
+        'type': 'str'
     }
 
     attribute_map = {
         'package_name': 'package_name',
-        'type': 'type',
         'dip_count': 'dip_count',
         'enabled': 'enabled',
         'lrn_port': 'lrn_port',
-        'cps': 'cps',
+        'lrn_ip': 'lrn_ip',
         'package_lrn_uuid': 'package_lrn_uuid',
         'amount': 'amount',
-        'lrn_ip': 'lrn_ip'
+        'cps': 'cps',
+        'type': 'type'
     }
 
-    def __init__(self, package_name=None, type='LRN pay per CPS', dip_count=None, enabled=None, lrn_port=None, cps=None, package_lrn_uuid=None, amount=None, lrn_ip=None):
+    def __init__(self, package_name=None, dip_count=None, enabled=None, lrn_port=None, lrn_ip=None, package_lrn_uuid=None, amount=None, cps=None, type='LRN pay per CPS'):
         """
         PackageLrnGet - a model defined in Swagger
         """
 
         self._package_name = None
-        self._type = None
         self._dip_count = None
         self._enabled = None
         self._lrn_port = None
-        self._cps = None
+        self._lrn_ip = None
         self._package_lrn_uuid = None
         self._amount = None
-        self._lrn_ip = None
+        self._cps = None
+        self._type = None
 
         if package_name is not None:
           self.package_name = package_name
-        if type is not None:
-          self.type = type
         if dip_count is not None:
           self.dip_count = dip_count
         if enabled is not None:
           self.enabled = enabled
         if lrn_port is not None:
           self.lrn_port = lrn_port
-        if cps is not None:
-          self.cps = cps
+        if lrn_ip is not None:
+          self.lrn_ip = lrn_ip
         if package_lrn_uuid is not None:
           self.package_lrn_uuid = package_lrn_uuid
         if amount is not None:
           self.amount = amount
-        if lrn_ip is not None:
-          self.lrn_ip = lrn_ip
+        if cps is not None:
+          self.cps = cps
+        if type is not None:
+          self.type = type
 
     @property
     def package_name(self):
@@ -110,33 +110,6 @@ class PackageLrnGet(object):
             raise ValueError("Invalid value for `package_name`, length must be less than or equal to `64`")
 
         self._package_name = package_name
-
-    @property
-    def type(self):
-        """
-        Gets the type of this PackageLrnGet.
-
-        :return: The type of this PackageLrnGet.
-        :rtype: str
-        """
-        return self._type
-
-    @type.setter
-    def type(self, type):
-        """
-        Sets the type of this PackageLrnGet.
-
-        :param type: The type of this PackageLrnGet.
-        :type: str
-        """
-        allowed_values = ["LRN pay per CPS", "LRN pay per DIP"]
-        if type not in allowed_values:
-            raise ValueError(
-                "Invalid value for `type` ({0}), must be one of {1}"
-                .format(type, allowed_values)
-            )
-
-        self._type = type
 
     @property
     def dip_count(self):
@@ -202,25 +175,27 @@ class PackageLrnGet(object):
         self._lrn_port = lrn_port
 
     @property
-    def cps(self):
+    def lrn_ip(self):
         """
-        Gets the cps of this PackageLrnGet.
+        Gets the lrn_ip of this PackageLrnGet.
 
-        :return: The cps of this PackageLrnGet.
-        :rtype: int
+        :return: The lrn_ip of this PackageLrnGet.
+        :rtype: str
         """
-        return self._cps
+        return self._lrn_ip
 
-    @cps.setter
-    def cps(self, cps):
+    @lrn_ip.setter
+    def lrn_ip(self, lrn_ip):
         """
-        Sets the cps of this PackageLrnGet.
+        Sets the lrn_ip of this PackageLrnGet.
 
-        :param cps: The cps of this PackageLrnGet.
-        :type: int
+        :param lrn_ip: The lrn_ip of this PackageLrnGet.
+        :type: str
         """
+        if lrn_ip is not None and len(lrn_ip) > 16:
+            raise ValueError("Invalid value for `lrn_ip`, length must be less than or equal to `16`")
 
-        self._cps = cps
+        self._lrn_ip = lrn_ip
 
     @property
     def package_lrn_uuid(self):
@@ -267,27 +242,52 @@ class PackageLrnGet(object):
         self._amount = amount
 
     @property
-    def lrn_ip(self):
+    def cps(self):
         """
-        Gets the lrn_ip of this PackageLrnGet.
+        Gets the cps of this PackageLrnGet.
 
-        :return: The lrn_ip of this PackageLrnGet.
+        :return: The cps of this PackageLrnGet.
+        :rtype: int
+        """
+        return self._cps
+
+    @cps.setter
+    def cps(self, cps):
+        """
+        Sets the cps of this PackageLrnGet.
+
+        :param cps: The cps of this PackageLrnGet.
+        :type: int
+        """
+
+        self._cps = cps
+
+    @property
+    def type(self):
+        """
+        Gets the type of this PackageLrnGet.
+
+        :return: The type of this PackageLrnGet.
         :rtype: str
         """
-        return self._lrn_ip
+        return self._type
 
-    @lrn_ip.setter
-    def lrn_ip(self, lrn_ip):
+    @type.setter
+    def type(self, type):
         """
-        Sets the lrn_ip of this PackageLrnGet.
+        Sets the type of this PackageLrnGet.
 
-        :param lrn_ip: The lrn_ip of this PackageLrnGet.
+        :param type: The type of this PackageLrnGet.
         :type: str
         """
-        if lrn_ip is not None and len(lrn_ip) > 16:
-            raise ValueError("Invalid value for `lrn_ip`, length must be less than or equal to `16`")
+        allowed_values = ["LRN pay per CPS", "LRN pay per DIP"]
+        if type not in allowed_values:
+            raise ValueError(
+                "Invalid value for `type` ({0}), must be one of {1}"
+                .format(type, allowed_values)
+            )
 
-        self._lrn_ip = lrn_ip
+        self._type = type
 
     def to_dict(self):
         """

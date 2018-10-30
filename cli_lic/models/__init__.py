@@ -33,6 +33,7 @@ from .inline_response_200_10_payload import InlineResponse20010Payload
 from .inline_response_200_11 import InlineResponse20011
 from .inline_response_200_11_payload import InlineResponse20011Payload
 from .inline_response_200_12 import InlineResponse20012
+from .inline_response_200_12_payload import InlineResponse20012Payload
 from .inline_response_200_13 import InlineResponse20013
 from .inline_response_200_13_payload import InlineResponse20013Payload
 from .inline_response_200_14 import InlineResponse20014
@@ -46,6 +47,9 @@ from .inline_response_200_19 import InlineResponse20019
 from .inline_response_200_19_payload import InlineResponse20019Payload
 from .inline_response_200_1_payload import InlineResponse2001Payload
 from .inline_response_200_2 import InlineResponse2002
+from .inline_response_200_20 import InlineResponse20020
+from .inline_response_200_21 import InlineResponse20021
+from .inline_response_200_21_payload import InlineResponse20021Payload
 from .inline_response_200_3 import InlineResponse2003
 from .inline_response_200_4 import InlineResponse2004
 from .inline_response_200_5 import InlineResponse2005
@@ -55,7 +59,6 @@ from .inline_response_200_7 import InlineResponse2007
 from .inline_response_200_8 import InlineResponse2008
 from .inline_response_200_8_payload import InlineResponse2008Payload
 from .inline_response_200_9 import InlineResponse2009
-from .inline_response_200_9_payload import InlineResponse2009Payload
 from .license_lrn import LicenseLrn
 from .license_lrn_get import LicenseLrnGet
 from .license_lrn_modify import LicenseLrnModify
@@ -90,6 +93,9 @@ from .plan import Plan
 from .plan_get import PlanGet
 from .plan_modify import PlanModify
 from .success import Success
+from .switch import Switch
+from .switch_get import SwitchGet
+from .switch_modify import SwitchModify
 from .token_check import TokenCheck
 from .unauthenticated_error import UnauthenticatedError
 from .unauthenticated_error_error import UnauthenticatedErrorError

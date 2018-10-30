@@ -1,4 +1,9 @@
 ver 1.0.3
+POST/switch
+DELETE/switch/{switch_uuid}
+PATCH/switch/{switch_uuid}
+GET/switch/{switch_uuid}
+GET/switch/list         <-- switch api  LLP-30
 DELETE/package_switch/{package_switch_uuid} <-- delete switch package LLP-23
 PATCH/package_switch/{package_switch_uuid}  <-- enable/disable switch package LLP-20
 PATCH/package_switch/{package_switch_uuid}  <-- manage switch package LLP-19

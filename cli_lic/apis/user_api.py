@@ -53,7 +53,7 @@ class UserApi(object):
 
         :param callback function: The callback function
             for asynchronous request. (optional)
-        :return: InlineResponse20012
+        :return: InlineResponse20014
                  If the method is called asynchronously,
                  returns the request thread.
         """
@@ -77,7 +77,7 @@ class UserApi(object):
 
         :param callback function: The callback function
             for asynchronous request. (optional)
-        :return: InlineResponse20012
+        :return: InlineResponse20014
                  If the method is called asynchronously,
                  returns the request thread.
         """
@@ -128,7 +128,7 @@ class UserApi(object):
                                         body=body_params,
                                         post_params=form_params,
                                         files=local_var_files,
-                                        response_type='InlineResponse20012',
+                                        response_type='InlineResponse20014',
                                         auth_settings=auth_settings,
                                         callback=params.get('callback'),
                                         _return_http_data_only=params.get('_return_http_data_only'),
@@ -150,7 +150,7 @@ class UserApi(object):
         :param callback function: The callback function
             for asynchronous request. (optional)
         :param UserInfoModify body: User to modify
-        :return: InlineResponse20012
+        :return: InlineResponse20014
                  If the method is called asynchronously,
                  returns the request thread.
         """
@@ -175,7 +175,7 @@ class UserApi(object):
         :param callback function: The callback function
             for asynchronous request. (optional)
         :param UserInfoModify body: User to modify
-        :return: InlineResponse20012
+        :return: InlineResponse20014
                  If the method is called asynchronously,
                  returns the request thread.
         """
@@ -229,7 +229,7 @@ class UserApi(object):
                                         body=body_params,
                                         post_params=form_params,
                                         files=local_var_files,
-                                        response_type='InlineResponse20012',
+                                        response_type='InlineResponse20014',
                                         auth_settings=auth_settings,
                                         callback=params.get('callback'),
                                         _return_http_data_only=params.get('_return_http_data_only'),
@@ -355,7 +355,7 @@ class UserApi(object):
         :param callback function: The callback function
             for asynchronous request. (optional)
         :param str license_lrn_uuid: LicenseLrn id to get info about (required)
-        :return: InlineResponse20016
+        :return: InlineResponse20018
                  If the method is called asynchronously,
                  returns the request thread.
         """
@@ -380,7 +380,7 @@ class UserApi(object):
         :param callback function: The callback function
             for asynchronous request. (optional)
         :param str license_lrn_uuid: LicenseLrn id to get info about (required)
-        :return: InlineResponse20016
+        :return: InlineResponse20018
                  If the method is called asynchronously,
                  returns the request thread.
         """
@@ -437,7 +437,7 @@ class UserApi(object):
                                         body=body_params,
                                         post_params=form_params,
                                         files=local_var_files,
-                                        response_type='InlineResponse20016',
+                                        response_type='InlineResponse20018',
                                         auth_settings=auth_settings,
                                         callback=params.get('callback'),
                                         _return_http_data_only=params.get('_return_http_data_only'),
@@ -460,7 +460,7 @@ class UserApi(object):
             for asynchronous request. (optional)
         :param str license_lrn_uuid: LicenseLrn id to get info about (required)
         :param LicenseLrnModify body: LicenseLrn to modify
-        :return: InlineResponse20016
+        :return: InlineResponse20018
                  If the method is called asynchronously,
                  returns the request thread.
         """
@@ -486,7 +486,7 @@ class UserApi(object):
             for asynchronous request. (optional)
         :param str license_lrn_uuid: LicenseLrn id to get info about (required)
         :param LicenseLrnModify body: LicenseLrn to modify
-        :return: InlineResponse20016
+        :return: InlineResponse20018
                  If the method is called asynchronously,
                  returns the request thread.
         """
@@ -545,7 +545,7 @@ class UserApi(object):
                                         body=body_params,
                                         post_params=form_params,
                                         files=local_var_files,
-                                        response_type='InlineResponse20016',
+                                        response_type='InlineResponse20018',
                                         auth_settings=auth_settings,
                                         callback=params.get('callback'),
                                         _return_http_data_only=params.get('_return_http_data_only'),
@@ -588,7 +588,7 @@ class UserApi(object):
         :param str end_time_lt:
         :param str start_time_gt:
         :param str start_time_lt:
-        :return: InlineResponse20017
+        :return: InlineResponse20019
                  If the method is called asynchronously,
                  returns the request thread.
         """
@@ -634,7 +634,7 @@ class UserApi(object):
         :param str end_time_lt:
         :param str start_time_gt:
         :param str start_time_lt:
-        :return: InlineResponse20017
+        :return: InlineResponse20019
                  If the method is called asynchronously,
                  returns the request thread.
         """
@@ -730,7 +730,7 @@ class UserApi(object):
                                         body=body_params,
                                         post_params=form_params,
                                         files=local_var_files,
-                                        response_type='InlineResponse20017',
+                                        response_type='InlineResponse20019',
                                         auth_settings=auth_settings,
                                         callback=params.get('callback'),
                                         _return_http_data_only=params.get('_return_http_data_only'),
@@ -957,7 +957,7 @@ class UserApi(object):
         :param callback function: The callback function
             for asynchronous request. (optional)
         :param str license_switch_uuid: LicenseSwitch id to get info about (required)
-        :return: InlineResponse20018
+        :return: InlineResponse20020
                  If the method is called asynchronously,
                  returns the request thread.
         """
@@ -982,7 +982,7 @@ class UserApi(object):
         :param callback function: The callback function
             for asynchronous request. (optional)
         :param str license_switch_uuid: LicenseSwitch id to get info about (required)
-        :return: InlineResponse20018
+        :return: InlineResponse20020
                  If the method is called asynchronously,
                  returns the request thread.
         """
@@ -1039,7 +1039,7 @@ class UserApi(object):
                                         body=body_params,
                                         post_params=form_params,
                                         files=local_var_files,
-                                        response_type='InlineResponse20018',
+                                        response_type='InlineResponse20020',
                                         auth_settings=auth_settings,
                                         callback=params.get('callback'),
                                         _return_http_data_only=params.get('_return_http_data_only'),
@@ -1062,7 +1062,7 @@ class UserApi(object):
             for asynchronous request. (optional)
         :param str license_switch_uuid: LicenseSwitch id to get info about (required)
         :param LicenseSwitchModify body: LicenseSwitch to modify
-        :return: InlineResponse20018
+        :return: InlineResponse20020
                  If the method is called asynchronously,
                  returns the request thread.
         """
@@ -1088,7 +1088,7 @@ class UserApi(object):
             for asynchronous request. (optional)
         :param str license_switch_uuid: LicenseSwitch id to get info about (required)
         :param LicenseSwitchModify body: LicenseSwitch to modify
-        :return: InlineResponse20018
+        :return: InlineResponse20020
                  If the method is called asynchronously,
                  returns the request thread.
         """
@@ -1147,7 +1147,7 @@ class UserApi(object):
                                         body=body_params,
                                         post_params=form_params,
                                         files=local_var_files,
-                                        response_type='InlineResponse20018',
+                                        response_type='InlineResponse20020',
                                         auth_settings=auth_settings,
                                         callback=params.get('callback'),
                                         _return_http_data_only=params.get('_return_http_data_only'),
@@ -1189,7 +1189,7 @@ class UserApi(object):
         :param str end_time_lt:
         :param str start_time_gt:
         :param str start_time_lt:
-        :return: InlineResponse20019
+        :return: InlineResponse20021
                  If the method is called asynchronously,
                  returns the request thread.
         """
@@ -1234,7 +1234,7 @@ class UserApi(object):
         :param str end_time_lt:
         :param str start_time_gt:
         :param str start_time_lt:
-        :return: InlineResponse20019
+        :return: InlineResponse20021
                  If the method is called asynchronously,
                  returns the request thread.
         """
@@ -1328,7 +1328,7 @@ class UserApi(object):
                                         body=body_params,
                                         post_params=form_params,
                                         files=local_var_files,
-                                        response_type='InlineResponse20019',
+                                        response_type='InlineResponse20021',
                                         auth_settings=auth_settings,
                                         callback=params.get('callback'),
                                         _return_http_data_only=params.get('_return_http_data_only'),
@@ -1460,7 +1460,7 @@ class UserApi(object):
         :param str user_uuid:
         :param str created_on_gt:
         :param str created_on_lt:
-        :return: InlineResponse20013
+        :return: InlineResponse20015
                  If the method is called asynchronously,
                  returns the request thread.
         """
@@ -1494,7 +1494,7 @@ class UserApi(object):
         :param str user_uuid:
         :param str created_on_gt:
         :param str created_on_lt:
-        :return: InlineResponse20013
+        :return: InlineResponse20015
                  If the method is called asynchronously,
                  returns the request thread.
         """
@@ -1566,7 +1566,7 @@ class UserApi(object):
                                         body=body_params,
                                         post_params=form_params,
                                         files=local_var_files,
-                                        response_type='InlineResponse20013',
+                                        response_type='InlineResponse20015',
                                         auth_settings=auth_settings,
                                         callback=params.get('callback'),
                                         _return_http_data_only=params.get('_return_http_data_only'),
@@ -1599,7 +1599,7 @@ class UserApi(object):
         :param str amount_lt:
         :param str paid_time_gt:
         :param str paid_time_lt:
-        :return: InlineResponse20015
+        :return: InlineResponse20017
                  If the method is called asynchronously,
                  returns the request thread.
         """
@@ -1635,7 +1635,7 @@ class UserApi(object):
         :param str amount_lt:
         :param str paid_time_gt:
         :param str paid_time_lt:
-        :return: InlineResponse20015
+        :return: InlineResponse20017
                  If the method is called asynchronously,
                  returns the request thread.
         """
@@ -1711,7 +1711,7 @@ class UserApi(object):
                                         body=body_params,
                                         post_params=form_params,
                                         files=local_var_files,
-                                        response_type='InlineResponse20015',
+                                        response_type='InlineResponse20017',
                                         auth_settings=auth_settings,
                                         callback=params.get('callback'),
                                         _return_http_data_only=params.get('_return_http_data_only'),
@@ -1837,7 +1837,7 @@ class UserApi(object):
         :param callback function: The callback function
             for asynchronous request. (optional)
         :param str payment_uuid: Payment id to get info about (required)
-        :return: InlineResponse20014
+        :return: InlineResponse20016
                  If the method is called asynchronously,
                  returns the request thread.
         """
@@ -1862,7 +1862,7 @@ class UserApi(object):
         :param callback function: The callback function
             for asynchronous request. (optional)
         :param str payment_uuid: Payment id to get info about (required)
-        :return: InlineResponse20014
+        :return: InlineResponse20016
                  If the method is called asynchronously,
                  returns the request thread.
         """
@@ -1919,7 +1919,7 @@ class UserApi(object):
                                         body=body_params,
                                         post_params=form_params,
                                         files=local_var_files,
-                                        response_type='InlineResponse20014',
+                                        response_type='InlineResponse20016',
                                         auth_settings=auth_settings,
                                         callback=params.get('callback'),
                                         _return_http_data_only=params.get('_return_http_data_only'),
@@ -1942,7 +1942,7 @@ class UserApi(object):
             for asynchronous request. (optional)
         :param str payment_uuid: Payment id to get info about (required)
         :param PaymentModify body: Payment to modify
-        :return: InlineResponse20014
+        :return: InlineResponse20016
                  If the method is called asynchronously,
                  returns the request thread.
         """
@@ -1968,7 +1968,7 @@ class UserApi(object):
             for asynchronous request. (optional)
         :param str payment_uuid: Payment id to get info about (required)
         :param PaymentModify body: Payment to modify
-        :return: InlineResponse20014
+        :return: InlineResponse20016
                  If the method is called asynchronously,
                  returns the request thread.
         """
@@ -2027,7 +2027,7 @@ class UserApi(object):
                                         body=body_params,
                                         post_params=form_params,
                                         files=local_var_files,
-                                        response_type='InlineResponse20014',
+                                        response_type='InlineResponse20016',
                                         auth_settings=auth_settings,
                                         callback=params.get('callback'),
                                         _return_http_data_only=params.get('_return_http_data_only'),

@@ -416,6 +416,18 @@ class LicenseLrn(BaseModel):
     amount = column_property(select([PackageLrn.amount]).where(package_lrn_uuid==PackageLrn.package_lrn_uuid).correlate_except(PackageLrn))
     
 
+class Switch(BaseModel):
+    __tablename__ = 'switch'
+    switch_uuid = Column \
+        (String(36), primary_key=True, default=generate_uuid_str(),
+         server_default=func.uuid_generate_v4())
+    switch_ip = Column(String(16))
+    enabled = Column(Boolean, default=True)
+    current_port_count = Column(Integer())
+    minute_remaining = Column(Integer())
+    expired_on = Column(DateTime(True), nullable=True)
+    email = Column(String(256))
+    packages = relationship('PackageSwitch', uselist=True, back_populates='switch')
 
 class PackageSwitch(BaseModel):
     __tablename__ = 'package_switch'
@@ -427,12 +439,13 @@ class PackageSwitch(BaseModel):
     package_name = Column(String(64),unique=True)
 
     type = Column(ChoiceType(TYPE), default=1)
-    switch_ip = Column(String(16), nullable=False)
+    switch_uuid = Column(ForeignKey('switch.switch_uuid', ondelete='CASCADE'), index=True)
     switch_port = Column(Integer())
     minute_count = Column(Integer())
     amount = Column(Integer())
     enabled = Column(Boolean,default=True)
     licenses = relationship('LicenseSwitch', uselist=True, back_populates='package')
+    switch = relationship('Switch', uselist=False, back_populates='packages')
 
 
 class LicenseSwitch(BaseModel):
@@ -454,8 +467,11 @@ class LicenseSwitch(BaseModel):
 
     type = column_property(
         select([PackageSwitch.type]).where(package_switch_uuid == PackageSwitch.package_switch_uuid).correlate_except(PackageSwitch))
+    switch_uuid = column_property(
+        select([PackageSwitch.switch_uuid]).where(package_switch_uuid == PackageSwitch.package_switch_uuid).correlate_except(PackageSwitch))
     switch_ip = column_property(
-        select([PackageSwitch.switch_ip]).where(package_switch_uuid == PackageSwitch.package_switch_uuid).correlate_except(PackageSwitch))
+        select([Switch.switch_ip]).where(
+            and_(package_switch_uuid == PackageSwitch.package_switch_uuid,Switch.switch_uuid==PackageSwitch.switch_uuid)).correlate_except(PackageSwitch))
     switch_port = column_property(
         select([PackageSwitch.switch_port]).where(package_switch_uuid == PackageSwitch.package_switch_uuid).correlate_except(
             PackageSwitch))

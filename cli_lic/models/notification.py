@@ -31,60 +31,37 @@ class Notification(object):
                             and the value is json key in definition.
     """
     swagger_types = {
-        'user_uuid': 'str',
         'subject': 'str',
+        'user_uuid': 'str',
         'created_on': 'datetime',
         'content': 'str'
     }
 
     attribute_map = {
-        'user_uuid': 'user_uuid',
         'subject': 'subject',
+        'user_uuid': 'user_uuid',
         'created_on': 'created_on',
         'content': 'content'
     }
 
-    def __init__(self, user_uuid=None, subject=None, created_on=None, content=None):
+    def __init__(self, subject=None, user_uuid=None, created_on=None, content=None):
         """
         Notification - a model defined in Swagger
         """
 
-        self._user_uuid = None
         self._subject = None
+        self._user_uuid = None
         self._created_on = None
         self._content = None
 
-        if user_uuid is not None:
-          self.user_uuid = user_uuid
         if subject is not None:
           self.subject = subject
+        if user_uuid is not None:
+          self.user_uuid = user_uuid
         if created_on is not None:
           self.created_on = created_on
         if content is not None:
           self.content = content
-
-    @property
-    def user_uuid(self):
-        """
-        Gets the user_uuid of this Notification.
-
-        :return: The user_uuid of this Notification.
-        :rtype: str
-        """
-        return self._user_uuid
-
-    @user_uuid.setter
-    def user_uuid(self, user_uuid):
-        """
-        Sets the user_uuid of this Notification.
-
-        :param user_uuid: The user_uuid of this Notification.
-        :type: str
-        """
-        if user_uuid is not None and len(user_uuid) > 36:
-            raise ValueError("Invalid value for `user_uuid`, length must be less than or equal to `36`")
-
-        self._user_uuid = user_uuid
 
     @property
     def subject(self):
@@ -108,6 +85,29 @@ class Notification(object):
             raise ValueError("Invalid value for `subject`, length must be less than or equal to `64`")
 
         self._subject = subject
+
+    @property
+    def user_uuid(self):
+        """
+        Gets the user_uuid of this Notification.
+
+        :return: The user_uuid of this Notification.
+        :rtype: str
+        """
+        return self._user_uuid
+
+    @user_uuid.setter
+    def user_uuid(self, user_uuid):
+        """
+        Sets the user_uuid of this Notification.
+
+        :param user_uuid: The user_uuid of this Notification.
+        :type: str
+        """
+        if user_uuid is not None and len(user_uuid) > 36:
+            raise ValueError("Invalid value for `user_uuid`, length must be less than or equal to `36`")
+
+        self._user_uuid = user_uuid
 
     @property
     def created_on(self):

@@ -32,51 +32,51 @@ class LicenseLrnModify(object):
     """
     swagger_types = {
         'start_time': 'datetime',
-        'cost': 'float',
-        'plan_uuid': 'str',
         'end_time': 'datetime',
-        'user_uuid': 'str',
+        'cost': 'float',
+        'ordered_amount': 'int',
         'package_lrn_uuid': 'str',
-        'ordered_amount': 'int'
+        'user_uuid': 'str',
+        'plan_uuid': 'str'
     }
 
     attribute_map = {
         'start_time': 'start_time',
-        'cost': 'cost',
-        'plan_uuid': 'plan_uuid',
         'end_time': 'end_time',
-        'user_uuid': 'user_uuid',
+        'cost': 'cost',
+        'ordered_amount': 'ordered_amount',
         'package_lrn_uuid': 'package_lrn_uuid',
-        'ordered_amount': 'ordered_amount'
+        'user_uuid': 'user_uuid',
+        'plan_uuid': 'plan_uuid'
     }
 
-    def __init__(self, start_time=None, cost=None, plan_uuid=None, end_time=None, user_uuid=None, package_lrn_uuid=None, ordered_amount=None):
+    def __init__(self, start_time=None, end_time=None, cost=None, ordered_amount=None, package_lrn_uuid=None, user_uuid=None, plan_uuid=None):
         """
         LicenseLrnModify - a model defined in Swagger
         """
 
         self._start_time = None
-        self._cost = None
-        self._plan_uuid = None
         self._end_time = None
-        self._user_uuid = None
-        self._package_lrn_uuid = None
+        self._cost = None
         self._ordered_amount = None
+        self._package_lrn_uuid = None
+        self._user_uuid = None
+        self._plan_uuid = None
 
         if start_time is not None:
           self.start_time = start_time
-        if cost is not None:
-          self.cost = cost
-        if plan_uuid is not None:
-          self.plan_uuid = plan_uuid
         if end_time is not None:
           self.end_time = end_time
-        if user_uuid is not None:
-          self.user_uuid = user_uuid
-        if package_lrn_uuid is not None:
-          self.package_lrn_uuid = package_lrn_uuid
+        if cost is not None:
+          self.cost = cost
         if ordered_amount is not None:
           self.ordered_amount = ordered_amount
+        if package_lrn_uuid is not None:
+          self.package_lrn_uuid = package_lrn_uuid
+        if user_uuid is not None:
+          self.user_uuid = user_uuid
+        if plan_uuid is not None:
+          self.plan_uuid = plan_uuid
 
     @property
     def start_time(self):
@@ -100,50 +100,6 @@ class LicenseLrnModify(object):
         self._start_time = start_time
 
     @property
-    def cost(self):
-        """
-        Gets the cost of this LicenseLrnModify.
-
-        :return: The cost of this LicenseLrnModify.
-        :rtype: float
-        """
-        return self._cost
-
-    @cost.setter
-    def cost(self, cost):
-        """
-        Sets the cost of this LicenseLrnModify.
-
-        :param cost: The cost of this LicenseLrnModify.
-        :type: float
-        """
-
-        self._cost = cost
-
-    @property
-    def plan_uuid(self):
-        """
-        Gets the plan_uuid of this LicenseLrnModify.
-
-        :return: The plan_uuid of this LicenseLrnModify.
-        :rtype: str
-        """
-        return self._plan_uuid
-
-    @plan_uuid.setter
-    def plan_uuid(self, plan_uuid):
-        """
-        Sets the plan_uuid of this LicenseLrnModify.
-
-        :param plan_uuid: The plan_uuid of this LicenseLrnModify.
-        :type: str
-        """
-        if plan_uuid is not None and len(plan_uuid) > 36:
-            raise ValueError("Invalid value for `plan_uuid`, length must be less than or equal to `36`")
-
-        self._plan_uuid = plan_uuid
-
-    @property
     def end_time(self):
         """
         Gets the end_time of this LicenseLrnModify.
@@ -165,27 +121,46 @@ class LicenseLrnModify(object):
         self._end_time = end_time
 
     @property
-    def user_uuid(self):
+    def cost(self):
         """
-        Gets the user_uuid of this LicenseLrnModify.
+        Gets the cost of this LicenseLrnModify.
 
-        :return: The user_uuid of this LicenseLrnModify.
-        :rtype: str
+        :return: The cost of this LicenseLrnModify.
+        :rtype: float
         """
-        return self._user_uuid
+        return self._cost
 
-    @user_uuid.setter
-    def user_uuid(self, user_uuid):
+    @cost.setter
+    def cost(self, cost):
         """
-        Sets the user_uuid of this LicenseLrnModify.
+        Sets the cost of this LicenseLrnModify.
 
-        :param user_uuid: The user_uuid of this LicenseLrnModify.
-        :type: str
+        :param cost: The cost of this LicenseLrnModify.
+        :type: float
         """
-        if user_uuid is not None and len(user_uuid) > 36:
-            raise ValueError("Invalid value for `user_uuid`, length must be less than or equal to `36`")
 
-        self._user_uuid = user_uuid
+        self._cost = cost
+
+    @property
+    def ordered_amount(self):
+        """
+        Gets the ordered_amount of this LicenseLrnModify.
+
+        :return: The ordered_amount of this LicenseLrnModify.
+        :rtype: int
+        """
+        return self._ordered_amount
+
+    @ordered_amount.setter
+    def ordered_amount(self, ordered_amount):
+        """
+        Sets the ordered_amount of this LicenseLrnModify.
+
+        :param ordered_amount: The ordered_amount of this LicenseLrnModify.
+        :type: int
+        """
+
+        self._ordered_amount = ordered_amount
 
     @property
     def package_lrn_uuid(self):
@@ -211,25 +186,50 @@ class LicenseLrnModify(object):
         self._package_lrn_uuid = package_lrn_uuid
 
     @property
-    def ordered_amount(self):
+    def user_uuid(self):
         """
-        Gets the ordered_amount of this LicenseLrnModify.
+        Gets the user_uuid of this LicenseLrnModify.
 
-        :return: The ordered_amount of this LicenseLrnModify.
-        :rtype: int
+        :return: The user_uuid of this LicenseLrnModify.
+        :rtype: str
         """
-        return self._ordered_amount
+        return self._user_uuid
 
-    @ordered_amount.setter
-    def ordered_amount(self, ordered_amount):
+    @user_uuid.setter
+    def user_uuid(self, user_uuid):
         """
-        Sets the ordered_amount of this LicenseLrnModify.
+        Sets the user_uuid of this LicenseLrnModify.
 
-        :param ordered_amount: The ordered_amount of this LicenseLrnModify.
-        :type: int
+        :param user_uuid: The user_uuid of this LicenseLrnModify.
+        :type: str
         """
+        if user_uuid is not None and len(user_uuid) > 36:
+            raise ValueError("Invalid value for `user_uuid`, length must be less than or equal to `36`")
 
-        self._ordered_amount = ordered_amount
+        self._user_uuid = user_uuid
+
+    @property
+    def plan_uuid(self):
+        """
+        Gets the plan_uuid of this LicenseLrnModify.
+
+        :return: The plan_uuid of this LicenseLrnModify.
+        :rtype: str
+        """
+        return self._plan_uuid
+
+    @plan_uuid.setter
+    def plan_uuid(self, plan_uuid):
+        """
+        Sets the plan_uuid of this LicenseLrnModify.
+
+        :param plan_uuid: The plan_uuid of this LicenseLrnModify.
+        :type: str
+        """
+        if plan_uuid is not None and len(plan_uuid) > 36:
+            raise ValueError("Invalid value for `plan_uuid`, length must be less than or equal to `36`")
+
+        self._plan_uuid = plan_uuid
 
     def to_dict(self):
         """

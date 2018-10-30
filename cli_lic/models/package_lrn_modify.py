@@ -32,56 +32,56 @@ class PackageLrnModify(object):
     """
     swagger_types = {
         'package_name': 'str',
-        'type': 'str',
         'dip_count': 'int',
         'enabled': 'bool',
         'lrn_port': 'int',
-        'cps': 'int',
+        'lrn_ip': 'str',
         'amount': 'int',
-        'lrn_ip': 'str'
+        'cps': 'int',
+        'type': 'str'
     }
 
     attribute_map = {
         'package_name': 'package_name',
-        'type': 'type',
         'dip_count': 'dip_count',
         'enabled': 'enabled',
         'lrn_port': 'lrn_port',
-        'cps': 'cps',
+        'lrn_ip': 'lrn_ip',
         'amount': 'amount',
-        'lrn_ip': 'lrn_ip'
+        'cps': 'cps',
+        'type': 'type'
     }
 
-    def __init__(self, package_name=None, type='LRN pay per CPS', dip_count=None, enabled=None, lrn_port=None, cps=None, amount=None, lrn_ip=None):
+    def __init__(self, package_name=None, dip_count=None, enabled=None, lrn_port=None, lrn_ip=None, amount=None, cps=None, type='LRN pay per CPS'):
         """
         PackageLrnModify - a model defined in Swagger
         """
 
         self._package_name = None
-        self._type = None
         self._dip_count = None
         self._enabled = None
         self._lrn_port = None
-        self._cps = None
-        self._amount = None
         self._lrn_ip = None
+        self._amount = None
+        self._cps = None
+        self._type = None
 
         if package_name is not None:
           self.package_name = package_name
-        if type is not None:
-          self.type = type
         if dip_count is not None:
           self.dip_count = dip_count
         if enabled is not None:
           self.enabled = enabled
         if lrn_port is not None:
           self.lrn_port = lrn_port
-        if cps is not None:
-          self.cps = cps
-        if amount is not None:
-          self.amount = amount
         if lrn_ip is not None:
           self.lrn_ip = lrn_ip
+        if amount is not None:
+          self.amount = amount
+        if cps is not None:
+          self.cps = cps
+        if type is not None:
+          self.type = type
 
     @property
     def package_name(self):
@@ -105,33 +105,6 @@ class PackageLrnModify(object):
             raise ValueError("Invalid value for `package_name`, length must be less than or equal to `64`")
 
         self._package_name = package_name
-
-    @property
-    def type(self):
-        """
-        Gets the type of this PackageLrnModify.
-
-        :return: The type of this PackageLrnModify.
-        :rtype: str
-        """
-        return self._type
-
-    @type.setter
-    def type(self, type):
-        """
-        Sets the type of this PackageLrnModify.
-
-        :param type: The type of this PackageLrnModify.
-        :type: str
-        """
-        allowed_values = ["LRN pay per CPS", "LRN pay per DIP"]
-        if type not in allowed_values:
-            raise ValueError(
-                "Invalid value for `type` ({0}), must be one of {1}"
-                .format(type, allowed_values)
-            )
-
-        self._type = type
 
     @property
     def dip_count(self):
@@ -197,25 +170,27 @@ class PackageLrnModify(object):
         self._lrn_port = lrn_port
 
     @property
-    def cps(self):
+    def lrn_ip(self):
         """
-        Gets the cps of this PackageLrnModify.
+        Gets the lrn_ip of this PackageLrnModify.
 
-        :return: The cps of this PackageLrnModify.
-        :rtype: int
+        :return: The lrn_ip of this PackageLrnModify.
+        :rtype: str
         """
-        return self._cps
+        return self._lrn_ip
 
-    @cps.setter
-    def cps(self, cps):
+    @lrn_ip.setter
+    def lrn_ip(self, lrn_ip):
         """
-        Sets the cps of this PackageLrnModify.
+        Sets the lrn_ip of this PackageLrnModify.
 
-        :param cps: The cps of this PackageLrnModify.
-        :type: int
+        :param lrn_ip: The lrn_ip of this PackageLrnModify.
+        :type: str
         """
+        if lrn_ip is not None and len(lrn_ip) > 16:
+            raise ValueError("Invalid value for `lrn_ip`, length must be less than or equal to `16`")
 
-        self._cps = cps
+        self._lrn_ip = lrn_ip
 
     @property
     def amount(self):
@@ -239,27 +214,52 @@ class PackageLrnModify(object):
         self._amount = amount
 
     @property
-    def lrn_ip(self):
+    def cps(self):
         """
-        Gets the lrn_ip of this PackageLrnModify.
+        Gets the cps of this PackageLrnModify.
 
-        :return: The lrn_ip of this PackageLrnModify.
+        :return: The cps of this PackageLrnModify.
+        :rtype: int
+        """
+        return self._cps
+
+    @cps.setter
+    def cps(self, cps):
+        """
+        Sets the cps of this PackageLrnModify.
+
+        :param cps: The cps of this PackageLrnModify.
+        :type: int
+        """
+
+        self._cps = cps
+
+    @property
+    def type(self):
+        """
+        Gets the type of this PackageLrnModify.
+
+        :return: The type of this PackageLrnModify.
         :rtype: str
         """
-        return self._lrn_ip
+        return self._type
 
-    @lrn_ip.setter
-    def lrn_ip(self, lrn_ip):
+    @type.setter
+    def type(self, type):
         """
-        Sets the lrn_ip of this PackageLrnModify.
+        Sets the type of this PackageLrnModify.
 
-        :param lrn_ip: The lrn_ip of this PackageLrnModify.
+        :param type: The type of this PackageLrnModify.
         :type: str
         """
-        if lrn_ip is not None and len(lrn_ip) > 16:
-            raise ValueError("Invalid value for `lrn_ip`, length must be less than or equal to `16`")
+        allowed_values = ["LRN pay per CPS", "LRN pay per DIP"]
+        if type not in allowed_values:
+            raise ValueError(
+                "Invalid value for `type` ({0}), must be one of {1}"
+                .format(type, allowed_values)
+            )
 
-        self._lrn_ip = lrn_ip
+        self._type = type
 
     def to_dict(self):
         """

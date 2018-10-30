@@ -32,51 +32,51 @@ class LicenseSwitch(object):
     """
     swagger_types = {
         'start_time': 'datetime',
-        'cost': 'float',
-        'plan_uuid': 'str',
+        'package_switch_uuid': 'str',
         'end_time': 'datetime',
-        'user_uuid': 'str',
         'ordered_amount': 'int',
-        'package_switch_uuid': 'str'
+        'cost': 'float',
+        'user_uuid': 'str',
+        'plan_uuid': 'str'
     }
 
     attribute_map = {
         'start_time': 'start_time',
-        'cost': 'cost',
-        'plan_uuid': 'plan_uuid',
+        'package_switch_uuid': 'package_switch_uuid',
         'end_time': 'end_time',
-        'user_uuid': 'user_uuid',
         'ordered_amount': 'ordered_amount',
-        'package_switch_uuid': 'package_switch_uuid'
+        'cost': 'cost',
+        'user_uuid': 'user_uuid',
+        'plan_uuid': 'plan_uuid'
     }
 
-    def __init__(self, start_time=None, cost=None, plan_uuid=None, end_time=None, user_uuid=None, ordered_amount=None, package_switch_uuid=None):
+    def __init__(self, start_time=None, package_switch_uuid=None, end_time=None, ordered_amount=None, cost=None, user_uuid=None, plan_uuid=None):
         """
         LicenseSwitch - a model defined in Swagger
         """
 
         self._start_time = None
-        self._cost = None
-        self._plan_uuid = None
-        self._end_time = None
-        self._user_uuid = None
-        self._ordered_amount = None
         self._package_switch_uuid = None
+        self._end_time = None
+        self._ordered_amount = None
+        self._cost = None
+        self._user_uuid = None
+        self._plan_uuid = None
 
         if start_time is not None:
           self.start_time = start_time
-        if cost is not None:
-          self.cost = cost
-        if plan_uuid is not None:
-          self.plan_uuid = plan_uuid
-        if end_time is not None:
-          self.end_time = end_time
-        if user_uuid is not None:
-          self.user_uuid = user_uuid
-        if ordered_amount is not None:
-          self.ordered_amount = ordered_amount
         if package_switch_uuid is not None:
           self.package_switch_uuid = package_switch_uuid
+        if end_time is not None:
+          self.end_time = end_time
+        if ordered_amount is not None:
+          self.ordered_amount = ordered_amount
+        if cost is not None:
+          self.cost = cost
+        if user_uuid is not None:
+          self.user_uuid = user_uuid
+        if plan_uuid is not None:
+          self.plan_uuid = plan_uuid
 
     @property
     def start_time(self):
@@ -100,48 +100,27 @@ class LicenseSwitch(object):
         self._start_time = start_time
 
     @property
-    def cost(self):
+    def package_switch_uuid(self):
         """
-        Gets the cost of this LicenseSwitch.
+        Gets the package_switch_uuid of this LicenseSwitch.
 
-        :return: The cost of this LicenseSwitch.
-        :rtype: float
-        """
-        return self._cost
-
-    @cost.setter
-    def cost(self, cost):
-        """
-        Sets the cost of this LicenseSwitch.
-
-        :param cost: The cost of this LicenseSwitch.
-        :type: float
-        """
-
-        self._cost = cost
-
-    @property
-    def plan_uuid(self):
-        """
-        Gets the plan_uuid of this LicenseSwitch.
-
-        :return: The plan_uuid of this LicenseSwitch.
+        :return: The package_switch_uuid of this LicenseSwitch.
         :rtype: str
         """
-        return self._plan_uuid
+        return self._package_switch_uuid
 
-    @plan_uuid.setter
-    def plan_uuid(self, plan_uuid):
+    @package_switch_uuid.setter
+    def package_switch_uuid(self, package_switch_uuid):
         """
-        Sets the plan_uuid of this LicenseSwitch.
+        Sets the package_switch_uuid of this LicenseSwitch.
 
-        :param plan_uuid: The plan_uuid of this LicenseSwitch.
+        :param package_switch_uuid: The package_switch_uuid of this LicenseSwitch.
         :type: str
         """
-        if plan_uuid is not None and len(plan_uuid) > 36:
-            raise ValueError("Invalid value for `plan_uuid`, length must be less than or equal to `36`")
+        if package_switch_uuid is not None and len(package_switch_uuid) > 36:
+            raise ValueError("Invalid value for `package_switch_uuid`, length must be less than or equal to `36`")
 
-        self._plan_uuid = plan_uuid
+        self._package_switch_uuid = package_switch_uuid
 
     @property
     def end_time(self):
@@ -163,6 +142,48 @@ class LicenseSwitch(object):
         """
 
         self._end_time = end_time
+
+    @property
+    def ordered_amount(self):
+        """
+        Gets the ordered_amount of this LicenseSwitch.
+
+        :return: The ordered_amount of this LicenseSwitch.
+        :rtype: int
+        """
+        return self._ordered_amount
+
+    @ordered_amount.setter
+    def ordered_amount(self, ordered_amount):
+        """
+        Sets the ordered_amount of this LicenseSwitch.
+
+        :param ordered_amount: The ordered_amount of this LicenseSwitch.
+        :type: int
+        """
+
+        self._ordered_amount = ordered_amount
+
+    @property
+    def cost(self):
+        """
+        Gets the cost of this LicenseSwitch.
+
+        :return: The cost of this LicenseSwitch.
+        :rtype: float
+        """
+        return self._cost
+
+    @cost.setter
+    def cost(self, cost):
+        """
+        Sets the cost of this LicenseSwitch.
+
+        :param cost: The cost of this LicenseSwitch.
+        :type: float
+        """
+
+        self._cost = cost
 
     @property
     def user_uuid(self):
@@ -188,48 +209,27 @@ class LicenseSwitch(object):
         self._user_uuid = user_uuid
 
     @property
-    def ordered_amount(self):
+    def plan_uuid(self):
         """
-        Gets the ordered_amount of this LicenseSwitch.
+        Gets the plan_uuid of this LicenseSwitch.
 
-        :return: The ordered_amount of this LicenseSwitch.
-        :rtype: int
-        """
-        return self._ordered_amount
-
-    @ordered_amount.setter
-    def ordered_amount(self, ordered_amount):
-        """
-        Sets the ordered_amount of this LicenseSwitch.
-
-        :param ordered_amount: The ordered_amount of this LicenseSwitch.
-        :type: int
-        """
-
-        self._ordered_amount = ordered_amount
-
-    @property
-    def package_switch_uuid(self):
-        """
-        Gets the package_switch_uuid of this LicenseSwitch.
-
-        :return: The package_switch_uuid of this LicenseSwitch.
+        :return: The plan_uuid of this LicenseSwitch.
         :rtype: str
         """
-        return self._package_switch_uuid
+        return self._plan_uuid
 
-    @package_switch_uuid.setter
-    def package_switch_uuid(self, package_switch_uuid):
+    @plan_uuid.setter
+    def plan_uuid(self, plan_uuid):
         """
-        Sets the package_switch_uuid of this LicenseSwitch.
+        Sets the plan_uuid of this LicenseSwitch.
 
-        :param package_switch_uuid: The package_switch_uuid of this LicenseSwitch.
+        :param plan_uuid: The plan_uuid of this LicenseSwitch.
         :type: str
         """
-        if package_switch_uuid is not None and len(package_switch_uuid) > 36:
-            raise ValueError("Invalid value for `package_switch_uuid`, length must be less than or equal to `36`")
+        if plan_uuid is not None and len(plan_uuid) > 36:
+            raise ValueError("Invalid value for `plan_uuid`, length must be less than or equal to `36`")
 
-        self._package_switch_uuid = package_switch_uuid
+        self._plan_uuid = plan_uuid
 
     def to_dict(self):
         """

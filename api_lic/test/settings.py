@@ -5,7 +5,7 @@ import json
 import pprint
 ##cli_lic.configuration.verify_ssl=False
 ##cli_lic.configuration.host='https://158.69.221.111/api_lic/v1'
-#cli_lic.configuration.host='https://vps62776.vps.ovh.ca/api_lic/v1'
+cli_lic.configuration.host='https://vps62776.vps.ovh.ca/api_lic/v1'
 #cli_lic.configuration.host='http://localhost:8002/v1'
 admin_token=None
 tokens={}
@@ -138,3 +138,11 @@ def rand_package_switch(**kwargs):
     assert (ret.success and len(ret.payload.items))
     it = random.choice(ret.payload.items)
     return (it.package_switch_uuid,it,ret.payload.items)
+
+def rand_switch(**kwargs):
+    ret = cli_lic.AdminApi().switch_list_get(**kwargs)
+    if not len(ret.payload.items):
+        return None
+    assert (ret.success and len(ret.payload.items))
+    it = random.choice(ret.payload.items)
+    return (it.switch_uuid,it,ret.payload.items)

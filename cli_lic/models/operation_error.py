@@ -31,32 +31,53 @@ class OperationError(object):
                             and the value is json key in definition.
     """
     swagger_types = {
+        'success': 'bool',
         'error_type': 'str',
-        'error': 'UnauthenticatedErrorError',
-        'success': 'bool'
+        'error': 'UnauthenticatedErrorError'
     }
 
     attribute_map = {
+        'success': 'success',
         'error_type': 'error_type',
-        'error': 'error',
-        'success': 'success'
+        'error': 'error'
     }
 
-    def __init__(self, error_type='operation_error', error=None, success=False):
+    def __init__(self, success=False, error_type='operation_error', error=None):
         """
         OperationError - a model defined in Swagger
         """
 
+        self._success = None
         self._error_type = None
         self._error = None
-        self._success = None
 
+        if success is not None:
+          self.success = success
         if error_type is not None:
           self.error_type = error_type
         if error is not None:
           self.error = error
-        if success is not None:
-          self.success = success
+
+    @property
+    def success(self):
+        """
+        Gets the success of this OperationError.
+
+        :return: The success of this OperationError.
+        :rtype: bool
+        """
+        return self._success
+
+    @success.setter
+    def success(self, success):
+        """
+        Sets the success of this OperationError.
+
+        :param success: The success of this OperationError.
+        :type: bool
+        """
+
+        self._success = success
 
     @property
     def error_type(self):
@@ -99,27 +120,6 @@ class OperationError(object):
         """
 
         self._error = error
-
-    @property
-    def success(self):
-        """
-        Gets the success of this OperationError.
-
-        :return: The success of this OperationError.
-        :rtype: bool
-        """
-        return self._success
-
-    @success.setter
-    def success(self, success):
-        """
-        Sets the success of this OperationError.
-
-        :param success: The success of this OperationError.
-        :type: bool
-        """
-
-        self._success = success
 
     def to_dict(self):
         """

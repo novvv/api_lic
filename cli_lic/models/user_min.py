@@ -31,83 +31,41 @@ class UserMin(object):
                             and the value is json key in definition.
     """
     swagger_types = {
-        'passwd': 'str',
-        'logo_file_uuid': 'str',
         'is_admin': 'bool',
         'is_active': 'bool',
-        'email': 'str'
+        'email': 'str',
+        'logo_file_uuid': 'str',
+        'passwd': 'str'
     }
 
     attribute_map = {
-        'passwd': 'passwd',
-        'logo_file_uuid': 'logo_file_uuid',
         'is_admin': 'is_admin',
         'is_active': 'is_active',
-        'email': 'email'
+        'email': 'email',
+        'logo_file_uuid': 'logo_file_uuid',
+        'passwd': 'passwd'
     }
 
-    def __init__(self, passwd=None, logo_file_uuid=None, is_admin=None, is_active=None, email=None):
+    def __init__(self, is_admin=None, is_active=None, email=None, logo_file_uuid=None, passwd=None):
         """
         UserMin - a model defined in Swagger
         """
 
-        self._passwd = None
-        self._logo_file_uuid = None
         self._is_admin = None
         self._is_active = None
         self._email = None
+        self._logo_file_uuid = None
+        self._passwd = None
 
-        if passwd is not None:
-          self.passwd = passwd
-        if logo_file_uuid is not None:
-          self.logo_file_uuid = logo_file_uuid
         if is_admin is not None:
           self.is_admin = is_admin
         if is_active is not None:
           self.is_active = is_active
         self.email = email
-
-    @property
-    def passwd(self):
-        """
-        Gets the passwd of this UserMin.
-
-        :return: The passwd of this UserMin.
-        :rtype: str
-        """
-        return self._passwd
-
-    @passwd.setter
-    def passwd(self, passwd):
-        """
-        Sets the passwd of this UserMin.
-
-        :param passwd: The passwd of this UserMin.
-        :type: str
-        """
-
-        self._passwd = passwd
-
-    @property
-    def logo_file_uuid(self):
-        """
-        Gets the logo_file_uuid of this UserMin.
-
-        :return: The logo_file_uuid of this UserMin.
-        :rtype: str
-        """
-        return self._logo_file_uuid
-
-    @logo_file_uuid.setter
-    def logo_file_uuid(self, logo_file_uuid):
-        """
-        Sets the logo_file_uuid of this UserMin.
-
-        :param logo_file_uuid: The logo_file_uuid of this UserMin.
-        :type: str
-        """
-
-        self._logo_file_uuid = logo_file_uuid
+        if logo_file_uuid is not None:
+          self.logo_file_uuid = logo_file_uuid
+        if passwd is not None:
+          self.passwd = passwd
 
     @property
     def is_admin(self):
@@ -173,6 +131,48 @@ class UserMin(object):
             raise ValueError("Invalid value for `email`, must not be `None`")
 
         self._email = email
+
+    @property
+    def logo_file_uuid(self):
+        """
+        Gets the logo_file_uuid of this UserMin.
+
+        :return: The logo_file_uuid of this UserMin.
+        :rtype: str
+        """
+        return self._logo_file_uuid
+
+    @logo_file_uuid.setter
+    def logo_file_uuid(self, logo_file_uuid):
+        """
+        Sets the logo_file_uuid of this UserMin.
+
+        :param logo_file_uuid: The logo_file_uuid of this UserMin.
+        :type: str
+        """
+
+        self._logo_file_uuid = logo_file_uuid
+
+    @property
+    def passwd(self):
+        """
+        Gets the passwd of this UserMin.
+
+        :return: The passwd of this UserMin.
+        :rtype: str
+        """
+        return self._passwd
+
+    @passwd.setter
+    def passwd(self, passwd):
+        """
+        Sets the passwd of this UserMin.
+
+        :param passwd: The passwd of this UserMin.
+        :type: str
+        """
+
+        self._passwd = passwd
 
     def to_dict(self):
         """

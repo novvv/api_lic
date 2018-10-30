@@ -51,6 +51,9 @@ PRODUCTION_ROUTES = OrderedDict([
             {'path': '/email_template/list', 'method': 'get','resource': views.EmailTemplateList()},
             {'path': '/package_lrn', 'method': 'post','resource': views.PackageLrnCreate()},
             {'path': '/package_lrn/{package_lrn_uuid}', 'method': 'path','resource': views.PackageLrnResource()},
+            {'path': '/switch', 'method': 'post','resource': views.SwitchCreate()},
+            {'path': '/switch/{switch_uuid}', 'method': 'path','resource': views.SwitchResource()},
+            {'path': '/switch/list', 'method': 'get','resource': views.SwitchList()},
             {'path': '/package_switch', 'method': 'post','resource': views.PackageSwitchCreate()},
             {'path': '/package_switch/{package_switch_uuid}', 'method': 'path','resource': views.PackageSwitchResource()},
 

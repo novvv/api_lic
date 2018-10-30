@@ -30,7 +30,7 @@ class TestUserApi(unittest.TestCase):
         self.api = cli_lic.apis.user_api.UserApi()
         self.license_lrn = []
         self.license_switch = []
-        self.payment_uuid = []
+        self.payment = []
 
     def tearDown(self):
         def clear(name):

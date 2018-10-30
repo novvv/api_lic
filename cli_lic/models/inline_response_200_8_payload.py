@@ -34,7 +34,7 @@ class InlineResponse2008Payload(object):
         'total': 'int',
         'page': 'int',
         'per_page': 'int',
-        'items': 'list[FalconRestContribFilesFile]'
+        'items': 'list[SwitchGet]'
     }
 
     attribute_map = {
@@ -138,7 +138,7 @@ class InlineResponse2008Payload(object):
         Gets the items of this InlineResponse2008Payload.
 
         :return: The items of this InlineResponse2008Payload.
-        :rtype: list[FalconRestContribFilesFile]
+        :rtype: list[SwitchGet]
         """
         return self._items
 
@@ -148,7 +148,7 @@ class InlineResponse2008Payload(object):
         Sets the items of this InlineResponse2008Payload.
 
         :param items: The items of this InlineResponse2008Payload.
-        :type: list[FalconRestContribFilesFile]
+        :type: list[SwitchGet]
         """
 
         self._items = items

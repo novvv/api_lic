@@ -34,7 +34,7 @@ class InlineResponse20013Payload(object):
         'total': 'int',
         'page': 'int',
         'per_page': 'int',
-        'items': 'list[NotificationGet]'
+        'items': 'list[PackageSwitchGet]'
     }
 
     attribute_map = {
@@ -138,7 +138,7 @@ class InlineResponse20013Payload(object):
         Gets the items of this InlineResponse20013Payload.
 
         :return: The items of this InlineResponse20013Payload.
-        :rtype: list[NotificationGet]
+        :rtype: list[PackageSwitchGet]
         """
         return self._items
 
@@ -148,7 +148,7 @@ class InlineResponse20013Payload(object):
         Sets the items of this InlineResponse20013Payload.
 
         :param items: The items of this InlineResponse20013Payload.
-        :type: list[NotificationGet]
+        :type: list[PackageSwitchGet]
         """
 
         self._items = items

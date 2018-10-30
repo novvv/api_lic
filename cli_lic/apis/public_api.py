@@ -372,7 +372,7 @@ class PublicApi(object):
         :param str belongs_to_table:
         :param bool public:
         :param str uuid:
-        :return: InlineResponse2008
+        :return: InlineResponse20010
                  If the method is called asynchronously,
                  returns the request thread.
         """
@@ -404,7 +404,7 @@ class PublicApi(object):
         :param str belongs_to_table:
         :param bool public:
         :param str uuid:
-        :return: InlineResponse2008
+        :return: InlineResponse20010
                  If the method is called asynchronously,
                  returns the request thread.
         """
@@ -472,7 +472,7 @@ class PublicApi(object):
                                         body=body_params,
                                         post_params=form_params,
                                         files=local_var_files,
-                                        response_type='InlineResponse2008',
+                                        response_type='InlineResponse20010',
                                         auth_settings=auth_settings,
                                         callback=params.get('callback'),
                                         _return_http_data_only=params.get('_return_http_data_only'),
@@ -497,7 +497,7 @@ class PublicApi(object):
         :param int per_page:
         :param str order_by:
         :param str order_dir:
-        :return: InlineResponse2009
+        :return: InlineResponse20011
                  If the method is called asynchronously,
                  returns the request thread.
         """
@@ -525,7 +525,7 @@ class PublicApi(object):
         :param int per_page:
         :param str order_by:
         :param str order_dir:
-        :return: InlineResponse2009
+        :return: InlineResponse20011
                  If the method is called asynchronously,
                  returns the request thread.
         """
@@ -585,7 +585,7 @@ class PublicApi(object):
                                         body=body_params,
                                         post_params=form_params,
                                         files=local_var_files,
-                                        response_type='InlineResponse2009',
+                                        response_type='InlineResponse20011',
                                         auth_settings=auth_settings,
                                         callback=params.get('callback'),
                                         _return_http_data_only=params.get('_return_http_data_only'),
@@ -942,7 +942,7 @@ class PublicApi(object):
         :param str package_lrn_uuid:
         :param str package_name:
         :param str type:
-        :return: InlineResponse20010
+        :return: InlineResponse20012
                  If the method is called asynchronously,
                  returns the request thread.
         """
@@ -979,7 +979,7 @@ class PublicApi(object):
         :param str package_lrn_uuid:
         :param str package_name:
         :param str type:
-        :return: InlineResponse20010
+        :return: InlineResponse20012
                  If the method is called asynchronously,
                  returns the request thread.
         """
@@ -1057,7 +1057,7 @@ class PublicApi(object):
                                         body=body_params,
                                         post_params=form_params,
                                         files=local_var_files,
-                                        response_type='InlineResponse20010',
+                                        response_type='InlineResponse20012',
                                         auth_settings=auth_settings,
                                         callback=params.get('callback'),
                                         _return_http_data_only=params.get('_return_http_data_only'),
@@ -1087,10 +1087,10 @@ class PublicApi(object):
         :param int minute_count:
         :param str package_name:
         :param str package_switch_uuid:
-        :param str switch_ip:
         :param int switch_port:
+        :param str switch_uuid:
         :param str type:
-        :return: InlineResponse20011
+        :return: InlineResponse20013
                  If the method is called asynchronously,
                  returns the request thread.
         """
@@ -1123,15 +1123,15 @@ class PublicApi(object):
         :param int minute_count:
         :param str package_name:
         :param str package_switch_uuid:
-        :param str switch_ip:
         :param int switch_port:
+        :param str switch_uuid:
         :param str type:
-        :return: InlineResponse20011
+        :return: InlineResponse20013
                  If the method is called asynchronously,
                  returns the request thread.
         """
 
-        all_params = ['page', 'per_page', 'order_by', 'order_dir', 'amount', 'enabled', 'minute_count', 'package_name', 'package_switch_uuid', 'switch_ip', 'switch_port', 'type']
+        all_params = ['page', 'per_page', 'order_by', 'order_dir', 'amount', 'enabled', 'minute_count', 'package_name', 'package_switch_uuid', 'switch_port', 'switch_uuid', 'type']
         all_params.append('callback')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
@@ -1171,10 +1171,10 @@ class PublicApi(object):
             query_params.append(('package_name', params['package_name']))
         if 'package_switch_uuid' in params:
             query_params.append(('package_switch_uuid', params['package_switch_uuid']))
-        if 'switch_ip' in params:
-            query_params.append(('switch_ip', params['switch_ip']))
         if 'switch_port' in params:
             query_params.append(('switch_port', params['switch_port']))
+        if 'switch_uuid' in params:
+            query_params.append(('switch_uuid', params['switch_uuid']))
         if 'type' in params:
             query_params.append(('type', params['type']))
 
@@ -1202,7 +1202,7 @@ class PublicApi(object):
                                         body=body_params,
                                         post_params=form_params,
                                         files=local_var_files,
-                                        response_type='InlineResponse20011',
+                                        response_type='InlineResponse20013',
                                         auth_settings=auth_settings,
                                         callback=params.get('callback'),
                                         _return_http_data_only=params.get('_return_http_data_only'),

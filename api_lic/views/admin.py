@@ -147,6 +147,53 @@ class PackageLrnList(List):
             #ret = ret.filter(cls.pool_id != 0)#TODO:filter for user
         return filt, ret
 # ---PackageLrn---
+# +++Switch+++
+class SwitchCreate(Create):
+    scheme_class = SwitchScheme
+    model_class = model.Switch
+    entity = 'Switch'
+    path_parameters = ()
+    security = (DEFAULT_SECURITY)
+    restrict = ()
+
+    def before_create(self, obj, **kwargs):
+        user = self.get_user(self.req)
+        # obj.created_by=user.name
+        # obj.created_on=datetime.now(UTC)
+        return obj
+
+
+class SwitchResource(Resource):
+    model_class = model.Switch
+    scheme_class = SwitchScheme
+    scheme_class_get = SwitchSchemeGet
+    scheme_class_modify = SwitchSchemeModify
+    entity = 'Switch'
+    id_field = 'switch_uuid'
+    security = (DEFAULT_SECURITY)
+    path_parameters = ()
+    restrict = ()
+
+
+class SwitchList(List):
+    scheme_class = SwitchSchemeGet
+    model_class = model.Switch
+    entity_plural = 'Switchs'
+    path_parameters = ()
+    security = (DEFAULT_SECURITY)
+    restrict = ()
+
+    def modify_query_from_filtering_for_list(self, filtering, **kwargs):
+        filt, ret = super().modify_query_from_filtering_for_list(filtering, **kwargs)
+        user = self.get_user(self.req)
+        if not user.is_admin:
+            cls = self.model_class
+            # ret = ret.filter(cls.pool_id != 0)#TODO:filter for user
+        return filt, ret
+
+
+# ---Switch---
+
 # +++PackageSwitch+++
 class PackageSwitchCreate(Create):
     scheme_class = PackageSwitchScheme

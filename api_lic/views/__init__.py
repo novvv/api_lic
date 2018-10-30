@@ -4,4 +4,4 @@ from .user import UserConfirmRegister, UserForgotPassword, UserResetPassword, No
 from .public import SimpleFileCreate, SimpleFileGet
 from .admin import EmailTemplateResource, EmailTemplateList, PlanCreate, PlanResource, NotificationCreate, \
     NotificationResource,PackageLrnCreate,PackageLrnResource,PackageLrnList,PackageSwitchCreate,PackageSwitchResource,\
-    PackageSwitchList
+    PackageSwitchList,SwitchCreate,SwitchResource,SwitchList
