@@ -206,9 +206,16 @@ class PaymentCreate(Create):
 
     def before_create(self, obj, **kwargs):
         user = self.get_user(self.req)
-        lic = model.LicensePeriod.get(obj.license_period_uuid)
-        if lic.license.user_uuid != user.user_uuid:
-            raise ValidationError({'license_uuid': ['not owned by current user!']})
+        if not obj.user_uuid:
+            obj.user_uuid=user.user_uuid
+        if obj.license_lrn_uuid:
+            lic = model.LicenseLrn.get(obj.license_lrn_uuid)
+            if lic and lic.user_uuid != user.user_uuid:
+                raise ValidationError({'license_lrn_uuid': ['not owned by current user!']})
+        if obj.license_switch_uuid:
+            lic = model.LicenseLrn.get(obj.license_switch_uuid)
+            if lic and lic.user_uuid != user.user_uuid:
+                raise ValidationError({'license_switch_uuid': ['not owned by current user!']})
         # obj.created_by=user.name
         # obj.created_on=datetime.now(UTC)
 

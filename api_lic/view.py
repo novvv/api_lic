@@ -115,21 +115,30 @@ class UserByEmailResource(Resource):
     restrict = ()
 
     def get_object(self, resp, model_class, **kwargs):
-        q=model.User.filter(func.lower(model.User.email)==kwargs['email'].lower()).first()
-        if q:
+        if 'email' in kwargs:
+            q=model.User.filter(func.lower(model.User.email)==kwargs['email'].lower()).first()
+            if q:
 
-            kwargs={'user_uuid':q.user_uuid}
-            return super().get_object(resp, model_class, **kwargs)
-        return None
+                kwargs={'user_uuid':q.user_uuid}
+            else:
+                self.set_response(resp, responses.ObjectNotFoundErrorResponse())
+                return None
+        return super().get_object(resp, model_class, **kwargs)
+
 
     def delete_object(self, req, resp, model_class, **kwargs):
-        q = model.User.filter(func.lower(model.User.email) == kwargs['email'].lower()).first()
-        if q:
-            kwargs = {'user_uuid': q.user_uuid}
-            if kwargs['user_uuid'] == settings.ADMIN_UUID:
-                return True
-            return super().delete_object(req,resp, model_class, **kwargs)
-        return None
+        if 'email' in kwargs:
+            q = model.User.filter(func.lower(model.User.email) == kwargs['email'].lower()).first()
+            if q:
+                kwargs = {'user_uuid': q.user_uuid}
+                if kwargs['user_uuid'] == settings.ADMIN_UUID:
+                    self.set_response(resp, responses.ObjectNotFoundErrorResponse())
+                    return None
+            else:
+                self.set_response(resp, responses.ObjectNotFoundErrorResponse())
+                return None
+        return super().delete_object(req,resp, model_class, **kwargs)
+
 
     def before_update(self, obj, req):
         return obj

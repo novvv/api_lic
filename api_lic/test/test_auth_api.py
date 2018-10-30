@@ -184,6 +184,7 @@ class TestAuthApi(unittest.TestCase):
         ret = self.api.user_post(body=user)
         ret = self.api.user_by_email_email_patch(email=email,body=dict(is_active=False))
         assert (ret.success)
+        assert(ret.payload.is_active==False)
         ret = self.api.user_by_email_email_delete(email=email)
         pass
 

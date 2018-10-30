@@ -218,6 +218,7 @@ class TestUserApi(unittest.TestCase):
         auth_user()
         ret = self.api.payment_list_get()
         assert (ret.success)
+        print(ret)
         pass
 
     def test_payment_payment_uuid_delete(self):
@@ -258,7 +259,19 @@ class TestUserApi(unittest.TestCase):
 
 
         """
+        auth_user()
+        if not self.license_lrn:
+            self.test_license_lrn_post()
 
+        data = dict(license_lrn_uuid=self.license_lrn[0],amount=random.randint(1,1000),type=random.choice(['paypal','strip']))
+        ret=self.api.payment_post(body=data)
+        assert(ret.success)
+        if not self.license_switch:
+            self.test_license_switch_post()
+        data = dict(license_switch_uuid=self.license_switch[0], amount=random.randint(1, 1000),
+                        type=random.choice(['paypal', 'strip']))
+        ret = self.api.payment_post(body=data)
+        assert (ret.success)
         pass
 
     def test_payment_stripe_post(self):
