@@ -128,7 +128,7 @@ class UserByEmailResource(Resource):
             kwargs = {'user_uuid': q.user_uuid}
             if kwargs['user_uuid'] == settings.ADMIN_UUID:
                 return True
-            return super().get_object(resp, model_class, **kwargs)
+            return super().delete_object(req,resp, model_class, **kwargs)
         return None
 
     def before_update(self, obj, req):

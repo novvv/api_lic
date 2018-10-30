@@ -31,52 +31,96 @@ class PackageSwitch(object):
                             and the value is json key in definition.
     """
     swagger_types = {
+        'amount': 'int',
+        'switch_uuid': 'str',
         'enabled': 'bool',
         'package_name': 'str',
-        'minute_count': 'int',
         'type': 'str',
-        'switch_uuid': 'str',
-        'amount': 'int',
+        'minute_count': 'int',
         'switch_port': 'int'
     }
 
     attribute_map = {
+        'amount': 'amount',
+        'switch_uuid': 'switch_uuid',
         'enabled': 'enabled',
         'package_name': 'package_name',
-        'minute_count': 'minute_count',
         'type': 'type',
-        'switch_uuid': 'switch_uuid',
-        'amount': 'amount',
+        'minute_count': 'minute_count',
         'switch_port': 'switch_port'
     }
 
-    def __init__(self, enabled=None, package_name=None, minute_count=None, type='switch pay per port', switch_uuid=None, amount=None, switch_port=None):
+    def __init__(self, amount=None, switch_uuid=None, enabled=None, package_name=None, type='switch pay per port', minute_count=None, switch_port=None):
         """
         PackageSwitch - a model defined in Swagger
         """
 
+        self._amount = None
+        self._switch_uuid = None
         self._enabled = None
         self._package_name = None
-        self._minute_count = None
         self._type = None
-        self._switch_uuid = None
-        self._amount = None
+        self._minute_count = None
         self._switch_port = None
 
+        if amount is not None:
+          self.amount = amount
+        if switch_uuid is not None:
+          self.switch_uuid = switch_uuid
         if enabled is not None:
           self.enabled = enabled
         if package_name is not None:
           self.package_name = package_name
-        if minute_count is not None:
-          self.minute_count = minute_count
         if type is not None:
           self.type = type
-        if switch_uuid is not None:
-          self.switch_uuid = switch_uuid
-        if amount is not None:
-          self.amount = amount
+        if minute_count is not None:
+          self.minute_count = minute_count
         if switch_port is not None:
           self.switch_port = switch_port
+
+    @property
+    def amount(self):
+        """
+        Gets the amount of this PackageSwitch.
+
+        :return: The amount of this PackageSwitch.
+        :rtype: int
+        """
+        return self._amount
+
+    @amount.setter
+    def amount(self, amount):
+        """
+        Sets the amount of this PackageSwitch.
+
+        :param amount: The amount of this PackageSwitch.
+        :type: int
+        """
+
+        self._amount = amount
+
+    @property
+    def switch_uuid(self):
+        """
+        Gets the switch_uuid of this PackageSwitch.
+
+        :return: The switch_uuid of this PackageSwitch.
+        :rtype: str
+        """
+        return self._switch_uuid
+
+    @switch_uuid.setter
+    def switch_uuid(self, switch_uuid):
+        """
+        Sets the switch_uuid of this PackageSwitch.
+
+        :param switch_uuid: The switch_uuid of this PackageSwitch.
+        :type: str
+        """
+        if switch_uuid is not None and len(switch_uuid) > 36:
+            raise ValueError("Invalid value for `switch_uuid`, length must be less than or equal to `36`")
+
+        self._switch_uuid = switch_uuid
 
     @property
     def enabled(self):
@@ -123,27 +167,6 @@ class PackageSwitch(object):
         self._package_name = package_name
 
     @property
-    def minute_count(self):
-        """
-        Gets the minute_count of this PackageSwitch.
-
-        :return: The minute_count of this PackageSwitch.
-        :rtype: int
-        """
-        return self._minute_count
-
-    @minute_count.setter
-    def minute_count(self, minute_count):
-        """
-        Sets the minute_count of this PackageSwitch.
-
-        :param minute_count: The minute_count of this PackageSwitch.
-        :type: int
-        """
-
-        self._minute_count = minute_count
-
-    @property
     def type(self):
         """
         Gets the type of this PackageSwitch.
@@ -171,48 +194,25 @@ class PackageSwitch(object):
         self._type = type
 
     @property
-    def switch_uuid(self):
+    def minute_count(self):
         """
-        Gets the switch_uuid of this PackageSwitch.
+        Gets the minute_count of this PackageSwitch.
 
-        :return: The switch_uuid of this PackageSwitch.
-        :rtype: str
-        """
-        return self._switch_uuid
-
-    @switch_uuid.setter
-    def switch_uuid(self, switch_uuid):
-        """
-        Sets the switch_uuid of this PackageSwitch.
-
-        :param switch_uuid: The switch_uuid of this PackageSwitch.
-        :type: str
-        """
-        if switch_uuid is not None and len(switch_uuid) > 36:
-            raise ValueError("Invalid value for `switch_uuid`, length must be less than or equal to `36`")
-
-        self._switch_uuid = switch_uuid
-
-    @property
-    def amount(self):
-        """
-        Gets the amount of this PackageSwitch.
-
-        :return: The amount of this PackageSwitch.
+        :return: The minute_count of this PackageSwitch.
         :rtype: int
         """
-        return self._amount
+        return self._minute_count
 
-    @amount.setter
-    def amount(self, amount):
+    @minute_count.setter
+    def minute_count(self, minute_count):
         """
-        Sets the amount of this PackageSwitch.
+        Sets the minute_count of this PackageSwitch.
 
-        :param amount: The amount of this PackageSwitch.
+        :param minute_count: The minute_count of this PackageSwitch.
         :type: int
         """
 
-        self._amount = amount
+        self._minute_count = minute_count
 
     @property
     def switch_port(self):

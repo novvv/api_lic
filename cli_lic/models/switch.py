@@ -31,89 +31,47 @@ class Switch(object):
                             and the value is json key in definition.
     """
     swagger_types = {
-        'expired_on': 'datetime',
-        'current_port_count': 'int',
         'enabled': 'bool',
         'email': 'str',
+        'current_port_count': 'int',
         'minute_remaining': 'int',
-        'switch_ip': 'str'
+        'switch_ip': 'str',
+        'expired_on': 'datetime'
     }
 
     attribute_map = {
-        'expired_on': 'expired_on',
-        'current_port_count': 'current_port_count',
         'enabled': 'enabled',
         'email': 'email',
+        'current_port_count': 'current_port_count',
         'minute_remaining': 'minute_remaining',
-        'switch_ip': 'switch_ip'
+        'switch_ip': 'switch_ip',
+        'expired_on': 'expired_on'
     }
 
-    def __init__(self, expired_on=None, current_port_count=None, enabled=None, email=None, minute_remaining=None, switch_ip=None):
+    def __init__(self, enabled=None, email=None, current_port_count=None, minute_remaining=None, switch_ip=None, expired_on=None):
         """
         Switch - a model defined in Swagger
         """
 
-        self._expired_on = None
-        self._current_port_count = None
         self._enabled = None
         self._email = None
+        self._current_port_count = None
         self._minute_remaining = None
         self._switch_ip = None
+        self._expired_on = None
 
-        if expired_on is not None:
-          self.expired_on = expired_on
-        if current_port_count is not None:
-          self.current_port_count = current_port_count
         if enabled is not None:
           self.enabled = enabled
         if email is not None:
           self.email = email
+        if current_port_count is not None:
+          self.current_port_count = current_port_count
         if minute_remaining is not None:
           self.minute_remaining = minute_remaining
         if switch_ip is not None:
           self.switch_ip = switch_ip
-
-    @property
-    def expired_on(self):
-        """
-        Gets the expired_on of this Switch.
-
-        :return: The expired_on of this Switch.
-        :rtype: datetime
-        """
-        return self._expired_on
-
-    @expired_on.setter
-    def expired_on(self, expired_on):
-        """
-        Sets the expired_on of this Switch.
-
-        :param expired_on: The expired_on of this Switch.
-        :type: datetime
-        """
-
-        self._expired_on = expired_on
-
-    @property
-    def current_port_count(self):
-        """
-        Gets the current_port_count of this Switch.
-
-        :return: The current_port_count of this Switch.
-        :rtype: int
-        """
-        return self._current_port_count
-
-    @current_port_count.setter
-    def current_port_count(self, current_port_count):
-        """
-        Sets the current_port_count of this Switch.
-
-        :param current_port_count: The current_port_count of this Switch.
-        :type: int
-        """
-
-        self._current_port_count = current_port_count
+        if expired_on is not None:
+          self.expired_on = expired_on
 
     @property
     def enabled(self):
@@ -160,6 +118,27 @@ class Switch(object):
         self._email = email
 
     @property
+    def current_port_count(self):
+        """
+        Gets the current_port_count of this Switch.
+
+        :return: The current_port_count of this Switch.
+        :rtype: int
+        """
+        return self._current_port_count
+
+    @current_port_count.setter
+    def current_port_count(self, current_port_count):
+        """
+        Sets the current_port_count of this Switch.
+
+        :param current_port_count: The current_port_count of this Switch.
+        :type: int
+        """
+
+        self._current_port_count = current_port_count
+
+    @property
     def minute_remaining(self):
         """
         Gets the minute_remaining of this Switch.
@@ -202,6 +181,27 @@ class Switch(object):
             raise ValueError("Invalid value for `switch_ip`, length must be less than or equal to `16`")
 
         self._switch_ip = switch_ip
+
+    @property
+    def expired_on(self):
+        """
+        Gets the expired_on of this Switch.
+
+        :return: The expired_on of this Switch.
+        :rtype: datetime
+        """
+        return self._expired_on
+
+    @expired_on.setter
+    def expired_on(self, expired_on):
+        """
+        Sets the expired_on of this Switch.
+
+        :param expired_on: The expired_on of this Switch.
+        :type: datetime
+        """
+
+        self._expired_on = expired_on
 
     def to_dict(self):
         """

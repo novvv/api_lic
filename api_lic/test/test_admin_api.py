@@ -174,6 +174,22 @@ class TestAdminApi(unittest.TestCase):
         print(ret)
         pass
 
+    def test_package_lrn_package_lrn_uuid_user_uuid_delete(self):
+        """
+        Test case for package_lrn_package_lrn_uuid_user_uuid_delete
+
+
+        """
+        auth_user()
+        package_lrn_uuid = rand_package_lrn()[0]
+        user_uuid = TEST_USER_UUID
+        data = dict(package_lrn_uuid = package_lrn_uuid, end_time=str(datetime.now(UTC) + timedelta(days=10)))
+        ret = cli_lic.UserApi().license_lrn_post(body=data)
+        assert (ret.success)
+        ret = self.api.package_lrn_package_lrn_uuid_user_uuid_delete(package_lrn_uuid=package_lrn_uuid,user_uuid=user_uuid)
+        assert (ret.success)
+        pass
+
     def test_package_lrn_post(self):
         """
         Test case for package_lrn_post
@@ -232,6 +248,23 @@ class TestAdminApi(unittest.TestCase):
         ret=self.api.package_switch_package_switch_uuid_patch(package_switch_uuid=self.package_switch[0],body=data)
         assert(ret.success)
         print(ret)
+        pass
+
+    def test_package_switch_package_switch_uuid_user_uuid_delete(self):
+        """
+        Test case for package_switch_package_switch_uuid_user_uuid_delete
+
+
+        """
+        auth_user()
+        package_switch_uuid = rand_package_switch()[0]
+        user_uuid = TEST_USER_UUID
+        data = dict(package_switch_uuid = package_switch_uuid, end_time=str(datetime.now(UTC) + timedelta(days=10)))
+        ret = cli_lic.UserApi().license_switch_post(body=data)
+        assert (ret.success)
+        print(ret)
+        ret = self.api.package_switch_package_switch_uuid_user_uuid_delete(package_switch_uuid=package_switch_uuid,user_uuid=user_uuid)
+        assert (ret.success)
         pass
 
     def test_package_switch_post(self):

@@ -34,23 +34,23 @@ class LicenseLrn(object):
         'start_time': 'datetime',
         'end_time': 'datetime',
         'cost': 'float',
-        'ordered_amount': 'int',
-        'package_lrn_uuid': 'str',
         'user_uuid': 'str',
-        'plan_uuid': 'str'
+        'package_lrn_uuid': 'str',
+        'plan_uuid': 'str',
+        'ordered_amount': 'int'
     }
 
     attribute_map = {
         'start_time': 'start_time',
         'end_time': 'end_time',
         'cost': 'cost',
-        'ordered_amount': 'ordered_amount',
-        'package_lrn_uuid': 'package_lrn_uuid',
         'user_uuid': 'user_uuid',
-        'plan_uuid': 'plan_uuid'
+        'package_lrn_uuid': 'package_lrn_uuid',
+        'plan_uuid': 'plan_uuid',
+        'ordered_amount': 'ordered_amount'
     }
 
-    def __init__(self, start_time=None, end_time=None, cost=None, ordered_amount=None, package_lrn_uuid=None, user_uuid=None, plan_uuid=None):
+    def __init__(self, start_time=None, end_time=None, cost=None, user_uuid=None, package_lrn_uuid=None, plan_uuid=None, ordered_amount=None):
         """
         LicenseLrn - a model defined in Swagger
         """
@@ -58,10 +58,10 @@ class LicenseLrn(object):
         self._start_time = None
         self._end_time = None
         self._cost = None
-        self._ordered_amount = None
-        self._package_lrn_uuid = None
         self._user_uuid = None
+        self._package_lrn_uuid = None
         self._plan_uuid = None
+        self._ordered_amount = None
 
         if start_time is not None:
           self.start_time = start_time
@@ -69,14 +69,14 @@ class LicenseLrn(object):
           self.end_time = end_time
         if cost is not None:
           self.cost = cost
-        if ordered_amount is not None:
-          self.ordered_amount = ordered_amount
-        if package_lrn_uuid is not None:
-          self.package_lrn_uuid = package_lrn_uuid
         if user_uuid is not None:
           self.user_uuid = user_uuid
+        if package_lrn_uuid is not None:
+          self.package_lrn_uuid = package_lrn_uuid
         if plan_uuid is not None:
           self.plan_uuid = plan_uuid
+        if ordered_amount is not None:
+          self.ordered_amount = ordered_amount
 
     @property
     def start_time(self):
@@ -142,25 +142,27 @@ class LicenseLrn(object):
         self._cost = cost
 
     @property
-    def ordered_amount(self):
+    def user_uuid(self):
         """
-        Gets the ordered_amount of this LicenseLrn.
+        Gets the user_uuid of this LicenseLrn.
 
-        :return: The ordered_amount of this LicenseLrn.
-        :rtype: int
+        :return: The user_uuid of this LicenseLrn.
+        :rtype: str
         """
-        return self._ordered_amount
+        return self._user_uuid
 
-    @ordered_amount.setter
-    def ordered_amount(self, ordered_amount):
+    @user_uuid.setter
+    def user_uuid(self, user_uuid):
         """
-        Sets the ordered_amount of this LicenseLrn.
+        Sets the user_uuid of this LicenseLrn.
 
-        :param ordered_amount: The ordered_amount of this LicenseLrn.
-        :type: int
+        :param user_uuid: The user_uuid of this LicenseLrn.
+        :type: str
         """
+        if user_uuid is not None and len(user_uuid) > 36:
+            raise ValueError("Invalid value for `user_uuid`, length must be less than or equal to `36`")
 
-        self._ordered_amount = ordered_amount
+        self._user_uuid = user_uuid
 
     @property
     def package_lrn_uuid(self):
@@ -186,29 +188,6 @@ class LicenseLrn(object):
         self._package_lrn_uuid = package_lrn_uuid
 
     @property
-    def user_uuid(self):
-        """
-        Gets the user_uuid of this LicenseLrn.
-
-        :return: The user_uuid of this LicenseLrn.
-        :rtype: str
-        """
-        return self._user_uuid
-
-    @user_uuid.setter
-    def user_uuid(self, user_uuid):
-        """
-        Sets the user_uuid of this LicenseLrn.
-
-        :param user_uuid: The user_uuid of this LicenseLrn.
-        :type: str
-        """
-        if user_uuid is not None and len(user_uuid) > 36:
-            raise ValueError("Invalid value for `user_uuid`, length must be less than or equal to `36`")
-
-        self._user_uuid = user_uuid
-
-    @property
     def plan_uuid(self):
         """
         Gets the plan_uuid of this LicenseLrn.
@@ -230,6 +209,27 @@ class LicenseLrn(object):
             raise ValueError("Invalid value for `plan_uuid`, length must be less than or equal to `36`")
 
         self._plan_uuid = plan_uuid
+
+    @property
+    def ordered_amount(self):
+        """
+        Gets the ordered_amount of this LicenseLrn.
+
+        :return: The ordered_amount of this LicenseLrn.
+        :rtype: int
+        """
+        return self._ordered_amount
+
+    @ordered_amount.setter
+    def ordered_amount(self, ordered_amount):
+        """
+        Sets the ordered_amount of this LicenseLrn.
+
+        :param ordered_amount: The ordered_amount of this LicenseLrn.
+        :type: int
+        """
+
+        self._ordered_amount = ordered_amount
 
     def to_dict(self):
         """

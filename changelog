@@ -1,4 +1,5 @@
 ver 1.0.3
+DELETE/package_switch/{package_switch_uuid}/{user_uuid} <-- delete user from switch package LLP-32
 POST/switch
 DELETE/switch/{switch_uuid}
 PATCH/switch/{switch_uuid}

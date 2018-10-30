@@ -31,62 +31,41 @@ class UserInfoGet(object):
                             and the value is json key in definition.
     """
     swagger_types = {
-        'email': 'str',
         'last_login': 'datetime',
-        'user_type': 'str',
+        'passwd': 'str',
+        'email': 'str',
         'user_uuid': 'str',
-        'passwd': 'str'
+        'user_type': 'str'
     }
 
     attribute_map = {
-        'email': 'email',
         'last_login': 'last_login',
-        'user_type': 'user_type',
+        'passwd': 'passwd',
+        'email': 'email',
         'user_uuid': 'user_uuid',
-        'passwd': 'passwd'
+        'user_type': 'user_type'
     }
 
-    def __init__(self, email=None, last_login=None, user_type=None, user_uuid=None, passwd=None):
+    def __init__(self, last_login=None, passwd=None, email=None, user_uuid=None, user_type=None):
         """
         UserInfoGet - a model defined in Swagger
         """
 
-        self._email = None
         self._last_login = None
-        self._user_type = None
-        self._user_uuid = None
         self._passwd = None
+        self._email = None
+        self._user_uuid = None
+        self._user_type = None
 
-        if email is not None:
-          self.email = email
         if last_login is not None:
           self.last_login = last_login
-        if user_type is not None:
-          self.user_type = user_type
+        self.passwd = passwd
+        if email is not None:
+          self.email = email
         if user_uuid is not None:
           self.user_uuid = user_uuid
-        self.passwd = passwd
-
-    @property
-    def email(self):
-        """
-        Gets the email of this UserInfoGet.
-
-        :return: The email of this UserInfoGet.
-        :rtype: str
-        """
-        return self._email
-
-    @email.setter
-    def email(self, email):
-        """
-        Sets the email of this UserInfoGet.
-
-        :param email: The email of this UserInfoGet.
-        :type: str
-        """
-
-        self._email = email
+        if user_type is not None:
+          self.user_type = user_type
 
     @property
     def last_login(self):
@@ -110,25 +89,48 @@ class UserInfoGet(object):
         self._last_login = last_login
 
     @property
-    def user_type(self):
+    def passwd(self):
         """
-        Gets the user_type of this UserInfoGet.
+        Gets the passwd of this UserInfoGet.
 
-        :return: The user_type of this UserInfoGet.
+        :return: The passwd of this UserInfoGet.
         :rtype: str
         """
-        return self._user_type
+        return self._passwd
 
-    @user_type.setter
-    def user_type(self, user_type):
+    @passwd.setter
+    def passwd(self, passwd):
         """
-        Sets the user_type of this UserInfoGet.
+        Sets the passwd of this UserInfoGet.
 
-        :param user_type: The user_type of this UserInfoGet.
+        :param passwd: The passwd of this UserInfoGet.
+        :type: str
+        """
+        if passwd is None:
+            raise ValueError("Invalid value for `passwd`, must not be `None`")
+
+        self._passwd = passwd
+
+    @property
+    def email(self):
+        """
+        Gets the email of this UserInfoGet.
+
+        :return: The email of this UserInfoGet.
+        :rtype: str
+        """
+        return self._email
+
+    @email.setter
+    def email(self, email):
+        """
+        Sets the email of this UserInfoGet.
+
+        :param email: The email of this UserInfoGet.
         :type: str
         """
 
-        self._user_type = user_type
+        self._email = email
 
     @property
     def user_uuid(self):
@@ -154,27 +156,25 @@ class UserInfoGet(object):
         self._user_uuid = user_uuid
 
     @property
-    def passwd(self):
+    def user_type(self):
         """
-        Gets the passwd of this UserInfoGet.
+        Gets the user_type of this UserInfoGet.
 
-        :return: The passwd of this UserInfoGet.
+        :return: The user_type of this UserInfoGet.
         :rtype: str
         """
-        return self._passwd
+        return self._user_type
 
-    @passwd.setter
-    def passwd(self, passwd):
+    @user_type.setter
+    def user_type(self, user_type):
         """
-        Sets the passwd of this UserInfoGet.
+        Sets the user_type of this UserInfoGet.
 
-        :param passwd: The passwd of this UserInfoGet.
+        :param user_type: The user_type of this UserInfoGet.
         :type: str
         """
-        if passwd is None:
-            raise ValueError("Invalid value for `passwd`, must not be `None`")
 
-        self._passwd = passwd
+        self._user_type = user_type
 
     def to_dict(self):
         """

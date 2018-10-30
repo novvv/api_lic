@@ -329,6 +329,10 @@ class LicenseLrnCreate(Create):
     def before_create(self, obj, **kwargs):
         user = self.get_user(self.req)
         obj.user_uuid=user.user_uuid
+        cls=self.model_class
+        q=cls.filter(and_(cls.package_lrn_uuid==obj.package_lrn_uuid,cls.user_uuid==obj.user_uuid)).first()
+        if q:
+            raise ValidationError({'package_lrn_uuid':['duplicate package uuid {}'.format(obj.package_lrn_uuid)]})
         # obj.created_by=user.name
         if not obj.start_time:
             obj.start_time=datetime.now(UTC)
@@ -379,6 +383,10 @@ class LicenseSwitchCreate(Create):
         user = self.get_user(self.req)
         obj.user_uuid = user.user_uuid
         # obj.created_by=user.name
+        cls = self.model_class
+        q = cls.filter(and_(cls.package_switch_uuid == obj.package_switch_uuid, cls.user_uuid == obj.user_uuid)).first()
+        if q:
+            raise ValidationError({'package_switch_uuid': ['duplicate package uuid {}'.format(obj.package_switch_uuid)]})
         if not obj.start_time:
             obj.start_time = datetime.now(UTC)
         return obj

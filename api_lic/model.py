@@ -9,8 +9,7 @@ from urllib.parse import urlencode, unquote, quote_plus
 import requests
 from marshmallow import ValidationError
 from pytz import UTC
-from sqlalchemy import (Column, desc, and_, or_, text as text_, PrimaryKeyConstraint, inspect, Sequence,
-                        UniqueConstraint)
+
 from sqlalchemy import (
     Integer, SmallInteger, Float, Text, String, DateTime, Date, Time, Boolean, ForeignKey, BigInteger,
     Table, JSON
@@ -21,6 +20,8 @@ from sqlalchemy.dialects import postgresql
 from sqlalchemy.ext.hybrid import hybrid_property
 from sqlalchemy.orm import backref, foreign, relationship, synonym, column_property
 from sqlalchemy.sql import func, select, case, cast, alias, literal
+from sqlalchemy import (Column, desc, and_, or_, text as text_, PrimaryKeyConstraint, inspect, Sequence,
+                        UniqueConstraint)
 from sqlalchemy.orm.exc import NoResultFound
 
 from .fields import ChoiceType, PrefixRange
@@ -393,6 +394,8 @@ class PackageLrn(BaseModel):
 
 class LicenseLrn(BaseModel):
     __tablename__ = 'license_lrn'
+    __table_args__ = (UniqueConstraint('package_lrn_uuid', 'user_uuid', name='uq_license_lrn_package_lrn_uuid_user_uuid'),
+                      )
     license_lrn_uuid = Column \
         (String(36), primary_key=True, default=generate_uuid_str(),
          server_default=func.uuid_generate_v4())
@@ -432,6 +435,7 @@ class Switch(BaseModel):
 class PackageSwitch(BaseModel):
     __tablename__ = 'package_switch'
     TYPE = {1: 'switch pay per port', 2: 'switch pay per minute'}
+
     package_switch_uuid = Column \
         (String(36), primary_key=True, default=generate_uuid_str(),
          server_default=func.uuid_generate_v4())
@@ -450,6 +454,8 @@ class PackageSwitch(BaseModel):
 
 class LicenseSwitch(BaseModel):
     __tablename__ = 'license_switch'
+    __table_args__ = (UniqueConstraint('package_switch_uuid','user_uuid',name='uq_license_switch_package_switch_uuid_user_uuid'),
+                      )
     license_switch_uuid = Column \
         (String(36), primary_key=True, default=generate_uuid_str(),
          server_default=func.uuid_generate_v4())

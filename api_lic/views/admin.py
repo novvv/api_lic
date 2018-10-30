@@ -7,7 +7,11 @@
 
 # from api_dnl.base_model import DnlApiBaseModel
 # from api_dnl.model import rev
-
+from sqlalchemy.sql import func, select, case, cast, alias, literal
+from sqlalchemy.orm.exc import NoResultFound
+from sqlalchemy import (Column, desc, and_, or_, text as text_, PrimaryKeyConstraint, inspect, Sequence,
+                        UniqueConstraint)
+from falcon_rest.responses import responses
 from falcon_rest.resources.resources import DEFAULT_SECURITY
 # from .tasks import *
 from ..scheme import *
@@ -234,3 +238,50 @@ class PackageSwitchList(List):
             #ret = ret.filter(cls.pool_id != 0)#TODO:filter for user
         return filt, ret
 # ---PackageSwitch---
+
+
+class LicenseLrnAdminResource(Resource):
+    model_class = model.LicenseLrn
+    scheme_class = LicenseLrnScheme
+    scheme_class_get = LicenseLrnSchemeGet
+    scheme_class_modify = LicenseLrnSchemeModify
+    entity = 'LicenseLrn'
+    id_field = 'user_uuid'
+    security = (DEFAULT_SECURITY)
+    path_parameters = ({'name':'package_lrn_uuid','description':'package uuid'},)
+    restrict = ()
+    has_modify_operation = False
+    has_info_operation = False
+
+    def delete_object(self, req, resp, model_class, **kwargs):
+        cls=self.model_class
+        q = cls.filter(and_(cls.package_lrn_uuid==kwargs['package_lrn_uuid'],cls.user_uuid==kwargs['user_uuid'])).first()
+        if q:
+            kwargs = {'license_lrn_uuid': q.license_lrn_uuid}
+            return super().delete_object(req,resp, model_class, **kwargs)
+        else:
+            self.set_response(resp, responses.ObjectNotFoundErrorResponse())
+            return None
+
+class LicenseSwitchAdminResource(Resource):
+    model_class = model.LicenseSwitch
+    scheme_class = LicenseSwitchScheme
+    scheme_class_get = LicenseSwitchSchemeGet
+    scheme_class_modify = LicenseSwitchSchemeModify
+    entity = 'LicenseSwitch'
+    id_field = 'user_uuid'
+    security = (DEFAULT_SECURITY)
+    path_parameters = ({'name':'package_switch_uuid','description':'package uuid'},)
+    restrict = ()
+    has_modify_operation = False
+    has_info_operation = False
+
+    def delete_object(self, req, resp, model_class, **kwargs):
+        cls=self.model_class
+        q = cls.filter(and_(cls.package_switch_uuid==kwargs['package_switch_uuid'],cls.user_uuid==kwargs['user_uuid'])).first()
+        if q:
+            kwargs = {'license_switch_uuid': q.license_switch_uuid}
+            return super().delete_object(req,resp, model_class, **kwargs)
+        else:
+            self.set_response(resp, responses.ObjectNotFoundErrorResponse())
+            return None

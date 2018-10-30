@@ -31,48 +31,25 @@ class UserCredentials(object):
                             and the value is json key in definition.
     """
     swagger_types = {
-        'email': 'str',
-        'password': 'str'
+        'password': 'str',
+        'email': 'str'
     }
 
     attribute_map = {
-        'email': 'email',
-        'password': 'password'
+        'password': 'password',
+        'email': 'email'
     }
 
-    def __init__(self, email=None, password=None):
+    def __init__(self, password=None, email=None):
         """
         UserCredentials - a model defined in Swagger
         """
 
-        self._email = None
         self._password = None
+        self._email = None
 
-        self.email = email
         self.password = password
-
-    @property
-    def email(self):
-        """
-        Gets the email of this UserCredentials.
-
-        :return: The email of this UserCredentials.
-        :rtype: str
-        """
-        return self._email
-
-    @email.setter
-    def email(self, email):
-        """
-        Sets the email of this UserCredentials.
-
-        :param email: The email of this UserCredentials.
-        :type: str
-        """
-        if email is None:
-            raise ValueError("Invalid value for `email`, must not be `None`")
-
-        self._email = email
+        self.email = email
 
     @property
     def password(self):
@@ -96,6 +73,29 @@ class UserCredentials(object):
             raise ValueError("Invalid value for `password`, must not be `None`")
 
         self._password = password
+
+    @property
+    def email(self):
+        """
+        Gets the email of this UserCredentials.
+
+        :return: The email of this UserCredentials.
+        :rtype: str
+        """
+        return self._email
+
+    @email.setter
+    def email(self, email):
+        """
+        Sets the email of this UserCredentials.
+
+        :param email: The email of this UserCredentials.
+        :type: str
+        """
+        if email is None:
+            raise ValueError("Invalid value for `email`, must not be `None`")
+
+        self._email = email
 
     def to_dict(self):
         """
