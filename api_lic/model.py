@@ -513,6 +513,15 @@ class LicenseSwitch(BaseModel):
         select([PackageSwitch.amount]).where(package_switch_uuid == PackageSwitch.package_switch_uuid).correlate_except(
             PackageSwitch))
 
+    def renew(self):
+        cost = self.package.amount
+        pay = self.session().query(func.sum(Payment.amount).label('pay')).filter(
+            Payment.license_switch_uuid == self.license_switch_uuid).first().pay
+        if pay is None:
+            pay = Decimal(0.0)
+        months = int(pay / cost)
+        self.end_time = add_months(self.start_time, months)
+
 
 class LicenseUpdateHistory(BaseModel):
     __tablename__ = 'license_update_history'

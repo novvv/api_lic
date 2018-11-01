@@ -310,7 +310,7 @@ class PaymentScheme(BaseModelScheme):
 class PaymentSchemeGet(PaymentScheme):
     class Meta:
         model = model.Payment
-        fields = ('payment_uuid', 'type', 'period', 'user_uuid', 'license_lrn_uuid', 'license_switch_uuid')
+        fields = ('payment_uuid', 'type', 'paid_time', 'user_uuid', 'license_lrn_uuid', 'license_switch_uuid','amount')
         search_fields = ('payment_uuid', 'type', 'period', 'user_uuid', 'license_lrn_uuid', 'license_switch_uuid')
         query_fields = ('amount_gt', 'amount_lt', 'paid_time_gt', 'paid_time_lt',)
 
@@ -446,7 +446,7 @@ class LicenseLrnScheme(BaseModelScheme):
     user_email = Str(validate=[validate.Length(max=128)])
     cps = Int()
     type = Int()
-    ip = Str(validate=[validate.Length(max=16), validate.Regexp(IP_REGEXP)])
+    ip = Str(required=True, allow_none=False, validate=[validate.Length(max=16), validate.Regexp(IP_REGEXP)])
     lrn_port = Int()
     dip_count = Int()
     amount = Int()
@@ -477,18 +477,23 @@ class LicenseLrnSchemeGet(LicenseLrnScheme):
 
 
 class LicenseLrnSchemeModify(LicenseLrnScheme):
+    ip = Str(validate=[validate.Length(max=16), validate.Regexp(IP_REGEXP)])
     enabled = Bool(attribute='is_enabled')
     class Meta:
         model = model.LicenseLrn
         fields = ('package_lrn_uuid',  'ip' , 'enabled')
 
+class LicenseLrnSchemeRenew(LicenseLrnScheme):
+    class Meta:
+        model = model.LicenseLrn
+        fields = ('quantity',)
 
 # ---LicenseLrn---
 # +++LicenseSwitch+++
 class LicenseSwitchScheme(BaseModelScheme):
     user_email = Str(validate=[validate.Length(max=128)])
     type = Int()
-    ip = Str(validate=[validate.Length(max=16), validate.Regexp(IP_REGEXP_DOMAIN)])
+    ip = Str(required=True,allow_none=False,validate=[validate.Length(max=16), validate.Regexp(IP_REGEXP)])
     switch_port = Int()
     minute_count = Int()
     amount = Int()
@@ -496,12 +501,12 @@ class LicenseSwitchScheme(BaseModelScheme):
     package_switch_uuid = Str(
         validate=[validate.Length(max=36), lambda value: _valid('PackageSwitch', 'package_switch_uuid', value)])
     user_uuid = Str(validate=[validate.Length(max=36), lambda value: _valid('User', 'user_uuid', value)])
-    plan_uuid = Str(validate=[validate.Length(max=36)])
     start_time = DateTime()
     end_time = DateTime()
     ordered_amount = Int()
     cost = Float()
     package = Nested('PackageSwitchScheme', many=False)
+    enabled = Bool()
 
     class Meta:
         model = model.LicenseSwitch
@@ -512,15 +517,20 @@ class LicenseSwitchSchemeGet(LicenseSwitchScheme):
     class Meta:
         model = model.LicenseSwitch
         fields = ('user_email', 'type', 'ip', 'switch_port', 'minute_count', 'amount', 'license_switch_uuid',
-                  'package_switch_uuid', 'user_uuid', 'plan_uuid', 'ordered_amount', 'package',)
+                  'package_switch_uuid', 'user_uuid', 'ordered_amount', 'package','enabled','start_time','end_time')
         search_fields = (
         'user_email', 'type', 'ip', 'switch_port', 'minute_count', 'amount', 'license_switch_uuid',
-        'package_switch_uuid', 'user_uuid', 'plan_uuid', 'ordered_amount', 'package',)
+        'package_switch_uuid', 'user_uuid', 'ordered_amount', 'package','enabled')
         query_fields = ('start_time_gt', 'start_time_lt', 'end_time_gt', 'end_time_lt', 'cost_gt', 'cost_lt',)
 
 
 class LicenseSwitchSchemeModify(LicenseSwitchScheme):
-    pass
+    ip = Str(validate=[validate.Length(max=16), validate.Regexp(IP_REGEXP)])
+    enabled = Bool(attribute='is_enabled')
+    class Meta:
+        model = model.LicenseSwitch
+        fields = ('package_switch_uuid',  'ip' , 'enabled')
+
 class LicenseSwitchSchemeRenew(LicenseSwitchScheme):
     class Meta:
         model = model.LicenseSwitch

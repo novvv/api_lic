@@ -125,8 +125,13 @@ class TestUserApi(unittest.TestCase):
 
         """
         auth_user()
-        data=dict(package_lrn_uuid=rand_package_lrn()[0],ip=ip())
-        ret = self.api.license_lrn_post(body=data)
+        package_lrn_uuid = rand_package_lrn()[0]
+        data=dict(package_lrn_uuid = package_lrn_uuid,ip=ip())
+        old = self.api.license_lrn_list_get(package_lrn_uuid=package_lrn_uuid)
+        if old.payload.items:#clean duplicates
+            self.api.license_lrn_license_lrn_uuid_delete(
+                license_lrn_uuid=old.payload.items[0].license_lrn_uuid)
+        ret = self.api.license_lrn_post(body=data) # main test
         assert (ret.success)
         self.license_lrn.append(ret.object_uuid)
         print(ret)
@@ -191,7 +196,11 @@ class TestUserApi(unittest.TestCase):
 
         """
         auth_user()
-        data = dict(package_switch_uuid=rand_package_switch()[0], ip=ip())
+        package_switch_uuid = rand_package_switch()[0]
+        data = dict(package_switch_uuid =package_switch_uuid, ip=ip())
+        old = self.api.license_switch_list_get(package_switch_uuid=package_switch_uuid)
+        if old.payload.items:
+            self.api.license_switch_license_switch_uuid_delete(license_switch_uuid=old.payload.items[0].license_switch_uuid)
         ret = self.api.license_switch_post(body=data)
         assert (ret.success)
         self.license_switch.append(ret.object_uuid)
@@ -260,15 +269,13 @@ class TestUserApi(unittest.TestCase):
 
         """
         auth_user()
-        if not self.license_lrn:
-            self.test_license_lrn_post()
 
-        data = dict(license_lrn_uuid=self.license_lrn[0],amount=random.randint(1,1000),type=random.choice(['paypal','strip']))
+
+        data = dict(license_lrn_uuid=rand_license_lrn()[0],amount=random.randint(1,1000),type=random.choice(['paypal','strip']))
         ret=self.api.payment_post(body=data)
         assert(ret.success)
-        if not self.license_switch:
-            self.test_license_switch_post()
-        data = dict(license_switch_uuid=self.license_switch[0], amount=random.randint(1, 1000),
+
+        data = dict(license_switch_uuid=rand_license_switch()[0], amount=random.randint(1, 1000),
                         type=random.choice(['paypal', 'strip']))
         ret = self.api.payment_post(body=data)
         assert (ret.success)

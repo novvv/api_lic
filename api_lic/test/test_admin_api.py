@@ -183,11 +183,17 @@ class TestAdminApi(unittest.TestCase):
         auth_user()
         package_lrn_uuid = rand_package_lrn()[0]
         user_uuid = TEST_USER_UUID
-        data = dict(package_lrn_uuid = package_lrn_uuid, end_time=str(datetime.now(UTC) + timedelta(days=10)))
-        ret = cli_lic.UserApi().license_lrn_post(body=data)
-        assert (ret.success)
+        oldret = cli_lic.UserApi().license_lrn_list_get(package_lrn_uuid=package_lrn_uuid)
+        if not oldret.payload.items:
+            data = dict(package_lrn_uuid = package_lrn_uuid, ip=ip())
+            ret = cli_lic.UserApi().license_lrn_post(body=data)
+            assert (ret.success)
         ret = self.api.package_lrn_package_lrn_uuid_user_uuid_delete(package_lrn_uuid=package_lrn_uuid,user_uuid=user_uuid)
         assert (ret.success)
+        if oldret.payload.items:
+            data = dict(package_lrn_uuid = package_lrn_uuid, ip=oldret.payload.items[0].ip)
+            ret = cli_lic.UserApi().license_lrn_post(body=data)
+            assert (ret.success)
         pass
 
     def test_package_lrn_post(self):
@@ -259,9 +265,11 @@ class TestAdminApi(unittest.TestCase):
         auth_user()
         package_switch_uuid = rand_package_switch()[0]
         user_uuid = TEST_USER_UUID
-        data = dict(package_switch_uuid = package_switch_uuid, end_time=str(datetime.now(UTC) + timedelta(days=10)))
-        ret = cli_lic.UserApi().license_switch_post(body=data)
-        assert (ret.success)
+        ret= cli_lic.UserApi().license_switch_list_get(package_switch_uuid=package_switch_uuid)
+        if not ret.payload.items:
+            data = dict(package_switch_uuid = package_switch_uuid, ip=ip())
+            ret = cli_lic.UserApi().license_switch_post(body=data)
+            assert (ret.success)
         print(ret)
         ret = self.api.package_switch_package_switch_uuid_user_uuid_delete(package_switch_uuid=package_switch_uuid,user_uuid=user_uuid)
         assert (ret.success)

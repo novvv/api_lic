@@ -5,7 +5,7 @@ import json
 import pprint
 ##cli_lic.configuration.verify_ssl=False
 ##cli_lic.configuration.host='https://158.69.221.111/api_lic/v1'
-#cli_lic.configuration.host='https://vps62776.vps.ovh.ca/api_lic/v1'
+cli_lic.configuration.host='https://vps62776.vps.ovh.ca/api_lic/v1'
 #cli_lic.configuration.host='http://localhost:8002/v1'
 admin_token=None
 tokens={}
@@ -146,3 +146,15 @@ def rand_switch(**kwargs):
     assert (ret.success and len(ret.payload.items))
     it = random.choice(ret.payload.items)
     return (it.switch_uuid,it,ret.payload.items)
+
+def rand_license_lrn(**kwargs):
+    ret = cli_lic.UserApi().license_lrn_list_get(**kwargs)
+    assert (ret.success and len(ret.payload.items))
+    it = random.choice(ret.payload.items)
+    return (it.license_lrn_uuid,it,ret.payload.items)
+
+def rand_license_switch(**kwargs):
+    ret = cli_lic.UserApi().license_switch_list_get(**kwargs)
+    assert (ret.success and len(ret.payload.items))
+    it = random.choice(ret.payload.items)
+    return (it.license_switch_uuid,it,ret.payload.items)
