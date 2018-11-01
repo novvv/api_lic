@@ -357,6 +357,22 @@ class LicenseLrnResource(Resource):
     path_parameters = ()
     restrict = ()
 
+class LicenseLrnRenewResource(Resource):
+    model_class = model.LicenseLrn
+    scheme_class = LicenseLrnScheme
+    scheme_class_get = LicenseLrnSchemeGet
+    scheme_class_modify = LicenseSwitchSchemeRenew
+    entity = 'LicenseLrn'
+    id_field = 'license_lrn_uuid'
+    security = (DEFAULT_SECURITY)
+    path_parameters = ()
+    restrict = ()
+    has_info_operation = False
+    has_delete_operation = False
+
+    def before_update(self, obj, req):
+        obj.renew()
+        return obj
 
 class LicenseLrnList(List):
     scheme_class = LicenseLrnSchemeGet
