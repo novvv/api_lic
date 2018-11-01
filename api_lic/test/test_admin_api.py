@@ -285,65 +285,6 @@ class TestAdminApi(unittest.TestCase):
         self.package_switch.append(ret.object_uuid)
         pass
 
-    def test_plan_plan_uuid_delete(self):
-        """
-        Test case for plan_plan_uuid_delete
-
-        
-        """
-        auth()
-        data = dict(type='switch pay per port', plan=random.random() * 3)
-        ret = self.api.plan_post(body=data)
-        ret= self.api.plan_plan_uuid_delete(plan_uuid=ret.object_uuid)
-        assert (ret.success)
-
-        pass
-
-    def test_plan_plan_uuid_get(self):
-        """
-        Test case for plan_plan_uuid_get
-
-        
-        """
-        auth()
-        data = dict(type='switch pay per port', plan=random.random() * 3)
-        ret = self.api.plan_post(body=data)
-        plan_uuid=ret.object_uuid
-        ret = self.api.plan_plan_uuid_get(plan_uuid=plan_uuid)
-        assert (ret.success)
-        ret = self.api.plan_plan_uuid_delete(plan_uuid=plan_uuid)
-
-        pass
-
-    def test_plan_plan_uuid_patch(self):
-        """
-        Test case for plan_plan_uuid_patch
-
-        
-        """
-        auth()
-        data = dict(type='switch pay per port', plan=random.random() * 3)
-        ret = self.api.plan_post(body=data)
-        plan_uuid = ret.object_uuid
-        ret = self.api.plan_plan_uuid_patch(plan_uuid=plan_uuid,body=data)
-        assert (ret.success)
-        ret = self.api.plan_plan_uuid_delete(plan_uuid=plan_uuid)
-
-        pass
-
-    def test_plan_post(self):
-        """
-        Test case for plan_post
-
-
-        """
-        auth()
-        for t in ('switch pay per port', 'switch pay per minute', 'LRN pay per CPS', 'LRN pay per DIP'):
-            data = dict(type=t, plan=random.random() * 3)
-            ret = self.api.plan_post(body=data)
-            assert (ret.success)
-        pass
-
     def test_switch_list_get(self):
         """
         Test case for switch_get

@@ -90,6 +90,7 @@ PRODUCTION_ROUTES = OrderedDict([
 
             {'path': '/license_lrn', 'method': 'post', 'resource': views.LicenseLrnCreate()},
             {'path': '/license_lrn/{license_lrn_uuid}', 'method': 'path', 'resource': views.LicenseLrnResource()},
+            {'path': '/license_lrn/{license_lrn_uuid}/renew', 'method': 'path', 'resource': views.LicenseLrnRenewResource()},
             {'path': '/license_lrn/list', 'method': 'get', 'resource': views.LicenseLrnList()},
 
             {'path': '/license_switch', 'method': 'post', 'resource': views.LicenseSwitchCreate()},

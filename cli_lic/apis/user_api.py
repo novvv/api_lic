@@ -553,6 +553,114 @@ class UserApi(object):
                                         _request_timeout=params.get('_request_timeout'),
                                         collection_formats=collection_formats)
 
+    def license_lrn_license_lrn_uuid_renew_patch(self, license_lrn_uuid, **kwargs):
+        """
+        Modifies licenselrn
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please define a `callback` function
+        to be invoked when receiving the response.
+        >>> def callback_function(response):
+        >>>     pprint(response)
+        >>>
+        >>> thread = api.license_lrn_license_lrn_uuid_renew_patch(license_lrn_uuid, callback=callback_function)
+
+        :param callback function: The callback function
+            for asynchronous request. (optional)
+        :param str license_lrn_uuid: LicenseLrn id to get info about (required)
+        :param LicenseSwitchRenew body: LicenseLrn to modify
+        :return: InlineResponse20018
+                 If the method is called asynchronously,
+                 returns the request thread.
+        """
+        kwargs['_return_http_data_only'] = True
+        if kwargs.get('callback'):
+            return self.license_lrn_license_lrn_uuid_renew_patch_with_http_info(license_lrn_uuid, **kwargs)
+        else:
+            (data) = self.license_lrn_license_lrn_uuid_renew_patch_with_http_info(license_lrn_uuid, **kwargs)
+            return data
+
+    def license_lrn_license_lrn_uuid_renew_patch_with_http_info(self, license_lrn_uuid, **kwargs):
+        """
+        Modifies licenselrn
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please define a `callback` function
+        to be invoked when receiving the response.
+        >>> def callback_function(response):
+        >>>     pprint(response)
+        >>>
+        >>> thread = api.license_lrn_license_lrn_uuid_renew_patch_with_http_info(license_lrn_uuid, callback=callback_function)
+
+        :param callback function: The callback function
+            for asynchronous request. (optional)
+        :param str license_lrn_uuid: LicenseLrn id to get info about (required)
+        :param LicenseSwitchRenew body: LicenseLrn to modify
+        :return: InlineResponse20018
+                 If the method is called asynchronously,
+                 returns the request thread.
+        """
+
+        all_params = ['license_lrn_uuid', 'body']
+        all_params.append('callback')
+        all_params.append('_return_http_data_only')
+        all_params.append('_preload_content')
+        all_params.append('_request_timeout')
+
+        params = locals()
+        for key, val in iteritems(params['kwargs']):
+            if key not in all_params:
+                raise TypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method license_lrn_license_lrn_uuid_renew_patch" % key
+                )
+            params[key] = val
+        del params['kwargs']
+        # verify the required parameter 'license_lrn_uuid' is set
+        if ('license_lrn_uuid' not in params) or (params['license_lrn_uuid'] is None):
+            raise ValueError("Missing the required parameter `license_lrn_uuid` when calling `license_lrn_license_lrn_uuid_renew_patch`")
+
+
+        collection_formats = {}
+
+        path_params = {}
+        if 'license_lrn_uuid' in params:
+            path_params['license_lrn_uuid'] = params['license_lrn_uuid']
+
+        query_params = []
+
+        header_params = {}
+
+        form_params = []
+        local_var_files = {}
+
+        body_params = None
+        if 'body' in params:
+            body_params = params['body']
+        # HTTP header `Accept`
+        header_params['Accept'] = self.api_client.\
+            select_header_accept(['application/json'])
+
+        # HTTP header `Content-Type`
+        header_params['Content-Type'] = self.api_client.\
+            select_header_content_type(['application/json'])
+
+        # Authentication setting
+        auth_settings = ['auth_token']
+
+        return self.api_client.call_api('/license_lrn/{license_lrn_uuid}/renew', 'PATCH',
+                                        path_params,
+                                        query_params,
+                                        header_params,
+                                        body=body_params,
+                                        post_params=form_params,
+                                        files=local_var_files,
+                                        response_type='InlineResponse20018',
+                                        auth_settings=auth_settings,
+                                        callback=params.get('callback'),
+                                        _return_http_data_only=params.get('_return_http_data_only'),
+                                        _preload_content=params.get('_preload_content', True),
+                                        _request_timeout=params.get('_request_timeout'),
+                                        collection_formats=collection_formats)
+
     def license_lrn_list_get(self, **kwargs):
         """
         Gets licenselrns

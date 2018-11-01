@@ -415,7 +415,15 @@ class LicenseLrn(BaseModel):
     lrn_port = column_property(select([PackageLrn.lrn_port]).where(package_lrn_uuid==PackageLrn.package_lrn_uuid).correlate_except(PackageLrn))
     dip_count = column_property(select([PackageLrn.dip_count]).where(package_lrn_uuid==PackageLrn.package_lrn_uuid).correlate_except(PackageLrn))
     amount = column_property(select([PackageLrn.amount]).where(package_lrn_uuid==PackageLrn.package_lrn_uuid).correlate_except(PackageLrn))
-    
+
+    def renew(self):
+        cost = self.package.amount
+        pay = self.session().query(func.sum(Payment.amount).label('pay')).filter(Payment.license_lrn_uuid==self.license_lrn_uuid).first().pay
+        if pay is None:
+            pay = Decimal(0.0)
+        months = int(pay/cost)
+        self.end_time=add_months(self.start_time,months)
+
 
 class Switch(BaseModel):
     __tablename__ = 'switch'

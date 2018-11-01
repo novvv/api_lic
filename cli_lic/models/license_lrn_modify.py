@@ -31,50 +31,27 @@ class LicenseLrnModify(object):
                             and the value is json key in definition.
     """
     swagger_types = {
-        'package_lrn_uuid': 'str',
-        'ip': 'str'
+        'ip': 'str',
+        'package_lrn_uuid': 'str'
     }
 
     attribute_map = {
-        'package_lrn_uuid': 'package_lrn_uuid',
-        'ip': 'ip'
+        'ip': 'ip',
+        'package_lrn_uuid': 'package_lrn_uuid'
     }
 
-    def __init__(self, package_lrn_uuid=None, ip=None):
+    def __init__(self, ip=None, package_lrn_uuid=None):
         """
         LicenseLrnModify - a model defined in Swagger
         """
 
-        self._package_lrn_uuid = None
         self._ip = None
+        self._package_lrn_uuid = None
 
-        if package_lrn_uuid is not None:
-          self.package_lrn_uuid = package_lrn_uuid
         if ip is not None:
           self.ip = ip
-
-    @property
-    def package_lrn_uuid(self):
-        """
-        Gets the package_lrn_uuid of this LicenseLrnModify.
-
-        :return: The package_lrn_uuid of this LicenseLrnModify.
-        :rtype: str
-        """
-        return self._package_lrn_uuid
-
-    @package_lrn_uuid.setter
-    def package_lrn_uuid(self, package_lrn_uuid):
-        """
-        Sets the package_lrn_uuid of this LicenseLrnModify.
-
-        :param package_lrn_uuid: The package_lrn_uuid of this LicenseLrnModify.
-        :type: str
-        """
-        if package_lrn_uuid is not None and len(package_lrn_uuid) > 36:
-            raise ValueError("Invalid value for `package_lrn_uuid`, length must be less than or equal to `36`")
-
-        self._package_lrn_uuid = package_lrn_uuid
+        if package_lrn_uuid is not None:
+          self.package_lrn_uuid = package_lrn_uuid
 
     @property
     def ip(self):
@@ -98,6 +75,29 @@ class LicenseLrnModify(object):
             raise ValueError("Invalid value for `ip`, length must be less than or equal to `16`")
 
         self._ip = ip
+
+    @property
+    def package_lrn_uuid(self):
+        """
+        Gets the package_lrn_uuid of this LicenseLrnModify.
+
+        :return: The package_lrn_uuid of this LicenseLrnModify.
+        :rtype: str
+        """
+        return self._package_lrn_uuid
+
+    @package_lrn_uuid.setter
+    def package_lrn_uuid(self, package_lrn_uuid):
+        """
+        Sets the package_lrn_uuid of this LicenseLrnModify.
+
+        :param package_lrn_uuid: The package_lrn_uuid of this LicenseLrnModify.
+        :type: str
+        """
+        if package_lrn_uuid is not None and len(package_lrn_uuid) > 36:
+            raise ValueError("Invalid value for `package_lrn_uuid`, length must be less than or equal to `36`")
+
+        self._package_lrn_uuid = package_lrn_uuid
 
     def to_dict(self):
         """

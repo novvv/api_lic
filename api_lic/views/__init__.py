@@ -1,5 +1,5 @@
 from .user import UserConfirmRegister, UserForgotPassword, UserResetPassword, NotificationList, PaymentCreate, \
-    PaymentResource, PaymentList, PaypalWebhook, StripeWebhook,LicenseLrnCreate,LicenseLrnResource,LicenseLrnList,\
+    PaymentResource, PaymentList, PaypalWebhook, StripeWebhook,LicenseLrnCreate,LicenseLrnResource,LicenseLrnRenewResource,LicenseLrnList,\
     LicenseSwitchCreate,LicenseSwitchResource,LicenseSwitchList
 from .public import SimpleFileCreate, SimpleFileGet
 from .admin import EmailTemplateResource, EmailTemplateList, PlanCreate, PlanResource, NotificationCreate, \

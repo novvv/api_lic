@@ -31,7 +31,7 @@ class UnauthenticatedError(object):
                             and the value is json key in definition.
     """
     swagger_types = {
-        'error': 'OperationErrorError',
+        'error': 'UnauthenticatedErrorError',
         'error_type': 'str',
         'success': 'bool'
     }
@@ -64,7 +64,7 @@ class UnauthenticatedError(object):
         Gets the error of this UnauthenticatedError.
 
         :return: The error of this UnauthenticatedError.
-        :rtype: OperationErrorError
+        :rtype: UnauthenticatedErrorError
         """
         return self._error
 
@@ -74,7 +74,7 @@ class UnauthenticatedError(object):
         Sets the error of this UnauthenticatedError.
 
         :param error: The error of this UnauthenticatedError.
-        :type: OperationErrorError
+        :type: UnauthenticatedErrorError
         """
 
         self._error = error

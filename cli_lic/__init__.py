@@ -65,6 +65,7 @@ from .models.license_lrn_modify import LicenseLrnModify
 from .models.license_switch import LicenseSwitch
 from .models.license_switch_get import LicenseSwitchGet
 from .models.license_switch_modify import LicenseSwitchModify
+from .models.license_switch_renew import LicenseSwitchRenew
 from .models.notification import Notification
 from .models.notification_get import NotificationGet
 from .models.notification_modify import NotificationModify
@@ -79,7 +80,6 @@ from .models.object_revision_record_get import ObjectRevisionRecordGet
 from .models.objects_list import ObjectsList
 from .models.objects_list_payload import ObjectsListPayload
 from .models.operation_error import OperationError
-from .models.operation_error_error import OperationErrorError
 from .models.package_lrn import PackageLrn
 from .models.package_lrn_get import PackageLrnGet
 from .models.package_lrn_modify import PackageLrnModify
@@ -99,6 +99,7 @@ from .models.switch_get import SwitchGet
 from .models.switch_modify import SwitchModify
 from .models.token_check import TokenCheck
 from .models.unauthenticated_error import UnauthenticatedError
+from .models.unauthenticated_error_error import UnauthenticatedErrorError
 from .models.user import User
 from .models.user_confirm_register import UserConfirmRegister
 from .models.user_credentials import UserCredentials

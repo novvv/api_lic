@@ -1,3 +1,10 @@
+api_lic ver 1.0.4
+PATCH/license_lrn/{license_lrn_uuid}
+PATCH/license_lrn/{license_lrn_uuid}/renew  <-- "renew" "package" "ip" actions LLP-25
+
+POST/license_lrn <- buy LRN license LLP-35
+POST/license_switch <- buy switch license LLP-36
+
 api_lic ver 1.0.3
 DELETE/package_lrn/{package_lrn_uuid}/{user_uuid} <-- delete user from LRN package LLP-31
 DELETE/package_switch/{package_switch_uuid}/{user_uuid} <-- delete user from switch package LLP-32

@@ -31,47 +31,26 @@ class UserInfo(object):
                             and the value is json key in definition.
     """
     swagger_types = {
-        'email': 'str',
-        'passwd': 'str'
+        'passwd': 'str',
+        'email': 'str'
     }
 
     attribute_map = {
-        'email': 'email',
-        'passwd': 'passwd'
+        'passwd': 'passwd',
+        'email': 'email'
     }
 
-    def __init__(self, email=None, passwd=None):
+    def __init__(self, passwd=None, email=None):
         """
         UserInfo - a model defined in Swagger
         """
 
-        self._email = None
         self._passwd = None
+        self._email = None
 
+        self.passwd = passwd
         if email is not None:
           self.email = email
-        self.passwd = passwd
-
-    @property
-    def email(self):
-        """
-        Gets the email of this UserInfo.
-
-        :return: The email of this UserInfo.
-        :rtype: str
-        """
-        return self._email
-
-    @email.setter
-    def email(self, email):
-        """
-        Sets the email of this UserInfo.
-
-        :param email: The email of this UserInfo.
-        :type: str
-        """
-
-        self._email = email
 
     @property
     def passwd(self):
@@ -95,6 +74,27 @@ class UserInfo(object):
             raise ValueError("Invalid value for `passwd`, must not be `None`")
 
         self._passwd = passwd
+
+    @property
+    def email(self):
+        """
+        Gets the email of this UserInfo.
+
+        :return: The email of this UserInfo.
+        :rtype: str
+        """
+        return self._email
+
+    @email.setter
+    def email(self, email):
+        """
+        Sets the email of this UserInfo.
+
+        :param email: The email of this UserInfo.
+        :type: str
+        """
+
+        self._email = email
 
     def to_dict(self):
         """

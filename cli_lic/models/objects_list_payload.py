@@ -31,79 +31,58 @@ class ObjectsListPayload(object):
                             and the value is json key in definition.
     """
     swagger_types = {
-        'total': 'int',
-        'page': 'int',
+        'items': 'object',
         'per_page': 'int',
-        'items': 'object'
+        'page': 'int',
+        'total': 'int'
     }
 
     attribute_map = {
-        'total': 'total',
-        'page': 'page',
+        'items': 'items',
         'per_page': 'per_page',
-        'items': 'items'
+        'page': 'page',
+        'total': 'total'
     }
 
-    def __init__(self, total=None, page=None, per_page=None, items=None):
+    def __init__(self, items=None, per_page=None, page=None, total=None):
         """
         ObjectsListPayload - a model defined in Swagger
         """
 
-        self._total = None
-        self._page = None
-        self._per_page = None
         self._items = None
+        self._per_page = None
+        self._page = None
+        self._total = None
 
-        if total is not None:
-          self.total = total
-        if page is not None:
-          self.page = page
-        if per_page is not None:
-          self.per_page = per_page
         if items is not None:
           self.items = items
+        if per_page is not None:
+          self.per_page = per_page
+        if page is not None:
+          self.page = page
+        if total is not None:
+          self.total = total
 
     @property
-    def total(self):
+    def items(self):
         """
-        Gets the total of this ObjectsListPayload.
+        Gets the items of this ObjectsListPayload.
 
-        :return: The total of this ObjectsListPayload.
-        :rtype: int
+        :return: The items of this ObjectsListPayload.
+        :rtype: object
         """
-        return self._total
+        return self._items
 
-    @total.setter
-    def total(self, total):
+    @items.setter
+    def items(self, items):
         """
-        Sets the total of this ObjectsListPayload.
+        Sets the items of this ObjectsListPayload.
 
-        :param total: The total of this ObjectsListPayload.
-        :type: int
-        """
-
-        self._total = total
-
-    @property
-    def page(self):
-        """
-        Gets the page of this ObjectsListPayload.
-
-        :return: The page of this ObjectsListPayload.
-        :rtype: int
-        """
-        return self._page
-
-    @page.setter
-    def page(self, page):
-        """
-        Sets the page of this ObjectsListPayload.
-
-        :param page: The page of this ObjectsListPayload.
-        :type: int
+        :param items: The items of this ObjectsListPayload.
+        :type: object
         """
 
-        self._page = page
+        self._items = items
 
     @property
     def per_page(self):
@@ -127,25 +106,46 @@ class ObjectsListPayload(object):
         self._per_page = per_page
 
     @property
-    def items(self):
+    def page(self):
         """
-        Gets the items of this ObjectsListPayload.
+        Gets the page of this ObjectsListPayload.
 
-        :return: The items of this ObjectsListPayload.
-        :rtype: object
+        :return: The page of this ObjectsListPayload.
+        :rtype: int
         """
-        return self._items
+        return self._page
 
-    @items.setter
-    def items(self, items):
+    @page.setter
+    def page(self, page):
         """
-        Sets the items of this ObjectsListPayload.
+        Sets the page of this ObjectsListPayload.
 
-        :param items: The items of this ObjectsListPayload.
-        :type: object
+        :param page: The page of this ObjectsListPayload.
+        :type: int
         """
 
-        self._items = items
+        self._page = page
+
+    @property
+    def total(self):
+        """
+        Gets the total of this ObjectsListPayload.
+
+        :return: The total of this ObjectsListPayload.
+        :rtype: int
+        """
+        return self._total
+
+    @total.setter
+    def total(self, total):
+        """
+        Sets the total of this ObjectsListPayload.
+
+        :param total: The total of this ObjectsListPayload.
+        :type: int
+        """
+
+        self._total = total
 
     def to_dict(self):
         """

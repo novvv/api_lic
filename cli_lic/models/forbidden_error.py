@@ -31,7 +31,7 @@ class ForbiddenError(object):
                             and the value is json key in definition.
     """
     swagger_types = {
-        'error': 'OperationErrorError',
+        'error': 'UnauthenticatedErrorError',
         'error_type': 'str',
         'success': 'bool'
     }
@@ -64,7 +64,7 @@ class ForbiddenError(object):
         Gets the error of this ForbiddenError.
 
         :return: The error of this ForbiddenError.
-        :rtype: OperationErrorError
+        :rtype: UnauthenticatedErrorError
         """
         return self._error
 
@@ -74,7 +74,7 @@ class ForbiddenError(object):
         Sets the error of this ForbiddenError.
 
         :param error: The error of this ForbiddenError.
-        :type: OperationErrorError
+        :type: UnauthenticatedErrorError
         """
 
         self._error = error

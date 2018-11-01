@@ -31,143 +31,57 @@ class PackageLrnGet(object):
                             and the value is json key in definition.
     """
     swagger_types = {
-        'dip_count': 'int',
-        'amount': 'int',
-        'package_lrn_uuid': 'str',
-        'cps': 'int',
         'type': 'str',
-        'lrn_port': 'int',
+        'amount': 'int',
+        'dip_count': 'int',
         'package_name': 'str',
-        'enabled': 'bool'
+        'enabled': 'bool',
+        'cps': 'int',
+        'lrn_port': 'int',
+        'package_lrn_uuid': 'str'
     }
 
     attribute_map = {
-        'dip_count': 'dip_count',
-        'amount': 'amount',
-        'package_lrn_uuid': 'package_lrn_uuid',
-        'cps': 'cps',
         'type': 'type',
-        'lrn_port': 'lrn_port',
+        'amount': 'amount',
+        'dip_count': 'dip_count',
         'package_name': 'package_name',
-        'enabled': 'enabled'
+        'enabled': 'enabled',
+        'cps': 'cps',
+        'lrn_port': 'lrn_port',
+        'package_lrn_uuid': 'package_lrn_uuid'
     }
 
-    def __init__(self, dip_count=None, amount=None, package_lrn_uuid=None, cps=None, type='LRN pay per CPS', lrn_port=None, package_name=None, enabled=None):
+    def __init__(self, type='LRN pay per CPS', amount=None, dip_count=None, package_name=None, enabled=None, cps=None, lrn_port=None, package_lrn_uuid=None):
         """
         PackageLrnGet - a model defined in Swagger
         """
 
-        self._dip_count = None
-        self._amount = None
-        self._package_lrn_uuid = None
-        self._cps = None
         self._type = None
-        self._lrn_port = None
+        self._amount = None
+        self._dip_count = None
         self._package_name = None
         self._enabled = None
+        self._cps = None
+        self._lrn_port = None
+        self._package_lrn_uuid = None
 
-        if dip_count is not None:
-          self.dip_count = dip_count
-        if amount is not None:
-          self.amount = amount
-        if package_lrn_uuid is not None:
-          self.package_lrn_uuid = package_lrn_uuid
-        if cps is not None:
-          self.cps = cps
         if type is not None:
           self.type = type
-        if lrn_port is not None:
-          self.lrn_port = lrn_port
+        if amount is not None:
+          self.amount = amount
+        if dip_count is not None:
+          self.dip_count = dip_count
         if package_name is not None:
           self.package_name = package_name
         if enabled is not None:
           self.enabled = enabled
-
-    @property
-    def dip_count(self):
-        """
-        Gets the dip_count of this PackageLrnGet.
-
-        :return: The dip_count of this PackageLrnGet.
-        :rtype: int
-        """
-        return self._dip_count
-
-    @dip_count.setter
-    def dip_count(self, dip_count):
-        """
-        Sets the dip_count of this PackageLrnGet.
-
-        :param dip_count: The dip_count of this PackageLrnGet.
-        :type: int
-        """
-
-        self._dip_count = dip_count
-
-    @property
-    def amount(self):
-        """
-        Gets the amount of this PackageLrnGet.
-
-        :return: The amount of this PackageLrnGet.
-        :rtype: int
-        """
-        return self._amount
-
-    @amount.setter
-    def amount(self, amount):
-        """
-        Sets the amount of this PackageLrnGet.
-
-        :param amount: The amount of this PackageLrnGet.
-        :type: int
-        """
-
-        self._amount = amount
-
-    @property
-    def package_lrn_uuid(self):
-        """
-        Gets the package_lrn_uuid of this PackageLrnGet.
-
-        :return: The package_lrn_uuid of this PackageLrnGet.
-        :rtype: str
-        """
-        return self._package_lrn_uuid
-
-    @package_lrn_uuid.setter
-    def package_lrn_uuid(self, package_lrn_uuid):
-        """
-        Sets the package_lrn_uuid of this PackageLrnGet.
-
-        :param package_lrn_uuid: The package_lrn_uuid of this PackageLrnGet.
-        :type: str
-        """
-        if package_lrn_uuid is not None and len(package_lrn_uuid) > 36:
-            raise ValueError("Invalid value for `package_lrn_uuid`, length must be less than or equal to `36`")
-
-        self._package_lrn_uuid = package_lrn_uuid
-
-    @property
-    def cps(self):
-        """
-        Gets the cps of this PackageLrnGet.
-
-        :return: The cps of this PackageLrnGet.
-        :rtype: int
-        """
-        return self._cps
-
-    @cps.setter
-    def cps(self, cps):
-        """
-        Sets the cps of this PackageLrnGet.
-
-        :param cps: The cps of this PackageLrnGet.
-        :type: int
-        """
-
-        self._cps = cps
+        if cps is not None:
+          self.cps = cps
+        if lrn_port is not None:
+          self.lrn_port = lrn_port
+        if package_lrn_uuid is not None:
+          self.package_lrn_uuid = package_lrn_uuid
 
     @property
     def type(self):
@@ -197,25 +111,46 @@ class PackageLrnGet(object):
         self._type = type
 
     @property
-    def lrn_port(self):
+    def amount(self):
         """
-        Gets the lrn_port of this PackageLrnGet.
+        Gets the amount of this PackageLrnGet.
 
-        :return: The lrn_port of this PackageLrnGet.
+        :return: The amount of this PackageLrnGet.
         :rtype: int
         """
-        return self._lrn_port
+        return self._amount
 
-    @lrn_port.setter
-    def lrn_port(self, lrn_port):
+    @amount.setter
+    def amount(self, amount):
         """
-        Sets the lrn_port of this PackageLrnGet.
+        Sets the amount of this PackageLrnGet.
 
-        :param lrn_port: The lrn_port of this PackageLrnGet.
+        :param amount: The amount of this PackageLrnGet.
         :type: int
         """
 
-        self._lrn_port = lrn_port
+        self._amount = amount
+
+    @property
+    def dip_count(self):
+        """
+        Gets the dip_count of this PackageLrnGet.
+
+        :return: The dip_count of this PackageLrnGet.
+        :rtype: int
+        """
+        return self._dip_count
+
+    @dip_count.setter
+    def dip_count(self, dip_count):
+        """
+        Sets the dip_count of this PackageLrnGet.
+
+        :param dip_count: The dip_count of this PackageLrnGet.
+        :type: int
+        """
+
+        self._dip_count = dip_count
 
     @property
     def package_name(self):
@@ -260,6 +195,71 @@ class PackageLrnGet(object):
         """
 
         self._enabled = enabled
+
+    @property
+    def cps(self):
+        """
+        Gets the cps of this PackageLrnGet.
+
+        :return: The cps of this PackageLrnGet.
+        :rtype: int
+        """
+        return self._cps
+
+    @cps.setter
+    def cps(self, cps):
+        """
+        Sets the cps of this PackageLrnGet.
+
+        :param cps: The cps of this PackageLrnGet.
+        :type: int
+        """
+
+        self._cps = cps
+
+    @property
+    def lrn_port(self):
+        """
+        Gets the lrn_port of this PackageLrnGet.
+
+        :return: The lrn_port of this PackageLrnGet.
+        :rtype: int
+        """
+        return self._lrn_port
+
+    @lrn_port.setter
+    def lrn_port(self, lrn_port):
+        """
+        Sets the lrn_port of this PackageLrnGet.
+
+        :param lrn_port: The lrn_port of this PackageLrnGet.
+        :type: int
+        """
+
+        self._lrn_port = lrn_port
+
+    @property
+    def package_lrn_uuid(self):
+        """
+        Gets the package_lrn_uuid of this PackageLrnGet.
+
+        :return: The package_lrn_uuid of this PackageLrnGet.
+        :rtype: str
+        """
+        return self._package_lrn_uuid
+
+    @package_lrn_uuid.setter
+    def package_lrn_uuid(self, package_lrn_uuid):
+        """
+        Sets the package_lrn_uuid of this PackageLrnGet.
+
+        :param package_lrn_uuid: The package_lrn_uuid of this PackageLrnGet.
+        :type: str
+        """
+        if package_lrn_uuid is not None and len(package_lrn_uuid) > 36:
+            raise ValueError("Invalid value for `package_lrn_uuid`, length must be less than or equal to `36`")
+
+        self._package_lrn_uuid = package_lrn_uuid
 
     def to_dict(self):
         """

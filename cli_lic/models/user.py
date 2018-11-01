@@ -31,41 +31,62 @@ class User(object):
                             and the value is json key in definition.
     """
     swagger_types = {
+        'logo_file_uuid': 'str',
         'is_admin': 'bool',
         'passwd': 'str',
-        'logo_file_uuid': 'str',
         'email': 'str',
         'is_active': 'bool'
     }
 
     attribute_map = {
+        'logo_file_uuid': 'logo_file_uuid',
         'is_admin': 'is_admin',
         'passwd': 'passwd',
-        'logo_file_uuid': 'logo_file_uuid',
         'email': 'email',
         'is_active': 'is_active'
     }
 
-    def __init__(self, is_admin=None, passwd=None, logo_file_uuid=None, email=None, is_active=None):
+    def __init__(self, logo_file_uuid=None, is_admin=None, passwd=None, email=None, is_active=None):
         """
         User - a model defined in Swagger
         """
 
+        self._logo_file_uuid = None
         self._is_admin = None
         self._passwd = None
-        self._logo_file_uuid = None
         self._email = None
         self._is_active = None
 
+        if logo_file_uuid is not None:
+          self.logo_file_uuid = logo_file_uuid
         if is_admin is not None:
           self.is_admin = is_admin
         if passwd is not None:
           self.passwd = passwd
-        if logo_file_uuid is not None:
-          self.logo_file_uuid = logo_file_uuid
         self.email = email
         if is_active is not None:
           self.is_active = is_active
+
+    @property
+    def logo_file_uuid(self):
+        """
+        Gets the logo_file_uuid of this User.
+
+        :return: The logo_file_uuid of this User.
+        :rtype: str
+        """
+        return self._logo_file_uuid
+
+    @logo_file_uuid.setter
+    def logo_file_uuid(self, logo_file_uuid):
+        """
+        Sets the logo_file_uuid of this User.
+
+        :param logo_file_uuid: The logo_file_uuid of this User.
+        :type: str
+        """
+
+        self._logo_file_uuid = logo_file_uuid
 
     @property
     def is_admin(self):
@@ -108,27 +129,6 @@ class User(object):
         """
 
         self._passwd = passwd
-
-    @property
-    def logo_file_uuid(self):
-        """
-        Gets the logo_file_uuid of this User.
-
-        :return: The logo_file_uuid of this User.
-        :rtype: str
-        """
-        return self._logo_file_uuid
-
-    @logo_file_uuid.setter
-    def logo_file_uuid(self, logo_file_uuid):
-        """
-        Sets the logo_file_uuid of this User.
-
-        :param logo_file_uuid: The logo_file_uuid of this User.
-        :type: str
-        """
-
-        self._logo_file_uuid = logo_file_uuid
 
     @property
     def email(self):

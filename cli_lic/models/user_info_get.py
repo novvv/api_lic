@@ -31,41 +31,64 @@ class UserInfoGet(object):
                             and the value is json key in definition.
     """
     swagger_types = {
+        'user_uuid': 'str',
         'user_type': 'str',
         'email': 'str',
-        'last_login': 'datetime',
         'passwd': 'str',
-        'user_uuid': 'str'
+        'last_login': 'datetime'
     }
 
     attribute_map = {
+        'user_uuid': 'user_uuid',
         'user_type': 'user_type',
         'email': 'email',
-        'last_login': 'last_login',
         'passwd': 'passwd',
-        'user_uuid': 'user_uuid'
+        'last_login': 'last_login'
     }
 
-    def __init__(self, user_type=None, email=None, last_login=None, passwd=None, user_uuid=None):
+    def __init__(self, user_uuid=None, user_type=None, email=None, passwd=None, last_login=None):
         """
         UserInfoGet - a model defined in Swagger
         """
 
+        self._user_uuid = None
         self._user_type = None
         self._email = None
-        self._last_login = None
         self._passwd = None
-        self._user_uuid = None
+        self._last_login = None
 
+        if user_uuid is not None:
+          self.user_uuid = user_uuid
         if user_type is not None:
           self.user_type = user_type
         if email is not None:
           self.email = email
+        self.passwd = passwd
         if last_login is not None:
           self.last_login = last_login
-        self.passwd = passwd
-        if user_uuid is not None:
-          self.user_uuid = user_uuid
+
+    @property
+    def user_uuid(self):
+        """
+        Gets the user_uuid of this UserInfoGet.
+
+        :return: The user_uuid of this UserInfoGet.
+        :rtype: str
+        """
+        return self._user_uuid
+
+    @user_uuid.setter
+    def user_uuid(self, user_uuid):
+        """
+        Sets the user_uuid of this UserInfoGet.
+
+        :param user_uuid: The user_uuid of this UserInfoGet.
+        :type: str
+        """
+        if user_uuid is not None and len(user_uuid) > 36:
+            raise ValueError("Invalid value for `user_uuid`, length must be less than or equal to `36`")
+
+        self._user_uuid = user_uuid
 
     @property
     def user_type(self):
@@ -110,27 +133,6 @@ class UserInfoGet(object):
         self._email = email
 
     @property
-    def last_login(self):
-        """
-        Gets the last_login of this UserInfoGet.
-
-        :return: The last_login of this UserInfoGet.
-        :rtype: datetime
-        """
-        return self._last_login
-
-    @last_login.setter
-    def last_login(self, last_login):
-        """
-        Sets the last_login of this UserInfoGet.
-
-        :param last_login: The last_login of this UserInfoGet.
-        :type: datetime
-        """
-
-        self._last_login = last_login
-
-    @property
     def passwd(self):
         """
         Gets the passwd of this UserInfoGet.
@@ -154,27 +156,25 @@ class UserInfoGet(object):
         self._passwd = passwd
 
     @property
-    def user_uuid(self):
+    def last_login(self):
         """
-        Gets the user_uuid of this UserInfoGet.
+        Gets the last_login of this UserInfoGet.
 
-        :return: The user_uuid of this UserInfoGet.
-        :rtype: str
+        :return: The last_login of this UserInfoGet.
+        :rtype: datetime
         """
-        return self._user_uuid
+        return self._last_login
 
-    @user_uuid.setter
-    def user_uuid(self, user_uuid):
+    @last_login.setter
+    def last_login(self, last_login):
         """
-        Sets the user_uuid of this UserInfoGet.
+        Sets the last_login of this UserInfoGet.
 
-        :param user_uuid: The user_uuid of this UserInfoGet.
-        :type: str
+        :param last_login: The last_login of this UserInfoGet.
+        :type: datetime
         """
-        if user_uuid is not None and len(user_uuid) > 36:
-            raise ValueError("Invalid value for `user_uuid`, length must be less than or equal to `36`")
 
-        self._user_uuid = user_uuid
+        self._last_login = last_login
 
     def to_dict(self):
         """

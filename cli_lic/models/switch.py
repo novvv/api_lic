@@ -32,46 +32,46 @@ class Switch(object):
     """
     swagger_types = {
         'switch_ip': 'str',
-        'enabled': 'bool',
-        'current_port_count': 'int',
         'minute_remaining': 'int',
         'email': 'str',
-        'expired_on': 'datetime'
+        'expired_on': 'datetime',
+        'enabled': 'bool',
+        'current_port_count': 'int'
     }
 
     attribute_map = {
         'switch_ip': 'switch_ip',
-        'enabled': 'enabled',
-        'current_port_count': 'current_port_count',
         'minute_remaining': 'minute_remaining',
         'email': 'email',
-        'expired_on': 'expired_on'
+        'expired_on': 'expired_on',
+        'enabled': 'enabled',
+        'current_port_count': 'current_port_count'
     }
 
-    def __init__(self, switch_ip=None, enabled=None, current_port_count=None, minute_remaining=None, email=None, expired_on=None):
+    def __init__(self, switch_ip=None, minute_remaining=None, email=None, expired_on=None, enabled=None, current_port_count=None):
         """
         Switch - a model defined in Swagger
         """
 
         self._switch_ip = None
-        self._enabled = None
-        self._current_port_count = None
         self._minute_remaining = None
         self._email = None
         self._expired_on = None
+        self._enabled = None
+        self._current_port_count = None
 
         if switch_ip is not None:
           self.switch_ip = switch_ip
-        if enabled is not None:
-          self.enabled = enabled
-        if current_port_count is not None:
-          self.current_port_count = current_port_count
         if minute_remaining is not None:
           self.minute_remaining = minute_remaining
         if email is not None:
           self.email = email
         if expired_on is not None:
           self.expired_on = expired_on
+        if enabled is not None:
+          self.enabled = enabled
+        if current_port_count is not None:
+          self.current_port_count = current_port_count
 
     @property
     def switch_ip(self):
@@ -95,48 +95,6 @@ class Switch(object):
             raise ValueError("Invalid value for `switch_ip`, length must be less than or equal to `16`")
 
         self._switch_ip = switch_ip
-
-    @property
-    def enabled(self):
-        """
-        Gets the enabled of this Switch.
-
-        :return: The enabled of this Switch.
-        :rtype: bool
-        """
-        return self._enabled
-
-    @enabled.setter
-    def enabled(self, enabled):
-        """
-        Sets the enabled of this Switch.
-
-        :param enabled: The enabled of this Switch.
-        :type: bool
-        """
-
-        self._enabled = enabled
-
-    @property
-    def current_port_count(self):
-        """
-        Gets the current_port_count of this Switch.
-
-        :return: The current_port_count of this Switch.
-        :rtype: int
-        """
-        return self._current_port_count
-
-    @current_port_count.setter
-    def current_port_count(self, current_port_count):
-        """
-        Sets the current_port_count of this Switch.
-
-        :param current_port_count: The current_port_count of this Switch.
-        :type: int
-        """
-
-        self._current_port_count = current_port_count
 
     @property
     def minute_remaining(self):
@@ -202,6 +160,48 @@ class Switch(object):
         """
 
         self._expired_on = expired_on
+
+    @property
+    def enabled(self):
+        """
+        Gets the enabled of this Switch.
+
+        :return: The enabled of this Switch.
+        :rtype: bool
+        """
+        return self._enabled
+
+    @enabled.setter
+    def enabled(self, enabled):
+        """
+        Sets the enabled of this Switch.
+
+        :param enabled: The enabled of this Switch.
+        :type: bool
+        """
+
+        self._enabled = enabled
+
+    @property
+    def current_port_count(self):
+        """
+        Gets the current_port_count of this Switch.
+
+        :return: The current_port_count of this Switch.
+        :rtype: int
+        """
+        return self._current_port_count
+
+    @current_port_count.setter
+    def current_port_count(self, current_port_count):
+        """
+        Sets the current_port_count of this Switch.
+
+        :param current_port_count: The current_port_count of this Switch.
+        :type: int
+        """
+
+        self._current_port_count = current_port_count
 
     def to_dict(self):
         """

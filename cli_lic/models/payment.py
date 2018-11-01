@@ -31,42 +31,65 @@ class Payment(object):
                             and the value is json key in definition.
     """
     swagger_types = {
+        'license_lrn_uuid': 'str',
         'license_switch_uuid': 'str',
         'amount': 'float',
-        'license_lrn_uuid': 'str',
         'paid_time': 'datetime',
         'type': 'str'
     }
 
     attribute_map = {
+        'license_lrn_uuid': 'license_lrn_uuid',
         'license_switch_uuid': 'license_switch_uuid',
         'amount': 'amount',
-        'license_lrn_uuid': 'license_lrn_uuid',
         'paid_time': 'paid_time',
         'type': 'type'
     }
 
-    def __init__(self, license_switch_uuid=None, amount=None, license_lrn_uuid=None, paid_time=None, type='paypal'):
+    def __init__(self, license_lrn_uuid=None, license_switch_uuid=None, amount=None, paid_time=None, type='paypal'):
         """
         Payment - a model defined in Swagger
         """
 
+        self._license_lrn_uuid = None
         self._license_switch_uuid = None
         self._amount = None
-        self._license_lrn_uuid = None
         self._paid_time = None
         self._type = None
 
+        if license_lrn_uuid is not None:
+          self.license_lrn_uuid = license_lrn_uuid
         if license_switch_uuid is not None:
           self.license_switch_uuid = license_switch_uuid
         if amount is not None:
           self.amount = amount
-        if license_lrn_uuid is not None:
-          self.license_lrn_uuid = license_lrn_uuid
         if paid_time is not None:
           self.paid_time = paid_time
         if type is not None:
           self.type = type
+
+    @property
+    def license_lrn_uuid(self):
+        """
+        Gets the license_lrn_uuid of this Payment.
+
+        :return: The license_lrn_uuid of this Payment.
+        :rtype: str
+        """
+        return self._license_lrn_uuid
+
+    @license_lrn_uuid.setter
+    def license_lrn_uuid(self, license_lrn_uuid):
+        """
+        Sets the license_lrn_uuid of this Payment.
+
+        :param license_lrn_uuid: The license_lrn_uuid of this Payment.
+        :type: str
+        """
+        if license_lrn_uuid is not None and len(license_lrn_uuid) > 36:
+            raise ValueError("Invalid value for `license_lrn_uuid`, length must be less than or equal to `36`")
+
+        self._license_lrn_uuid = license_lrn_uuid
 
     @property
     def license_switch_uuid(self):
@@ -111,29 +134,6 @@ class Payment(object):
         """
 
         self._amount = amount
-
-    @property
-    def license_lrn_uuid(self):
-        """
-        Gets the license_lrn_uuid of this Payment.
-
-        :return: The license_lrn_uuid of this Payment.
-        :rtype: str
-        """
-        return self._license_lrn_uuid
-
-    @license_lrn_uuid.setter
-    def license_lrn_uuid(self, license_lrn_uuid):
-        """
-        Sets the license_lrn_uuid of this Payment.
-
-        :param license_lrn_uuid: The license_lrn_uuid of this Payment.
-        :type: str
-        """
-        if license_lrn_uuid is not None and len(license_lrn_uuid) > 36:
-            raise ValueError("Invalid value for `license_lrn_uuid`, length must be less than or equal to `36`")
-
-        self._license_lrn_uuid = license_lrn_uuid
 
     @property
     def paid_time(self):
