@@ -31,41 +31,62 @@ class UserInfoGet(object):
                             and the value is json key in definition.
     """
     swagger_types = {
-        'email': 'str',
-        'passwd': 'str',
         'user_type': 'str',
-        'user_uuid': 'str',
-        'last_login': 'datetime'
+        'email': 'str',
+        'last_login': 'datetime',
+        'passwd': 'str',
+        'user_uuid': 'str'
     }
 
     attribute_map = {
-        'email': 'email',
-        'passwd': 'passwd',
         'user_type': 'user_type',
-        'user_uuid': 'user_uuid',
-        'last_login': 'last_login'
+        'email': 'email',
+        'last_login': 'last_login',
+        'passwd': 'passwd',
+        'user_uuid': 'user_uuid'
     }
 
-    def __init__(self, email=None, passwd=None, user_type=None, user_uuid=None, last_login=None):
+    def __init__(self, user_type=None, email=None, last_login=None, passwd=None, user_uuid=None):
         """
         UserInfoGet - a model defined in Swagger
         """
 
-        self._email = None
-        self._passwd = None
         self._user_type = None
-        self._user_uuid = None
+        self._email = None
         self._last_login = None
+        self._passwd = None
+        self._user_uuid = None
 
-        if email is not None:
-          self.email = email
-        self.passwd = passwd
         if user_type is not None:
           self.user_type = user_type
-        if user_uuid is not None:
-          self.user_uuid = user_uuid
+        if email is not None:
+          self.email = email
         if last_login is not None:
           self.last_login = last_login
+        self.passwd = passwd
+        if user_uuid is not None:
+          self.user_uuid = user_uuid
+
+    @property
+    def user_type(self):
+        """
+        Gets the user_type of this UserInfoGet.
+
+        :return: The user_type of this UserInfoGet.
+        :rtype: str
+        """
+        return self._user_type
+
+    @user_type.setter
+    def user_type(self, user_type):
+        """
+        Sets the user_type of this UserInfoGet.
+
+        :param user_type: The user_type of this UserInfoGet.
+        :type: str
+        """
+
+        self._user_type = user_type
 
     @property
     def email(self):
@@ -87,6 +108,27 @@ class UserInfoGet(object):
         """
 
         self._email = email
+
+    @property
+    def last_login(self):
+        """
+        Gets the last_login of this UserInfoGet.
+
+        :return: The last_login of this UserInfoGet.
+        :rtype: datetime
+        """
+        return self._last_login
+
+    @last_login.setter
+    def last_login(self, last_login):
+        """
+        Sets the last_login of this UserInfoGet.
+
+        :param last_login: The last_login of this UserInfoGet.
+        :type: datetime
+        """
+
+        self._last_login = last_login
 
     @property
     def passwd(self):
@@ -112,27 +154,6 @@ class UserInfoGet(object):
         self._passwd = passwd
 
     @property
-    def user_type(self):
-        """
-        Gets the user_type of this UserInfoGet.
-
-        :return: The user_type of this UserInfoGet.
-        :rtype: str
-        """
-        return self._user_type
-
-    @user_type.setter
-    def user_type(self, user_type):
-        """
-        Sets the user_type of this UserInfoGet.
-
-        :param user_type: The user_type of this UserInfoGet.
-        :type: str
-        """
-
-        self._user_type = user_type
-
-    @property
     def user_uuid(self):
         """
         Gets the user_uuid of this UserInfoGet.
@@ -154,27 +175,6 @@ class UserInfoGet(object):
             raise ValueError("Invalid value for `user_uuid`, length must be less than or equal to `36`")
 
         self._user_uuid = user_uuid
-
-    @property
-    def last_login(self):
-        """
-        Gets the last_login of this UserInfoGet.
-
-        :return: The last_login of this UserInfoGet.
-        :rtype: datetime
-        """
-        return self._last_login
-
-    @last_login.setter
-    def last_login(self, last_login):
-        """
-        Sets the last_login of this UserInfoGet.
-
-        :param last_login: The last_login of this UserInfoGet.
-        :type: datetime
-        """
-
-        self._last_login = last_login
 
     def to_dict(self):
         """

@@ -31,52 +31,73 @@ class PackageSwitchModify(object):
                             and the value is json key in definition.
     """
     swagger_types = {
+        'amount': 'int',
         'minute_count': 'int',
-        'switch_uuid': 'str',
-        'switch_port': 'int',
         'package_name': 'str',
         'type': 'str',
-        'amount': 'int',
-        'enabled': 'bool'
+        'enabled': 'bool',
+        'switch_uuid': 'str',
+        'switch_port': 'int'
     }
 
     attribute_map = {
+        'amount': 'amount',
         'minute_count': 'minute_count',
-        'switch_uuid': 'switch_uuid',
-        'switch_port': 'switch_port',
         'package_name': 'package_name',
         'type': 'type',
-        'amount': 'amount',
-        'enabled': 'enabled'
+        'enabled': 'enabled',
+        'switch_uuid': 'switch_uuid',
+        'switch_port': 'switch_port'
     }
 
-    def __init__(self, minute_count=None, switch_uuid=None, switch_port=None, package_name=None, type='switch pay per port', amount=None, enabled=None):
+    def __init__(self, amount=None, minute_count=None, package_name=None, type='switch pay per port', enabled=None, switch_uuid=None, switch_port=None):
         """
         PackageSwitchModify - a model defined in Swagger
         """
 
+        self._amount = None
         self._minute_count = None
-        self._switch_uuid = None
-        self._switch_port = None
         self._package_name = None
         self._type = None
-        self._amount = None
         self._enabled = None
+        self._switch_uuid = None
+        self._switch_port = None
 
+        if amount is not None:
+          self.amount = amount
         if minute_count is not None:
           self.minute_count = minute_count
-        if switch_uuid is not None:
-          self.switch_uuid = switch_uuid
-        if switch_port is not None:
-          self.switch_port = switch_port
         if package_name is not None:
           self.package_name = package_name
         if type is not None:
           self.type = type
-        if amount is not None:
-          self.amount = amount
         if enabled is not None:
           self.enabled = enabled
+        if switch_uuid is not None:
+          self.switch_uuid = switch_uuid
+        if switch_port is not None:
+          self.switch_port = switch_port
+
+    @property
+    def amount(self):
+        """
+        Gets the amount of this PackageSwitchModify.
+
+        :return: The amount of this PackageSwitchModify.
+        :rtype: int
+        """
+        return self._amount
+
+    @amount.setter
+    def amount(self, amount):
+        """
+        Sets the amount of this PackageSwitchModify.
+
+        :param amount: The amount of this PackageSwitchModify.
+        :type: int
+        """
+
+        self._amount = amount
 
     @property
     def minute_count(self):
@@ -98,50 +119,6 @@ class PackageSwitchModify(object):
         """
 
         self._minute_count = minute_count
-
-    @property
-    def switch_uuid(self):
-        """
-        Gets the switch_uuid of this PackageSwitchModify.
-
-        :return: The switch_uuid of this PackageSwitchModify.
-        :rtype: str
-        """
-        return self._switch_uuid
-
-    @switch_uuid.setter
-    def switch_uuid(self, switch_uuid):
-        """
-        Sets the switch_uuid of this PackageSwitchModify.
-
-        :param switch_uuid: The switch_uuid of this PackageSwitchModify.
-        :type: str
-        """
-        if switch_uuid is not None and len(switch_uuid) > 36:
-            raise ValueError("Invalid value for `switch_uuid`, length must be less than or equal to `36`")
-
-        self._switch_uuid = switch_uuid
-
-    @property
-    def switch_port(self):
-        """
-        Gets the switch_port of this PackageSwitchModify.
-
-        :return: The switch_port of this PackageSwitchModify.
-        :rtype: int
-        """
-        return self._switch_port
-
-    @switch_port.setter
-    def switch_port(self, switch_port):
-        """
-        Sets the switch_port of this PackageSwitchModify.
-
-        :param switch_port: The switch_port of this PackageSwitchModify.
-        :type: int
-        """
-
-        self._switch_port = switch_port
 
     @property
     def package_name(self):
@@ -194,27 +171,6 @@ class PackageSwitchModify(object):
         self._type = type
 
     @property
-    def amount(self):
-        """
-        Gets the amount of this PackageSwitchModify.
-
-        :return: The amount of this PackageSwitchModify.
-        :rtype: int
-        """
-        return self._amount
-
-    @amount.setter
-    def amount(self, amount):
-        """
-        Sets the amount of this PackageSwitchModify.
-
-        :param amount: The amount of this PackageSwitchModify.
-        :type: int
-        """
-
-        self._amount = amount
-
-    @property
     def enabled(self):
         """
         Gets the enabled of this PackageSwitchModify.
@@ -234,6 +190,50 @@ class PackageSwitchModify(object):
         """
 
         self._enabled = enabled
+
+    @property
+    def switch_uuid(self):
+        """
+        Gets the switch_uuid of this PackageSwitchModify.
+
+        :return: The switch_uuid of this PackageSwitchModify.
+        :rtype: str
+        """
+        return self._switch_uuid
+
+    @switch_uuid.setter
+    def switch_uuid(self, switch_uuid):
+        """
+        Sets the switch_uuid of this PackageSwitchModify.
+
+        :param switch_uuid: The switch_uuid of this PackageSwitchModify.
+        :type: str
+        """
+        if switch_uuid is not None and len(switch_uuid) > 36:
+            raise ValueError("Invalid value for `switch_uuid`, length must be less than or equal to `36`")
+
+        self._switch_uuid = switch_uuid
+
+    @property
+    def switch_port(self):
+        """
+        Gets the switch_port of this PackageSwitchModify.
+
+        :return: The switch_port of this PackageSwitchModify.
+        :rtype: int
+        """
+        return self._switch_port
+
+    @switch_port.setter
+    def switch_port(self, switch_port):
+        """
+        Sets the switch_port of this PackageSwitchModify.
+
+        :param switch_port: The switch_port of this PackageSwitchModify.
+        :type: int
+        """
+
+        self._switch_port = switch_port
 
     def to_dict(self):
         """

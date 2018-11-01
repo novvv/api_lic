@@ -501,7 +501,7 @@ class LicenseSwitchScheme(BaseModelScheme):
 
     class Meta:
         model = model.LicenseSwitch
-        fields = ('package_switch_uuid', 'user_uuid', 'ip', 'start_time', 'end_time', 'ordered_amount', 'cost',)
+        fields = ('package_switch_uuid', 'ip' )
 
 
 class LicenseSwitchSchemeGet(LicenseSwitchScheme):

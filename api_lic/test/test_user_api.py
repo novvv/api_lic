@@ -191,7 +191,7 @@ class TestUserApi(unittest.TestCase):
 
         """
         auth_user()
-        data = dict(package_switch_uuid=rand_package_switch()[0], end_time=str(datetime.now(UTC) + timedelta(days=10)))
+        data = dict(package_switch_uuid=rand_package_switch()[0], ip=ip())
         ret = self.api.license_switch_post(body=data)
         assert (ret.success)
         self.license_switch.append(ret.object_uuid)

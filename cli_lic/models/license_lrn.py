@@ -31,50 +31,27 @@ class LicenseLrn(object):
                             and the value is json key in definition.
     """
     swagger_types = {
-        'ip': 'str',
-        'package_lrn_uuid': 'str'
+        'package_lrn_uuid': 'str',
+        'ip': 'str'
     }
 
     attribute_map = {
-        'ip': 'ip',
-        'package_lrn_uuid': 'package_lrn_uuid'
+        'package_lrn_uuid': 'package_lrn_uuid',
+        'ip': 'ip'
     }
 
-    def __init__(self, ip=None, package_lrn_uuid=None):
+    def __init__(self, package_lrn_uuid=None, ip=None):
         """
         LicenseLrn - a model defined in Swagger
         """
 
-        self._ip = None
         self._package_lrn_uuid = None
+        self._ip = None
 
-        if ip is not None:
-          self.ip = ip
         if package_lrn_uuid is not None:
           self.package_lrn_uuid = package_lrn_uuid
-
-    @property
-    def ip(self):
-        """
-        Gets the ip of this LicenseLrn.
-
-        :return: The ip of this LicenseLrn.
-        :rtype: str
-        """
-        return self._ip
-
-    @ip.setter
-    def ip(self, ip):
-        """
-        Sets the ip of this LicenseLrn.
-
-        :param ip: The ip of this LicenseLrn.
-        :type: str
-        """
-        if ip is not None and len(ip) > 16:
-            raise ValueError("Invalid value for `ip`, length must be less than or equal to `16`")
-
-        self._ip = ip
+        if ip is not None:
+          self.ip = ip
 
     @property
     def package_lrn_uuid(self):
@@ -98,6 +75,29 @@ class LicenseLrn(object):
             raise ValueError("Invalid value for `package_lrn_uuid`, length must be less than or equal to `36`")
 
         self._package_lrn_uuid = package_lrn_uuid
+
+    @property
+    def ip(self):
+        """
+        Gets the ip of this LicenseLrn.
+
+        :return: The ip of this LicenseLrn.
+        :rtype: str
+        """
+        return self._ip
+
+    @ip.setter
+    def ip(self, ip):
+        """
+        Sets the ip of this LicenseLrn.
+
+        :param ip: The ip of this LicenseLrn.
+        :type: str
+        """
+        if ip is not None and len(ip) > 16:
+            raise ValueError("Invalid value for `ip`, length must be less than or equal to `16`")
+
+        self._ip = ip
 
     def to_dict(self):
         """
