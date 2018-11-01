@@ -459,6 +459,7 @@ class LicenseLrnScheme(BaseModelScheme):
     ordered_amount = Int()
     cost = Float()
     package = Nested('PackageLrnScheme', many=False)
+    enabled = Bool()
 
     class Meta:
         model = model.LicenseLrn
@@ -469,14 +470,17 @@ class LicenseLrnSchemeGet(LicenseLrnScheme):
     class Meta:
         model = model.LicenseLrn
         fields = ('user_email', 'cps', 'type', 'ip', 'lrn_port', 'dip_count', 'amount', 'license_lrn_uuid',
-                  'package_lrn_uuid', 'user_uuid',  'ordered_amount', 'package','start_time','end_time')
+                  'package_lrn_uuid', 'user_uuid',  'ordered_amount', 'package','start_time','end_time','enabled')
         search_fields = ('user_email', 'cps', 'type', 'ip', 'lrn_port', 'dip_count', 'amount', 'license_lrn_uuid',
-                         'package_lrn_uuid', 'user_uuid','ordered_amount', )
+                         'package_lrn_uuid', 'user_uuid','ordered_amount','enabled' )
         query_fields = ('start_time_gt', 'start_time_lt', 'end_time_gt', 'end_time_lt', 'cost_gt', 'cost_lt',)
 
 
 class LicenseLrnSchemeModify(LicenseLrnScheme):
-    pass
+    enabled = Bool(attribute='is_enabled')
+    class Meta:
+        model = model.LicenseLrn
+        fields = ('package_lrn_uuid',  'ip' , 'enabled')
 
 
 # ---LicenseLrn---

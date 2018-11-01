@@ -1,4 +1,7 @@
 api_lic ver 1.0.4
+PATCH/license_switch/{license_switch_uuid}
+PATCH/license_switch/{license_switch_uuid}/renew  <-- "renew" "package" "ip" actions LLP-22
+
 PATCH/license_lrn/{license_lrn_uuid}
 PATCH/license_lrn/{license_lrn_uuid}/renew  <-- "renew" "package" "ip" actions LLP-25
 
