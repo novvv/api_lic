@@ -31,32 +31,53 @@ class AuthTokenInner(object):
                             and the value is json key in definition.
     """
     swagger_types = {
+        'exp': 'datetime',
         'user_type': 'str',
-        'token': 'str',
-        'exp': 'datetime'
+        'token': 'str'
     }
 
     attribute_map = {
+        'exp': 'exp',
         'user_type': 'user_type',
-        'token': 'token',
-        'exp': 'exp'
+        'token': 'token'
     }
 
-    def __init__(self, user_type=None, token=None, exp=None):
+    def __init__(self, exp=None, user_type=None, token=None):
         """
         AuthTokenInner - a model defined in Swagger
         """
 
+        self._exp = None
         self._user_type = None
         self._token = None
-        self._exp = None
 
+        if exp is not None:
+          self.exp = exp
         if user_type is not None:
           self.user_type = user_type
         if token is not None:
           self.token = token
-        if exp is not None:
-          self.exp = exp
+
+    @property
+    def exp(self):
+        """
+        Gets the exp of this AuthTokenInner.
+
+        :return: The exp of this AuthTokenInner.
+        :rtype: datetime
+        """
+        return self._exp
+
+    @exp.setter
+    def exp(self, exp):
+        """
+        Sets the exp of this AuthTokenInner.
+
+        :param exp: The exp of this AuthTokenInner.
+        :type: datetime
+        """
+
+        self._exp = exp
 
     @property
     def user_type(self):
@@ -99,27 +120,6 @@ class AuthTokenInner(object):
         """
 
         self._token = token
-
-    @property
-    def exp(self):
-        """
-        Gets the exp of this AuthTokenInner.
-
-        :return: The exp of this AuthTokenInner.
-        :rtype: datetime
-        """
-        return self._exp
-
-    @exp.setter
-    def exp(self, exp):
-        """
-        Sets the exp of this AuthTokenInner.
-
-        :param exp: The exp of this AuthTokenInner.
-        :type: datetime
-        """
-
-        self._exp = exp
 
     def to_dict(self):
         """

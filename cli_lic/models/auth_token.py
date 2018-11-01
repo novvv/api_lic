@@ -31,48 +31,27 @@ class AuthToken(object):
                             and the value is json key in definition.
     """
     swagger_types = {
-        'payload': 'AuthTokenPayload',
-        'success': 'bool'
+        'success': 'bool',
+        'payload': 'AuthTokenPayload'
     }
 
     attribute_map = {
-        'payload': 'payload',
-        'success': 'success'
+        'success': 'success',
+        'payload': 'payload'
     }
 
-    def __init__(self, payload=None, success=True):
+    def __init__(self, success=True, payload=None):
         """
         AuthToken - a model defined in Swagger
         """
 
-        self._payload = None
         self._success = None
+        self._payload = None
 
-        if payload is not None:
-          self.payload = payload
         if success is not None:
           self.success = success
-
-    @property
-    def payload(self):
-        """
-        Gets the payload of this AuthToken.
-
-        :return: The payload of this AuthToken.
-        :rtype: AuthTokenPayload
-        """
-        return self._payload
-
-    @payload.setter
-    def payload(self, payload):
-        """
-        Sets the payload of this AuthToken.
-
-        :param payload: The payload of this AuthToken.
-        :type: AuthTokenPayload
-        """
-
-        self._payload = payload
+        if payload is not None:
+          self.payload = payload
 
     @property
     def success(self):
@@ -94,6 +73,27 @@ class AuthToken(object):
         """
 
         self._success = success
+
+    @property
+    def payload(self):
+        """
+        Gets the payload of this AuthToken.
+
+        :return: The payload of this AuthToken.
+        :rtype: AuthTokenPayload
+        """
+        return self._payload
+
+    @payload.setter
+    def payload(self, payload):
+        """
+        Sets the payload of this AuthToken.
+
+        :param payload: The payload of this AuthToken.
+        :type: AuthTokenPayload
+        """
+
+        self._payload = payload
 
     def to_dict(self):
         """

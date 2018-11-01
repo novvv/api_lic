@@ -31,48 +31,27 @@ class ObjectCreatedUuidAsPk(object):
                             and the value is json key in definition.
     """
     swagger_types = {
-        'object_uuid': 'str',
-        'success': 'bool'
+        'success': 'bool',
+        'object_uuid': 'str'
     }
 
     attribute_map = {
-        'object_uuid': 'object_uuid',
-        'success': 'success'
+        'success': 'success',
+        'object_uuid': 'object_uuid'
     }
 
-    def __init__(self, object_uuid=None, success=True):
+    def __init__(self, success=True, object_uuid=None):
         """
         ObjectCreatedUuidAsPk - a model defined in Swagger
         """
 
-        self._object_uuid = None
         self._success = None
+        self._object_uuid = None
 
-        if object_uuid is not None:
-          self.object_uuid = object_uuid
         if success is not None:
           self.success = success
-
-    @property
-    def object_uuid(self):
-        """
-        Gets the object_uuid of this ObjectCreatedUuidAsPk.
-
-        :return: The object_uuid of this ObjectCreatedUuidAsPk.
-        :rtype: str
-        """
-        return self._object_uuid
-
-    @object_uuid.setter
-    def object_uuid(self, object_uuid):
-        """
-        Sets the object_uuid of this ObjectCreatedUuidAsPk.
-
-        :param object_uuid: The object_uuid of this ObjectCreatedUuidAsPk.
-        :type: str
-        """
-
-        self._object_uuid = object_uuid
+        if object_uuid is not None:
+          self.object_uuid = object_uuid
 
     @property
     def success(self):
@@ -94,6 +73,27 @@ class ObjectCreatedUuidAsPk(object):
         """
 
         self._success = success
+
+    @property
+    def object_uuid(self):
+        """
+        Gets the object_uuid of this ObjectCreatedUuidAsPk.
+
+        :return: The object_uuid of this ObjectCreatedUuidAsPk.
+        :rtype: str
+        """
+        return self._object_uuid
+
+    @object_uuid.setter
+    def object_uuid(self, object_uuid):
+        """
+        Sets the object_uuid of this ObjectCreatedUuidAsPk.
+
+        :param object_uuid: The object_uuid of this ObjectCreatedUuidAsPk.
+        :type: str
+        """
+
+        self._object_uuid = object_uuid
 
     def to_dict(self):
         """

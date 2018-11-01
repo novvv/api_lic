@@ -177,9 +177,9 @@ CREATE TABLE public.license_lrn (
     license_lrn_uuid character varying(36) DEFAULT public.uuid_generate_v4() NOT NULL,
     ordered_amount integer,
     package_lrn_uuid character varying(36),
-    plan_uuid character varying(36),
     start_time timestamp with time zone DEFAULT now() NOT NULL,
-    user_uuid character varying(36)
+    user_uuid character varying(36),
+    ip character varying(16) NOT NULL
 );
 
 
@@ -193,9 +193,9 @@ CREATE TABLE public.license_switch (
     license_switch_uuid character varying(36) DEFAULT public.uuid_generate_v4() NOT NULL,
     ordered_amount integer,
     package_switch_uuid character varying(36),
-    plan_uuid character varying(36),
     start_time timestamp with time zone DEFAULT now() NOT NULL,
-    user_uuid character varying(36)
+    user_uuid character varying(36),
+    ip character varying(16) NOT NULL
 );
 
 
@@ -367,7 +367,6 @@ CREATE TABLE public.package_lrn (
     package_name character varying(64),
     cps integer,
     type integer,
-    lrn_ip character varying(16) NOT NULL,
     lrn_port integer,
     dip_count integer,
     amount integer,
@@ -692,17 +691,17 @@ CREATE INDEX ix_email_log_name ON public.email_log USING btree (name);
 
 
 --
+-- Name: ix_license_lrn_ip; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX ix_license_lrn_ip ON public.license_lrn USING btree (ip);
+
+
+--
 -- Name: ix_license_lrn_package_lrn_uuid; Type: INDEX; Schema: public; Owner: -
 --
 
 CREATE INDEX ix_license_lrn_package_lrn_uuid ON public.license_lrn USING btree (package_lrn_uuid);
-
-
---
--- Name: ix_license_lrn_plan_uuid; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX ix_license_lrn_plan_uuid ON public.license_lrn USING btree (plan_uuid);
 
 
 --
@@ -713,17 +712,17 @@ CREATE INDEX ix_license_lrn_user_uuid ON public.license_lrn USING btree (user_uu
 
 
 --
+-- Name: ix_license_switch_ip; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX ix_license_switch_ip ON public.license_switch USING btree (ip);
+
+
+--
 -- Name: ix_license_switch_package_switch_uuid; Type: INDEX; Schema: public; Owner: -
 --
 
 CREATE INDEX ix_license_switch_package_switch_uuid ON public.license_switch USING btree (package_switch_uuid);
-
-
---
--- Name: ix_license_switch_plan_uuid; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX ix_license_switch_plan_uuid ON public.license_switch USING btree (plan_uuid);
 
 
 --
@@ -854,14 +853,6 @@ ALTER TABLE ONLY public.license_lrn
 
 
 --
--- Name: license_lrn license_lrn_plan_uuid_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.license_lrn
-    ADD CONSTRAINT license_lrn_plan_uuid_fkey FOREIGN KEY (plan_uuid) REFERENCES public.plan(plan_uuid) ON DELETE CASCADE;
-
-
---
 -- Name: license_lrn license_lrn_user_uuid_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -875,14 +866,6 @@ ALTER TABLE ONLY public.license_lrn
 
 ALTER TABLE ONLY public.license_switch
     ADD CONSTRAINT license_switch_package_switch_uuid_fkey FOREIGN KEY (package_switch_uuid) REFERENCES public.package_switch(package_switch_uuid) ON DELETE CASCADE;
-
-
---
--- Name: license_switch license_switch_plan_uuid_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.license_switch
-    ADD CONSTRAINT license_switch_plan_uuid_fkey FOREIGN KEY (plan_uuid) REFERENCES public.plan(plan_uuid) ON DELETE CASCADE;
 
 
 --

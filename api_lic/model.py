@@ -384,7 +384,6 @@ class PackageLrn(BaseModel):
     package_name = Column(String(64),unique=True)
     cps = Column(Integer())
     type = Column(ChoiceType(TYPE), default=3)
-    lrn_ip = Column(String(16), nullable=False)
     lrn_port = Column(Integer())
     dip_count = Column(Integer())
     amount = Column(Integer())
@@ -401,7 +400,7 @@ class LicenseLrn(BaseModel):
          server_default=func.uuid_generate_v4())
     package_lrn_uuid = Column(ForeignKey('package_lrn.package_lrn_uuid', ondelete='CASCADE'), index=True)
     user_uuid = Column(ForeignKey('user.user_uuid', ondelete='CASCADE'), index=True)
-    plan_uuid = Column(ForeignKey('plan.plan_uuid', ondelete='CASCADE'), nullable=True, index=True)
+    ip = Column(String(16), nullable=False,index=True)
     start_time = Column(DateTime(True), nullable=False, server_default=func.now())
     end_time = Column(DateTime(True), nullable=True)
     ordered_amount = Column(Integer)
@@ -413,7 +412,6 @@ class LicenseLrn(BaseModel):
         select([User.email]).where(user_uuid == User.user_uuid).correlate_except(User))
     cps = column_property(select([PackageLrn.cps]).where(package_lrn_uuid==PackageLrn.package_lrn_uuid).correlate_except(PackageLrn))
     type = column_property(select([PackageLrn.type]).where(package_lrn_uuid==PackageLrn.package_lrn_uuid).correlate_except(PackageLrn))
-    lrn_ip = column_property(select([PackageLrn.lrn_ip]).where(package_lrn_uuid==PackageLrn.package_lrn_uuid).correlate_except(PackageLrn))
     lrn_port = column_property(select([PackageLrn.lrn_port]).where(package_lrn_uuid==PackageLrn.package_lrn_uuid).correlate_except(PackageLrn))
     dip_count = column_property(select([PackageLrn.dip_count]).where(package_lrn_uuid==PackageLrn.package_lrn_uuid).correlate_except(PackageLrn))
     amount = column_property(select([PackageLrn.amount]).where(package_lrn_uuid==PackageLrn.package_lrn_uuid).correlate_except(PackageLrn))
@@ -460,8 +458,8 @@ class LicenseSwitch(BaseModel):
         (String(36), primary_key=True, default=generate_uuid_str(),
          server_default=func.uuid_generate_v4())
     package_switch_uuid = Column(ForeignKey('package_switch.package_switch_uuid', ondelete='CASCADE'), index=True)
+    ip = Column(String(16), nullable=False,index=True)
     user_uuid = Column(ForeignKey('user.user_uuid', ondelete='CASCADE'), index=True)
-    plan_uuid = Column(ForeignKey('plan.plan_uuid', ondelete='CASCADE'), nullable=True, index=True)
     start_time = Column(DateTime(True), nullable=False, server_default=func.now())
     end_time = Column(DateTime(True), nullable=True)
     ordered_amount = Column(Integer)
@@ -475,9 +473,7 @@ class LicenseSwitch(BaseModel):
         select([PackageSwitch.type]).where(package_switch_uuid == PackageSwitch.package_switch_uuid).correlate_except(PackageSwitch))
     switch_uuid = column_property(
         select([PackageSwitch.switch_uuid]).where(package_switch_uuid == PackageSwitch.package_switch_uuid).correlate_except(PackageSwitch))
-    switch_ip = column_property(
-        select([Switch.switch_ip]).where(
-            and_(package_switch_uuid == PackageSwitch.package_switch_uuid,Switch.switch_uuid==PackageSwitch.switch_uuid)).correlate_except(PackageSwitch))
+
     switch_port = column_property(
         select([PackageSwitch.switch_port]).where(package_switch_uuid == PackageSwitch.package_switch_uuid).correlate_except(
             PackageSwitch))

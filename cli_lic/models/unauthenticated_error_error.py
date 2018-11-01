@@ -31,32 +31,53 @@ class UnauthenticatedErrorError(object):
                             and the value is json key in definition.
     """
     swagger_types = {
+        'message': 'str',
         'reason': 'str',
-        'code': 'int',
-        'message': 'str'
+        'code': 'int'
     }
 
     attribute_map = {
+        'message': 'message',
         'reason': 'reason',
-        'code': 'code',
-        'message': 'message'
+        'code': 'code'
     }
 
-    def __init__(self, reason=None, code=None, message=None):
+    def __init__(self, message=None, reason=None, code=None):
         """
         UnauthenticatedErrorError - a model defined in Swagger
         """
 
+        self._message = None
         self._reason = None
         self._code = None
-        self._message = None
 
+        if message is not None:
+          self.message = message
         if reason is not None:
           self.reason = reason
         if code is not None:
           self.code = code
-        if message is not None:
-          self.message = message
+
+    @property
+    def message(self):
+        """
+        Gets the message of this UnauthenticatedErrorError.
+
+        :return: The message of this UnauthenticatedErrorError.
+        :rtype: str
+        """
+        return self._message
+
+    @message.setter
+    def message(self, message):
+        """
+        Sets the message of this UnauthenticatedErrorError.
+
+        :param message: The message of this UnauthenticatedErrorError.
+        :type: str
+        """
+
+        self._message = message
 
     @property
     def reason(self):
@@ -99,27 +120,6 @@ class UnauthenticatedErrorError(object):
         """
 
         self._code = code
-
-    @property
-    def message(self):
-        """
-        Gets the message of this UnauthenticatedErrorError.
-
-        :return: The message of this UnauthenticatedErrorError.
-        :rtype: str
-        """
-        return self._message
-
-    @message.setter
-    def message(self, message):
-        """
-        Sets the message of this UnauthenticatedErrorError.
-
-        :param message: The message of this UnauthenticatedErrorError.
-        :type: str
-        """
-
-        self._message = message
 
     def to_dict(self):
         """

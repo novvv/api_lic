@@ -31,52 +31,75 @@ class LicenseSwitchModify(object):
                             and the value is json key in definition.
     """
     swagger_types = {
+        'ip': 'str',
         'start_time': 'datetime',
-        'end_time': 'datetime',
-        'cost': 'float',
-        'user_uuid': 'str',
         'package_switch_uuid': 'str',
-        'plan_uuid': 'str',
-        'ordered_amount': 'int'
+        'ordered_amount': 'int',
+        'user_uuid': 'str',
+        'end_time': 'datetime',
+        'cost': 'float'
     }
 
     attribute_map = {
+        'ip': 'ip',
         'start_time': 'start_time',
-        'end_time': 'end_time',
-        'cost': 'cost',
-        'user_uuid': 'user_uuid',
         'package_switch_uuid': 'package_switch_uuid',
-        'plan_uuid': 'plan_uuid',
-        'ordered_amount': 'ordered_amount'
+        'ordered_amount': 'ordered_amount',
+        'user_uuid': 'user_uuid',
+        'end_time': 'end_time',
+        'cost': 'cost'
     }
 
-    def __init__(self, start_time=None, end_time=None, cost=None, user_uuid=None, package_switch_uuid=None, plan_uuid=None, ordered_amount=None):
+    def __init__(self, ip=None, start_time=None, package_switch_uuid=None, ordered_amount=None, user_uuid=None, end_time=None, cost=None):
         """
         LicenseSwitchModify - a model defined in Swagger
         """
 
+        self._ip = None
         self._start_time = None
+        self._package_switch_uuid = None
+        self._ordered_amount = None
+        self._user_uuid = None
         self._end_time = None
         self._cost = None
-        self._user_uuid = None
-        self._package_switch_uuid = None
-        self._plan_uuid = None
-        self._ordered_amount = None
 
+        if ip is not None:
+          self.ip = ip
         if start_time is not None:
           self.start_time = start_time
+        if package_switch_uuid is not None:
+          self.package_switch_uuid = package_switch_uuid
+        if ordered_amount is not None:
+          self.ordered_amount = ordered_amount
+        if user_uuid is not None:
+          self.user_uuid = user_uuid
         if end_time is not None:
           self.end_time = end_time
         if cost is not None:
           self.cost = cost
-        if user_uuid is not None:
-          self.user_uuid = user_uuid
-        if package_switch_uuid is not None:
-          self.package_switch_uuid = package_switch_uuid
-        if plan_uuid is not None:
-          self.plan_uuid = plan_uuid
-        if ordered_amount is not None:
-          self.ordered_amount = ordered_amount
+
+    @property
+    def ip(self):
+        """
+        Gets the ip of this LicenseSwitchModify.
+
+        :return: The ip of this LicenseSwitchModify.
+        :rtype: str
+        """
+        return self._ip
+
+    @ip.setter
+    def ip(self, ip):
+        """
+        Sets the ip of this LicenseSwitchModify.
+
+        :param ip: The ip of this LicenseSwitchModify.
+        :type: str
+        """
+        if ip is not None and len(ip) > 16:
+            raise ValueError("Invalid value for `ip`, length must be less than or equal to `16`")
+
+        self._ip = ip
 
     @property
     def start_time(self):
@@ -98,6 +121,73 @@ class LicenseSwitchModify(object):
         """
 
         self._start_time = start_time
+
+    @property
+    def package_switch_uuid(self):
+        """
+        Gets the package_switch_uuid of this LicenseSwitchModify.
+
+        :return: The package_switch_uuid of this LicenseSwitchModify.
+        :rtype: str
+        """
+        return self._package_switch_uuid
+
+    @package_switch_uuid.setter
+    def package_switch_uuid(self, package_switch_uuid):
+        """
+        Sets the package_switch_uuid of this LicenseSwitchModify.
+
+        :param package_switch_uuid: The package_switch_uuid of this LicenseSwitchModify.
+        :type: str
+        """
+        if package_switch_uuid is not None and len(package_switch_uuid) > 36:
+            raise ValueError("Invalid value for `package_switch_uuid`, length must be less than or equal to `36`")
+
+        self._package_switch_uuid = package_switch_uuid
+
+    @property
+    def ordered_amount(self):
+        """
+        Gets the ordered_amount of this LicenseSwitchModify.
+
+        :return: The ordered_amount of this LicenseSwitchModify.
+        :rtype: int
+        """
+        return self._ordered_amount
+
+    @ordered_amount.setter
+    def ordered_amount(self, ordered_amount):
+        """
+        Sets the ordered_amount of this LicenseSwitchModify.
+
+        :param ordered_amount: The ordered_amount of this LicenseSwitchModify.
+        :type: int
+        """
+
+        self._ordered_amount = ordered_amount
+
+    @property
+    def user_uuid(self):
+        """
+        Gets the user_uuid of this LicenseSwitchModify.
+
+        :return: The user_uuid of this LicenseSwitchModify.
+        :rtype: str
+        """
+        return self._user_uuid
+
+    @user_uuid.setter
+    def user_uuid(self, user_uuid):
+        """
+        Sets the user_uuid of this LicenseSwitchModify.
+
+        :param user_uuid: The user_uuid of this LicenseSwitchModify.
+        :type: str
+        """
+        if user_uuid is not None and len(user_uuid) > 36:
+            raise ValueError("Invalid value for `user_uuid`, length must be less than or equal to `36`")
+
+        self._user_uuid = user_uuid
 
     @property
     def end_time(self):
@@ -140,96 +230,6 @@ class LicenseSwitchModify(object):
         """
 
         self._cost = cost
-
-    @property
-    def user_uuid(self):
-        """
-        Gets the user_uuid of this LicenseSwitchModify.
-
-        :return: The user_uuid of this LicenseSwitchModify.
-        :rtype: str
-        """
-        return self._user_uuid
-
-    @user_uuid.setter
-    def user_uuid(self, user_uuid):
-        """
-        Sets the user_uuid of this LicenseSwitchModify.
-
-        :param user_uuid: The user_uuid of this LicenseSwitchModify.
-        :type: str
-        """
-        if user_uuid is not None and len(user_uuid) > 36:
-            raise ValueError("Invalid value for `user_uuid`, length must be less than or equal to `36`")
-
-        self._user_uuid = user_uuid
-
-    @property
-    def package_switch_uuid(self):
-        """
-        Gets the package_switch_uuid of this LicenseSwitchModify.
-
-        :return: The package_switch_uuid of this LicenseSwitchModify.
-        :rtype: str
-        """
-        return self._package_switch_uuid
-
-    @package_switch_uuid.setter
-    def package_switch_uuid(self, package_switch_uuid):
-        """
-        Sets the package_switch_uuid of this LicenseSwitchModify.
-
-        :param package_switch_uuid: The package_switch_uuid of this LicenseSwitchModify.
-        :type: str
-        """
-        if package_switch_uuid is not None and len(package_switch_uuid) > 36:
-            raise ValueError("Invalid value for `package_switch_uuid`, length must be less than or equal to `36`")
-
-        self._package_switch_uuid = package_switch_uuid
-
-    @property
-    def plan_uuid(self):
-        """
-        Gets the plan_uuid of this LicenseSwitchModify.
-
-        :return: The plan_uuid of this LicenseSwitchModify.
-        :rtype: str
-        """
-        return self._plan_uuid
-
-    @plan_uuid.setter
-    def plan_uuid(self, plan_uuid):
-        """
-        Sets the plan_uuid of this LicenseSwitchModify.
-
-        :param plan_uuid: The plan_uuid of this LicenseSwitchModify.
-        :type: str
-        """
-        if plan_uuid is not None and len(plan_uuid) > 36:
-            raise ValueError("Invalid value for `plan_uuid`, length must be less than or equal to `36`")
-
-        self._plan_uuid = plan_uuid
-
-    @property
-    def ordered_amount(self):
-        """
-        Gets the ordered_amount of this LicenseSwitchModify.
-
-        :return: The ordered_amount of this LicenseSwitchModify.
-        :rtype: int
-        """
-        return self._ordered_amount
-
-    @ordered_amount.setter
-    def ordered_amount(self, ordered_amount):
-        """
-        Sets the ordered_amount of this LicenseSwitchModify.
-
-        :param ordered_amount: The ordered_amount of this LicenseSwitchModify.
-        :type: int
-        """
-
-        self._ordered_amount = ordered_amount
 
     def to_dict(self):
         """

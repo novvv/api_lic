@@ -31,53 +31,53 @@ class OperationErrorError(object):
                             and the value is json key in definition.
     """
     swagger_types = {
-        'reason': 'str',
+        'code': 'int',
         'message': 'str',
-        'code': 'int'
+        'reason': 'str'
     }
 
     attribute_map = {
-        'reason': 'reason',
+        'code': 'code',
         'message': 'message',
-        'code': 'code'
+        'reason': 'reason'
     }
 
-    def __init__(self, reason=None, message=None, code=None):
+    def __init__(self, code=None, message=None, reason=None):
         """
         OperationErrorError - a model defined in Swagger
         """
 
-        self._reason = None
-        self._message = None
         self._code = None
+        self._message = None
+        self._reason = None
 
-        if reason is not None:
-          self.reason = reason
-        if message is not None:
-          self.message = message
         if code is not None:
           self.code = code
+        if message is not None:
+          self.message = message
+        if reason is not None:
+          self.reason = reason
 
     @property
-    def reason(self):
+    def code(self):
         """
-        Gets the reason of this OperationErrorError.
+        Gets the code of this OperationErrorError.
 
-        :return: The reason of this OperationErrorError.
-        :rtype: str
+        :return: The code of this OperationErrorError.
+        :rtype: int
         """
-        return self._reason
+        return self._code
 
-    @reason.setter
-    def reason(self, reason):
+    @code.setter
+    def code(self, code):
         """
-        Sets the reason of this OperationErrorError.
+        Sets the code of this OperationErrorError.
 
-        :param reason: The reason of this OperationErrorError.
-        :type: str
+        :param code: The code of this OperationErrorError.
+        :type: int
         """
 
-        self._reason = reason
+        self._code = code
 
     @property
     def message(self):
@@ -101,25 +101,25 @@ class OperationErrorError(object):
         self._message = message
 
     @property
-    def code(self):
+    def reason(self):
         """
-        Gets the code of this OperationErrorError.
+        Gets the reason of this OperationErrorError.
 
-        :return: The code of this OperationErrorError.
-        :rtype: int
+        :return: The reason of this OperationErrorError.
+        :rtype: str
         """
-        return self._code
+        return self._reason
 
-    @code.setter
-    def code(self, code):
+    @reason.setter
+    def reason(self, reason):
         """
-        Sets the code of this OperationErrorError.
+        Sets the reason of this OperationErrorError.
 
-        :param code: The code of this OperationErrorError.
-        :type: int
+        :param reason: The reason of this OperationErrorError.
+        :type: str
         """
 
-        self._code = code
+        self._reason = reason
 
     def to_dict(self):
         """

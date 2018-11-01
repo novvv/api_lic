@@ -165,7 +165,7 @@ class TestAdminApi(unittest.TestCase):
         """
         if not self.package_lrn:
             self.test_package_lrn_post()
-        data = dict(lrn_ip=ip(), package_name='lrn_{}'.format(dig(10)), cps=random.randint(10, 1000),
+        data = dict(package_name='lrn_{}'.format(dig(10)), cps=random.randint(10, 1000),
                     lrn_port=random.randint(1000, 65535),
                     type=random.choice(['LRN pay per CPS', 'LRN pay per DIP']),
                     dip_count=random.randint(10, 1000), amount=random.randint(10, 1000), enabled=True)

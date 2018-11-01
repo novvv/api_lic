@@ -937,7 +937,6 @@ class PublicApi(object):
         :param int cps:
         :param int dip_count:
         :param bool enabled:
-        :param str lrn_ip:
         :param int lrn_port:
         :param str package_lrn_uuid:
         :param str package_name:
@@ -974,7 +973,6 @@ class PublicApi(object):
         :param int cps:
         :param int dip_count:
         :param bool enabled:
-        :param str lrn_ip:
         :param int lrn_port:
         :param str package_lrn_uuid:
         :param str package_name:
@@ -984,7 +982,7 @@ class PublicApi(object):
                  returns the request thread.
         """
 
-        all_params = ['page', 'per_page', 'order_by', 'order_dir', 'amount', 'cps', 'dip_count', 'enabled', 'lrn_ip', 'lrn_port', 'package_lrn_uuid', 'package_name', 'type']
+        all_params = ['page', 'per_page', 'order_by', 'order_dir', 'amount', 'cps', 'dip_count', 'enabled', 'lrn_port', 'package_lrn_uuid', 'package_name', 'type']
         all_params.append('callback')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
@@ -1022,8 +1020,6 @@ class PublicApi(object):
             query_params.append(('dip_count', params['dip_count']))
         if 'enabled' in params:
             query_params.append(('enabled', params['enabled']))
-        if 'lrn_ip' in params:
-            query_params.append(('lrn_ip', params['lrn_ip']))
         if 'lrn_port' in params:
             query_params.append(('lrn_port', params['lrn_port']))
         if 'package_lrn_uuid' in params:

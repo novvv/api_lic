@@ -31,91 +31,47 @@ class SwitchModify(object):
                             and the value is json key in definition.
     """
     swagger_types = {
-        'enabled': 'bool',
-        'email': 'str',
         'current_port_count': 'int',
-        'minute_remaining': 'int',
+        'expired_on': 'datetime',
+        'enabled': 'bool',
         'switch_ip': 'str',
-        'expired_on': 'datetime'
+        'minute_remaining': 'int',
+        'email': 'str'
     }
 
     attribute_map = {
-        'enabled': 'enabled',
-        'email': 'email',
         'current_port_count': 'current_port_count',
-        'minute_remaining': 'minute_remaining',
+        'expired_on': 'expired_on',
+        'enabled': 'enabled',
         'switch_ip': 'switch_ip',
-        'expired_on': 'expired_on'
+        'minute_remaining': 'minute_remaining',
+        'email': 'email'
     }
 
-    def __init__(self, enabled=None, email=None, current_port_count=None, minute_remaining=None, switch_ip=None, expired_on=None):
+    def __init__(self, current_port_count=None, expired_on=None, enabled=None, switch_ip=None, minute_remaining=None, email=None):
         """
         SwitchModify - a model defined in Swagger
         """
 
-        self._enabled = None
-        self._email = None
         self._current_port_count = None
-        self._minute_remaining = None
-        self._switch_ip = None
         self._expired_on = None
+        self._enabled = None
+        self._switch_ip = None
+        self._minute_remaining = None
+        self._email = None
 
-        if enabled is not None:
-          self.enabled = enabled
-        if email is not None:
-          self.email = email
         if current_port_count is not None:
           self.current_port_count = current_port_count
-        if minute_remaining is not None:
-          self.minute_remaining = minute_remaining
-        if switch_ip is not None:
-          self.switch_ip = switch_ip
         if expired_on is not None:
           self.expired_on = expired_on
-
-    @property
-    def enabled(self):
-        """
-        Gets the enabled of this SwitchModify.
-
-        :return: The enabled of this SwitchModify.
-        :rtype: bool
-        """
-        return self._enabled
-
-    @enabled.setter
-    def enabled(self, enabled):
-        """
-        Sets the enabled of this SwitchModify.
-
-        :param enabled: The enabled of this SwitchModify.
-        :type: bool
-        """
-
-        self._enabled = enabled
-
-    @property
-    def email(self):
-        """
-        Gets the email of this SwitchModify.
-
-        :return: The email of this SwitchModify.
-        :rtype: str
-        """
-        return self._email
-
-    @email.setter
-    def email(self, email):
-        """
-        Sets the email of this SwitchModify.
-
-        :param email: The email of this SwitchModify.
-        :type: str
-        """
-        if email is not None and len(email) > 256:
-            raise ValueError("Invalid value for `email`, length must be less than or equal to `256`")
-
-        self._email = email
+        if enabled is not None:
+          self.enabled = enabled
+        if switch_ip is not None:
+          self.switch_ip = switch_ip
+        if minute_remaining is not None:
+          self.minute_remaining = minute_remaining
+        if email is not None:
+          self.email = email
 
     @property
     def current_port_count(self):
@@ -139,25 +95,46 @@ class SwitchModify(object):
         self._current_port_count = current_port_count
 
     @property
-    def minute_remaining(self):
+    def expired_on(self):
         """
-        Gets the minute_remaining of this SwitchModify.
+        Gets the expired_on of this SwitchModify.
 
-        :return: The minute_remaining of this SwitchModify.
-        :rtype: int
+        :return: The expired_on of this SwitchModify.
+        :rtype: datetime
         """
-        return self._minute_remaining
+        return self._expired_on
 
-    @minute_remaining.setter
-    def minute_remaining(self, minute_remaining):
+    @expired_on.setter
+    def expired_on(self, expired_on):
         """
-        Sets the minute_remaining of this SwitchModify.
+        Sets the expired_on of this SwitchModify.
 
-        :param minute_remaining: The minute_remaining of this SwitchModify.
-        :type: int
+        :param expired_on: The expired_on of this SwitchModify.
+        :type: datetime
         """
 
-        self._minute_remaining = minute_remaining
+        self._expired_on = expired_on
+
+    @property
+    def enabled(self):
+        """
+        Gets the enabled of this SwitchModify.
+
+        :return: The enabled of this SwitchModify.
+        :rtype: bool
+        """
+        return self._enabled
+
+    @enabled.setter
+    def enabled(self, enabled):
+        """
+        Sets the enabled of this SwitchModify.
+
+        :param enabled: The enabled of this SwitchModify.
+        :type: bool
+        """
+
+        self._enabled = enabled
 
     @property
     def switch_ip(self):
@@ -183,25 +160,48 @@ class SwitchModify(object):
         self._switch_ip = switch_ip
 
     @property
-    def expired_on(self):
+    def minute_remaining(self):
         """
-        Gets the expired_on of this SwitchModify.
+        Gets the minute_remaining of this SwitchModify.
 
-        :return: The expired_on of this SwitchModify.
-        :rtype: datetime
+        :return: The minute_remaining of this SwitchModify.
+        :rtype: int
         """
-        return self._expired_on
+        return self._minute_remaining
 
-    @expired_on.setter
-    def expired_on(self, expired_on):
+    @minute_remaining.setter
+    def minute_remaining(self, minute_remaining):
         """
-        Sets the expired_on of this SwitchModify.
+        Sets the minute_remaining of this SwitchModify.
 
-        :param expired_on: The expired_on of this SwitchModify.
-        :type: datetime
+        :param minute_remaining: The minute_remaining of this SwitchModify.
+        :type: int
         """
 
-        self._expired_on = expired_on
+        self._minute_remaining = minute_remaining
+
+    @property
+    def email(self):
+        """
+        Gets the email of this SwitchModify.
+
+        :return: The email of this SwitchModify.
+        :rtype: str
+        """
+        return self._email
+
+    @email.setter
+    def email(self, email):
+        """
+        Sets the email of this SwitchModify.
+
+        :param email: The email of this SwitchModify.
+        :type: str
+        """
+        if email is not None and len(email) > 256:
+            raise ValueError("Invalid value for `email`, length must be less than or equal to `256`")
+
+        self._email = email
 
     def to_dict(self):
         """

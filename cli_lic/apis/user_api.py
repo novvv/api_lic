@@ -573,12 +573,11 @@ class UserApi(object):
         :param int amount:
         :param int cps:
         :param int dip_count:
+        :param str ip:
         :param str license_lrn_uuid:
-        :param str lrn_ip:
         :param int lrn_port:
         :param int ordered_amount:
         :param str package_lrn_uuid:
-        :param str plan_uuid:
         :param int type:
         :param str user_email:
         :param str user_uuid:
@@ -619,12 +618,11 @@ class UserApi(object):
         :param int amount:
         :param int cps:
         :param int dip_count:
+        :param str ip:
         :param str license_lrn_uuid:
-        :param str lrn_ip:
         :param int lrn_port:
         :param int ordered_amount:
         :param str package_lrn_uuid:
-        :param str plan_uuid:
         :param int type:
         :param str user_email:
         :param str user_uuid:
@@ -639,7 +637,7 @@ class UserApi(object):
                  returns the request thread.
         """
 
-        all_params = ['page', 'per_page', 'order_by', 'order_dir', 'amount', 'cps', 'dip_count', 'license_lrn_uuid', 'lrn_ip', 'lrn_port', 'ordered_amount', 'package_lrn_uuid', 'plan_uuid', 'type', 'user_email', 'user_uuid', 'cost_gt', 'cost_lt', 'end_time_gt', 'end_time_lt', 'start_time_gt', 'start_time_lt']
+        all_params = ['page', 'per_page', 'order_by', 'order_dir', 'amount', 'cps', 'dip_count', 'ip', 'license_lrn_uuid', 'lrn_port', 'ordered_amount', 'package_lrn_uuid', 'type', 'user_email', 'user_uuid', 'cost_gt', 'cost_lt', 'end_time_gt', 'end_time_lt', 'start_time_gt', 'start_time_lt']
         all_params.append('callback')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
@@ -675,18 +673,16 @@ class UserApi(object):
             query_params.append(('cps', params['cps']))
         if 'dip_count' in params:
             query_params.append(('dip_count', params['dip_count']))
+        if 'ip' in params:
+            query_params.append(('ip', params['ip']))
         if 'license_lrn_uuid' in params:
             query_params.append(('license_lrn_uuid', params['license_lrn_uuid']))
-        if 'lrn_ip' in params:
-            query_params.append(('lrn_ip', params['lrn_ip']))
         if 'lrn_port' in params:
             query_params.append(('lrn_port', params['lrn_port']))
         if 'ordered_amount' in params:
             query_params.append(('ordered_amount', params['ordered_amount']))
         if 'package_lrn_uuid' in params:
             query_params.append(('package_lrn_uuid', params['package_lrn_uuid']))
-        if 'plan_uuid' in params:
-            query_params.append(('plan_uuid', params['plan_uuid']))
         if 'type' in params:
             query_params.append(('type', params['type']))
         if 'user_email' in params:
@@ -1173,12 +1169,12 @@ class UserApi(object):
         :param str order_by:
         :param str order_dir:
         :param int amount:
+        :param str ip:
         :param str license_switch_uuid:
         :param int minute_count:
         :param int ordered_amount:
         :param str package_switch_uuid:
         :param str plan_uuid:
-        :param str switch_ip:
         :param int switch_port:
         :param int type:
         :param str user_email:
@@ -1218,12 +1214,12 @@ class UserApi(object):
         :param str order_by:
         :param str order_dir:
         :param int amount:
+        :param str ip:
         :param str license_switch_uuid:
         :param int minute_count:
         :param int ordered_amount:
         :param str package_switch_uuid:
         :param str plan_uuid:
-        :param str switch_ip:
         :param int switch_port:
         :param int type:
         :param str user_email:
@@ -1239,7 +1235,7 @@ class UserApi(object):
                  returns the request thread.
         """
 
-        all_params = ['page', 'per_page', 'order_by', 'order_dir', 'amount', 'license_switch_uuid', 'minute_count', 'ordered_amount', 'package_switch_uuid', 'plan_uuid', 'switch_ip', 'switch_port', 'type', 'user_email', 'user_uuid', 'cost_gt', 'cost_lt', 'end_time_gt', 'end_time_lt', 'start_time_gt', 'start_time_lt']
+        all_params = ['page', 'per_page', 'order_by', 'order_dir', 'amount', 'ip', 'license_switch_uuid', 'minute_count', 'ordered_amount', 'package_switch_uuid', 'plan_uuid', 'switch_port', 'type', 'user_email', 'user_uuid', 'cost_gt', 'cost_lt', 'end_time_gt', 'end_time_lt', 'start_time_gt', 'start_time_lt']
         all_params.append('callback')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
@@ -1271,6 +1267,8 @@ class UserApi(object):
             query_params.append(('order_dir', params['order_dir']))
         if 'amount' in params:
             query_params.append(('amount', params['amount']))
+        if 'ip' in params:
+            query_params.append(('ip', params['ip']))
         if 'license_switch_uuid' in params:
             query_params.append(('license_switch_uuid', params['license_switch_uuid']))
         if 'minute_count' in params:
@@ -1281,8 +1279,6 @@ class UserApi(object):
             query_params.append(('package_switch_uuid', params['package_switch_uuid']))
         if 'plan_uuid' in params:
             query_params.append(('plan_uuid', params['plan_uuid']))
-        if 'switch_ip' in params:
-            query_params.append(('switch_ip', params['switch_ip']))
         if 'switch_port' in params:
             query_params.append(('switch_port', params['switch_port']))
         if 'type' in params:

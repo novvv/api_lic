@@ -125,7 +125,7 @@ class TestUserApi(unittest.TestCase):
 
         """
         auth_user()
-        data=dict(package_lrn_uuid=rand_package_lrn()[0],end_time=str(datetime.now(UTC)+timedelta(days=10)))
+        data=dict(package_lrn_uuid=rand_package_lrn()[0],ip=ip())
         ret = self.api.license_lrn_post(body=data)
         assert (ret.success)
         self.license_lrn.append(ret.object_uuid)

@@ -31,31 +31,52 @@ class ObjectRevisionRecordGet(object):
                             and the value is json key in definition.
     """
     swagger_types = {
+        'new_value': 'str',
         'old_value': 'str',
-        'field_name': 'str',
-        'new_value': 'str'
+        'field_name': 'str'
     }
 
     attribute_map = {
+        'new_value': 'new_value',
         'old_value': 'old_value',
-        'field_name': 'field_name',
-        'new_value': 'new_value'
+        'field_name': 'field_name'
     }
 
-    def __init__(self, old_value=None, field_name=None, new_value=None):
+    def __init__(self, new_value=None, old_value=None, field_name=None):
         """
         ObjectRevisionRecordGet - a model defined in Swagger
         """
 
+        self._new_value = None
         self._old_value = None
         self._field_name = None
-        self._new_value = None
 
+        if new_value is not None:
+          self.new_value = new_value
         if old_value is not None:
           self.old_value = old_value
         self.field_name = field_name
-        if new_value is not None:
-          self.new_value = new_value
+
+    @property
+    def new_value(self):
+        """
+        Gets the new_value of this ObjectRevisionRecordGet.
+
+        :return: The new_value of this ObjectRevisionRecordGet.
+        :rtype: str
+        """
+        return self._new_value
+
+    @new_value.setter
+    def new_value(self, new_value):
+        """
+        Sets the new_value of this ObjectRevisionRecordGet.
+
+        :param new_value: The new_value of this ObjectRevisionRecordGet.
+        :type: str
+        """
+
+        self._new_value = new_value
 
     @property
     def old_value(self):
@@ -102,27 +123,6 @@ class ObjectRevisionRecordGet(object):
             raise ValueError("Invalid value for `field_name`, length must be less than or equal to `64`")
 
         self._field_name = field_name
-
-    @property
-    def new_value(self):
-        """
-        Gets the new_value of this ObjectRevisionRecordGet.
-
-        :return: The new_value of this ObjectRevisionRecordGet.
-        :rtype: str
-        """
-        return self._new_value
-
-    @new_value.setter
-    def new_value(self, new_value):
-        """
-        Sets the new_value of this ObjectRevisionRecordGet.
-
-        :param new_value: The new_value of this ObjectRevisionRecordGet.
-        :type: str
-        """
-
-        self._new_value = new_value
 
     def to_dict(self):
         """

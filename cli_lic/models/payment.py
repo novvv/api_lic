@@ -31,63 +31,42 @@ class Payment(object):
                             and the value is json key in definition.
     """
     swagger_types = {
-        'amount': 'float',
         'paid_time': 'datetime',
+        'type': 'str',
         'license_lrn_uuid': 'str',
         'license_switch_uuid': 'str',
-        'type': 'str'
+        'amount': 'float'
     }
 
     attribute_map = {
-        'amount': 'amount',
         'paid_time': 'paid_time',
+        'type': 'type',
         'license_lrn_uuid': 'license_lrn_uuid',
         'license_switch_uuid': 'license_switch_uuid',
-        'type': 'type'
+        'amount': 'amount'
     }
 
-    def __init__(self, amount=None, paid_time=None, license_lrn_uuid=None, license_switch_uuid=None, type='paypal'):
+    def __init__(self, paid_time=None, type='paypal', license_lrn_uuid=None, license_switch_uuid=None, amount=None):
         """
         Payment - a model defined in Swagger
         """
 
-        self._amount = None
         self._paid_time = None
+        self._type = None
         self._license_lrn_uuid = None
         self._license_switch_uuid = None
-        self._type = None
+        self._amount = None
 
-        if amount is not None:
-          self.amount = amount
         if paid_time is not None:
           self.paid_time = paid_time
+        if type is not None:
+          self.type = type
         if license_lrn_uuid is not None:
           self.license_lrn_uuid = license_lrn_uuid
         if license_switch_uuid is not None:
           self.license_switch_uuid = license_switch_uuid
-        if type is not None:
-          self.type = type
-
-    @property
-    def amount(self):
-        """
-        Gets the amount of this Payment.
-
-        :return: The amount of this Payment.
-        :rtype: float
-        """
-        return self._amount
-
-    @amount.setter
-    def amount(self, amount):
-        """
-        Sets the amount of this Payment.
-
-        :param amount: The amount of this Payment.
-        :type: float
-        """
-
-        self._amount = amount
+        if amount is not None:
+          self.amount = amount
 
     @property
     def paid_time(self):
@@ -109,6 +88,33 @@ class Payment(object):
         """
 
         self._paid_time = paid_time
+
+    @property
+    def type(self):
+        """
+        Gets the type of this Payment.
+
+        :return: The type of this Payment.
+        :rtype: str
+        """
+        return self._type
+
+    @type.setter
+    def type(self, type):
+        """
+        Sets the type of this Payment.
+
+        :param type: The type of this Payment.
+        :type: str
+        """
+        allowed_values = ["paypal", "strip"]
+        if type not in allowed_values:
+            raise ValueError(
+                "Invalid value for `type` ({0}), must be one of {1}"
+                .format(type, allowed_values)
+            )
+
+        self._type = type
 
     @property
     def license_lrn_uuid(self):
@@ -157,31 +163,25 @@ class Payment(object):
         self._license_switch_uuid = license_switch_uuid
 
     @property
-    def type(self):
+    def amount(self):
         """
-        Gets the type of this Payment.
+        Gets the amount of this Payment.
 
-        :return: The type of this Payment.
-        :rtype: str
+        :return: The amount of this Payment.
+        :rtype: float
         """
-        return self._type
+        return self._amount
 
-    @type.setter
-    def type(self, type):
+    @amount.setter
+    def amount(self, amount):
         """
-        Sets the type of this Payment.
+        Sets the amount of this Payment.
 
-        :param type: The type of this Payment.
-        :type: str
+        :param amount: The amount of this Payment.
+        :type: float
         """
-        allowed_values = ["paypal", "strip"]
-        if type not in allowed_values:
-            raise ValueError(
-                "Invalid value for `type` ({0}), must be one of {1}"
-                .format(type, allowed_values)
-            )
 
-        self._type = type
+        self._amount = amount
 
     def to_dict(self):
         """
