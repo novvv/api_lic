@@ -1,4 +1,6 @@
 api_lic ver 1.0.5
+question <-- LLP-47
+GET/user <-- fix "last_login" LLP-46
 GET/user <-- fix "last_login" LLP-45
 GET/package_switch_port/table
 GET/package_switch_minute/table <-- cross pricing tables LLP-43
