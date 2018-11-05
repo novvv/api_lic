@@ -31,55 +31,32 @@ class ValidationError(object):
                             and the value is json key in definition.
     """
     swagger_types = {
-        'errors': 'list[object]',
         'success': 'bool',
-        'error_type': 'str'
+        'error_type': 'str',
+        'errors': 'list[object]'
     }
 
     attribute_map = {
-        'errors': 'errors',
         'success': 'success',
-        'error_type': 'error_type'
+        'error_type': 'error_type',
+        'errors': 'errors'
     }
 
-    def __init__(self, errors=None, success=False, error_type='validation_error'):
+    def __init__(self, success=False, error_type='validation_error', errors=None):
         """
         ValidationError - a model defined in Swagger
         """
 
-        self._errors = None
         self._success = None
         self._error_type = None
+        self._errors = None
 
-        if errors is not None:
-          self.errors = errors
         if success is not None:
           self.success = success
         if error_type is not None:
           self.error_type = error_type
-
-    @property
-    def errors(self):
-        """
-        Gets the errors of this ValidationError.
-        Key is the field name and value is the list of the validation errors for this fields
-
-        :return: The errors of this ValidationError.
-        :rtype: list[object]
-        """
-        return self._errors
-
-    @errors.setter
-    def errors(self, errors):
-        """
-        Sets the errors of this ValidationError.
-        Key is the field name and value is the list of the validation errors for this fields
-
-        :param errors: The errors of this ValidationError.
-        :type: list[object]
-        """
-
-        self._errors = errors
+        if errors is not None:
+          self.errors = errors
 
     @property
     def success(self):
@@ -122,6 +99,29 @@ class ValidationError(object):
         """
 
         self._error_type = error_type
+
+    @property
+    def errors(self):
+        """
+        Gets the errors of this ValidationError.
+        Key is the field name and value is the list of the validation errors for this fields
+
+        :return: The errors of this ValidationError.
+        :rtype: list[object]
+        """
+        return self._errors
+
+    @errors.setter
+    def errors(self, errors):
+        """
+        Sets the errors of this ValidationError.
+        Key is the field name and value is the list of the validation errors for this fields
+
+        :param errors: The errors of this ValidationError.
+        :type: list[object]
+        """
+
+        self._errors = errors
 
     def to_dict(self):
         """

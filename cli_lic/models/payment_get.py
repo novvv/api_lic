@@ -32,49 +32,49 @@ class PaymentGet(object):
     """
     swagger_types = {
         'amount': 'float',
-        'license_switch_uuid': 'str',
+        'license_lrn_uuid': 'str',
         'paid_time': 'datetime',
         'payment_uuid': 'str',
+        'license_switch_uuid': 'str',
         'user_uuid': 'str',
-        'license_lrn_uuid': 'str',
         'type': 'str'
     }
 
     attribute_map = {
         'amount': 'amount',
-        'license_switch_uuid': 'license_switch_uuid',
+        'license_lrn_uuid': 'license_lrn_uuid',
         'paid_time': 'paid_time',
         'payment_uuid': 'payment_uuid',
+        'license_switch_uuid': 'license_switch_uuid',
         'user_uuid': 'user_uuid',
-        'license_lrn_uuid': 'license_lrn_uuid',
         'type': 'type'
     }
 
-    def __init__(self, amount=None, license_switch_uuid=None, paid_time=None, payment_uuid=None, user_uuid=None, license_lrn_uuid=None, type='paypal'):
+    def __init__(self, amount=None, license_lrn_uuid=None, paid_time=None, payment_uuid=None, license_switch_uuid=None, user_uuid=None, type='paypal'):
         """
         PaymentGet - a model defined in Swagger
         """
 
         self._amount = None
-        self._license_switch_uuid = None
+        self._license_lrn_uuid = None
         self._paid_time = None
         self._payment_uuid = None
+        self._license_switch_uuid = None
         self._user_uuid = None
-        self._license_lrn_uuid = None
         self._type = None
 
         if amount is not None:
           self.amount = amount
-        if license_switch_uuid is not None:
-          self.license_switch_uuid = license_switch_uuid
+        if license_lrn_uuid is not None:
+          self.license_lrn_uuid = license_lrn_uuid
         if paid_time is not None:
           self.paid_time = paid_time
         if payment_uuid is not None:
           self.payment_uuid = payment_uuid
+        if license_switch_uuid is not None:
+          self.license_switch_uuid = license_switch_uuid
         if user_uuid is not None:
           self.user_uuid = user_uuid
-        if license_lrn_uuid is not None:
-          self.license_lrn_uuid = license_lrn_uuid
         if type is not None:
           self.type = type
 
@@ -100,27 +100,27 @@ class PaymentGet(object):
         self._amount = amount
 
     @property
-    def license_switch_uuid(self):
+    def license_lrn_uuid(self):
         """
-        Gets the license_switch_uuid of this PaymentGet.
+        Gets the license_lrn_uuid of this PaymentGet.
 
-        :return: The license_switch_uuid of this PaymentGet.
+        :return: The license_lrn_uuid of this PaymentGet.
         :rtype: str
         """
-        return self._license_switch_uuid
+        return self._license_lrn_uuid
 
-    @license_switch_uuid.setter
-    def license_switch_uuid(self, license_switch_uuid):
+    @license_lrn_uuid.setter
+    def license_lrn_uuid(self, license_lrn_uuid):
         """
-        Sets the license_switch_uuid of this PaymentGet.
+        Sets the license_lrn_uuid of this PaymentGet.
 
-        :param license_switch_uuid: The license_switch_uuid of this PaymentGet.
+        :param license_lrn_uuid: The license_lrn_uuid of this PaymentGet.
         :type: str
         """
-        if license_switch_uuid is not None and len(license_switch_uuid) > 36:
-            raise ValueError("Invalid value for `license_switch_uuid`, length must be less than or equal to `36`")
+        if license_lrn_uuid is not None and len(license_lrn_uuid) > 36:
+            raise ValueError("Invalid value for `license_lrn_uuid`, length must be less than or equal to `36`")
 
-        self._license_switch_uuid = license_switch_uuid
+        self._license_lrn_uuid = license_lrn_uuid
 
     @property
     def paid_time(self):
@@ -167,6 +167,29 @@ class PaymentGet(object):
         self._payment_uuid = payment_uuid
 
     @property
+    def license_switch_uuid(self):
+        """
+        Gets the license_switch_uuid of this PaymentGet.
+
+        :return: The license_switch_uuid of this PaymentGet.
+        :rtype: str
+        """
+        return self._license_switch_uuid
+
+    @license_switch_uuid.setter
+    def license_switch_uuid(self, license_switch_uuid):
+        """
+        Sets the license_switch_uuid of this PaymentGet.
+
+        :param license_switch_uuid: The license_switch_uuid of this PaymentGet.
+        :type: str
+        """
+        if license_switch_uuid is not None and len(license_switch_uuid) > 36:
+            raise ValueError("Invalid value for `license_switch_uuid`, length must be less than or equal to `36`")
+
+        self._license_switch_uuid = license_switch_uuid
+
+    @property
     def user_uuid(self):
         """
         Gets the user_uuid of this PaymentGet.
@@ -186,29 +209,6 @@ class PaymentGet(object):
         """
 
         self._user_uuid = user_uuid
-
-    @property
-    def license_lrn_uuid(self):
-        """
-        Gets the license_lrn_uuid of this PaymentGet.
-
-        :return: The license_lrn_uuid of this PaymentGet.
-        :rtype: str
-        """
-        return self._license_lrn_uuid
-
-    @license_lrn_uuid.setter
-    def license_lrn_uuid(self, license_lrn_uuid):
-        """
-        Sets the license_lrn_uuid of this PaymentGet.
-
-        :param license_lrn_uuid: The license_lrn_uuid of this PaymentGet.
-        :type: str
-        """
-        if license_lrn_uuid is not None and len(license_lrn_uuid) > 36:
-            raise ValueError("Invalid value for `license_lrn_uuid`, length must be less than or equal to `36`")
-
-        self._license_lrn_uuid = license_lrn_uuid
 
     @property
     def type(self):

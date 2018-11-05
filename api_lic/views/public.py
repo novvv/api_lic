@@ -113,3 +113,69 @@ class SimpleFileGet(CustomGetAction):
         except Exception as e:
             self.set_response(resp, OperationalError(e))
             return False
+
+
+class PackageSwitchPortTableResource(CustomGetAction):
+    model_class = model.PackageSwitch
+    security = (DEFAULT_SECURITY)
+    restrict = ()
+    additional_responses = (responses.SuccessResponseObjectInfo(payload_scheme=PackageSwitchPortTableScheme),)
+    no_auth_needed = True
+
+    def on_get(self, req, resp, **kwargs):
+        self.init_req(req)
+        return self.proceed(req, resp, **kwargs)
+
+    def apply(self, obj, req, resp, **kwargs):
+        cls = self.model_class
+        all = cls.filter(cls.type=='switch pay per port').all()
+        data = {}
+        for i in all:
+            scheme=PackageSwitchPortScheme()
+            i_as_dict=scheme.dump(i).data
+            if i.switch_port is None:
+                continue
+            if i.sub_type is None:
+                continue
+            if i.switch_port in data:
+                data[i.switch_port][i.sub_type]=i_as_dict
+            else:
+                data[i.switch_port]={'switch_port':i.switch_port,i.sub_type:i_as_dict}
+        items= list(data.values())
+        items = sorted(items,key=lambda i:i['switch_port'])
+        # for k,v in data.items():
+        #     items.append(v)
+        self.set_response(resp, responses.SuccessResponseObjectInfo(data={'items':items}))
+        return False
+
+class PackageSwitchMinuteTableResource(CustomGetAction):
+    model_class = model.PackageSwitch
+    security = (DEFAULT_SECURITY)
+    restrict = ()
+    additional_responses = (responses.SuccessResponseObjectInfo(payload_scheme=PackageSwitchMinuteTableScheme),)
+    no_auth_needed = True
+
+    def on_get(self, req, resp, **kwargs):
+        self.init_req(req)
+        return self.proceed(req, resp, **kwargs)
+
+    def apply(self, obj, req, resp, **kwargs):
+        cls = self.model_class
+        all = cls.filter(cls.type=='switch pay per minute').all()
+        data = {}
+        for i in all:
+            i_as_dict = PackageSwitchMinuteScheme().dump(i).data
+            if i.minute_count is None:
+                continue
+            if i.sub_type is None:
+                continue
+            if i.minute_count in data:
+                data[i.minute_count][i.sub_type]=i_as_dict
+            else:
+                data[i.minute_count]={'minute_count':i.minute_count,i.sub_type:i_as_dict}
+        items= list(data.values())
+        items = sorted(items,key=lambda i:i['minute_count'] if 'minute_count' in i and i['minute_count'] else 0)
+        # for k,v in data.items():
+        #     items.append(v)
+        self.set_response(resp, responses.SuccessResponseObjectInfo(data={'items':items}))
+        return False

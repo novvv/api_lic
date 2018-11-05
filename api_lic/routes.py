@@ -73,6 +73,8 @@ PRODUCTION_ROUTES = OrderedDict([
             {'path': '/file/list_tmp', 'method': 'get', 'resource': file.ListTmpFiles()},
             {'path': '/package_lrn/list', 'method': 'get', 'resource': views.PackageLrnList()},
             {'path': '/package_switch/list', 'method': 'get','resource': views.PackageSwitchList()},
+            {'path': '/package_switch_port/table', 'method': 'get','resource': views.PackageSwitchPortTableResource()},
+            {'path': '/package_switch_minute/table', 'method': 'get','resource': views.PackageSwitchMinuteTableResource()},
           ]
 
     }),

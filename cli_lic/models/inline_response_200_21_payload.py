@@ -34,7 +34,7 @@ class InlineResponse20021Payload(object):
         'total': 'int',
         'page': 'int',
         'per_page': 'int',
-        'items': 'list[LicenseSwitchGet]'
+        'items': 'list[LicenseLrnGet]'
     }
 
     attribute_map = {
@@ -138,7 +138,7 @@ class InlineResponse20021Payload(object):
         Gets the items of this InlineResponse20021Payload.
 
         :return: The items of this InlineResponse20021Payload.
-        :rtype: list[LicenseSwitchGet]
+        :rtype: list[LicenseLrnGet]
         """
         return self._items
 
@@ -148,7 +148,7 @@ class InlineResponse20021Payload(object):
         Sets the items of this InlineResponse20021Payload.
 
         :param items: The items of this InlineResponse20021Payload.
-        :type: list[LicenseSwitchGet]
+        :type: list[LicenseLrnGet]
         """
 
         self._items = items

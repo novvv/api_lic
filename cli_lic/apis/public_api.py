@@ -1083,6 +1083,7 @@ class PublicApi(object):
         :param int minute_count:
         :param str package_name:
         :param str package_switch_uuid:
+        :param str sub_type:
         :param int switch_port:
         :param str switch_uuid:
         :param str type:
@@ -1119,6 +1120,7 @@ class PublicApi(object):
         :param int minute_count:
         :param str package_name:
         :param str package_switch_uuid:
+        :param str sub_type:
         :param int switch_port:
         :param str switch_uuid:
         :param str type:
@@ -1127,7 +1129,7 @@ class PublicApi(object):
                  returns the request thread.
         """
 
-        all_params = ['page', 'per_page', 'order_by', 'order_dir', 'amount', 'enabled', 'minute_count', 'package_name', 'package_switch_uuid', 'switch_port', 'switch_uuid', 'type']
+        all_params = ['page', 'per_page', 'order_by', 'order_dir', 'amount', 'enabled', 'minute_count', 'package_name', 'package_switch_uuid', 'sub_type', 'switch_port', 'switch_uuid', 'type']
         all_params.append('callback')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
@@ -1167,6 +1169,8 @@ class PublicApi(object):
             query_params.append(('package_name', params['package_name']))
         if 'package_switch_uuid' in params:
             query_params.append(('package_switch_uuid', params['package_switch_uuid']))
+        if 'sub_type' in params:
+            query_params.append(('sub_type', params['sub_type']))
         if 'switch_port' in params:
             query_params.append(('switch_port', params['switch_port']))
         if 'switch_uuid' in params:
@@ -1199,6 +1203,198 @@ class PublicApi(object):
                                         post_params=form_params,
                                         files=local_var_files,
                                         response_type='InlineResponse20013',
+                                        auth_settings=auth_settings,
+                                        callback=params.get('callback'),
+                                        _return_http_data_only=params.get('_return_http_data_only'),
+                                        _preload_content=params.get('_preload_content', True),
+                                        _request_timeout=params.get('_request_timeout'),
+                                        collection_formats=collection_formats)
+
+    def package_switch_minute_table_get(self, **kwargs):
+        """
+        
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please define a `callback` function
+        to be invoked when receiving the response.
+        >>> def callback_function(response):
+        >>>     pprint(response)
+        >>>
+        >>> thread = api.package_switch_minute_table_get(callback=callback_function)
+
+        :param callback function: The callback function
+            for asynchronous request. (optional)
+        :return: InlineResponse20015
+                 If the method is called asynchronously,
+                 returns the request thread.
+        """
+        kwargs['_return_http_data_only'] = True
+        if kwargs.get('callback'):
+            return self.package_switch_minute_table_get_with_http_info(**kwargs)
+        else:
+            (data) = self.package_switch_minute_table_get_with_http_info(**kwargs)
+            return data
+
+    def package_switch_minute_table_get_with_http_info(self, **kwargs):
+        """
+        
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please define a `callback` function
+        to be invoked when receiving the response.
+        >>> def callback_function(response):
+        >>>     pprint(response)
+        >>>
+        >>> thread = api.package_switch_minute_table_get_with_http_info(callback=callback_function)
+
+        :param callback function: The callback function
+            for asynchronous request. (optional)
+        :return: InlineResponse20015
+                 If the method is called asynchronously,
+                 returns the request thread.
+        """
+
+        all_params = []
+        all_params.append('callback')
+        all_params.append('_return_http_data_only')
+        all_params.append('_preload_content')
+        all_params.append('_request_timeout')
+
+        params = locals()
+        for key, val in iteritems(params['kwargs']):
+            if key not in all_params:
+                raise TypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method package_switch_minute_table_get" % key
+                )
+            params[key] = val
+        del params['kwargs']
+
+        collection_formats = {}
+
+        path_params = {}
+
+        query_params = []
+
+        header_params = {}
+
+        form_params = []
+        local_var_files = {}
+
+        body_params = None
+        # HTTP header `Accept`
+        header_params['Accept'] = self.api_client.\
+            select_header_accept(['application/json'])
+
+        # HTTP header `Content-Type`
+        header_params['Content-Type'] = self.api_client.\
+            select_header_content_type(['application/json'])
+
+        # Authentication setting
+        auth_settings = ['auth_token']
+
+        return self.api_client.call_api('/package_switch_minute/table', 'GET',
+                                        path_params,
+                                        query_params,
+                                        header_params,
+                                        body=body_params,
+                                        post_params=form_params,
+                                        files=local_var_files,
+                                        response_type='InlineResponse20015',
+                                        auth_settings=auth_settings,
+                                        callback=params.get('callback'),
+                                        _return_http_data_only=params.get('_return_http_data_only'),
+                                        _preload_content=params.get('_preload_content', True),
+                                        _request_timeout=params.get('_request_timeout'),
+                                        collection_formats=collection_formats)
+
+    def package_switch_port_table_get(self, **kwargs):
+        """
+        
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please define a `callback` function
+        to be invoked when receiving the response.
+        >>> def callback_function(response):
+        >>>     pprint(response)
+        >>>
+        >>> thread = api.package_switch_port_table_get(callback=callback_function)
+
+        :param callback function: The callback function
+            for asynchronous request. (optional)
+        :return: InlineResponse20014
+                 If the method is called asynchronously,
+                 returns the request thread.
+        """
+        kwargs['_return_http_data_only'] = True
+        if kwargs.get('callback'):
+            return self.package_switch_port_table_get_with_http_info(**kwargs)
+        else:
+            (data) = self.package_switch_port_table_get_with_http_info(**kwargs)
+            return data
+
+    def package_switch_port_table_get_with_http_info(self, **kwargs):
+        """
+        
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please define a `callback` function
+        to be invoked when receiving the response.
+        >>> def callback_function(response):
+        >>>     pprint(response)
+        >>>
+        >>> thread = api.package_switch_port_table_get_with_http_info(callback=callback_function)
+
+        :param callback function: The callback function
+            for asynchronous request. (optional)
+        :return: InlineResponse20014
+                 If the method is called asynchronously,
+                 returns the request thread.
+        """
+
+        all_params = []
+        all_params.append('callback')
+        all_params.append('_return_http_data_only')
+        all_params.append('_preload_content')
+        all_params.append('_request_timeout')
+
+        params = locals()
+        for key, val in iteritems(params['kwargs']):
+            if key not in all_params:
+                raise TypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method package_switch_port_table_get" % key
+                )
+            params[key] = val
+        del params['kwargs']
+
+        collection_formats = {}
+
+        path_params = {}
+
+        query_params = []
+
+        header_params = {}
+
+        form_params = []
+        local_var_files = {}
+
+        body_params = None
+        # HTTP header `Accept`
+        header_params['Accept'] = self.api_client.\
+            select_header_accept(['application/json'])
+
+        # HTTP header `Content-Type`
+        header_params['Content-Type'] = self.api_client.\
+            select_header_content_type(['application/json'])
+
+        # Authentication setting
+        auth_settings = ['auth_token']
+
+        return self.api_client.call_api('/package_switch_port/table', 'GET',
+                                        path_params,
+                                        query_params,
+                                        header_params,
+                                        body=body_params,
+                                        post_params=form_params,
+                                        files=local_var_files,
+                                        response_type='InlineResponse20014',
                                         auth_settings=auth_settings,
                                         callback=params.get('callback'),
                                         _return_http_data_only=params.get('_return_http_data_only'),

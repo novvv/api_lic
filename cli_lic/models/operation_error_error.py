@@ -31,53 +31,32 @@ class OperationErrorError(object):
                             and the value is json key in definition.
     """
     swagger_types = {
-        'message': 'str',
         'reason': 'str',
+        'message': 'str',
         'code': 'int'
     }
 
     attribute_map = {
-        'message': 'message',
         'reason': 'reason',
+        'message': 'message',
         'code': 'code'
     }
 
-    def __init__(self, message=None, reason=None, code=None):
+    def __init__(self, reason=None, message=None, code=None):
         """
         OperationErrorError - a model defined in Swagger
         """
 
-        self._message = None
         self._reason = None
+        self._message = None
         self._code = None
 
-        if message is not None:
-          self.message = message
         if reason is not None:
           self.reason = reason
+        if message is not None:
+          self.message = message
         if code is not None:
           self.code = code
-
-    @property
-    def message(self):
-        """
-        Gets the message of this OperationErrorError.
-
-        :return: The message of this OperationErrorError.
-        :rtype: str
-        """
-        return self._message
-
-    @message.setter
-    def message(self, message):
-        """
-        Sets the message of this OperationErrorError.
-
-        :param message: The message of this OperationErrorError.
-        :type: str
-        """
-
-        self._message = message
 
     @property
     def reason(self):
@@ -99,6 +78,27 @@ class OperationErrorError(object):
         """
 
         self._reason = reason
+
+    @property
+    def message(self):
+        """
+        Gets the message of this OperationErrorError.
+
+        :return: The message of this OperationErrorError.
+        :rtype: str
+        """
+        return self._message
+
+    @message.setter
+    def message(self, message):
+        """
+        Sets the message of this OperationErrorError.
+
+        :param message: The message of this OperationErrorError.
+        :type: str
+        """
+
+        self._message = message
 
     @property
     def code(self):

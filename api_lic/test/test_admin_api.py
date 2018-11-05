@@ -291,6 +291,40 @@ class TestAdminApi(unittest.TestCase):
         ret = self.api.package_switch_post(body=data)
         assert (ret.success)
         self.package_switch.append(ret.object_uuid)
+        f = open('api_lic/test/switch_port_pricing.csv','rt')
+        r=csv.DictReader(f,fieldnames=['type','port','price'])
+        for i in r:
+            print(i)
+            ret=cli_lic.PublicApi().package_switch_list_get(switch_port=int(i['port']),type='switch pay per port',sub_type=i['type'])
+            if ret.payload.items:
+                print('---')
+                continue
+            data = dict(package_name='switch_port_{port}_{type}'.format_map(i),
+                        switch_port=int(i['port']),
+                        type='switch pay per port',
+                        sub_type=i['type'],
+                        amount=float(i['price']),
+                        enabled=True)
+            ret = self.api.package_switch_post(body=data)
+        f.close()
+
+        f = open('api_lic/test/switch_minute_pricing.csv', 'rt')
+        r = csv.DictReader(f, fieldnames=['type', 'minute', 'rate','price'])
+        for i in r:
+            print(i)
+            ret = cli_lic.PublicApi().package_switch_list_get(minute_count=int(i['minute']), type='switch pay per minute',
+                                                              sub_type=i['type'])
+            if ret.payload.items:
+                print('---')
+                continue
+            data = dict(package_name='switch_minute_{minute}_{type}'.format_map(i),
+                        minute_count=int(i['minute']),
+                        type='switch pay per minute',
+                        sub_type=i['type'],
+                        amount=float(i['price']),
+                        enabled=True)
+            ret = self.api.package_switch_post(body=data)
+        f.close()
         pass
 
     def test_switch_list_get(self):

@@ -1,3 +1,8 @@
+api_lic ver 1.0.5
+GET/package_switch_port/table
+GET/package_switch_minute/table <-- cross pricing tables LLP-43
+answered <-- wrong use PATCH/license_switch/{license_switch_uuid}  LLP-22
+
 api_lic ver 1.0.4
 PATCH/license_switch/{license_switch_uuid}
 PATCH/license_switch/{license_switch_uuid}/renew  <-- "renew" "package" "ip" "enabled" actions LLP-22

@@ -32,49 +32,49 @@ class SwitchGet(object):
     """
     swagger_types = {
         'packages': 'list[PackageSwitch]',
-        'switch_uuid': 'str',
-        'minute_remaining': 'int',
-        'switch_ip': 'str',
         'enabled': 'bool',
+        'minute_remaining': 'int',
+        'switch_uuid': 'str',
         'email': 'str',
+        'switch_ip': 'str',
         'current_port_count': 'int'
     }
 
     attribute_map = {
         'packages': 'packages',
-        'switch_uuid': 'switch_uuid',
-        'minute_remaining': 'minute_remaining',
-        'switch_ip': 'switch_ip',
         'enabled': 'enabled',
+        'minute_remaining': 'minute_remaining',
+        'switch_uuid': 'switch_uuid',
         'email': 'email',
+        'switch_ip': 'switch_ip',
         'current_port_count': 'current_port_count'
     }
 
-    def __init__(self, packages=None, switch_uuid=None, minute_remaining=None, switch_ip=None, enabled=None, email=None, current_port_count=None):
+    def __init__(self, packages=None, enabled=None, minute_remaining=None, switch_uuid=None, email=None, switch_ip=None, current_port_count=None):
         """
         SwitchGet - a model defined in Swagger
         """
 
         self._packages = None
-        self._switch_uuid = None
-        self._minute_remaining = None
-        self._switch_ip = None
         self._enabled = None
+        self._minute_remaining = None
+        self._switch_uuid = None
         self._email = None
+        self._switch_ip = None
         self._current_port_count = None
 
         if packages is not None:
           self.packages = packages
-        if switch_uuid is not None:
-          self.switch_uuid = switch_uuid
-        if minute_remaining is not None:
-          self.minute_remaining = minute_remaining
-        if switch_ip is not None:
-          self.switch_ip = switch_ip
         if enabled is not None:
           self.enabled = enabled
+        if minute_remaining is not None:
+          self.minute_remaining = minute_remaining
+        if switch_uuid is not None:
+          self.switch_uuid = switch_uuid
         if email is not None:
           self.email = email
+        if switch_ip is not None:
+          self.switch_ip = switch_ip
         if current_port_count is not None:
           self.current_port_count = current_port_count
 
@@ -100,27 +100,25 @@ class SwitchGet(object):
         self._packages = packages
 
     @property
-    def switch_uuid(self):
+    def enabled(self):
         """
-        Gets the switch_uuid of this SwitchGet.
+        Gets the enabled of this SwitchGet.
 
-        :return: The switch_uuid of this SwitchGet.
-        :rtype: str
+        :return: The enabled of this SwitchGet.
+        :rtype: bool
         """
-        return self._switch_uuid
+        return self._enabled
 
-    @switch_uuid.setter
-    def switch_uuid(self, switch_uuid):
+    @enabled.setter
+    def enabled(self, enabled):
         """
-        Sets the switch_uuid of this SwitchGet.
+        Sets the enabled of this SwitchGet.
 
-        :param switch_uuid: The switch_uuid of this SwitchGet.
-        :type: str
+        :param enabled: The enabled of this SwitchGet.
+        :type: bool
         """
-        if switch_uuid is not None and len(switch_uuid) > 36:
-            raise ValueError("Invalid value for `switch_uuid`, length must be less than or equal to `36`")
 
-        self._switch_uuid = switch_uuid
+        self._enabled = enabled
 
     @property
     def minute_remaining(self):
@@ -144,48 +142,27 @@ class SwitchGet(object):
         self._minute_remaining = minute_remaining
 
     @property
-    def switch_ip(self):
+    def switch_uuid(self):
         """
-        Gets the switch_ip of this SwitchGet.
+        Gets the switch_uuid of this SwitchGet.
 
-        :return: The switch_ip of this SwitchGet.
+        :return: The switch_uuid of this SwitchGet.
         :rtype: str
         """
-        return self._switch_ip
+        return self._switch_uuid
 
-    @switch_ip.setter
-    def switch_ip(self, switch_ip):
+    @switch_uuid.setter
+    def switch_uuid(self, switch_uuid):
         """
-        Sets the switch_ip of this SwitchGet.
+        Sets the switch_uuid of this SwitchGet.
 
-        :param switch_ip: The switch_ip of this SwitchGet.
+        :param switch_uuid: The switch_uuid of this SwitchGet.
         :type: str
         """
-        if switch_ip is not None and len(switch_ip) > 16:
-            raise ValueError("Invalid value for `switch_ip`, length must be less than or equal to `16`")
+        if switch_uuid is not None and len(switch_uuid) > 36:
+            raise ValueError("Invalid value for `switch_uuid`, length must be less than or equal to `36`")
 
-        self._switch_ip = switch_ip
-
-    @property
-    def enabled(self):
-        """
-        Gets the enabled of this SwitchGet.
-
-        :return: The enabled of this SwitchGet.
-        :rtype: bool
-        """
-        return self._enabled
-
-    @enabled.setter
-    def enabled(self, enabled):
-        """
-        Sets the enabled of this SwitchGet.
-
-        :param enabled: The enabled of this SwitchGet.
-        :type: bool
-        """
-
-        self._enabled = enabled
+        self._switch_uuid = switch_uuid
 
     @property
     def email(self):
@@ -209,6 +186,29 @@ class SwitchGet(object):
             raise ValueError("Invalid value for `email`, length must be less than or equal to `256`")
 
         self._email = email
+
+    @property
+    def switch_ip(self):
+        """
+        Gets the switch_ip of this SwitchGet.
+
+        :return: The switch_ip of this SwitchGet.
+        :rtype: str
+        """
+        return self._switch_ip
+
+    @switch_ip.setter
+    def switch_ip(self, switch_ip):
+        """
+        Sets the switch_ip of this SwitchGet.
+
+        :param switch_ip: The switch_ip of this SwitchGet.
+        :type: str
+        """
+        if switch_ip is not None and len(switch_ip) > 16:
+            raise ValueError("Invalid value for `switch_ip`, length must be less than or equal to `16`")
+
+        self._switch_ip = switch_ip
 
     @property
     def current_port_count(self):

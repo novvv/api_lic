@@ -39,7 +39,6 @@ from .inline_response_200_13 import InlineResponse20013
 from .inline_response_200_13_payload import InlineResponse20013Payload
 from .inline_response_200_14 import InlineResponse20014
 from .inline_response_200_15 import InlineResponse20015
-from .inline_response_200_15_payload import InlineResponse20015Payload
 from .inline_response_200_16 import InlineResponse20016
 from .inline_response_200_17 import InlineResponse20017
 from .inline_response_200_17_payload import InlineResponse20017Payload
@@ -51,6 +50,9 @@ from .inline_response_200_2 import InlineResponse2002
 from .inline_response_200_20 import InlineResponse20020
 from .inline_response_200_21 import InlineResponse20021
 from .inline_response_200_21_payload import InlineResponse20021Payload
+from .inline_response_200_22 import InlineResponse20022
+from .inline_response_200_23 import InlineResponse20023
+from .inline_response_200_23_payload import InlineResponse20023Payload
 from .inline_response_200_3 import InlineResponse2003
 from .inline_response_200_4 import InlineResponse2004
 from .inline_response_200_5 import InlineResponse2005
@@ -87,7 +89,13 @@ from .package_lrn_get import PackageLrnGet
 from .package_lrn_modify import PackageLrnModify
 from .package_switch import PackageSwitch
 from .package_switch_get import PackageSwitchGet
+from .package_switch_minute import PackageSwitchMinute
+from .package_switch_minute_table import PackageSwitchMinuteTable
+from .package_switch_minute_table_items import PackageSwitchMinuteTableItems
 from .package_switch_modify import PackageSwitchModify
+from .package_switch_port import PackageSwitchPort
+from .package_switch_port_table import PackageSwitchPortTable
+from .package_switch_port_table_items import PackageSwitchPortTableItems
 from .password_check import PasswordCheck
 from .payment import Payment
 from .payment_get import PaymentGet

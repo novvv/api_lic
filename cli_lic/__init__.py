@@ -39,7 +39,6 @@ from .models.inline_response_200_13 import InlineResponse20013
 from .models.inline_response_200_13_payload import InlineResponse20013Payload
 from .models.inline_response_200_14 import InlineResponse20014
 from .models.inline_response_200_15 import InlineResponse20015
-from .models.inline_response_200_15_payload import InlineResponse20015Payload
 from .models.inline_response_200_16 import InlineResponse20016
 from .models.inline_response_200_17 import InlineResponse20017
 from .models.inline_response_200_17_payload import InlineResponse20017Payload
@@ -51,6 +50,9 @@ from .models.inline_response_200_2 import InlineResponse2002
 from .models.inline_response_200_20 import InlineResponse20020
 from .models.inline_response_200_21 import InlineResponse20021
 from .models.inline_response_200_21_payload import InlineResponse20021Payload
+from .models.inline_response_200_22 import InlineResponse20022
+from .models.inline_response_200_23 import InlineResponse20023
+from .models.inline_response_200_23_payload import InlineResponse20023Payload
 from .models.inline_response_200_3 import InlineResponse2003
 from .models.inline_response_200_4 import InlineResponse2004
 from .models.inline_response_200_5 import InlineResponse2005
@@ -87,7 +89,13 @@ from .models.package_lrn_get import PackageLrnGet
 from .models.package_lrn_modify import PackageLrnModify
 from .models.package_switch import PackageSwitch
 from .models.package_switch_get import PackageSwitchGet
+from .models.package_switch_minute import PackageSwitchMinute
+from .models.package_switch_minute_table import PackageSwitchMinuteTable
+from .models.package_switch_minute_table_items import PackageSwitchMinuteTableItems
 from .models.package_switch_modify import PackageSwitchModify
+from .models.package_switch_port import PackageSwitchPort
+from .models.package_switch_port_table import PackageSwitchPortTable
+from .models.package_switch_port_table_items import PackageSwitchPortTableItems
 from .models.password_check import PasswordCheck
 from .models.payment import Payment
 from .models.payment_get import PaymentGet

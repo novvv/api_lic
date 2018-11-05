@@ -452,7 +452,7 @@ class Switch(BaseModel):
 class PackageSwitch(BaseModel):
     __tablename__ = 'package_switch'
     TYPE = {1: 'switch pay per port', 2: 'switch pay per minute'}
-
+    SUB_TYPE = {1: 'hosted_switch',2:'on_premise',3:'one_time'}
     package_switch_uuid = Column \
         (String(36), primary_key=True, default=generate_uuid_str(),
          server_default=func.uuid_generate_v4())
@@ -460,6 +460,7 @@ class PackageSwitch(BaseModel):
     package_name = Column(String(64), unique=True)
 
     type = Column(ChoiceType(TYPE), default=1)
+    sub_type = Column(ChoiceType(SUB_TYPE), nullable=True)
     switch_uuid = Column(ForeignKey('switch.switch_uuid', ondelete='CASCADE'), index=True)
     switch_port = Column(Integer())
     minute_count = Column(Integer())
@@ -467,6 +468,8 @@ class PackageSwitch(BaseModel):
     enabled = Column(Boolean, default=True)
     licenses = relationship('LicenseSwitch', uselist=True, back_populates='package')
     switch = relationship('Switch', uselist=False, back_populates='packages')
+    rate_per_port = column_property(case([(switch_port>0,cast(amount,Float).op('/')(switch_port))],else_=None))
+    rate_per_minute = column_property(case([(minute_count>0,cast(amount,Float).op('/')(minute_count))],else_=None))
 
 
 class LicenseSwitch(BaseModel):

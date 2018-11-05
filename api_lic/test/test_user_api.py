@@ -270,12 +270,22 @@ class TestUserApi(unittest.TestCase):
         """
         auth_user()
 
+        try:
+            license_lrn_uuid = rand_license_lrn()[0]
+        except:
+            self.test_license_lrn_post()
+            license_lrn_uuid = rand_license_lrn()[0]
 
-        data = dict(license_lrn_uuid=rand_license_lrn()[0],amount=random.randint(1,1000),type=random.choice(['paypal','strip']))
+        data = dict(license_lrn_uuid =license_lrn_uuid ,amount=random.randint(1,1000),type=random.choice(['paypal','strip']))
         ret=self.api.payment_post(body=data)
         assert(ret.success)
 
-        data = dict(license_switch_uuid=rand_license_switch()[0], amount=random.randint(1, 1000),
+        try:
+            license_switch_uuid = rand_license_switch()[0]
+        except:
+            self.test_license_switch_post()
+            license_switch_uuid = rand_license_switch()[0]
+        data = dict(license_switch_uuid = license_switch_uuid , amount=random.randint(1, 1000),
                         type=random.choice(['paypal', 'strip']))
         ret = self.api.payment_post(body=data)
         assert (ret.success)

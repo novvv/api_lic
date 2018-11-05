@@ -31,48 +31,27 @@ class ObjectCreated(object):
                             and the value is json key in definition.
     """
     swagger_types = {
-        'object_id': 'int',
-        'success': 'bool'
+        'success': 'bool',
+        'object_id': 'int'
     }
 
     attribute_map = {
-        'object_id': 'object_id',
-        'success': 'success'
+        'success': 'success',
+        'object_id': 'object_id'
     }
 
-    def __init__(self, object_id=None, success=True):
+    def __init__(self, success=True, object_id=None):
         """
         ObjectCreated - a model defined in Swagger
         """
 
-        self._object_id = None
         self._success = None
+        self._object_id = None
 
-        if object_id is not None:
-          self.object_id = object_id
         if success is not None:
           self.success = success
-
-    @property
-    def object_id(self):
-        """
-        Gets the object_id of this ObjectCreated.
-
-        :return: The object_id of this ObjectCreated.
-        :rtype: int
-        """
-        return self._object_id
-
-    @object_id.setter
-    def object_id(self, object_id):
-        """
-        Sets the object_id of this ObjectCreated.
-
-        :param object_id: The object_id of this ObjectCreated.
-        :type: int
-        """
-
-        self._object_id = object_id
+        if object_id is not None:
+          self.object_id = object_id
 
     @property
     def success(self):
@@ -94,6 +73,27 @@ class ObjectCreated(object):
         """
 
         self._success = success
+
+    @property
+    def object_id(self):
+        """
+        Gets the object_id of this ObjectCreated.
+
+        :return: The object_id of this ObjectCreated.
+        :rtype: int
+        """
+        return self._object_id
+
+    @object_id.setter
+    def object_id(self, object_id):
+        """
+        Sets the object_id of this ObjectCreated.
+
+        :param object_id: The object_id of this ObjectCreated.
+        :type: int
+        """
+
+        self._object_id = object_id
 
     def to_dict(self):
         """

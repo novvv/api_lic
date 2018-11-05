@@ -66,6 +66,8 @@ class TestAuthApi(unittest.TestCase):
 
         
         """
+        auth_user('65dcf2de-b87d-44a0-82a9-962b141387d9')
+        auth_user('3c372a23-d09d-40d6-8123-e37acf98e1cf')
         auth()
         user = dict(bla_contact(is_active=True))
 

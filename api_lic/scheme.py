@@ -413,6 +413,7 @@ class PackageSwitchScheme(BaseModelScheme):
     package_switch_uuid = Str(validate=[validate.Length(max=36)])
     package_name = Str(validate=[validate.Length(max=64)])
     type = Choice()
+    sub_type = Choice()
     switch_uuid = Str(
         validate=[validate.Length(max=36), lambda value: _valid('Switch', 'switch_uuid', value)])
     switch_port = Int()
@@ -423,23 +424,59 @@ class PackageSwitchScheme(BaseModelScheme):
 
     class Meta:
         model = model.PackageSwitch
-        fields = ('package_name', 'type', 'switch_uuid', 'switch_port', 'minute_count', 'amount', 'enabled',)
+        fields = ('package_name', 'type','sub_type', 'switch_uuid', 'switch_port', 'minute_count', 'amount', 'enabled',)
 
 
 class PackageSwitchSchemeGet(PackageSwitchScheme):
     class Meta:
         model = model.PackageSwitch
-        fields = ('package_switch_uuid', 'package_name', 'type', 'switch_uuid', 'switch_port', 'minute_count', 'amount',
+        fields = ('package_switch_uuid', 'package_name', 'type','sub_type', 'switch_uuid', 'switch_port', 'minute_count', 'amount',
                   'enabled')
         search_fields = (
-        'package_switch_uuid', 'package_name', 'type', 'switch_uuid', 'switch_port', 'minute_count', 'amount',
+        'package_switch_uuid', 'package_name', 'type','sub_type', 'switch_uuid', 'switch_port', 'minute_count', 'amount',
         'enabled')
 
 
 class PackageSwitchSchemeModify(PackageSwitchScheme):
     pass
 
+class PackageSwitchPortScheme(BaseModelScheme):
+    package_switch_uuid = Str(validate=[validate.Length(max=36)])
+    package_name = Str(validate=[validate.Length(max=64)])
+    amount = Int()
+    rate_per_port = Float()
+    enabled = Bool()
 
+    class Meta:
+        model = model.PackageSwitch
+        fields = ('package_switch_uuid','package_name', 'amount','rate_per_port', 'enabled',)
+
+class PackageSwitchMinuteScheme(BaseModelScheme):
+    package_switch_uuid = Str(validate=[validate.Length(max=36)])
+    package_name = Str(validate=[validate.Length(max=64)])
+    amount = Int()
+    enabled = Bool()
+    rate_per_minute = Float()
+    class Meta:
+        model = model.PackageSwitch
+        fields = ('package_switch_uuid','package_name', 'amount', 'enabled','rate_per_minute')
+
+class PackageSwitchPortTableInnerScheme(Schema):
+    switch_port = Int()
+    hosted_switch = Nested('PackageSwitchPortScheme')
+    on_premise = Nested('PackageSwitchPortScheme')
+    one_time = Nested('PackageSwitchPortScheme')
+
+class PackageSwitchPortTableScheme(Schema):
+    items=Nested('PackageSwitchPortTableInnerScheme',many=True)
+
+class PackageSwitchMinuteTableInnerScheme(Schema):
+    minute_count = Int()
+    hosted_switch = Nested('PackageSwitchMinuteScheme')
+    on_premise = Nested('PackageSwitchMinuteScheme')
+
+class PackageSwitchMinuteTableScheme(Schema):
+    items=Nested('PackageSwitchMinuteTableInnerScheme',many=True)
 # ---PackageSwitch---
 # +++LicenseLrn+++
 class LicenseLrnScheme(BaseModelScheme):
