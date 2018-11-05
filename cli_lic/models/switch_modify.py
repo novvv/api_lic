@@ -31,110 +31,47 @@ class SwitchModify(object):
                             and the value is json key in definition.
     """
     swagger_types = {
-        'expired_on': 'datetime',
-        'enabled': 'bool',
-        'minute_remaining': 'int',
         'email': 'str',
+        'minute_remaining': 'int',
+        'expired_on': 'datetime',
         'switch_ip': 'str',
+        'enabled': 'bool',
         'current_port_count': 'int'
     }
 
     attribute_map = {
-        'expired_on': 'expired_on',
-        'enabled': 'enabled',
-        'minute_remaining': 'minute_remaining',
         'email': 'email',
+        'minute_remaining': 'minute_remaining',
+        'expired_on': 'expired_on',
         'switch_ip': 'switch_ip',
+        'enabled': 'enabled',
         'current_port_count': 'current_port_count'
     }
 
-    def __init__(self, expired_on=None, enabled=None, minute_remaining=None, email=None, switch_ip=None, current_port_count=None):
+    def __init__(self, email=None, minute_remaining=None, expired_on=None, switch_ip=None, enabled=None, current_port_count=None):
         """
         SwitchModify - a model defined in Swagger
         """
 
-        self._expired_on = None
-        self._enabled = None
-        self._minute_remaining = None
         self._email = None
+        self._minute_remaining = None
+        self._expired_on = None
         self._switch_ip = None
+        self._enabled = None
         self._current_port_count = None
 
-        if expired_on is not None:
-          self.expired_on = expired_on
-        if enabled is not None:
-          self.enabled = enabled
-        if minute_remaining is not None:
-          self.minute_remaining = minute_remaining
         if email is not None:
           self.email = email
+        if minute_remaining is not None:
+          self.minute_remaining = minute_remaining
+        if expired_on is not None:
+          self.expired_on = expired_on
         if switch_ip is not None:
           self.switch_ip = switch_ip
+        if enabled is not None:
+          self.enabled = enabled
         if current_port_count is not None:
           self.current_port_count = current_port_count
-
-    @property
-    def expired_on(self):
-        """
-        Gets the expired_on of this SwitchModify.
-
-        :return: The expired_on of this SwitchModify.
-        :rtype: datetime
-        """
-        return self._expired_on
-
-    @expired_on.setter
-    def expired_on(self, expired_on):
-        """
-        Sets the expired_on of this SwitchModify.
-
-        :param expired_on: The expired_on of this SwitchModify.
-        :type: datetime
-        """
-
-        self._expired_on = expired_on
-
-    @property
-    def enabled(self):
-        """
-        Gets the enabled of this SwitchModify.
-
-        :return: The enabled of this SwitchModify.
-        :rtype: bool
-        """
-        return self._enabled
-
-    @enabled.setter
-    def enabled(self, enabled):
-        """
-        Sets the enabled of this SwitchModify.
-
-        :param enabled: The enabled of this SwitchModify.
-        :type: bool
-        """
-
-        self._enabled = enabled
-
-    @property
-    def minute_remaining(self):
-        """
-        Gets the minute_remaining of this SwitchModify.
-
-        :return: The minute_remaining of this SwitchModify.
-        :rtype: int
-        """
-        return self._minute_remaining
-
-    @minute_remaining.setter
-    def minute_remaining(self, minute_remaining):
-        """
-        Sets the minute_remaining of this SwitchModify.
-
-        :param minute_remaining: The minute_remaining of this SwitchModify.
-        :type: int
-        """
-
-        self._minute_remaining = minute_remaining
 
     @property
     def email(self):
@@ -160,6 +97,48 @@ class SwitchModify(object):
         self._email = email
 
     @property
+    def minute_remaining(self):
+        """
+        Gets the minute_remaining of this SwitchModify.
+
+        :return: The minute_remaining of this SwitchModify.
+        :rtype: int
+        """
+        return self._minute_remaining
+
+    @minute_remaining.setter
+    def minute_remaining(self, minute_remaining):
+        """
+        Sets the minute_remaining of this SwitchModify.
+
+        :param minute_remaining: The minute_remaining of this SwitchModify.
+        :type: int
+        """
+
+        self._minute_remaining = minute_remaining
+
+    @property
+    def expired_on(self):
+        """
+        Gets the expired_on of this SwitchModify.
+
+        :return: The expired_on of this SwitchModify.
+        :rtype: datetime
+        """
+        return self._expired_on
+
+    @expired_on.setter
+    def expired_on(self, expired_on):
+        """
+        Sets the expired_on of this SwitchModify.
+
+        :param expired_on: The expired_on of this SwitchModify.
+        :type: datetime
+        """
+
+        self._expired_on = expired_on
+
+    @property
     def switch_ip(self):
         """
         Gets the switch_ip of this SwitchModify.
@@ -181,6 +160,27 @@ class SwitchModify(object):
             raise ValueError("Invalid value for `switch_ip`, length must be less than or equal to `16`")
 
         self._switch_ip = switch_ip
+
+    @property
+    def enabled(self):
+        """
+        Gets the enabled of this SwitchModify.
+
+        :return: The enabled of this SwitchModify.
+        :rtype: bool
+        """
+        return self._enabled
+
+    @enabled.setter
+    def enabled(self, enabled):
+        """
+        Sets the enabled of this SwitchModify.
+
+        :param enabled: The enabled of this SwitchModify.
+        :type: bool
+        """
+
+        self._enabled = enabled
 
     @property
     def current_port_count(self):

@@ -25,7 +25,7 @@ def on_process_request_start(req,resp):
         log.debug('CORS headers not send: not ALLOW')
 
 def check_req(req):
-    return req.context['app_name'] == 'lic_api'
+    return req.context['app_name'] == 'api_lic'
 @receive(auth_success, send_sender=False, send_keys=['req', 'user'])
 def on_auth_success(req, user):
 

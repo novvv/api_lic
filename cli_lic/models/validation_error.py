@@ -32,31 +32,31 @@ class ValidationError(object):
     """
     swagger_types = {
         'success': 'bool',
-        'error_type': 'str',
-        'errors': 'list[object]'
+        'errors': 'list[object]',
+        'error_type': 'str'
     }
 
     attribute_map = {
         'success': 'success',
-        'error_type': 'error_type',
-        'errors': 'errors'
+        'errors': 'errors',
+        'error_type': 'error_type'
     }
 
-    def __init__(self, success=False, error_type='validation_error', errors=None):
+    def __init__(self, success=False, errors=None, error_type='validation_error'):
         """
         ValidationError - a model defined in Swagger
         """
 
         self._success = None
-        self._error_type = None
         self._errors = None
+        self._error_type = None
 
         if success is not None:
           self.success = success
-        if error_type is not None:
-          self.error_type = error_type
         if errors is not None:
           self.errors = errors
+        if error_type is not None:
+          self.error_type = error_type
 
     @property
     def success(self):
@@ -80,27 +80,6 @@ class ValidationError(object):
         self._success = success
 
     @property
-    def error_type(self):
-        """
-        Gets the error_type of this ValidationError.
-
-        :return: The error_type of this ValidationError.
-        :rtype: str
-        """
-        return self._error_type
-
-    @error_type.setter
-    def error_type(self, error_type):
-        """
-        Sets the error_type of this ValidationError.
-
-        :param error_type: The error_type of this ValidationError.
-        :type: str
-        """
-
-        self._error_type = error_type
-
-    @property
     def errors(self):
         """
         Gets the errors of this ValidationError.
@@ -122,6 +101,27 @@ class ValidationError(object):
         """
 
         self._errors = errors
+
+    @property
+    def error_type(self):
+        """
+        Gets the error_type of this ValidationError.
+
+        :return: The error_type of this ValidationError.
+        :rtype: str
+        """
+        return self._error_type
+
+    @error_type.setter
+    def error_type(self, error_type):
+        """
+        Sets the error_type of this ValidationError.
+
+        :param error_type: The error_type of this ValidationError.
+        :type: str
+        """
+
+        self._error_type = error_type
 
     def to_dict(self):
         """

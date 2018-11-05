@@ -31,48 +31,27 @@ class Plan(object):
                             and the value is json key in definition.
     """
     swagger_types = {
-        'amount': 'str',
-        'type': 'str'
+        'type': 'str',
+        'amount': 'str'
     }
 
     attribute_map = {
-        'amount': 'amount',
-        'type': 'type'
+        'type': 'type',
+        'amount': 'amount'
     }
 
-    def __init__(self, amount=None, type='switch pay per port'):
+    def __init__(self, type='switch pay per port', amount=None):
         """
         Plan - a model defined in Swagger
         """
 
-        self._amount = None
         self._type = None
+        self._amount = None
 
-        if amount is not None:
-          self.amount = amount
         if type is not None:
           self.type = type
-
-    @property
-    def amount(self):
-        """
-        Gets the amount of this Plan.
-
-        :return: The amount of this Plan.
-        :rtype: str
-        """
-        return self._amount
-
-    @amount.setter
-    def amount(self, amount):
-        """
-        Sets the amount of this Plan.
-
-        :param amount: The amount of this Plan.
-        :type: str
-        """
-
-        self._amount = amount
+        if amount is not None:
+          self.amount = amount
 
     @property
     def type(self):
@@ -100,6 +79,27 @@ class Plan(object):
             )
 
         self._type = type
+
+    @property
+    def amount(self):
+        """
+        Gets the amount of this Plan.
+
+        :return: The amount of this Plan.
+        :rtype: str
+        """
+        return self._amount
+
+    @amount.setter
+    def amount(self, amount):
+        """
+        Sets the amount of this Plan.
+
+        :param amount: The amount of this Plan.
+        :type: str
+        """
+
+        self._amount = amount
 
     def to_dict(self):
         """

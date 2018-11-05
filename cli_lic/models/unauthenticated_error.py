@@ -31,53 +31,32 @@ class UnauthenticatedError(object):
                             and the value is json key in definition.
     """
     swagger_types = {
-        'error': 'ForbiddenErrorError',
         'success': 'bool',
+        'error': 'OperationErrorError',
         'error_type': 'str'
     }
 
     attribute_map = {
-        'error': 'error',
         'success': 'success',
+        'error': 'error',
         'error_type': 'error_type'
     }
 
-    def __init__(self, error=None, success=False, error_type='unauthenticated_error'):
+    def __init__(self, success=False, error=None, error_type='unauthenticated_error'):
         """
         UnauthenticatedError - a model defined in Swagger
         """
 
-        self._error = None
         self._success = None
+        self._error = None
         self._error_type = None
 
-        if error is not None:
-          self.error = error
         if success is not None:
           self.success = success
+        if error is not None:
+          self.error = error
         if error_type is not None:
           self.error_type = error_type
-
-    @property
-    def error(self):
-        """
-        Gets the error of this UnauthenticatedError.
-
-        :return: The error of this UnauthenticatedError.
-        :rtype: ForbiddenErrorError
-        """
-        return self._error
-
-    @error.setter
-    def error(self, error):
-        """
-        Sets the error of this UnauthenticatedError.
-
-        :param error: The error of this UnauthenticatedError.
-        :type: ForbiddenErrorError
-        """
-
-        self._error = error
 
     @property
     def success(self):
@@ -99,6 +78,27 @@ class UnauthenticatedError(object):
         """
 
         self._success = success
+
+    @property
+    def error(self):
+        """
+        Gets the error of this UnauthenticatedError.
+
+        :return: The error of this UnauthenticatedError.
+        :rtype: OperationErrorError
+        """
+        return self._error
+
+    @error.setter
+    def error(self, error):
+        """
+        Sets the error of this UnauthenticatedError.
+
+        :param error: The error of this UnauthenticatedError.
+        :type: OperationErrorError
+        """
+
+        self._error = error
 
     @property
     def error_type(self):

@@ -31,78 +31,80 @@ class PackageSwitch(object):
                             and the value is json key in definition.
     """
     swagger_types = {
-        'amount': 'int',
+        'package_name': 'str',
         'switch_uuid': 'str',
+        'sub_type': 'str',
+        'switch_port': 'int',
         'type': 'str',
         'minute_count': 'int',
-        'switch_port': 'int',
-        'package_name': 'str',
-        'sub_type': 'str',
-        'enabled': 'bool'
+        'enabled': 'bool',
+        'amount': 'int'
     }
 
     attribute_map = {
-        'amount': 'amount',
+        'package_name': 'package_name',
         'switch_uuid': 'switch_uuid',
+        'sub_type': 'sub_type',
+        'switch_port': 'switch_port',
         'type': 'type',
         'minute_count': 'minute_count',
-        'switch_port': 'switch_port',
-        'package_name': 'package_name',
-        'sub_type': 'sub_type',
-        'enabled': 'enabled'
+        'enabled': 'enabled',
+        'amount': 'amount'
     }
 
-    def __init__(self, amount=None, switch_uuid=None, type='switch pay per port', minute_count=None, switch_port=None, package_name=None, sub_type='hosted_switch', enabled=None):
+    def __init__(self, package_name=None, switch_uuid=None, sub_type='hosted_switch', switch_port=None, type='switch pay per port', minute_count=None, enabled=None, amount=None):
         """
         PackageSwitch - a model defined in Swagger
         """
 
-        self._amount = None
+        self._package_name = None
         self._switch_uuid = None
+        self._sub_type = None
+        self._switch_port = None
         self._type = None
         self._minute_count = None
-        self._switch_port = None
-        self._package_name = None
-        self._sub_type = None
         self._enabled = None
+        self._amount = None
 
-        if amount is not None:
-          self.amount = amount
+        if package_name is not None:
+          self.package_name = package_name
         if switch_uuid is not None:
           self.switch_uuid = switch_uuid
+        if sub_type is not None:
+          self.sub_type = sub_type
+        if switch_port is not None:
+          self.switch_port = switch_port
         if type is not None:
           self.type = type
         if minute_count is not None:
           self.minute_count = minute_count
-        if switch_port is not None:
-          self.switch_port = switch_port
-        if package_name is not None:
-          self.package_name = package_name
-        if sub_type is not None:
-          self.sub_type = sub_type
         if enabled is not None:
           self.enabled = enabled
+        if amount is not None:
+          self.amount = amount
 
     @property
-    def amount(self):
+    def package_name(self):
         """
-        Gets the amount of this PackageSwitch.
+        Gets the package_name of this PackageSwitch.
 
-        :return: The amount of this PackageSwitch.
-        :rtype: int
+        :return: The package_name of this PackageSwitch.
+        :rtype: str
         """
-        return self._amount
+        return self._package_name
 
-    @amount.setter
-    def amount(self, amount):
+    @package_name.setter
+    def package_name(self, package_name):
         """
-        Sets the amount of this PackageSwitch.
+        Sets the package_name of this PackageSwitch.
 
-        :param amount: The amount of this PackageSwitch.
-        :type: int
+        :param package_name: The package_name of this PackageSwitch.
+        :type: str
         """
+        if package_name is not None and len(package_name) > 64:
+            raise ValueError("Invalid value for `package_name`, length must be less than or equal to `64`")
 
-        self._amount = amount
+        self._package_name = package_name
 
     @property
     def switch_uuid(self):
@@ -126,6 +128,54 @@ class PackageSwitch(object):
             raise ValueError("Invalid value for `switch_uuid`, length must be less than or equal to `36`")
 
         self._switch_uuid = switch_uuid
+
+    @property
+    def sub_type(self):
+        """
+        Gets the sub_type of this PackageSwitch.
+
+        :return: The sub_type of this PackageSwitch.
+        :rtype: str
+        """
+        return self._sub_type
+
+    @sub_type.setter
+    def sub_type(self, sub_type):
+        """
+        Sets the sub_type of this PackageSwitch.
+
+        :param sub_type: The sub_type of this PackageSwitch.
+        :type: str
+        """
+        allowed_values = ["hosted_switch", "on_premise", "one_time"]
+        if sub_type not in allowed_values:
+            raise ValueError(
+                "Invalid value for `sub_type` ({0}), must be one of {1}"
+                .format(sub_type, allowed_values)
+            )
+
+        self._sub_type = sub_type
+
+    @property
+    def switch_port(self):
+        """
+        Gets the switch_port of this PackageSwitch.
+
+        :return: The switch_port of this PackageSwitch.
+        :rtype: int
+        """
+        return self._switch_port
+
+    @switch_port.setter
+    def switch_port(self, switch_port):
+        """
+        Sets the switch_port of this PackageSwitch.
+
+        :param switch_port: The switch_port of this PackageSwitch.
+        :type: int
+        """
+
+        self._switch_port = switch_port
 
     @property
     def type(self):
@@ -176,77 +226,6 @@ class PackageSwitch(object):
         self._minute_count = minute_count
 
     @property
-    def switch_port(self):
-        """
-        Gets the switch_port of this PackageSwitch.
-
-        :return: The switch_port of this PackageSwitch.
-        :rtype: int
-        """
-        return self._switch_port
-
-    @switch_port.setter
-    def switch_port(self, switch_port):
-        """
-        Sets the switch_port of this PackageSwitch.
-
-        :param switch_port: The switch_port of this PackageSwitch.
-        :type: int
-        """
-
-        self._switch_port = switch_port
-
-    @property
-    def package_name(self):
-        """
-        Gets the package_name of this PackageSwitch.
-
-        :return: The package_name of this PackageSwitch.
-        :rtype: str
-        """
-        return self._package_name
-
-    @package_name.setter
-    def package_name(self, package_name):
-        """
-        Sets the package_name of this PackageSwitch.
-
-        :param package_name: The package_name of this PackageSwitch.
-        :type: str
-        """
-        if package_name is not None and len(package_name) > 64:
-            raise ValueError("Invalid value for `package_name`, length must be less than or equal to `64`")
-
-        self._package_name = package_name
-
-    @property
-    def sub_type(self):
-        """
-        Gets the sub_type of this PackageSwitch.
-
-        :return: The sub_type of this PackageSwitch.
-        :rtype: str
-        """
-        return self._sub_type
-
-    @sub_type.setter
-    def sub_type(self, sub_type):
-        """
-        Sets the sub_type of this PackageSwitch.
-
-        :param sub_type: The sub_type of this PackageSwitch.
-        :type: str
-        """
-        allowed_values = ["hosted_switch", "on_premise", "one_time"]
-        if sub_type not in allowed_values:
-            raise ValueError(
-                "Invalid value for `sub_type` ({0}), must be one of {1}"
-                .format(sub_type, allowed_values)
-            )
-
-        self._sub_type = sub_type
-
-    @property
     def enabled(self):
         """
         Gets the enabled of this PackageSwitch.
@@ -266,6 +245,27 @@ class PackageSwitch(object):
         """
 
         self._enabled = enabled
+
+    @property
+    def amount(self):
+        """
+        Gets the amount of this PackageSwitch.
+
+        :return: The amount of this PackageSwitch.
+        :rtype: int
+        """
+        return self._amount
+
+    @amount.setter
+    def amount(self, amount):
+        """
+        Sets the amount of this PackageSwitch.
+
+        :param amount: The amount of this PackageSwitch.
+        :type: int
+        """
+
+        self._amount = amount
 
     def to_dict(self):
         """

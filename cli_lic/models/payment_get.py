@@ -31,73 +31,79 @@ class PaymentGet(object):
                             and the value is json key in definition.
     """
     swagger_types = {
-        'amount': 'float',
+        'type': 'str',
         'license_lrn_uuid': 'str',
         'paid_time': 'datetime',
         'payment_uuid': 'str',
-        'license_switch_uuid': 'str',
         'user_uuid': 'str',
-        'type': 'str'
+        'license_switch_uuid': 'str',
+        'amount': 'float'
     }
 
     attribute_map = {
-        'amount': 'amount',
+        'type': 'type',
         'license_lrn_uuid': 'license_lrn_uuid',
         'paid_time': 'paid_time',
         'payment_uuid': 'payment_uuid',
-        'license_switch_uuid': 'license_switch_uuid',
         'user_uuid': 'user_uuid',
-        'type': 'type'
+        'license_switch_uuid': 'license_switch_uuid',
+        'amount': 'amount'
     }
 
-    def __init__(self, amount=None, license_lrn_uuid=None, paid_time=None, payment_uuid=None, license_switch_uuid=None, user_uuid=None, type='paypal'):
+    def __init__(self, type='paypal', license_lrn_uuid=None, paid_time=None, payment_uuid=None, user_uuid=None, license_switch_uuid=None, amount=None):
         """
         PaymentGet - a model defined in Swagger
         """
 
-        self._amount = None
+        self._type = None
         self._license_lrn_uuid = None
         self._paid_time = None
         self._payment_uuid = None
-        self._license_switch_uuid = None
         self._user_uuid = None
-        self._type = None
+        self._license_switch_uuid = None
+        self._amount = None
 
-        if amount is not None:
-          self.amount = amount
+        if type is not None:
+          self.type = type
         if license_lrn_uuid is not None:
           self.license_lrn_uuid = license_lrn_uuid
         if paid_time is not None:
           self.paid_time = paid_time
         if payment_uuid is not None:
           self.payment_uuid = payment_uuid
-        if license_switch_uuid is not None:
-          self.license_switch_uuid = license_switch_uuid
         if user_uuid is not None:
           self.user_uuid = user_uuid
-        if type is not None:
-          self.type = type
+        if license_switch_uuid is not None:
+          self.license_switch_uuid = license_switch_uuid
+        if amount is not None:
+          self.amount = amount
 
     @property
-    def amount(self):
+    def type(self):
         """
-        Gets the amount of this PaymentGet.
+        Gets the type of this PaymentGet.
 
-        :return: The amount of this PaymentGet.
-        :rtype: float
+        :return: The type of this PaymentGet.
+        :rtype: str
         """
-        return self._amount
+        return self._type
 
-    @amount.setter
-    def amount(self, amount):
+    @type.setter
+    def type(self, type):
         """
-        Sets the amount of this PaymentGet.
+        Sets the type of this PaymentGet.
 
-        :param amount: The amount of this PaymentGet.
-        :type: float
+        :param type: The type of this PaymentGet.
+        :type: str
         """
+        allowed_values = ["paypal", "strip"]
+        if type not in allowed_values:
+            raise ValueError(
+                "Invalid value for `type` ({0}), must be one of {1}"
+                .format(type, allowed_values)
+            )
 
-        self._amount = amount
+        self._type = type
 
     @property
     def license_lrn_uuid(self):
@@ -167,6 +173,27 @@ class PaymentGet(object):
         self._payment_uuid = payment_uuid
 
     @property
+    def user_uuid(self):
+        """
+        Gets the user_uuid of this PaymentGet.
+
+        :return: The user_uuid of this PaymentGet.
+        :rtype: str
+        """
+        return self._user_uuid
+
+    @user_uuid.setter
+    def user_uuid(self, user_uuid):
+        """
+        Sets the user_uuid of this PaymentGet.
+
+        :param user_uuid: The user_uuid of this PaymentGet.
+        :type: str
+        """
+
+        self._user_uuid = user_uuid
+
+    @property
     def license_switch_uuid(self):
         """
         Gets the license_switch_uuid of this PaymentGet.
@@ -190,52 +217,25 @@ class PaymentGet(object):
         self._license_switch_uuid = license_switch_uuid
 
     @property
-    def user_uuid(self):
+    def amount(self):
         """
-        Gets the user_uuid of this PaymentGet.
+        Gets the amount of this PaymentGet.
 
-        :return: The user_uuid of this PaymentGet.
-        :rtype: str
+        :return: The amount of this PaymentGet.
+        :rtype: float
         """
-        return self._user_uuid
+        return self._amount
 
-    @user_uuid.setter
-    def user_uuid(self, user_uuid):
+    @amount.setter
+    def amount(self, amount):
         """
-        Sets the user_uuid of this PaymentGet.
+        Sets the amount of this PaymentGet.
 
-        :param user_uuid: The user_uuid of this PaymentGet.
-        :type: str
+        :param amount: The amount of this PaymentGet.
+        :type: float
         """
 
-        self._user_uuid = user_uuid
-
-    @property
-    def type(self):
-        """
-        Gets the type of this PaymentGet.
-
-        :return: The type of this PaymentGet.
-        :rtype: str
-        """
-        return self._type
-
-    @type.setter
-    def type(self, type):
-        """
-        Sets the type of this PaymentGet.
-
-        :param type: The type of this PaymentGet.
-        :type: str
-        """
-        allowed_values = ["paypal", "strip"]
-        if type not in allowed_values:
-            raise ValueError(
-                "Invalid value for `type` ({0}), must be one of {1}"
-                .format(type, allowed_values)
-            )
-
-        self._type = type
+        self._amount = amount
 
     def to_dict(self):
         """

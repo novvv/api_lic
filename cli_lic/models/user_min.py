@@ -31,62 +31,41 @@ class UserMin(object):
                             and the value is json key in definition.
     """
     swagger_types = {
-        'is_admin': 'bool',
         'is_active': 'bool',
-        'email': 'str',
         'passwd': 'str',
-        'logo_file_uuid': 'str'
+        'logo_file_uuid': 'str',
+        'email': 'str',
+        'is_admin': 'bool'
     }
 
     attribute_map = {
-        'is_admin': 'is_admin',
         'is_active': 'is_active',
-        'email': 'email',
         'passwd': 'passwd',
-        'logo_file_uuid': 'logo_file_uuid'
+        'logo_file_uuid': 'logo_file_uuid',
+        'email': 'email',
+        'is_admin': 'is_admin'
     }
 
-    def __init__(self, is_admin=None, is_active=None, email=None, passwd=None, logo_file_uuid=None):
+    def __init__(self, is_active=None, passwd=None, logo_file_uuid=None, email=None, is_admin=None):
         """
         UserMin - a model defined in Swagger
         """
 
-        self._is_admin = None
         self._is_active = None
-        self._email = None
         self._passwd = None
         self._logo_file_uuid = None
+        self._email = None
+        self._is_admin = None
 
-        if is_admin is not None:
-          self.is_admin = is_admin
         if is_active is not None:
           self.is_active = is_active
-        self.email = email
         if passwd is not None:
           self.passwd = passwd
         if logo_file_uuid is not None:
           self.logo_file_uuid = logo_file_uuid
-
-    @property
-    def is_admin(self):
-        """
-        Gets the is_admin of this UserMin.
-
-        :return: The is_admin of this UserMin.
-        :rtype: bool
-        """
-        return self._is_admin
-
-    @is_admin.setter
-    def is_admin(self, is_admin):
-        """
-        Sets the is_admin of this UserMin.
-
-        :param is_admin: The is_admin of this UserMin.
-        :type: bool
-        """
-
-        self._is_admin = is_admin
+        self.email = email
+        if is_admin is not None:
+          self.is_admin = is_admin
 
     @property
     def is_active(self):
@@ -108,29 +87,6 @@ class UserMin(object):
         """
 
         self._is_active = is_active
-
-    @property
-    def email(self):
-        """
-        Gets the email of this UserMin.
-
-        :return: The email of this UserMin.
-        :rtype: str
-        """
-        return self._email
-
-    @email.setter
-    def email(self, email):
-        """
-        Sets the email of this UserMin.
-
-        :param email: The email of this UserMin.
-        :type: str
-        """
-        if email is None:
-            raise ValueError("Invalid value for `email`, must not be `None`")
-
-        self._email = email
 
     @property
     def passwd(self):
@@ -173,6 +129,50 @@ class UserMin(object):
         """
 
         self._logo_file_uuid = logo_file_uuid
+
+    @property
+    def email(self):
+        """
+        Gets the email of this UserMin.
+
+        :return: The email of this UserMin.
+        :rtype: str
+        """
+        return self._email
+
+    @email.setter
+    def email(self, email):
+        """
+        Sets the email of this UserMin.
+
+        :param email: The email of this UserMin.
+        :type: str
+        """
+        if email is None:
+            raise ValueError("Invalid value for `email`, must not be `None`")
+
+        self._email = email
+
+    @property
+    def is_admin(self):
+        """
+        Gets the is_admin of this UserMin.
+
+        :return: The is_admin of this UserMin.
+        :rtype: bool
+        """
+        return self._is_admin
+
+    @is_admin.setter
+    def is_admin(self, is_admin):
+        """
+        Sets the is_admin of this UserMin.
+
+        :param is_admin: The is_admin of this UserMin.
+        :type: bool
+        """
+
+        self._is_admin = is_admin
 
     def to_dict(self):
         """

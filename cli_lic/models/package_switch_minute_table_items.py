@@ -31,53 +31,53 @@ class PackageSwitchMinuteTableItems(object):
                             and the value is json key in definition.
     """
     swagger_types = {
-        'hosted_switch': 'PackageSwitchMinute',
+        'minute_count': 'int',
         'on_premise': 'PackageSwitchMinute',
-        'minute_count': 'int'
+        'hosted_switch': 'PackageSwitchMinute'
     }
 
     attribute_map = {
-        'hosted_switch': 'hosted_switch',
+        'minute_count': 'minute_count',
         'on_premise': 'on_premise',
-        'minute_count': 'minute_count'
+        'hosted_switch': 'hosted_switch'
     }
 
-    def __init__(self, hosted_switch=None, on_premise=None, minute_count=None):
+    def __init__(self, minute_count=None, on_premise=None, hosted_switch=None):
         """
         PackageSwitchMinuteTableItems - a model defined in Swagger
         """
 
-        self._hosted_switch = None
-        self._on_premise = None
         self._minute_count = None
+        self._on_premise = None
+        self._hosted_switch = None
 
-        if hosted_switch is not None:
-          self.hosted_switch = hosted_switch
-        if on_premise is not None:
-          self.on_premise = on_premise
         if minute_count is not None:
           self.minute_count = minute_count
+        if on_premise is not None:
+          self.on_premise = on_premise
+        if hosted_switch is not None:
+          self.hosted_switch = hosted_switch
 
     @property
-    def hosted_switch(self):
+    def minute_count(self):
         """
-        Gets the hosted_switch of this PackageSwitchMinuteTableItems.
+        Gets the minute_count of this PackageSwitchMinuteTableItems.
 
-        :return: The hosted_switch of this PackageSwitchMinuteTableItems.
-        :rtype: PackageSwitchMinute
+        :return: The minute_count of this PackageSwitchMinuteTableItems.
+        :rtype: int
         """
-        return self._hosted_switch
+        return self._minute_count
 
-    @hosted_switch.setter
-    def hosted_switch(self, hosted_switch):
+    @minute_count.setter
+    def minute_count(self, minute_count):
         """
-        Sets the hosted_switch of this PackageSwitchMinuteTableItems.
+        Sets the minute_count of this PackageSwitchMinuteTableItems.
 
-        :param hosted_switch: The hosted_switch of this PackageSwitchMinuteTableItems.
-        :type: PackageSwitchMinute
+        :param minute_count: The minute_count of this PackageSwitchMinuteTableItems.
+        :type: int
         """
 
-        self._hosted_switch = hosted_switch
+        self._minute_count = minute_count
 
     @property
     def on_premise(self):
@@ -101,25 +101,25 @@ class PackageSwitchMinuteTableItems(object):
         self._on_premise = on_premise
 
     @property
-    def minute_count(self):
+    def hosted_switch(self):
         """
-        Gets the minute_count of this PackageSwitchMinuteTableItems.
+        Gets the hosted_switch of this PackageSwitchMinuteTableItems.
 
-        :return: The minute_count of this PackageSwitchMinuteTableItems.
-        :rtype: int
+        :return: The hosted_switch of this PackageSwitchMinuteTableItems.
+        :rtype: PackageSwitchMinute
         """
-        return self._minute_count
+        return self._hosted_switch
 
-    @minute_count.setter
-    def minute_count(self, minute_count):
+    @hosted_switch.setter
+    def hosted_switch(self, hosted_switch):
         """
-        Sets the minute_count of this PackageSwitchMinuteTableItems.
+        Sets the hosted_switch of this PackageSwitchMinuteTableItems.
 
-        :param minute_count: The minute_count of this PackageSwitchMinuteTableItems.
-        :type: int
+        :param hosted_switch: The hosted_switch of this PackageSwitchMinuteTableItems.
+        :type: PackageSwitchMinute
         """
 
-        self._minute_count = minute_count
+        self._hosted_switch = hosted_switch
 
     def to_dict(self):
         """

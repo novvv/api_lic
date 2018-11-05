@@ -31,73 +31,75 @@ class PackageLrn(object):
                             and the value is json key in definition.
     """
     swagger_types = {
-        'amount': 'int',
-        'dip_count': 'int',
-        'cps': 'int',
-        'type': 'str',
         'package_name': 'str',
+        'dip_count': 'int',
+        'enabled': 'bool',
+        'type': 'str',
         'lrn_port': 'int',
-        'enabled': 'bool'
+        'cps': 'int',
+        'amount': 'int'
     }
 
     attribute_map = {
-        'amount': 'amount',
-        'dip_count': 'dip_count',
-        'cps': 'cps',
-        'type': 'type',
         'package_name': 'package_name',
+        'dip_count': 'dip_count',
+        'enabled': 'enabled',
+        'type': 'type',
         'lrn_port': 'lrn_port',
-        'enabled': 'enabled'
+        'cps': 'cps',
+        'amount': 'amount'
     }
 
-    def __init__(self, amount=None, dip_count=None, cps=None, type='LRN pay per CPS', package_name=None, lrn_port=None, enabled=None):
+    def __init__(self, package_name=None, dip_count=None, enabled=None, type='LRN pay per CPS', lrn_port=None, cps=None, amount=None):
         """
         PackageLrn - a model defined in Swagger
         """
 
-        self._amount = None
-        self._dip_count = None
-        self._cps = None
-        self._type = None
         self._package_name = None
-        self._lrn_port = None
+        self._dip_count = None
         self._enabled = None
+        self._type = None
+        self._lrn_port = None
+        self._cps = None
+        self._amount = None
 
-        if amount is not None:
-          self.amount = amount
-        if dip_count is not None:
-          self.dip_count = dip_count
-        if cps is not None:
-          self.cps = cps
-        if type is not None:
-          self.type = type
         if package_name is not None:
           self.package_name = package_name
-        if lrn_port is not None:
-          self.lrn_port = lrn_port
+        if dip_count is not None:
+          self.dip_count = dip_count
         if enabled is not None:
           self.enabled = enabled
+        if type is not None:
+          self.type = type
+        if lrn_port is not None:
+          self.lrn_port = lrn_port
+        if cps is not None:
+          self.cps = cps
+        if amount is not None:
+          self.amount = amount
 
     @property
-    def amount(self):
+    def package_name(self):
         """
-        Gets the amount of this PackageLrn.
+        Gets the package_name of this PackageLrn.
 
-        :return: The amount of this PackageLrn.
-        :rtype: int
+        :return: The package_name of this PackageLrn.
+        :rtype: str
         """
-        return self._amount
+        return self._package_name
 
-    @amount.setter
-    def amount(self, amount):
+    @package_name.setter
+    def package_name(self, package_name):
         """
-        Sets the amount of this PackageLrn.
+        Sets the package_name of this PackageLrn.
 
-        :param amount: The amount of this PackageLrn.
-        :type: int
+        :param package_name: The package_name of this PackageLrn.
+        :type: str
         """
+        if package_name is not None and len(package_name) > 64:
+            raise ValueError("Invalid value for `package_name`, length must be less than or equal to `64`")
 
-        self._amount = amount
+        self._package_name = package_name
 
     @property
     def dip_count(self):
@@ -121,25 +123,25 @@ class PackageLrn(object):
         self._dip_count = dip_count
 
     @property
-    def cps(self):
+    def enabled(self):
         """
-        Gets the cps of this PackageLrn.
+        Gets the enabled of this PackageLrn.
 
-        :return: The cps of this PackageLrn.
-        :rtype: int
+        :return: The enabled of this PackageLrn.
+        :rtype: bool
         """
-        return self._cps
+        return self._enabled
 
-    @cps.setter
-    def cps(self, cps):
+    @enabled.setter
+    def enabled(self, enabled):
         """
-        Sets the cps of this PackageLrn.
+        Sets the enabled of this PackageLrn.
 
-        :param cps: The cps of this PackageLrn.
-        :type: int
+        :param enabled: The enabled of this PackageLrn.
+        :type: bool
         """
 
-        self._cps = cps
+        self._enabled = enabled
 
     @property
     def type(self):
@@ -169,29 +171,6 @@ class PackageLrn(object):
         self._type = type
 
     @property
-    def package_name(self):
-        """
-        Gets the package_name of this PackageLrn.
-
-        :return: The package_name of this PackageLrn.
-        :rtype: str
-        """
-        return self._package_name
-
-    @package_name.setter
-    def package_name(self, package_name):
-        """
-        Sets the package_name of this PackageLrn.
-
-        :param package_name: The package_name of this PackageLrn.
-        :type: str
-        """
-        if package_name is not None and len(package_name) > 64:
-            raise ValueError("Invalid value for `package_name`, length must be less than or equal to `64`")
-
-        self._package_name = package_name
-
-    @property
     def lrn_port(self):
         """
         Gets the lrn_port of this PackageLrn.
@@ -213,25 +192,46 @@ class PackageLrn(object):
         self._lrn_port = lrn_port
 
     @property
-    def enabled(self):
+    def cps(self):
         """
-        Gets the enabled of this PackageLrn.
+        Gets the cps of this PackageLrn.
 
-        :return: The enabled of this PackageLrn.
-        :rtype: bool
+        :return: The cps of this PackageLrn.
+        :rtype: int
         """
-        return self._enabled
+        return self._cps
 
-    @enabled.setter
-    def enabled(self, enabled):
+    @cps.setter
+    def cps(self, cps):
         """
-        Sets the enabled of this PackageLrn.
+        Sets the cps of this PackageLrn.
 
-        :param enabled: The enabled of this PackageLrn.
-        :type: bool
+        :param cps: The cps of this PackageLrn.
+        :type: int
         """
 
-        self._enabled = enabled
+        self._cps = cps
+
+    @property
+    def amount(self):
+        """
+        Gets the amount of this PackageLrn.
+
+        :return: The amount of this PackageLrn.
+        :rtype: int
+        """
+        return self._amount
+
+    @amount.setter
+    def amount(self, amount):
+        """
+        Sets the amount of this PackageLrn.
+
+        :param amount: The amount of this PackageLrn.
+        :type: int
+        """
+
+        self._amount = amount
 
     def to_dict(self):
         """
