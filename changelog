@@ -1,4 +1,6 @@
 api_lic ver 1.0.7
+answered <--  reset password mail template LLP-11
+answered <-- payment webhooks LLP-52
 POST/package_switch <-- "start_date","expire_date" LLP-46
 
 api_lic ver 1.0.6

@@ -31,32 +31,53 @@ class AttributeNotExists(object):
                             and the value is json key in definition.
     """
     swagger_types = {
+        'error_type': 'str',
         'attribute': 'str',
-        'success': 'bool',
-        'error_type': 'str'
+        'success': 'bool'
     }
 
     attribute_map = {
+        'error_type': 'error_type',
         'attribute': 'attribute',
-        'success': 'success',
-        'error_type': 'error_type'
+        'success': 'success'
     }
 
-    def __init__(self, attribute=None, success=False, error_type='attribute_not_exists'):
+    def __init__(self, error_type='attribute_not_exists', attribute=None, success=False):
         """
         AttributeNotExists - a model defined in Swagger
         """
 
+        self._error_type = None
         self._attribute = None
         self._success = None
-        self._error_type = None
 
+        if error_type is not None:
+          self.error_type = error_type
         if attribute is not None:
           self.attribute = attribute
         if success is not None:
           self.success = success
-        if error_type is not None:
-          self.error_type = error_type
+
+    @property
+    def error_type(self):
+        """
+        Gets the error_type of this AttributeNotExists.
+
+        :return: The error_type of this AttributeNotExists.
+        :rtype: str
+        """
+        return self._error_type
+
+    @error_type.setter
+    def error_type(self, error_type):
+        """
+        Sets the error_type of this AttributeNotExists.
+
+        :param error_type: The error_type of this AttributeNotExists.
+        :type: str
+        """
+
+        self._error_type = error_type
 
     @property
     def attribute(self):
@@ -99,27 +120,6 @@ class AttributeNotExists(object):
         """
 
         self._success = success
-
-    @property
-    def error_type(self):
-        """
-        Gets the error_type of this AttributeNotExists.
-
-        :return: The error_type of this AttributeNotExists.
-        :rtype: str
-        """
-        return self._error_type
-
-    @error_type.setter
-    def error_type(self, error_type):
-        """
-        Sets the error_type of this AttributeNotExists.
-
-        :param error_type: The error_type of this AttributeNotExists.
-        :type: str
-        """
-
-        self._error_type = error_type
 
     def to_dict(self):
         """

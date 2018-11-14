@@ -291,8 +291,9 @@ class TestAdminApi(unittest.TestCase):
                     expire_date=str(datetime.now(UTC)+timedelta(days=30)))
         ret = self.api.package_switch_post(body=data)
         assert (ret.success)
-        return
         self.package_switch.append(ret.object_uuid)
+        return
+
         f = open('api_lic/test/switch_port_pricing.csv','rt')
         r=csv.DictReader(f,fieldnames=['type','port','price'])
         for i in r:

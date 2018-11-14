@@ -31,53 +31,55 @@ class LicenseSwitchModify(object):
                             and the value is json key in definition.
     """
     swagger_types = {
-        'enabled': 'bool',
+        'ip': 'str',
         'package_switch_uuid': 'str',
-        'ip': 'str'
+        'enabled': 'bool'
     }
 
     attribute_map = {
-        'enabled': 'enabled',
+        'ip': 'ip',
         'package_switch_uuid': 'package_switch_uuid',
-        'ip': 'ip'
+        'enabled': 'enabled'
     }
 
-    def __init__(self, enabled=None, package_switch_uuid=None, ip=None):
+    def __init__(self, ip=None, package_switch_uuid=None, enabled=None):
         """
         LicenseSwitchModify - a model defined in Swagger
         """
 
-        self._enabled = None
-        self._package_switch_uuid = None
         self._ip = None
+        self._package_switch_uuid = None
+        self._enabled = None
 
-        if enabled is not None:
-          self.enabled = enabled
-        if package_switch_uuid is not None:
-          self.package_switch_uuid = package_switch_uuid
         if ip is not None:
           self.ip = ip
+        if package_switch_uuid is not None:
+          self.package_switch_uuid = package_switch_uuid
+        if enabled is not None:
+          self.enabled = enabled
 
     @property
-    def enabled(self):
+    def ip(self):
         """
-        Gets the enabled of this LicenseSwitchModify.
+        Gets the ip of this LicenseSwitchModify.
 
-        :return: The enabled of this LicenseSwitchModify.
-        :rtype: bool
+        :return: The ip of this LicenseSwitchModify.
+        :rtype: str
         """
-        return self._enabled
+        return self._ip
 
-    @enabled.setter
-    def enabled(self, enabled):
+    @ip.setter
+    def ip(self, ip):
         """
-        Sets the enabled of this LicenseSwitchModify.
+        Sets the ip of this LicenseSwitchModify.
 
-        :param enabled: The enabled of this LicenseSwitchModify.
-        :type: bool
+        :param ip: The ip of this LicenseSwitchModify.
+        :type: str
         """
+        if ip is not None and len(ip) > 16:
+            raise ValueError("Invalid value for `ip`, length must be less than or equal to `16`")
 
-        self._enabled = enabled
+        self._ip = ip
 
     @property
     def package_switch_uuid(self):
@@ -103,27 +105,25 @@ class LicenseSwitchModify(object):
         self._package_switch_uuid = package_switch_uuid
 
     @property
-    def ip(self):
+    def enabled(self):
         """
-        Gets the ip of this LicenseSwitchModify.
+        Gets the enabled of this LicenseSwitchModify.
 
-        :return: The ip of this LicenseSwitchModify.
-        :rtype: str
+        :return: The enabled of this LicenseSwitchModify.
+        :rtype: bool
         """
-        return self._ip
+        return self._enabled
 
-    @ip.setter
-    def ip(self, ip):
+    @enabled.setter
+    def enabled(self, enabled):
         """
-        Sets the ip of this LicenseSwitchModify.
+        Sets the enabled of this LicenseSwitchModify.
 
-        :param ip: The ip of this LicenseSwitchModify.
-        :type: str
+        :param enabled: The enabled of this LicenseSwitchModify.
+        :type: bool
         """
-        if ip is not None and len(ip) > 16:
-            raise ValueError("Invalid value for `ip`, length must be less than or equal to `16`")
 
-        self._ip = ip
+        self._enabled = enabled
 
     def to_dict(self):
         """

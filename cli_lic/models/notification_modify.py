@@ -31,37 +31,81 @@ class NotificationModify(object):
                             and the value is json key in definition.
     """
     swagger_types = {
-        'user_uuid': 'str',
         'content': 'str',
-        'created_on': 'datetime',
-        'subject': 'str'
+        'subject': 'str',
+        'user_uuid': 'str',
+        'created_on': 'datetime'
     }
 
     attribute_map = {
-        'user_uuid': 'user_uuid',
         'content': 'content',
-        'created_on': 'created_on',
-        'subject': 'subject'
+        'subject': 'subject',
+        'user_uuid': 'user_uuid',
+        'created_on': 'created_on'
     }
 
-    def __init__(self, user_uuid=None, content=None, created_on=None, subject=None):
+    def __init__(self, content=None, subject=None, user_uuid=None, created_on=None):
         """
         NotificationModify - a model defined in Swagger
         """
 
-        self._user_uuid = None
         self._content = None
-        self._created_on = None
         self._subject = None
+        self._user_uuid = None
+        self._created_on = None
 
-        if user_uuid is not None:
-          self.user_uuid = user_uuid
         if content is not None:
           self.content = content
-        if created_on is not None:
-          self.created_on = created_on
         if subject is not None:
           self.subject = subject
+        if user_uuid is not None:
+          self.user_uuid = user_uuid
+        if created_on is not None:
+          self.created_on = created_on
+
+    @property
+    def content(self):
+        """
+        Gets the content of this NotificationModify.
+
+        :return: The content of this NotificationModify.
+        :rtype: str
+        """
+        return self._content
+
+    @content.setter
+    def content(self, content):
+        """
+        Sets the content of this NotificationModify.
+
+        :param content: The content of this NotificationModify.
+        :type: str
+        """
+
+        self._content = content
+
+    @property
+    def subject(self):
+        """
+        Gets the subject of this NotificationModify.
+
+        :return: The subject of this NotificationModify.
+        :rtype: str
+        """
+        return self._subject
+
+    @subject.setter
+    def subject(self, subject):
+        """
+        Sets the subject of this NotificationModify.
+
+        :param subject: The subject of this NotificationModify.
+        :type: str
+        """
+        if subject is not None and len(subject) > 64:
+            raise ValueError("Invalid value for `subject`, length must be less than or equal to `64`")
+
+        self._subject = subject
 
     @property
     def user_uuid(self):
@@ -87,27 +131,6 @@ class NotificationModify(object):
         self._user_uuid = user_uuid
 
     @property
-    def content(self):
-        """
-        Gets the content of this NotificationModify.
-
-        :return: The content of this NotificationModify.
-        :rtype: str
-        """
-        return self._content
-
-    @content.setter
-    def content(self, content):
-        """
-        Sets the content of this NotificationModify.
-
-        :param content: The content of this NotificationModify.
-        :type: str
-        """
-
-        self._content = content
-
-    @property
     def created_on(self):
         """
         Gets the created_on of this NotificationModify.
@@ -127,29 +150,6 @@ class NotificationModify(object):
         """
 
         self._created_on = created_on
-
-    @property
-    def subject(self):
-        """
-        Gets the subject of this NotificationModify.
-
-        :return: The subject of this NotificationModify.
-        :rtype: str
-        """
-        return self._subject
-
-    @subject.setter
-    def subject(self, subject):
-        """
-        Sets the subject of this NotificationModify.
-
-        :param subject: The subject of this NotificationModify.
-        :type: str
-        """
-        if subject is not None and len(subject) > 64:
-            raise ValueError("Invalid value for `subject`, length must be less than or equal to `64`")
-
-        self._subject = subject
 
     def to_dict(self):
         """

@@ -31,58 +31,58 @@ class PackageSwitchPortTableItems(object):
                             and the value is json key in definition.
     """
     swagger_types = {
-        'hosted_switch': 'PackageSwitchPort',
+        'switch_port': 'int',
         'one_time': 'PackageSwitchPort',
         'on_premise': 'PackageSwitchPort',
-        'switch_port': 'int'
+        'hosted_switch': 'PackageSwitchPort'
     }
 
     attribute_map = {
-        'hosted_switch': 'hosted_switch',
+        'switch_port': 'switch_port',
         'one_time': 'one_time',
         'on_premise': 'on_premise',
-        'switch_port': 'switch_port'
+        'hosted_switch': 'hosted_switch'
     }
 
-    def __init__(self, hosted_switch=None, one_time=None, on_premise=None, switch_port=None):
+    def __init__(self, switch_port=None, one_time=None, on_premise=None, hosted_switch=None):
         """
         PackageSwitchPortTableItems - a model defined in Swagger
         """
 
-        self._hosted_switch = None
+        self._switch_port = None
         self._one_time = None
         self._on_premise = None
-        self._switch_port = None
+        self._hosted_switch = None
 
-        if hosted_switch is not None:
-          self.hosted_switch = hosted_switch
+        if switch_port is not None:
+          self.switch_port = switch_port
         if one_time is not None:
           self.one_time = one_time
         if on_premise is not None:
           self.on_premise = on_premise
-        if switch_port is not None:
-          self.switch_port = switch_port
+        if hosted_switch is not None:
+          self.hosted_switch = hosted_switch
 
     @property
-    def hosted_switch(self):
+    def switch_port(self):
         """
-        Gets the hosted_switch of this PackageSwitchPortTableItems.
+        Gets the switch_port of this PackageSwitchPortTableItems.
 
-        :return: The hosted_switch of this PackageSwitchPortTableItems.
-        :rtype: PackageSwitchPort
+        :return: The switch_port of this PackageSwitchPortTableItems.
+        :rtype: int
         """
-        return self._hosted_switch
+        return self._switch_port
 
-    @hosted_switch.setter
-    def hosted_switch(self, hosted_switch):
+    @switch_port.setter
+    def switch_port(self, switch_port):
         """
-        Sets the hosted_switch of this PackageSwitchPortTableItems.
+        Sets the switch_port of this PackageSwitchPortTableItems.
 
-        :param hosted_switch: The hosted_switch of this PackageSwitchPortTableItems.
-        :type: PackageSwitchPort
+        :param switch_port: The switch_port of this PackageSwitchPortTableItems.
+        :type: int
         """
 
-        self._hosted_switch = hosted_switch
+        self._switch_port = switch_port
 
     @property
     def one_time(self):
@@ -127,25 +127,25 @@ class PackageSwitchPortTableItems(object):
         self._on_premise = on_premise
 
     @property
-    def switch_port(self):
+    def hosted_switch(self):
         """
-        Gets the switch_port of this PackageSwitchPortTableItems.
+        Gets the hosted_switch of this PackageSwitchPortTableItems.
 
-        :return: The switch_port of this PackageSwitchPortTableItems.
-        :rtype: int
+        :return: The hosted_switch of this PackageSwitchPortTableItems.
+        :rtype: PackageSwitchPort
         """
-        return self._switch_port
+        return self._hosted_switch
 
-    @switch_port.setter
-    def switch_port(self, switch_port):
+    @hosted_switch.setter
+    def hosted_switch(self, hosted_switch):
         """
-        Sets the switch_port of this PackageSwitchPortTableItems.
+        Sets the hosted_switch of this PackageSwitchPortTableItems.
 
-        :param switch_port: The switch_port of this PackageSwitchPortTableItems.
-        :type: int
+        :param hosted_switch: The hosted_switch of this PackageSwitchPortTableItems.
+        :type: PackageSwitchPort
         """
 
-        self._switch_port = switch_port
+        self._hosted_switch = hosted_switch
 
     def to_dict(self):
         """

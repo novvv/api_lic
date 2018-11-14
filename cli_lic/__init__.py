@@ -53,9 +53,9 @@ from .models.inline_response_200_22 import InlineResponse20022
 from .models.inline_response_200_23 import InlineResponse20023
 from .models.inline_response_200_23_payload import InlineResponse20023Payload
 from .models.inline_response_200_3 import InlineResponse2003
+from .models.inline_response_200_3_payload import InlineResponse2003Payload
 from .models.inline_response_200_4 import InlineResponse2004
 from .models.inline_response_200_5 import InlineResponse2005
-from .models.inline_response_200_5_payload import InlineResponse2005Payload
 from .models.inline_response_200_6 import InlineResponse2006
 from .models.inline_response_200_7 import InlineResponse2007
 from .models.inline_response_200_8 import InlineResponse2008

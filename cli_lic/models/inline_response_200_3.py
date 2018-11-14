@@ -32,7 +32,7 @@ class InlineResponse2003(object):
     """
     swagger_types = {
         'success': 'bool',
-        'payload': 'NotificationGet'
+        'payload': 'InlineResponse2003Payload'
     }
 
     attribute_map = {
@@ -80,7 +80,7 @@ class InlineResponse2003(object):
         Gets the payload of this InlineResponse2003.
 
         :return: The payload of this InlineResponse2003.
-        :rtype: NotificationGet
+        :rtype: InlineResponse2003Payload
         """
         return self._payload
 
@@ -90,7 +90,7 @@ class InlineResponse2003(object):
         Sets the payload of this InlineResponse2003.
 
         :param payload: The payload of this InlineResponse2003.
-        :type: NotificationGet
+        :type: InlineResponse2003Payload
         """
 
         self._payload = payload

@@ -31,27 +31,50 @@ class PlanGet(object):
                             and the value is json key in definition.
     """
     swagger_types = {
-        'type': 'str',
-        'plan_uuid': 'str'
+        'plan_uuid': 'str',
+        'type': 'str'
     }
 
     attribute_map = {
-        'type': 'type',
-        'plan_uuid': 'plan_uuid'
+        'plan_uuid': 'plan_uuid',
+        'type': 'type'
     }
 
-    def __init__(self, type='switch pay per port', plan_uuid=None):
+    def __init__(self, plan_uuid=None, type='switch pay per port'):
         """
         PlanGet - a model defined in Swagger
         """
 
-        self._type = None
         self._plan_uuid = None
+        self._type = None
 
-        if type is not None:
-          self.type = type
         if plan_uuid is not None:
           self.plan_uuid = plan_uuid
+        if type is not None:
+          self.type = type
+
+    @property
+    def plan_uuid(self):
+        """
+        Gets the plan_uuid of this PlanGet.
+
+        :return: The plan_uuid of this PlanGet.
+        :rtype: str
+        """
+        return self._plan_uuid
+
+    @plan_uuid.setter
+    def plan_uuid(self, plan_uuid):
+        """
+        Sets the plan_uuid of this PlanGet.
+
+        :param plan_uuid: The plan_uuid of this PlanGet.
+        :type: str
+        """
+        if plan_uuid is not None and len(plan_uuid) > 36:
+            raise ValueError("Invalid value for `plan_uuid`, length must be less than or equal to `36`")
+
+        self._plan_uuid = plan_uuid
 
     @property
     def type(self):
@@ -79,29 +102,6 @@ class PlanGet(object):
             )
 
         self._type = type
-
-    @property
-    def plan_uuid(self):
-        """
-        Gets the plan_uuid of this PlanGet.
-
-        :return: The plan_uuid of this PlanGet.
-        :rtype: str
-        """
-        return self._plan_uuid
-
-    @plan_uuid.setter
-    def plan_uuid(self, plan_uuid):
-        """
-        Sets the plan_uuid of this PlanGet.
-
-        :param plan_uuid: The plan_uuid of this PlanGet.
-        :type: str
-        """
-        if plan_uuid is not None and len(plan_uuid) > 36:
-            raise ValueError("Invalid value for `plan_uuid`, length must be less than or equal to `36`")
-
-        self._plan_uuid = plan_uuid
 
     def to_dict(self):
         """
