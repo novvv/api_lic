@@ -23,6 +23,7 @@ PRODUCTION_ROUTES = OrderedDict([
     ('Auth', {
         'description': 'Authentication functions',
         'routes': [
+
             {'path': '/auth', 'method': 'post','resource': auth.auth_endpoints.Auth()},#settings.get_auth_module().auth_endpoints.Auth()},
             {'path': '/auth/check-password', 'method': 'post',
                     'resource': settings.get_auth_module().auth_endpoints.PasswordCheck()},
@@ -37,6 +38,8 @@ PRODUCTION_ROUTES = OrderedDict([
 
            {'path': '/registration', 'resource': view.UserRegisterCreate(), 'method': 'post'},
            {'path': '/registration/confirm/{token}', 'resource': views.UserConfirmRegister(), 'method': 'post'},
+           {'path': '/email_template/{name}', 'method': 'path','resource': views.EmailTemplateResource()},
+           {'path': '/email_template/list', 'method': 'get','resource': views.EmailTemplateList()},
           ]
 
     }),
