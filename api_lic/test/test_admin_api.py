@@ -287,9 +287,11 @@ class TestAdminApi(unittest.TestCase):
         data = dict(switch_uuid=rand_switch()[0], package_name='switch_{}'.format(dig(10)), cps=random.randint(10, 1000),
                     switch_port=random.randint(1000, 65535),
                     type=random.choice(['switch pay per port', 'switch pay per minute']),
-                    minute_count=random.randint(10, 1000), amount=random.randint(10, 1000), enabled=True)
+                    minute_count=random.randint(10, 1000), amount=random.randint(10, 1000), enabled=True,
+                    expire_date=str(datetime.now(UTC)+timedelta(days=30)))
         ret = self.api.package_switch_post(body=data)
         assert (ret.success)
+        return
         self.package_switch.append(ret.object_uuid)
         f = open('api_lic/test/switch_port_pricing.csv','rt')
         r=csv.DictReader(f,fieldnames=['type','port','price'])

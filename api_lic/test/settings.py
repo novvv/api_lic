@@ -6,7 +6,7 @@ import pprint
 import csv
 ##cli_lic.configuration.verify_ssl=False
 ##cli_lic.configuration.host='https://158.69.221.111/api_lic/v1'
-cli_lic.configuration.host='https://vps62776.vps.ovh.ca/api_lic/v1'
+#cli_lic.configuration.host='https://vps62776.vps.ovh.ca/api_lic/v1'
 #cli_lic.configuration.host='http://localhost:8002/v1'
 admin_token=None
 tokens={}
@@ -23,7 +23,8 @@ def auth(user_id=ADMIN_UUID):
     import jwt
     data=dict(user_uuid=user_id,exp=int((datetime.now(UTC) + timedelta(hours=1)).timestamp()))
     cli_lic.configuration.api_key['X-Auth-Token']=jwt.encode(data, JWT_SIGNATURE, algorithm='HS256').decode('utf-8')
-    print(user_id,cli_lic.configuration.api_key['X-Auth-Token'])
+    print(user_id)
+    print(cli_lic.configuration.api_key['X-Auth-Token'])
 
 def auth_user(user_id=TEST_USER_UUID):
     return auth(user_id=user_id)

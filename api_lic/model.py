@@ -466,6 +466,8 @@ class PackageSwitch(BaseModel):
     minute_count = Column(Integer())
     amount = Column(Integer())
     enabled = Column(Boolean, default=True)
+    start_date = Column(DateTime(True), nullable=False, server_default=func.now())
+    expire_date = Column(DateTime(True), nullable=True)
     licenses = relationship('LicenseSwitch', uselist=True, back_populates='package')
     switch = relationship('Switch', uselist=False, back_populates='packages')
     rate_per_port = column_property(case([(switch_port>0,cast(amount,Float).op('/')(switch_port))],else_=None))

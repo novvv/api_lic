@@ -1,4 +1,5 @@
-cf0fe8ceaba4 -> d40606f1a9c0 (head), package switch sub type
+d40606f1a9c0 -> d74fb65a2c6c (head), license_switch start_date
+cf0fe8ceaba4 -> d40606f1a9c0, package switch sub type
 3d35a639b36b -> cf0fe8ceaba4, license enabled
 22238fc9f214 -> 3d35a639b36b, license ip
 e19d1c7311c9 -> 22238fc9f214, unique

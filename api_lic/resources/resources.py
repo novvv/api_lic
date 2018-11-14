@@ -243,8 +243,11 @@ class Resource(_Resource):
         except Exception as e:
             self.set_response(resp, OperationalError(e))
             return
-        if self.delete_object(req, resp, self.model_class, **kwargs):
-            self.set_response(resp, responses.SuccessResponseJustOk())
+        try:
+            if self.delete_object(req, resp, self.model_class, **kwargs):
+                self.set_response(resp, responses.SuccessResponseJustOk())
+        except NoResultFound:
+            self.set_response(resp, responses.ObjectNotFoundErrorResponse())
 
 
     def on_patch(self, req, resp, **kwargs):
@@ -284,6 +287,8 @@ class Resource(_Resource):
             )
         except ValidationError as e:
             self.set_response(resp, responses.ValidationErrorResponse(data=e.messages))
+        except NoResultFound:
+            self.set_response(resp, responses.ObjectNotFoundErrorResponse())
         except Exception as e:
             log.error(e)
             #self.set_response(resp, responses.OperationErrorResponse(data=errors.CommonErrors.DataError))
@@ -842,6 +847,109 @@ class CustomGetAction(CustomAction):
             ) + self.additional_responses,
             security=self.get_security(method=self.method)
         )
+
+
+class ObjectUpdatedScheme(Schema):
+    updated = fields.Int()
+    deleted = fields.Int()
+
+
+class ResourceAll(Resource):
+    has_info_operation = False
+    scheme_class_get = ObjectUpdatedScheme
+
+    def modify_query(self,filt,qs,req, resp, model_class, **kwargs):
+        return filt,qs
+
+    def get_query_filter(self, req, resp, model_class, **kwargs):
+        filtering = dict(parse_qsl(req.query_string))
+        qs = model_class.query()
+        filtering,qs = self.modify_query(filtering,qs,req, resp, model_class, **kwargs)
+        query_fields = self.scheme_class.Meta.query_fields if hasattr(self.scheme_class.Meta, 'query_fields') else []
+        cols = inspect(self.model_class).columns
+        if filtering:
+            for k, v in filtering.items():
+                if query_fields and k in query_fields:
+                    fop=List.parse_query_field(k,self.model_class)[0]
+                    qs=qs.filter(text_(fop.format(v)))
+                    continue
+                if k in cols and hasattr(cols[k].type, 'choices'):
+                    if not v in tuple(cols[k].type.choices.values()):
+                        log.error('Bad value for filtering! {}={}'.format(k, v))
+                        raise Exception('Bad value for filtering! "{}"="{}" must be one of [{}]'.format(k, v,','.join(list(cols[k].type.choices.values()))))
+                        continue
+                if '*' in v:  # pragma: no cover
+                    qs = qs.filter(getattr(model_class, k).like(v.replace('*', '%')))
+                else:
+                    qs = qs.filter(getattr(model_class, k) == v)
+        return qs
+
+    def update_object(self, req, resp, model_class, scheme_class, **kwargs):
+        self.init_req(req)
+
+        if hasattr(self.model_class, 'update_by'):
+            self.req_data['update_by'] = self.get_user().name
+        if hasattr(self.model_class,'update_on'):
+            self.req_data['update_by'] = datetime.now(UTC)
+        if hasattr(self.model_class,'update_at'):
+            self.req_data['update_at'] = datetime.now(UTC)
+        scheme = scheme_class().load(self.req_data)
+        if scheme.errors:
+            self.set_response(resp, responses.ValidationErrorResponse(data=scheme.errors))
+            return False
+        #result = self.model_class.query().update(self.req_data)
+        query = self.get_query_filter(req, resp, model_class, **kwargs)
+        result = query.update(self.req_data,synchronize_session='fetch')
+        self.result=result
+        self.model_class.session().commit()
+        self.set_response(resp, responses.SuccessResponseObjectInfo(data={'updated':result}))
+        return False
+
+    def delete_object(self, req, resp, model_class, **kwargs):
+        try:
+            query=self.get_query_filter(req, resp, model_class, **kwargs)
+            result = query.delete(synchronize_session='fetch')
+            model_class.session().commit()
+            self.set_response(resp, responses.SuccessResponseObjectInfo(data={'deleted': result}))
+        except Exception as e:
+            model_class.query().session.rollback()
+            log.error('Mass delete error:{}'.format(str(e)))
+        return False
+
+    def get_spec_modify(self):
+        if self.scheme_class or self.scheme_class_modify:
+            body_parameters = (
+                '{} to modify'.format(self.entity),
+                self.scheme_class_modify if self.scheme_class_modify else self.scheme_class
+
+            )
+        else:
+            body_parameters = ()
+
+        return swagger.specify.get_spec(
+            method='patch', description='Modifies multiple found {}'.format(self.entity.lower()),
+            path_parameters=self.get_path_parameters(),
+            body_parameters=body_parameters,
+            query_parameters=List.get_all_fields_from_scheme(self.scheme_class)[1],
+            responses=
+                #responses.SuccessResponseJustOk(),
+                self.get_common_on_get_responses()
+                #responses.ObjectNotFoundErrorResponse()
+             + self.get_additional_responses(method='patch'),
+            security=self.get_security(method='patch', action='modify')
+        )
+    def get_spec_delete(self):
+        return swagger.specify.get_spec(
+            method='delete', description='Deletes multiple found {}'.format(self.entity.lower()),
+            path_parameters=self.get_path_parameters(),
+            query_parameters=List.get_all_fields_from_scheme(self.scheme_class)[1],
+            responses= (
+                responses.SuccessResponseObjectInfo(payload_scheme=self.scheme_class_get),
+                responses.ObjectNotFoundErrorResponse()
+            ) + self.get_additional_responses(method='delete'),
+            security=self.get_security(method='delete', action='delete')
+        )
+
 
 
 def create_entity_endpoints(
