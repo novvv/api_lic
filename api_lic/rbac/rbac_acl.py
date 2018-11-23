@@ -3,8 +3,8 @@ from falcon_rest.contrib.rbac import (
 )
 
 from api_lic.views.user import UserInfoResource, UserResetPasswordEmail
+from falcon_rest.responses import UnauthenticatedErrorResponse,ForbiddenErrorResponse
 from . rbac_role import AdminRole, CompanyAdminRole,UserRole
-from .. view import *
 from .. views import *
 acl = RbacAcl(
     default_perm=Deny,
@@ -34,6 +34,8 @@ acl.add_rule_multiple(resources=(ObjectRevisionList,),roles=(AdminRole,UserRole)
 acl.add_rule_multiple(resources=(EmailTemplateResource, EmailTemplateList,PlanCreate,PlanResource,NotificationCreate,NotificationResource),
                       roles=(AdminRole,),perm=Allow)
 acl.add_rule_multiple(resources=(PackageSwitchCreate,PackageSwitchResource,PackageLrnCreate,PackageLrnResource),
+                      roles=(AdminRole,),perm=Allow)
+acl.add_rule_multiple(resources=(ConfigPaymentResource,),
                       roles=(AdminRole,),perm=Allow)
 #user
 acl.add_rule_multiple(resources=(PaymentCreate,PaymentResource),roles=(UserRole,),perm=Allow)

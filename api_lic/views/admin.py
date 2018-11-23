@@ -12,7 +12,7 @@ from sqlalchemy.orm.exc import NoResultFound
 from sqlalchemy import (Column, desc, and_, or_, text as text_, PrimaryKeyConstraint, inspect, Sequence,
                         UniqueConstraint)
 from falcon_rest.responses import responses
-from falcon_rest.resources.resources import DEFAULT_SECURITY
+from.auth import DEFAULT_SECURITY
 # from .tasks import *
 from ..scheme import *
 from ..resources.resources import Create, Resource, List

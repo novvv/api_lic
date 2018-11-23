@@ -81,7 +81,7 @@ class TestPublicApi(unittest.TestCase):
 
         """
         auth()
-        ret = self.api.file_post(file='api_lic/test/1.png',belongs_to='user.logo')
+        ret = self.api.file_post(file='api_lic/test/data/1.png',belongs_to='user.logo')
         assert (ret.success)
         logo_file_uuid=ret.object_uuid
         cli_lic.AuthApi().user_user_uuid_patch(user_uuid=TEST_USER_UUID,body=dict(logo_file_uuid=logo_file_uuid))
@@ -109,7 +109,7 @@ class TestPublicApi(unittest.TestCase):
 
         """
         auth()
-        ret=self.api.image_post(file='api_lic/test/1.png')
+        ret=self.api.image_post(file='api_lic/test/data/1.png')
         assert(ret.success)
         url=cli_lic.configuration.host+'/image/1.png'
         #ret = self.api.file_file_name_get(file_name='logo.png')

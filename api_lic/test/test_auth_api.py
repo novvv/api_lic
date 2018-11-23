@@ -227,6 +227,10 @@ class TestAuthApi(unittest.TestCase):
 
         
         """
+        self.test_user_post()
+        ret =self.api.user_user_uuid_delete(user_uuid=self.users[0])
+        del self.users[0]
+        assert (ret.success)
         pass
 
     def test_user_user_uuid_get(self):

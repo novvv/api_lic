@@ -247,7 +247,7 @@ class EmailTemplateScheme(BaseModelScheme):
     name = Str(validate=validate.Regexp(NAME_REGEXP))
     subject = Str()
     email_from = Email()
-    email_cc = Emails()
+    email_cc = Emails(allow_none=True,required=False)
     content_text = Str()
     content_html = Str()
     hint = Str()
@@ -266,6 +266,32 @@ class EmailTemplateSchemeGet(EmailTemplateScheme):
 ### end ###
 
 ### begin ###
+
+# +++ConfigPayment+++
+class ConfigPaymentScheme(BaseModelScheme):
+    id = Int()
+    charge_type = Choice()
+    stripe_email = Str(validate=[validate.Length(max=64)])
+    stripe_skey = Str(validate=[validate.Length(max=64)])
+    stripe_pkey = Str(validate=[validate.Length(max=64)])
+    stripe_svc_charge = Int()
+    stripe_test_mode = Bool()
+    confirm_enabled = Bool()
+    email_confirm_to = Str(validate=[validate.Length(max=64)])
+    notification_enabled = Bool()
+    email_cc_to = Str(validate=[validate.Length(max=64)])
+    class Meta:
+        model = model.ConfigPayment
+        fields = ('charge_type','stripe_email','stripe_skey','stripe_pkey','stripe_svc_charge','stripe_test_mode','confirm_enabled','email_confirm_to','notification_enabled','email_cc_to',)
+class ConfigPaymentSchemeGet(ConfigPaymentScheme):
+    class Meta:
+        model = model.ConfigPayment
+        fields = ('charge_type','stripe_email','stripe_skey','stripe_pkey','stripe_svc_charge','stripe_test_mode','confirm_enabled','email_confirm_to','notification_enabled','email_cc_to',)
+class ConfigPaymentSchemeModify(ConfigPaymentScheme):
+    pass
+# ---ConfigPayment---
+
+
 
 # +++Notification+++
 class NotificationScheme(BaseModelScheme):

@@ -26,117 +26,18 @@ from falcon_rest.db.errors import IntegrityError, FkConstraintViolation, NoResul
 from falcon_rest.helpers import check_permission, get_request_ip
 from falcon_rest.logger import log
 from falcon_rest.resources.base_resource import OperationalError
-from falcon_rest.resources.resources import swagger, ResourcesBaseClass, DEFAULT_SECURITY, ATTRIBUTE_ERROR_RE
+from falcon_rest.resources.resources import swagger, ResourcesBaseClass, ATTRIBUTE_ERROR_RE
 from falcon_rest.responses import errors
 # from .tasks import *
 from api_lic import model
 from api_lic import settings
-from api_lic.view import DEFAULT_SECURITY
+from.auth import DEFAULT_SECURITY
 from ..scheme import *
 from ..scheme import _valid
 from ..resources.resources import Create, Resource, List, CustomAction, CustomPostAction
 from ..rbac.rbac_role import UserRole, AdminRole
 import paypalrestsdk
 import stripe
-
-class UserConfirmRegister(CustomPostAction):
-    scheme_class = UserConfirmRegisterScheme
-    model_class = model.User
-    body_parameters = ('User data', UserConfirmRegisterScheme)
-    method = 'post'
-    path_parameters = ({'name': 'token', 'description': 'Token from email'},)
-    no_auth_needed = True
-
-    def on_post(self, req, resp, **kwargs):
-        try:
-            token_data = jwt.decode(kwargs['token'], settings.JWT_SIGNATURE)
-            kwargs['user_uuid'] = token_data['user_uuid']
-            return self.proceed(req, resp, **kwargs)
-        except Exception as e:
-            log.error('user confirm register error {}'.format(str(e)))
-            self.set_response(resp, responses.ObjectNotFoundErrorResponse())
-
-    def apply(self, obj, req, resp, **kwargs):
-        try:
-            if obj:
-                obj.confirmed_on = datetime.now(UTC)
-                obj.is_active = True
-                obj.save()
-                self.set_response(resp, responses.SuccessResponseJustOk())
-                return True
-        except Exception as e:
-            log.error('user confirm register error {}'.format(str(e)))
-            pass
-        self.set_response(resp, responses.ObjectNotFoundErrorResponse())
-
-
-class UserForgotPassword(CustomPostAction):
-    scheme_class = UserResetPasswordLetterScheme
-    body_parameters = ('Email to check', UserResetPasswordLetterScheme)
-    method = 'post'
-    model_class = model.User
-    no_auth_needed = True
-
-    def on_post(self, req, resp, **kwargs):
-        return self.proceed(req, resp, **kwargs)
-
-    def proceed(self, req, resp, **kwargs):
-        import jwt
-        from urllib3.util import parse_url
-
-        cls = self.model_class
-        user = cls.filter(cls.email == req.data['email']).first()
-        if user:
-            exp = (datetime.now(UTC) + timedelta(hours=2)).timestamp()
-            # token_data ={'user_uuid':user.user_uuid,'password':req.data['password'],'exp':exp}
-            token_data = {'user_uuid': user.user_uuid, 'exp': exp}
-            token = jwt.encode(token_data, settings.JWT_SIGNATURE, algorithm='HS256').decode('utf-8')
-            ui_url = '{}/#/auth/reset/{}'.format(settings.UI_BASE_URL, token)
-            user.token = token
-            # user.reset_password_url = ui_url
-            # '{}{}{}/auth/reset_password/{}'.format(settings.API_SCHEME, settings.API_HOST, settings.API_BASE_PATH, token)
-            ret = user.apply_mail('retrieve_password')  # obj.client.billing_email
-            if ret:
-                self.set_response(resp, responses.OperationErrorResponse(data='mail error'))
-                return False
-            self.set_response(resp, responses.SuccessResponseJustOk())
-            return False
-        self.set_response(resp, responses.ObjectNotFoundErrorResponse())
-        return False
-
-
-class UserResetPassword(CustomPostAction):
-    scheme_class = UserResetPasswordScheme
-    model_class = model.User
-    body_parameters = ('User data', UserResetPasswordScheme)
-    method = 'post'
-    path_parameters = ({'name': 'token', 'description': 'Token from email'},)
-
-    no_auth_needed = True
-
-    def on_post(self, req, resp, **kwargs):
-        return self.proceed(req, resp, **kwargs)
-
-    def proceed(self, req, resp, **kwargs):
-        import jwt
-        try:
-            token_data = jwt.decode(kwargs['token'], settings.JWT_SIGNATURE)
-            user = model.User.get(token_data['user_uuid'])
-            if user:
-                user.passwd = req.data['passwd']
-                user.save()
-                # log = model.RetrievePasswordLog.get(token_data['log_id'])
-                # if log:
-                #     log.confirm_ip = get_request_ip(req)
-                #     log.modify_time = datetime.now(UTC)
-                #     log.status = 'Modified successfully'
-                #     log.save()
-                self.set_response(resp, responses.SuccessResponseJustOk())
-                return True
-                # model.MailSender.apply_mail(user, 'retrieve_password', user.email) # obj.client.billing_email)
-        except Exception as e:
-            pass
-        self.set_response(resp, responses.ObjectNotFoundErrorResponse())
 
 
 class UserInfoResource(Resource):

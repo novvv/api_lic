@@ -46,37 +46,6 @@ class TestAdminApi(unittest.TestCase):
             clear(name)
         pass
 
-    def test_email_template_list_get(self):
-        """
-        Test case for email_template_list_get
-
-        
-        """
-        auth()
-        ret=self.api.email_template_list_get()
-        assert(ret.success)
-        print(ret)
-        pass
-
-    def test_email_template_name_get(self):
-        """
-        Test case for email_template_name_get
-
-        
-        """
-        auth()
-        ret = self.api.email_template_name_get(name='registration')
-        assert (ret.success)
-        print(ret)
-        pass
-
-    def test_email_template_name_patch(self):
-        """
-        Test case for email_template_name_patch
-
-        
-        """
-        pass
 
     def test_notification_notification_uuid_delete(self):
         """
@@ -294,7 +263,7 @@ class TestAdminApi(unittest.TestCase):
         self.package_switch.append(ret.object_uuid)
         return
 
-        f = open('api_lic/test/switch_port_pricing.csv','rt')
+        f = open('api_lic/test/data/switch_port_pricing.csv','rt')
         r=csv.DictReader(f,fieldnames=['type','port','price'])
         for i in r:
             print(i)
@@ -311,7 +280,7 @@ class TestAdminApi(unittest.TestCase):
             ret = self.api.package_switch_post(body=data)
         f.close()
 
-        f = open('api_lic/test/switch_minute_pricing.csv', 'rt')
+        f = open('api_lic/test/data/switch_minute_pricing.csv', 'rt')
         r = csv.DictReader(f, fieldnames=['type', 'minute', 'rate','price'])
         for i in r:
             print(i)

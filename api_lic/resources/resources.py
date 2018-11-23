@@ -1066,7 +1066,7 @@ def gep_list(module, entity, id_field, put_under='',):
 
 def add_entity(module, id_field, path, permissions):
     entity = None
-    from api_gsim import BaseModel
+    from api_lic.base_model import BaseModel
     for attr_name, attr in module.__dict__.items():
         if issubclass(attr,BaseModel) and attr_name != 'BaseModel':
             #if attr_name.lower() == '{}model'.format(module.__name__.rsplit('.', 1)[1].replace('_', '')):

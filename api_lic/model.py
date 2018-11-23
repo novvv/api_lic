@@ -306,10 +306,10 @@ class EmailTemplate(BaseModel):
     name = Column(String(64), primary_key=True)
     subject = Column(String(1024), nullable=False)
     email_from = Column(String(255), nullable=False)
-    email_cc = Column(String(512))
-    content_text = Column(Text(), nullable=False)
-    content_html = Column(Text())
-    hint = Column(Text(), nullable=False)
+    email_cc = Column(String(512), nullable=True)
+    content_text = Column(Text(), nullable=True)
+    content_html = Column(Text(), nullable=False)
+    hint = Column(Text(),  nullable=True)
 
     @classmethod
     def init(cls):
@@ -333,6 +333,29 @@ class EmailTemplate(BaseModel):
 
 
 ### other models
+
+class ConfigPayment(BaseModel):
+    __tablename__ = 'config_payment'
+
+    CHARGE_TYPE = {0:'actual received',1:'credit total'}
+    id = Column(Integer(),primary_key=True)
+    charge_type = Column(ChoiceType(CHARGE_TYPE))
+    stripe_email = Column(String(64))
+    stripe_skey  = Column(String(64))
+    stripe_pkey = Column(String(64))
+    stripe_svc_charge = Column(Integer())
+    stripe_test_mode = Column(Boolean())
+
+    confirm_enabled = Column(Boolean())
+    email_confirm_to = Column(String(64))
+    notification_enabled = Column(Boolean())
+    email_cc_to = Column(String(64))
+
+    def init(self):
+        pass
+    def update_ini(self):
+        pass
+
 
 class Notification(BaseModel, ModelUsingFiles):
     __tablename__ = 'notification'

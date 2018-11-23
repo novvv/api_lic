@@ -27,8 +27,9 @@ from falcon_rest.db.errors import IntegrityError, FkConstraintViolation
 from falcon_rest.helpers import check_permission
 from falcon_rest.logger import log
 from falcon_rest.resources.base_resource import OperationalError
-from falcon_rest.resources.resources import swagger, ResourcesBaseClass, DEFAULT_SECURITY, ATTRIBUTE_ERROR_RE
+from falcon_rest.resources.resources import swagger, ResourcesBaseClass,  ATTRIBUTE_ERROR_RE
 from falcon_rest.responses import errors
+from.auth import DEFAULT_SECURITY
 # from .tasks import *
 from .. import model
 from ..scheme import *
