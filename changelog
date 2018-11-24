@@ -1,6 +1,6 @@
 api_lic ver 1.0.8
 GET/config/payment
-PATCH/config/payment
+PATCH/config/payment <-- LLP-72
 api_lic ver 1.0.7
 answered <-- LLP-61
 answered <-- LLP-48

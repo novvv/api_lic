@@ -11,11 +11,13 @@ from . import auth
 from . import file
 
 _Auth = [
-    dict(path='/auth', method='post', resource=settings.get_auth_module().auth_endpoints.Auth()),
+    dict(path=AUTH_END_POINT, method='post', resource=auth.auth_endpoints.Auth()),
+    #dict(path=AUTH_END_POINT, method='post', resource=settings.get_auth_module().auth_endpoints.Auth()),
+    #dict(path=AUTH_END_POINT, method='post', resource=settings.get_auth_module().auth_endpoints.Auth()),
     # settings.get_auth_module().auth_endpoints.Auth()),
     dict(path='/auth/check-password', method='post',
-         resource=settings.get_auth_module().auth_endpoints.PasswordCheck()),
-    dict(path='/auth/check-token', method='post', resource=settings.get_auth_module().auth_endpoints.TokenCheck()),
+         resource=auth.auth_endpoints.PasswordCheck()),
+    dict(path='/auth/check-token', method='post', resource=auth.auth_endpoints.TokenCheck()),
     dict(path='/auth/reset_email', method='post', resource=views.UserForgotPassword()),
     dict(path='/auth/reset_password/{token}', method='post', resource=views.UserResetPassword()),
     dict(path='/user', resource=views.UserCreate(), method='post'),
