@@ -109,6 +109,34 @@ def get_hashed_password(plain_text_password):
     return hash
 
 
+def _apply_mail(self, template_name, var_name):
+    template = EmailTemplate.get(template_name)
+    if not template:
+        return 'no such template'
+    from_addr = template.email_from
+    from_addr = settings.MAILING['username']
+    try:
+        mail = settings_get_mailer()
+        mail.set_variables({var_name: self})
+        mail.set_content(
+            template.subject, template.content_text, template.content_html
+        )
+    except Exception as e:
+        log.error(e)
+        return False
+    email = None
+    if hasattr(self, 'email') and hasattr(self, 'user_uuid'):
+        email = self.email
+        user_uuid = self.user_uuid
+    if hasattr(self, 'user'):
+        email = self.user.email
+        user_uuid = self.user.user_uuid
+    status = mail.send(from_addr, email, template.email_cc)
+    EmailLog.log(user_uuid, template.name, mail.subject, from_addr, email, mail.get_content(),
+                 status, template.email_cc)
+    return status
+
+
 class User(BaseModel, AuthUser, RbacUser, ModelUsingFiles):
     __tablename__ = 'user'
     user_uuid = Column(String(36), primary_key=True, default=generate_uuid_str(),
@@ -122,9 +150,14 @@ class User(BaseModel, AuthUser, RbacUser, ModelUsingFiles):
     confirmed_on = Column(DateTime(True))
     created_on = Column(DateTime(True), server_default=func.now())
     # addons
-
     logo_file_uuid = FileModelField(FileModel, nullable=True, backend=FILE_BACKEND)
     logo = file_relationship(FileModel, 'User', 'logo_file_uuid')
+
+    # alerts flags
+    alert_payment_received = Column(Boolean(), server_default='true')
+    alert_license_expired = Column(Boolean(), server_default='true')
+    alert_license_will_expired = Column(Boolean(), server_default='true')
+    alert_license_purchased = Column(Boolean(), server_default='true')
 
     user_id = synonym('user_uuid')
     name = synonym('email')
@@ -234,25 +267,7 @@ class User(BaseModel, AuthUser, RbacUser, ModelUsingFiles):
             self.email = self.name
 
     def apply_mail(self, template_name):
-        template = EmailTemplate.get(template_name)
-        if not template:
-            return 'no such template'
-        from_addr = template.email_from
-        from_addr = settings.MAILING['username']
-        try:
-            mail = settings_get_mailer()
-            mail.set_variables({'user': self})
-            mail.set_content(
-                template.subject, template.content_text, template.content_html
-            )
-        except Exception as e:
-            log.error(e)
-            return False
-
-        status = mail.send(from_addr, self.email, template.email_cc)
-        EmailLog.log(self.user_uuid, template.name, mail.subject, from_addr, self.email, mail.get_content(),
-                     status, template.email_cc)
-        return status
+        _apply_mail(self, template_name, 'user')
 
     @property
     def reset_password_url(self):
@@ -302,6 +317,13 @@ class EmailTemplate(BaseModel):
     TEMPLATES = {'retrieve_password': 'Hi {{user.name}} your reset password url is {{user.reset_password_url}}',
                  'registration': 'Hi {{user.name}} your confirm registration url is {{user.token}}',
                  'welcome': 'WELCOME {{user.name}} ,your login url is {{user.login_url}}',
+                 'payment_received': 'Hi {{payment.user.name}} payment of {{payment.amount}} for license {{payment.license.license_uuid}} was received '
+                                     'on {{payment.paid_time}} from {{payment.type}} gateway',
+                 'license_expired': 'Hi {{license.user.name}} your license {{license.license_uuid}} was expired on {{license.end_time}}',
+                 'license_will_expired': 'Hi {{license.user.name}} your license {{license.license_uuid}} will expired on {{license.end_time}}',
+                 'license_purchased': 'Hi {{license.user.name}} your license {{license.license_uuid}} purchased succesfulley ' \
+                                      'actual period for license is {{license.end_time}} {{license.end_time}} '
+                                      'License type is {{license.type}} {{license.sub_type}}. Bought package {{license.package.package_name}}'
                  }
     name = Column(String(64), primary_key=True)
     subject = Column(String(1024), nullable=False)
@@ -309,7 +331,7 @@ class EmailTemplate(BaseModel):
     email_cc = Column(String(512), nullable=True)
     content_text = Column(Text(), nullable=True)
     content_html = Column(Text(), nullable=False)
-    hint = Column(Text(),  nullable=True)
+    hint = Column(Text(), nullable=True)
 
     @classmethod
     def init(cls):
@@ -337,11 +359,11 @@ class EmailTemplate(BaseModel):
 class ConfigPayment(BaseModel):
     __tablename__ = 'config_payment'
 
-    CHARGE_TYPE = {0:'actual received',1:'credit total'}
-    id = Column(Integer(),primary_key=True)
+    CHARGE_TYPE = {0: 'actual received', 1: 'credit total'}
+    id = Column(Integer(), primary_key=True)
     charge_type = Column(ChoiceType(CHARGE_TYPE))
     stripe_email = Column(String(64))
-    stripe_skey  = Column(String(64))
+    stripe_skey = Column(String(64))
     stripe_pkey = Column(String(64))
     stripe_svc_charge = Column(Integer())
     stripe_test_mode = Column(Boolean())
@@ -353,6 +375,7 @@ class ConfigPayment(BaseModel):
 
     def init(self):
         pass
+
     def update_ini(self):
         pass
 
@@ -367,6 +390,7 @@ class Notification(BaseModel, ModelUsingFiles):
     subject = Column(String(64), nullable=False)
     content = Column(Text, nullable=False)
     created_on = Column(DateTime(True), nullable=False, server_default=func.now())
+    user = relationship('User')
 
 
 class Plan(BaseModel):
@@ -395,6 +419,27 @@ class Payment(BaseModel):
     type = Column(ChoiceType(TYPE), default=1)
     description = Column(Text)
 
+    user = relationship('User')
+
+    @property
+    def license_uuid(self):
+        if self.license_lrn_uuid:
+            return self.license_lrn_uuid
+        if self.license_switch_uuid:
+            return self.license_switch_uuid
+        return None
+
+    @property
+    def license(self):
+        if self.license_lrn_uuid:
+            return LicenseLrn.get(self.license_lrn_uuid)
+        if self.license_switch_uuid:
+            return LicenseSwitch(self.license_switch_uuid)
+        return None
+
+    def apply_mail(self, template_name):
+        _apply_mail(self, template_name, 'payment')
+
 
 class PackageLrn(BaseModel):
     __tablename__ = 'package_lrn'
@@ -415,7 +460,7 @@ class PackageLrn(BaseModel):
 class LicenseLrn(BaseModel):
     __tablename__ = 'license_lrn'
     __table_args__ = (
-    UniqueConstraint('package_lrn_uuid', 'user_uuid', name='uq_license_lrn_package_lrn_uuid_user_uuid'),
+        UniqueConstraint('package_lrn_uuid', 'user_uuid', name='uq_license_lrn_package_lrn_uuid_user_uuid'),
     )
     license_lrn_uuid = Column \
         (String(36), primary_key=True, default=generate_uuid_str(),
@@ -430,6 +475,7 @@ class LicenseLrn(BaseModel):
     is_enabled = Column(Boolean, default=True)
 
     package = relationship('PackageLrn', uselist=False, back_populates='licenses')
+    user = relationship('User')
 
     user_email = column_property(
         select([User.email]).where(user_uuid == User.user_uuid).correlate_except(User))
@@ -457,6 +503,9 @@ class LicenseLrn(BaseModel):
         months = int(pay / cost)
         self.end_time = add_months(self.start_time, months)
 
+    def apply_mail(self, template_name):
+        _apply_mail(self, template_name, 'license')
+
 
 class Switch(BaseModel):
     __tablename__ = 'switch'
@@ -475,7 +524,7 @@ class Switch(BaseModel):
 class PackageSwitch(BaseModel):
     __tablename__ = 'package_switch'
     TYPE = {1: 'switch pay per port', 2: 'switch pay per minute'}
-    SUB_TYPE = {1: 'hosted_switch',2:'on_premise',3:'one_time'}
+    SUB_TYPE = {1: 'hosted_switch', 2: 'on_premise', 3: 'one_time'}
     package_switch_uuid = Column \
         (String(36), primary_key=True, default=generate_uuid_str(),
          server_default=func.uuid_generate_v4())
@@ -493,14 +542,14 @@ class PackageSwitch(BaseModel):
     expire_date = Column(DateTime(True), nullable=True)
     licenses = relationship('LicenseSwitch', uselist=True, back_populates='package')
     switch = relationship('Switch', uselist=False, back_populates='packages')
-    rate_per_port = column_property(case([(switch_port>0,cast(amount,Float).op('/')(switch_port))],else_=None))
-    rate_per_minute = column_property(case([(minute_count>0,cast(amount,Float).op('/')(minute_count))],else_=None))
+    rate_per_port = column_property(case([(switch_port > 0, cast(amount, Float).op('/')(switch_port))], else_=None))
+    rate_per_minute = column_property(case([(minute_count > 0, cast(amount, Float).op('/')(minute_count))], else_=None))
 
 
 class LicenseSwitch(BaseModel):
     __tablename__ = 'license_switch'
     __table_args__ = (
-    UniqueConstraint('package_switch_uuid', 'user_uuid', name='uq_license_switch_package_switch_uuid_user_uuid'),
+        UniqueConstraint('package_switch_uuid', 'user_uuid', name='uq_license_switch_package_switch_uuid_user_uuid'),
     )
     license_switch_uuid = Column \
         (String(36), primary_key=True, default=generate_uuid_str(),
@@ -515,6 +564,7 @@ class LicenseSwitch(BaseModel):
     is_enabled = Column(Boolean, default=True)
 
     package = relationship('PackageSwitch', uselist=False, back_populates='licenses')
+    user = relationship('User')
 
     user_email = column_property(
         select([User.email]).where(user_uuid == User.user_uuid).correlate_except(User))
@@ -549,6 +599,9 @@ class LicenseSwitch(BaseModel):
             pay = Decimal(0.0)
         months = int(pay / cost)
         self.end_time = add_months(self.start_time, months)
+
+    def apply_mail(self, template_name):
+        _apply_mail(self, template_name, 'license')
 
 
 class LicenseUpdateHistory(BaseModel):

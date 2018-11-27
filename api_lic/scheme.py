@@ -191,10 +191,15 @@ class UserInfoScheme(BaseModelScheme):
     email = Email(validate=[validate.Email(error='Incorrect email address'),
                             lambda value: _valid_unique('User', 'email', value)])
     logo_file_uuid = FileSchemeField(model.FileModel, 'User', 'logo', required=False)
+    alert_payment_received = Bool()
+    alert_license_expired = Bool()
+    alert_license_will_expired = Bool()
+    alert_license_purchased = Bool()
 
     class Meta:
         model = model.User
-        fields = ('passwd', 'email')
+        fields = ('passwd', 'email', 'alert_payment_received', 'alert_license_expired', 'alert_license_will_expired',
+                  'alert_license_purchased',)
 
 
 class UserInfoSchemeGet(UserInfoScheme):
@@ -247,7 +252,7 @@ class EmailTemplateScheme(BaseModelScheme):
     name = Str(validate=validate.Regexp(NAME_REGEXP))
     subject = Str()
     email_from = Email()
-    email_cc = Emails(allow_none=True,required=False)
+    email_cc = Emails(allow_none=True, required=False)
     content_text = Str()
     content_html = Str()
     hint = Str()
@@ -280,17 +285,25 @@ class ConfigPaymentScheme(BaseModelScheme):
     email_confirm_to = Str(validate=[validate.Length(max=64)])
     notification_enabled = Bool()
     email_cc_to = Str(validate=[validate.Length(max=64)])
+
     class Meta:
         model = model.ConfigPayment
-        fields = ('charge_type','stripe_email','stripe_skey','stripe_pkey','stripe_svc_charge','stripe_test_mode','confirm_enabled','email_confirm_to','notification_enabled','email_cc_to',)
+        fields = ('charge_type', 'stripe_email', 'stripe_skey', 'stripe_pkey', 'stripe_svc_charge', 'stripe_test_mode',
+                  'confirm_enabled', 'email_confirm_to', 'notification_enabled', 'email_cc_to',)
+
+
 class ConfigPaymentSchemeGet(ConfigPaymentScheme):
     class Meta:
         model = model.ConfigPayment
-        fields = ('charge_type','stripe_email','stripe_skey','stripe_pkey','stripe_svc_charge','stripe_test_mode','confirm_enabled','email_confirm_to','notification_enabled','email_cc_to',)
+        fields = ('charge_type', 'stripe_email', 'stripe_skey', 'stripe_pkey', 'stripe_svc_charge', 'stripe_test_mode',
+                  'confirm_enabled', 'email_confirm_to', 'notification_enabled', 'email_cc_to',)
+
+
 class ConfigPaymentSchemeModify(ConfigPaymentScheme):
     pass
-# ---ConfigPayment---
 
+
+# ---ConfigPayment---
 
 
 # +++Notification+++
@@ -459,17 +472,16 @@ class PackageSwitchScheme(BaseModelScheme):
                   'start_date', 'expire_date')
 
 
-
 class PackageSwitchSchemeGet(PackageSwitchScheme):
     class Meta:
         model = model.PackageSwitch
         fields = (
-        'package_switch_uuid', 'package_name', 'type', 'sub_type', 'switch_uuid', 'switch_port', 'minute_count',
-        'amount', 'enabled','start_date', 'expire_date')
+            'package_switch_uuid', 'package_name', 'type', 'sub_type', 'switch_uuid', 'switch_port', 'minute_count',
+            'amount', 'enabled', 'start_date', 'expire_date')
         search_fields = (
             'package_switch_uuid', 'package_name', 'type', 'sub_type', 'switch_uuid', 'switch_port', 'minute_count',
             'amount', 'enabled')
-        query_fields = ('start_date_gt','start_date_lt', 'expire_date_gt', 'expire_date_lt')
+        query_fields = ('start_date_gt', 'start_date_lt', 'expire_date_gt', 'expire_date_lt')
 
 
 class PackageSwitchSchemeModify(PackageSwitchScheme):
@@ -544,7 +556,7 @@ class LicenseLrnScheme(BaseModelScheme):
 
     class Meta:
         model = model.LicenseLrn
-        fields = ('package_lrn_uuid', 'ip','start_time','end_time')
+        fields = ('package_lrn_uuid', 'ip', 'start_time', 'end_time')
 
 
 class LicenseLrnSchemeGet(LicenseLrnScheme):
@@ -563,7 +575,7 @@ class LicenseLrnSchemeModify(LicenseLrnScheme):
 
     class Meta:
         model = model.LicenseLrn
-        fields = ('package_lrn_uuid', 'ip', 'enabled','end_time')
+        fields = ('package_lrn_uuid', 'ip', 'enabled', 'end_time')
 
 
 class LicenseLrnSchemeRenew(LicenseLrnScheme):
@@ -594,7 +606,7 @@ class LicenseSwitchScheme(BaseModelScheme):
 
     class Meta:
         model = model.LicenseSwitch
-        fields = ('package_switch_uuid', 'ip','start_time','start_time','end_time')
+        fields = ('package_switch_uuid', 'ip', 'start_time', 'start_time', 'end_time')
 
 
 class LicenseSwitchSchemeGet(LicenseSwitchScheme):
@@ -614,7 +626,7 @@ class LicenseSwitchSchemeModify(LicenseSwitchScheme):
 
     class Meta:
         model = model.LicenseSwitch
-        fields = ('package_switch_uuid', 'ip', 'enabled','end_time')
+        fields = ('package_switch_uuid', 'ip', 'enabled', 'end_time')
 
 
 class LicenseSwitchSchemeRenew(LicenseSwitchScheme):

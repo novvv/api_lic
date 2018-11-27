@@ -1,6 +1,10 @@
 api_lic ver 1.0.9
+PATCH/user <-- add flags for 'alert_payment_received', 'alert_license_expired', 'alert_license_will_expired','alert_license_purchased' LLP-74
+GET/email_template/list <--  added templates "payment_received" ,"license_expired","license_purchased" LLP-74
+questions <-- api for alert LLP-75
 POST/license_lrn/ POST/license_switch <- "start_time" "end_time"  LLP-77
 answered <-- registration email template  LLP-67
+
 api_lic ver 1.0.8
 GET/config/payment
 PATCH/config/payment <-- LLP-72

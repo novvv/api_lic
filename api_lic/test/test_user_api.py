@@ -126,7 +126,10 @@ class TestUserApi(unittest.TestCase):
         """
         auth_user()
         package_lrn_uuid = rand_package_lrn()[0]
-        data=dict(package_lrn_uuid = package_lrn_uuid,ip=ip())
+        data=dict(package_lrn_uuid = package_lrn_uuid,ip=ip(),
+                  start_time=str(datetime.utcnow()),
+                  end_time=str(datetime.utcnow()+timedelta(days=random.randint(30,120)))
+                  )
         old = self.api.license_lrn_list_get(package_lrn_uuid=package_lrn_uuid)
         if old.payload.items:#clean duplicates
             self.api.license_lrn_license_lrn_uuid_delete(

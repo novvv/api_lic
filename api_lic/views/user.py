@@ -31,7 +31,7 @@ from falcon_rest.responses import errors
 # from .tasks import *
 from api_lic import model
 from api_lic import settings
-from.auth import DEFAULT_SECURITY
+from .auth import DEFAULT_SECURITY
 from ..scheme import *
 from ..scheme import _valid
 from ..resources.resources import Create, Resource, List, CustomAction, CustomPostAction
@@ -96,7 +96,6 @@ class NotificationList(List):
         return filt, ret
 
 
-
 class PaymentCreate(Create):
     scheme_class = PaymentScheme
     model_class = model.Payment
@@ -108,7 +107,7 @@ class PaymentCreate(Create):
     def before_create(self, obj, **kwargs):
         user = self.get_user(self.req)
         if not obj.user_uuid:
-            obj.user_uuid=user.user_uuid
+            obj.user_uuid = user.user_uuid
         if obj.license_lrn_uuid:
             lic = model.LicenseLrn.get(obj.license_lrn_uuid)
             if lic and lic.user_uuid != user.user_uuid:
@@ -121,6 +120,11 @@ class PaymentCreate(Create):
         # obj.created_on=datetime.now(UTC)
 
         return obj
+
+    def after_create(self, object_id, req, resp, **kwargs):
+        obj = self.model_class.get(object_id)
+        if obj.user.alert_payment_received:
+            obj.apply_mail('payment_received')
 
 
 class PaymentResource(Resource):
@@ -174,12 +178,12 @@ class PaypalWebhook(CustomPostAction):
 
     def proceed(self, req, resp, **kwargs):
         paypalrestsdk.configure(settings.PAYPAL)
-        log.debug('webhook called request data {} kwargs {}'.format(req.data,kwargs))
-        data=req.data
+        log.debug('webhook called request data {} kwargs {}'.format(req.data, kwargs))
+        data = req.data
         if "event_type" in data:
             if data["event_type"] == 'PAYMENT.SALE.PENDING':
                 pay_id = data['resource']['parent_payment']
-                pay=paypalrestsdk.Payment.find(pay_id)
+                pay = paypalrestsdk.Payment.find(pay_id)
                 log.debug('pay {}'.format(pay))
             else:
                 log.debug('---event {}'.format(data["event_type"]))
@@ -203,20 +207,23 @@ class StripeWebhook(CustomPostAction):
 
     def proceed(self, req, resp, **kwargs):
         stripe.api_key = settings.STRIPE['api_key']
-        log.debug('webhook called request data {} kwargs {}'.format(req.data,kwargs))
-        data=req.data
+        log.debug('webhook called request data {} kwargs {}'.format(req.data, kwargs))
+        data = req.data
         if "type" in data:
             if data["type"] == 'charge.succeeded':
                 try:
                     charge_id = data['data']['object']['id']
                     charge = stripe.Charge.retrieve(charge_id)
-                    ucls=model.User
-                    u=ucls.filter(ucls.email==charge['source']['name'])
+                    ucls = model.User
+                    u = ucls.filter(ucls.email == charge['source']['name'])
                     if u:
-                        pay=model.Payment(user_uuid=u.user_uuid,amount=charge['amount']/100,type='stripe',
-                                          description=charge['description'])
+                        pay = model.Payment(user_uuid=u.user_uuid, amount=charge['amount'] / 100, type='stripe',
+                                            description=charge['description'])
+                        pay.save()
+                        if pay.user.alert_payment_received:
+                            pay.apply_mail('payment_received')
                 except Exception as e:
-                    self.set_response(resp,OperationalError(e))
+                    self.set_response(resp, OperationalError(e))
                     return False
             else:
                 log.debug('---event {}'.format(data["type"]))
@@ -236,15 +243,20 @@ class LicenseLrnCreate(Create):
 
     def before_create(self, obj, **kwargs):
         user = self.get_user(self.req)
-        obj.user_uuid=user.user_uuid
-        cls=self.model_class
-        q=cls.filter(and_(cls.package_lrn_uuid==obj.package_lrn_uuid,cls.user_uuid==obj.user_uuid)).first()
+        obj.user_uuid = user.user_uuid
+        cls = self.model_class
+        q = cls.filter(and_(cls.package_lrn_uuid == obj.package_lrn_uuid, cls.user_uuid == obj.user_uuid)).first()
         if q:
-            raise ValidationError({'package_lrn_uuid':['duplicate package uuid {}'.format(obj.package_lrn_uuid)]})
+            raise ValidationError({'package_lrn_uuid': ['duplicate package uuid {}'.format(obj.package_lrn_uuid)]})
         # obj.created_by=user.name
         if not obj.start_time:
-            obj.start_time=datetime.now(UTC)
+            obj.start_time = datetime.now(UTC)
         return obj
+
+    def after_create(self, object_id, req, resp, **kwargs):
+        obj = self.model_class.get(object_id)
+        if obj.user.alert_license_purchased:
+            obj.apply_mail('license_purchased')
 
 
 class LicenseLrnResource(Resource):
@@ -257,6 +269,7 @@ class LicenseLrnResource(Resource):
     security = (DEFAULT_SECURITY)
     path_parameters = ()
     restrict = ()
+
 
 class LicenseLrnRenewResource(Resource):
     model_class = model.LicenseLrn
@@ -274,6 +287,7 @@ class LicenseLrnRenewResource(Resource):
     def before_update(self, obj, req):
         obj.renew()
         return obj
+
 
 class LicenseLrnList(List):
     scheme_class = LicenseLrnSchemeGet
@@ -310,10 +324,16 @@ class LicenseSwitchCreate(Create):
         cls = self.model_class
         q = cls.filter(and_(cls.package_switch_uuid == obj.package_switch_uuid, cls.user_uuid == obj.user_uuid)).first()
         if q:
-            raise ValidationError({'package_switch_uuid': ['duplicate package uuid {}'.format(obj.package_switch_uuid)]})
+            raise ValidationError(
+                {'package_switch_uuid': ['duplicate package uuid {}'.format(obj.package_switch_uuid)]})
         if not obj.start_time:
             obj.start_time = datetime.now(UTC)
         return obj
+
+    def after_create(self, object_id, req, resp, **kwargs):
+        obj = self.model_class.get(object_id)
+        if obj.user.alert_license_purchased:
+            obj.apply_mail('license_purchased')
 
 
 class LicenseSwitchResource(Resource):
@@ -326,6 +346,7 @@ class LicenseSwitchResource(Resource):
     security = (DEFAULT_SECURITY)
     path_parameters = ()
     restrict = ()
+
 
 class LicenseSwitchRenewResource(Resource):
     model_class = model.LicenseSwitch
@@ -360,6 +381,5 @@ class LicenseSwitchList(List):
             cls = self.model_class
             ret = ret.filter(cls.user_uuid == user.user_uuid)
         return filt, ret
-
 
 # ---LicenseSwitch---
