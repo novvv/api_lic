@@ -1,5 +1,5 @@
 api_lic ver 1.0.9
-POST/license_lrn/ POST/license_switch <- "start_time" "end_time"  LLP-67
+POST/license_lrn/ POST/license_switch <- "start_time" "end_time"  LLP-77
 answered <-- registration email template  LLP-67
 api_lic ver 1.0.8
 GET/config/payment
