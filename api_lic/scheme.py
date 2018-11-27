@@ -544,7 +544,7 @@ class LicenseLrnScheme(BaseModelScheme):
 
     class Meta:
         model = model.LicenseLrn
-        fields = ('package_lrn_uuid', 'ip')
+        fields = ('package_lrn_uuid', 'ip','start_time','end_time')
 
 
 class LicenseLrnSchemeGet(LicenseLrnScheme):
@@ -563,7 +563,7 @@ class LicenseLrnSchemeModify(LicenseLrnScheme):
 
     class Meta:
         model = model.LicenseLrn
-        fields = ('package_lrn_uuid', 'ip', 'enabled')
+        fields = ('package_lrn_uuid', 'ip', 'enabled','end_time')
 
 
 class LicenseLrnSchemeRenew(LicenseLrnScheme):
@@ -594,7 +594,7 @@ class LicenseSwitchScheme(BaseModelScheme):
 
     class Meta:
         model = model.LicenseSwitch
-        fields = ('package_switch_uuid', 'ip','start_time','end_time')
+        fields = ('package_switch_uuid', 'ip','start_time','start_time','end_time')
 
 
 class LicenseSwitchSchemeGet(LicenseSwitchScheme):
@@ -614,7 +614,7 @@ class LicenseSwitchSchemeModify(LicenseSwitchScheme):
 
     class Meta:
         model = model.LicenseSwitch
-        fields = ('package_switch_uuid', 'ip', 'enabled')
+        fields = ('package_switch_uuid', 'ip', 'enabled','end_time')
 
 
 class LicenseSwitchSchemeRenew(LicenseSwitchScheme):
