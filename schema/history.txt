@@ -1,4 +1,5 @@
-27aa3eebd22c -> cfa25697d301 (head), user alerts flags
+cfa25697d301 -> 6fa1546cba13 (head), payment lrn switch amount
+27aa3eebd22c -> cfa25697d301, user alerts flags
 a0ecabe25ded -> 27aa3eebd22c, email templ nullables
 d74fb65a2c6c -> a0ecabe25ded, config_payment
 d40606f1a9c0 -> d74fb65a2c6c, license_switch start_date

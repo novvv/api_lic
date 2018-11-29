@@ -340,21 +340,26 @@ class PaymentScheme(BaseModelScheme):
         validate=[validate.Length(max=36), lambda value: _valid('LicenseLrn', 'license_lrn_uuid', value)])
     license_switch_uuid = Str(
         validate=[validate.Length(max=36), lambda value: _valid('LicenseSwitch', 'license_switch_uuid', value)])
-    amount = Float()
+    amount_lrn = Float()
+    amount_switch = Float()
     paid_time = DateTime()
     type = Choice()
 
     class Meta:
         model = model.Payment
-        fields = ('license_lrn_uuid', 'license_switch_uuid', 'amount', 'paid_time', 'type',)
+        fields = ('license_lrn_uuid', 'license_switch_uuid', 'amount_lrn', 'amount_switch', 'paid_time', 'type',)
 
 
 class PaymentSchemeGet(PaymentScheme):
     class Meta:
         model = model.Payment
-        fields = ('payment_uuid', 'type', 'paid_time', 'user_uuid', 'license_lrn_uuid', 'license_switch_uuid', 'amount')
+        fields = (
+        'payment_uuid', 'type', 'paid_time', 'user_uuid', 'license_lrn_uuid', 'license_switch_uuid', 'amount_lrn',
+        'amount_switch', 'amount_total')
         search_fields = ('payment_uuid', 'type', 'period', 'user_uuid', 'license_lrn_uuid', 'license_switch_uuid')
-        query_fields = ('amount_gt', 'amount_lt', 'paid_time_gt', 'paid_time_lt',)
+        query_fields = (
+        'amount_lrn_gt', 'amount_lrn_lt', 'amount_switch_gt', 'amount_switch_lt', 'amount_total_gt', 'amount_total_lt',
+        'paid_time_gt', 'paid_time_lt',)
 
 
 class PaymentSchemeModify(PaymentScheme):

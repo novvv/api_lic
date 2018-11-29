@@ -439,13 +439,15 @@ CREATE TABLE public.package_switch (
 
 CREATE TABLE public.payment (
     payment_uuid character varying(36) DEFAULT public.uuid_generate_v4() NOT NULL,
-    amount numeric DEFAULT '0'::numeric NOT NULL,
     paid_time timestamp with time zone DEFAULT now() NOT NULL,
     type integer,
     description text,
     user_uuid character varying(36),
     license_lrn_uuid character varying(36),
-    license_switch_uuid character varying(36)
+    license_switch_uuid character varying(36),
+    amount_lrn numeric DEFAULT '0'::numeric NOT NULL,
+    amount_switch numeric DEFAULT '0'::numeric NOT NULL,
+    amount_total numeric DEFAULT '0'::numeric NOT NULL
 );
 
 

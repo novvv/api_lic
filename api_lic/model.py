@@ -414,7 +414,9 @@ class Payment(BaseModel):
     license_switch_uuid = Column(ForeignKey('license_switch.license_switch_uuid', ondelete='CASCADE'),
                                  nullable=True,
                                  index=True)
-    amount = Column(Numeric, nullable=False, server_default='0')
+    amount_lrn = Column(Numeric, nullable=False, server_default='0')
+    amount_switch = Column(Numeric, nullable=False, server_default='0')
+    amount_total = Column(Numeric, nullable=False, server_default='0')
     paid_time = Column(DateTime(True), nullable=False, server_default=func.now())
     type = Column(ChoiceType(TYPE), default=1)
     description = Column(Text)
