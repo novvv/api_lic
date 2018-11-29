@@ -1,3 +1,6 @@
+api_lic ver 1.0.10
+POST/payment <-- add 'amount_lrn', 'amount_switch' anf 'amount_total'(ro) LLP-81
+
 api_lic ver 1.0.9
 PATCH/user <-- add flags for 'alert_payment_received', 'alert_license_expired', 'alert_license_will_expired','alert_license_purchased' LLP-74
 GET/email_template/list <--  added templates "payment_received" ,"license_expired","license_purchased" LLP-74
