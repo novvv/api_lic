@@ -31,53 +31,32 @@ class AuthTokenInner(object):
                             and the value is json key in definition.
     """
     swagger_types = {
-        'user_type': 'str',
         'token': 'str',
+        'user_type': 'str',
         'exp': 'datetime'
     }
 
     attribute_map = {
-        'user_type': 'user_type',
         'token': 'token',
+        'user_type': 'user_type',
         'exp': 'exp'
     }
 
-    def __init__(self, user_type=None, token=None, exp=None):
+    def __init__(self, token=None, user_type=None, exp=None):
         """
         AuthTokenInner - a model defined in Swagger
         """
 
-        self._user_type = None
         self._token = None
+        self._user_type = None
         self._exp = None
 
-        if user_type is not None:
-          self.user_type = user_type
         if token is not None:
           self.token = token
+        if user_type is not None:
+          self.user_type = user_type
         if exp is not None:
           self.exp = exp
-
-    @property
-    def user_type(self):
-        """
-        Gets the user_type of this AuthTokenInner.
-
-        :return: The user_type of this AuthTokenInner.
-        :rtype: str
-        """
-        return self._user_type
-
-    @user_type.setter
-    def user_type(self, user_type):
-        """
-        Sets the user_type of this AuthTokenInner.
-
-        :param user_type: The user_type of this AuthTokenInner.
-        :type: str
-        """
-
-        self._user_type = user_type
 
     @property
     def token(self):
@@ -99,6 +78,27 @@ class AuthTokenInner(object):
         """
 
         self._token = token
+
+    @property
+    def user_type(self):
+        """
+        Gets the user_type of this AuthTokenInner.
+
+        :return: The user_type of this AuthTokenInner.
+        :rtype: str
+        """
+        return self._user_type
+
+    @user_type.setter
+    def user_type(self, user_type):
+        """
+        Sets the user_type of this AuthTokenInner.
+
+        :param user_type: The user_type of this AuthTokenInner.
+        :type: str
+        """
+
+        self._user_type = user_type
 
     @property
     def exp(self):

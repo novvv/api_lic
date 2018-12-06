@@ -414,6 +414,7 @@ class Payment(BaseModel):
     license_switch_uuid = Column(ForeignKey('license_switch.license_switch_uuid', ondelete='CASCADE'),
                                  nullable=True,
                                  index=True)
+    switch_uuid = Column(String(64),index=True)
     amount_lrn = Column(Numeric, nullable=False, server_default='0')
     amount_switch = Column(Numeric, nullable=False, server_default='0')
     amount_total = Column(Numeric, nullable=False, server_default='0')
@@ -464,6 +465,7 @@ class LicenseLrn(BaseModel):
     __table_args__ = (
         UniqueConstraint('package_lrn_uuid', 'user_uuid', name='uq_license_lrn_package_lrn_uuid_user_uuid'),
     )
+    DURATION ={1:'1 month',3:'3 months',6:'6 months',12:'12 months'}
     license_lrn_uuid = Column \
         (String(36), primary_key=True, default=generate_uuid_str(),
          server_default=func.uuid_generate_v4())
@@ -475,6 +477,7 @@ class LicenseLrn(BaseModel):
     ordered_amount = Column(Integer)
     cost = Column(Numeric, nullable=False, server_default='0')
     is_enabled = Column(Boolean, default=True)
+    duration = Column(ChoiceType(DURATION),server_default='1')
 
     package = relationship('PackageLrn', uselist=False, back_populates='licenses')
     user = relationship('User')
@@ -520,7 +523,7 @@ class Switch(BaseModel):
     minute_remaining = Column(Integer())
     expired_on = Column(DateTime(True), nullable=True)
     email = Column(String(256))
-    packages = relationship('PackageSwitch', uselist=True, back_populates='switch')
+    #packages = relationship('PackageSwitch', uselist=True, back_populates='switch')
 
 
 class PackageSwitch(BaseModel):
@@ -535,7 +538,8 @@ class PackageSwitch(BaseModel):
 
     type = Column(ChoiceType(TYPE), default=1)
     sub_type = Column(ChoiceType(SUB_TYPE), nullable=True)
-    switch_uuid = Column(ForeignKey('switch.switch_uuid', ondelete='CASCADE'), index=True)
+    switch_uuid = Column(String(64),index=True)
+        #Column(ForeignKey('switch.switch_uuid', ondelete='CASCADE'), index=True)
     switch_port = Column(Integer())
     minute_count = Column(Integer())
     amount = Column(Integer())
@@ -543,7 +547,7 @@ class PackageSwitch(BaseModel):
     start_date = Column(DateTime(True), nullable=False, server_default=func.now())
     expire_date = Column(DateTime(True), nullable=True)
     licenses = relationship('LicenseSwitch', uselist=True, back_populates='package')
-    switch = relationship('Switch', uselist=False, back_populates='packages')
+    #switch = relationship('Switch', uselist=False, back_populates='packages')
     rate_per_port = column_property(case([(switch_port > 0, cast(amount, Float).op('/')(switch_port))], else_=None))
     rate_per_minute = column_property(case([(minute_count > 0, cast(amount, Float).op('/')(minute_count))], else_=None))
 
@@ -553,6 +557,7 @@ class LicenseSwitch(BaseModel):
     __table_args__ = (
         UniqueConstraint('package_switch_uuid', 'user_uuid', name='uq_license_switch_package_switch_uuid_user_uuid'),
     )
+    DURATION = {1: '1 month', 3: '3 months', 6: '6 months', 12: '12 months'}
     license_switch_uuid = Column \
         (String(36), primary_key=True, default=generate_uuid_str(),
          server_default=func.uuid_generate_v4())
@@ -564,6 +569,7 @@ class LicenseSwitch(BaseModel):
     ordered_amount = Column(Integer)
     cost = Column(Numeric, nullable=False, server_default='0')
     is_enabled = Column(Boolean, default=True)
+    duration = Column(ChoiceType(DURATION), server_default='1')
 
     package = relationship('PackageSwitch', uselist=False, back_populates='licenses')
     user = relationship('User')

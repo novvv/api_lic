@@ -31,53 +31,32 @@ class ForbiddenErrorError(object):
                             and the value is json key in definition.
     """
     swagger_types = {
-        'message': 'str',
         'reason': 'str',
-        'code': 'int'
+        'code': 'int',
+        'message': 'str'
     }
 
     attribute_map = {
-        'message': 'message',
         'reason': 'reason',
-        'code': 'code'
+        'code': 'code',
+        'message': 'message'
     }
 
-    def __init__(self, message=None, reason=None, code=None):
+    def __init__(self, reason=None, code=None, message=None):
         """
         ForbiddenErrorError - a model defined in Swagger
         """
 
-        self._message = None
         self._reason = None
         self._code = None
+        self._message = None
 
-        if message is not None:
-          self.message = message
         if reason is not None:
           self.reason = reason
         if code is not None:
           self.code = code
-
-    @property
-    def message(self):
-        """
-        Gets the message of this ForbiddenErrorError.
-
-        :return: The message of this ForbiddenErrorError.
-        :rtype: str
-        """
-        return self._message
-
-    @message.setter
-    def message(self, message):
-        """
-        Sets the message of this ForbiddenErrorError.
-
-        :param message: The message of this ForbiddenErrorError.
-        :type: str
-        """
-
-        self._message = message
+        if message is not None:
+          self.message = message
 
     @property
     def reason(self):
@@ -120,6 +99,27 @@ class ForbiddenErrorError(object):
         """
 
         self._code = code
+
+    @property
+    def message(self):
+        """
+        Gets the message of this ForbiddenErrorError.
+
+        :return: The message of this ForbiddenErrorError.
+        :rtype: str
+        """
+        return self._message
+
+    @message.setter
+    def message(self, message):
+        """
+        Sets the message of this ForbiddenErrorError.
+
+        :param message: The message of this ForbiddenErrorError.
+        :type: str
+        """
+
+        self._message = message
 
     def to_dict(self):
         """

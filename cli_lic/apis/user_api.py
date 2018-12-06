@@ -1810,9 +1810,14 @@ class UserApi(object):
         :param str license_lrn_uuid:
         :param str license_switch_uuid:
         :param str payment_uuid:
+        :param str switch_uuid:
         :param str type:
-        :param str amount_gt:
-        :param str amount_lt:
+        :param str amount_lrn_gt:
+        :param str amount_lrn_lt:
+        :param str amount_switch_gt:
+        :param str amount_switch_lt:
+        :param str amount_total_gt:
+        :param str amount_total_lt:
         :param str paid_time_gt:
         :param str paid_time_lt:
         :return: InlineResponse20020
@@ -1846,9 +1851,14 @@ class UserApi(object):
         :param str license_lrn_uuid:
         :param str license_switch_uuid:
         :param str payment_uuid:
+        :param str switch_uuid:
         :param str type:
-        :param str amount_gt:
-        :param str amount_lt:
+        :param str amount_lrn_gt:
+        :param str amount_lrn_lt:
+        :param str amount_switch_gt:
+        :param str amount_switch_lt:
+        :param str amount_total_gt:
+        :param str amount_total_lt:
         :param str paid_time_gt:
         :param str paid_time_lt:
         :return: InlineResponse20020
@@ -1856,7 +1866,7 @@ class UserApi(object):
                  returns the request thread.
         """
 
-        all_params = ['page', 'per_page', 'order_by', 'order_dir', 'license_lrn_uuid', 'license_switch_uuid', 'payment_uuid', 'type', 'amount_gt', 'amount_lt', 'paid_time_gt', 'paid_time_lt']
+        all_params = ['page', 'per_page', 'order_by', 'order_dir', 'license_lrn_uuid', 'license_switch_uuid', 'payment_uuid', 'switch_uuid', 'type', 'amount_lrn_gt', 'amount_lrn_lt', 'amount_switch_gt', 'amount_switch_lt', 'amount_total_gt', 'amount_total_lt', 'paid_time_gt', 'paid_time_lt']
         all_params.append('callback')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
@@ -1892,12 +1902,22 @@ class UserApi(object):
             query_params.append(('license_switch_uuid', params['license_switch_uuid']))
         if 'payment_uuid' in params:
             query_params.append(('payment_uuid', params['payment_uuid']))
+        if 'switch_uuid' in params:
+            query_params.append(('switch_uuid', params['switch_uuid']))
         if 'type' in params:
             query_params.append(('type', params['type']))
-        if 'amount_gt' in params:
-            query_params.append(('amount_gt', params['amount_gt']))
-        if 'amount_lt' in params:
-            query_params.append(('amount_lt', params['amount_lt']))
+        if 'amount_lrn_gt' in params:
+            query_params.append(('amount_lrn_gt', params['amount_lrn_gt']))
+        if 'amount_lrn_lt' in params:
+            query_params.append(('amount_lrn_lt', params['amount_lrn_lt']))
+        if 'amount_switch_gt' in params:
+            query_params.append(('amount_switch_gt', params['amount_switch_gt']))
+        if 'amount_switch_lt' in params:
+            query_params.append(('amount_switch_lt', params['amount_switch_lt']))
+        if 'amount_total_gt' in params:
+            query_params.append(('amount_total_gt', params['amount_total_gt']))
+        if 'amount_total_lt' in params:
+            query_params.append(('amount_total_lt', params['amount_total_lt']))
         if 'paid_time_gt' in params:
             query_params.append(('paid_time_gt', params['paid_time_gt']))
         if 'paid_time_lt' in params:

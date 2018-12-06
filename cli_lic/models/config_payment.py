@@ -31,113 +31,90 @@ class ConfigPayment(object):
                             and the value is json key in definition.
     """
     swagger_types = {
-        'email_cc_to': 'str',
-        'stripe_skey': 'str',
-        'email_confirm_to': 'str',
-        'charge_type': 'str',
         'stripe_email': 'str',
+        'email_confirm_to': 'str',
+        'stripe_svc_charge': 'int',
+        'notification_enabled': 'bool',
         'stripe_pkey': 'str',
         'confirm_enabled': 'bool',
-        'stripe_test_mode': 'bool',
-        'notification_enabled': 'bool',
-        'stripe_svc_charge': 'int'
+        'charge_type': 'str',
+        'stripe_skey': 'str',
+        'email_cc_to': 'str',
+        'stripe_test_mode': 'bool'
     }
 
     attribute_map = {
-        'email_cc_to': 'email_cc_to',
-        'stripe_skey': 'stripe_skey',
-        'email_confirm_to': 'email_confirm_to',
-        'charge_type': 'charge_type',
         'stripe_email': 'stripe_email',
+        'email_confirm_to': 'email_confirm_to',
+        'stripe_svc_charge': 'stripe_svc_charge',
+        'notification_enabled': 'notification_enabled',
         'stripe_pkey': 'stripe_pkey',
         'confirm_enabled': 'confirm_enabled',
-        'stripe_test_mode': 'stripe_test_mode',
-        'notification_enabled': 'notification_enabled',
-        'stripe_svc_charge': 'stripe_svc_charge'
+        'charge_type': 'charge_type',
+        'stripe_skey': 'stripe_skey',
+        'email_cc_to': 'email_cc_to',
+        'stripe_test_mode': 'stripe_test_mode'
     }
 
-    def __init__(self, email_cc_to=None, stripe_skey=None, email_confirm_to=None, charge_type='actual received', stripe_email=None, stripe_pkey=None, confirm_enabled=None, stripe_test_mode=None, notification_enabled=None, stripe_svc_charge=None):
+    def __init__(self, stripe_email=None, email_confirm_to=None, stripe_svc_charge=None, notification_enabled=None, stripe_pkey=None, confirm_enabled=None, charge_type='actual received', stripe_skey=None, email_cc_to=None, stripe_test_mode=None):
         """
         ConfigPayment - a model defined in Swagger
         """
 
-        self._email_cc_to = None
-        self._stripe_skey = None
-        self._email_confirm_to = None
-        self._charge_type = None
         self._stripe_email = None
+        self._email_confirm_to = None
+        self._stripe_svc_charge = None
+        self._notification_enabled = None
         self._stripe_pkey = None
         self._confirm_enabled = None
+        self._charge_type = None
+        self._stripe_skey = None
+        self._email_cc_to = None
         self._stripe_test_mode = None
-        self._notification_enabled = None
-        self._stripe_svc_charge = None
 
-        if email_cc_to is not None:
-          self.email_cc_to = email_cc_to
-        if stripe_skey is not None:
-          self.stripe_skey = stripe_skey
-        if email_confirm_to is not None:
-          self.email_confirm_to = email_confirm_to
-        if charge_type is not None:
-          self.charge_type = charge_type
         if stripe_email is not None:
           self.stripe_email = stripe_email
+        if email_confirm_to is not None:
+          self.email_confirm_to = email_confirm_to
+        if stripe_svc_charge is not None:
+          self.stripe_svc_charge = stripe_svc_charge
+        if notification_enabled is not None:
+          self.notification_enabled = notification_enabled
         if stripe_pkey is not None:
           self.stripe_pkey = stripe_pkey
         if confirm_enabled is not None:
           self.confirm_enabled = confirm_enabled
+        if charge_type is not None:
+          self.charge_type = charge_type
+        if stripe_skey is not None:
+          self.stripe_skey = stripe_skey
+        if email_cc_to is not None:
+          self.email_cc_to = email_cc_to
         if stripe_test_mode is not None:
           self.stripe_test_mode = stripe_test_mode
-        if notification_enabled is not None:
-          self.notification_enabled = notification_enabled
-        if stripe_svc_charge is not None:
-          self.stripe_svc_charge = stripe_svc_charge
 
     @property
-    def email_cc_to(self):
+    def stripe_email(self):
         """
-        Gets the email_cc_to of this ConfigPayment.
+        Gets the stripe_email of this ConfigPayment.
 
-        :return: The email_cc_to of this ConfigPayment.
+        :return: The stripe_email of this ConfigPayment.
         :rtype: str
         """
-        return self._email_cc_to
+        return self._stripe_email
 
-    @email_cc_to.setter
-    def email_cc_to(self, email_cc_to):
+    @stripe_email.setter
+    def stripe_email(self, stripe_email):
         """
-        Sets the email_cc_to of this ConfigPayment.
+        Sets the stripe_email of this ConfigPayment.
 
-        :param email_cc_to: The email_cc_to of this ConfigPayment.
+        :param stripe_email: The stripe_email of this ConfigPayment.
         :type: str
         """
-        if email_cc_to is not None and len(email_cc_to) > 64:
-            raise ValueError("Invalid value for `email_cc_to`, length must be less than or equal to `64`")
+        if stripe_email is not None and len(stripe_email) > 64:
+            raise ValueError("Invalid value for `stripe_email`, length must be less than or equal to `64`")
 
-        self._email_cc_to = email_cc_to
-
-    @property
-    def stripe_skey(self):
-        """
-        Gets the stripe_skey of this ConfigPayment.
-
-        :return: The stripe_skey of this ConfigPayment.
-        :rtype: str
-        """
-        return self._stripe_skey
-
-    @stripe_skey.setter
-    def stripe_skey(self, stripe_skey):
-        """
-        Sets the stripe_skey of this ConfigPayment.
-
-        :param stripe_skey: The stripe_skey of this ConfigPayment.
-        :type: str
-        """
-        if stripe_skey is not None and len(stripe_skey) > 64:
-            raise ValueError("Invalid value for `stripe_skey`, length must be less than or equal to `64`")
-
-        self._stripe_skey = stripe_skey
+        self._stripe_email = stripe_email
 
     @property
     def email_confirm_to(self):
@@ -163,54 +140,46 @@ class ConfigPayment(object):
         self._email_confirm_to = email_confirm_to
 
     @property
-    def charge_type(self):
+    def stripe_svc_charge(self):
         """
-        Gets the charge_type of this ConfigPayment.
+        Gets the stripe_svc_charge of this ConfigPayment.
 
-        :return: The charge_type of this ConfigPayment.
-        :rtype: str
+        :return: The stripe_svc_charge of this ConfigPayment.
+        :rtype: int
         """
-        return self._charge_type
+        return self._stripe_svc_charge
 
-    @charge_type.setter
-    def charge_type(self, charge_type):
+    @stripe_svc_charge.setter
+    def stripe_svc_charge(self, stripe_svc_charge):
         """
-        Sets the charge_type of this ConfigPayment.
+        Sets the stripe_svc_charge of this ConfigPayment.
 
-        :param charge_type: The charge_type of this ConfigPayment.
-        :type: str
+        :param stripe_svc_charge: The stripe_svc_charge of this ConfigPayment.
+        :type: int
         """
-        allowed_values = ["actual received", "credit total"]
-        if charge_type not in allowed_values:
-            raise ValueError(
-                "Invalid value for `charge_type` ({0}), must be one of {1}"
-                .format(charge_type, allowed_values)
-            )
 
-        self._charge_type = charge_type
+        self._stripe_svc_charge = stripe_svc_charge
 
     @property
-    def stripe_email(self):
+    def notification_enabled(self):
         """
-        Gets the stripe_email of this ConfigPayment.
+        Gets the notification_enabled of this ConfigPayment.
 
-        :return: The stripe_email of this ConfigPayment.
-        :rtype: str
+        :return: The notification_enabled of this ConfigPayment.
+        :rtype: bool
         """
-        return self._stripe_email
+        return self._notification_enabled
 
-    @stripe_email.setter
-    def stripe_email(self, stripe_email):
+    @notification_enabled.setter
+    def notification_enabled(self, notification_enabled):
         """
-        Sets the stripe_email of this ConfigPayment.
+        Sets the notification_enabled of this ConfigPayment.
 
-        :param stripe_email: The stripe_email of this ConfigPayment.
-        :type: str
+        :param notification_enabled: The notification_enabled of this ConfigPayment.
+        :type: bool
         """
-        if stripe_email is not None and len(stripe_email) > 64:
-            raise ValueError("Invalid value for `stripe_email`, length must be less than or equal to `64`")
 
-        self._stripe_email = stripe_email
+        self._notification_enabled = notification_enabled
 
     @property
     def stripe_pkey(self):
@@ -257,6 +226,79 @@ class ConfigPayment(object):
         self._confirm_enabled = confirm_enabled
 
     @property
+    def charge_type(self):
+        """
+        Gets the charge_type of this ConfigPayment.
+
+        :return: The charge_type of this ConfigPayment.
+        :rtype: str
+        """
+        return self._charge_type
+
+    @charge_type.setter
+    def charge_type(self, charge_type):
+        """
+        Sets the charge_type of this ConfigPayment.
+
+        :param charge_type: The charge_type of this ConfigPayment.
+        :type: str
+        """
+        allowed_values = ["actual received", "credit total"]
+        if charge_type not in allowed_values:
+            raise ValueError(
+                "Invalid value for `charge_type` ({0}), must be one of {1}"
+                .format(charge_type, allowed_values)
+            )
+
+        self._charge_type = charge_type
+
+    @property
+    def stripe_skey(self):
+        """
+        Gets the stripe_skey of this ConfigPayment.
+
+        :return: The stripe_skey of this ConfigPayment.
+        :rtype: str
+        """
+        return self._stripe_skey
+
+    @stripe_skey.setter
+    def stripe_skey(self, stripe_skey):
+        """
+        Sets the stripe_skey of this ConfigPayment.
+
+        :param stripe_skey: The stripe_skey of this ConfigPayment.
+        :type: str
+        """
+        if stripe_skey is not None and len(stripe_skey) > 64:
+            raise ValueError("Invalid value for `stripe_skey`, length must be less than or equal to `64`")
+
+        self._stripe_skey = stripe_skey
+
+    @property
+    def email_cc_to(self):
+        """
+        Gets the email_cc_to of this ConfigPayment.
+
+        :return: The email_cc_to of this ConfigPayment.
+        :rtype: str
+        """
+        return self._email_cc_to
+
+    @email_cc_to.setter
+    def email_cc_to(self, email_cc_to):
+        """
+        Sets the email_cc_to of this ConfigPayment.
+
+        :param email_cc_to: The email_cc_to of this ConfigPayment.
+        :type: str
+        """
+        if email_cc_to is not None and len(email_cc_to) > 64:
+            raise ValueError("Invalid value for `email_cc_to`, length must be less than or equal to `64`")
+
+        self._email_cc_to = email_cc_to
+
+    @property
     def stripe_test_mode(self):
         """
         Gets the stripe_test_mode of this ConfigPayment.
@@ -276,48 +318,6 @@ class ConfigPayment(object):
         """
 
         self._stripe_test_mode = stripe_test_mode
-
-    @property
-    def notification_enabled(self):
-        """
-        Gets the notification_enabled of this ConfigPayment.
-
-        :return: The notification_enabled of this ConfigPayment.
-        :rtype: bool
-        """
-        return self._notification_enabled
-
-    @notification_enabled.setter
-    def notification_enabled(self, notification_enabled):
-        """
-        Sets the notification_enabled of this ConfigPayment.
-
-        :param notification_enabled: The notification_enabled of this ConfigPayment.
-        :type: bool
-        """
-
-        self._notification_enabled = notification_enabled
-
-    @property
-    def stripe_svc_charge(self):
-        """
-        Gets the stripe_svc_charge of this ConfigPayment.
-
-        :return: The stripe_svc_charge of this ConfigPayment.
-        :rtype: int
-        """
-        return self._stripe_svc_charge
-
-    @stripe_svc_charge.setter
-    def stripe_svc_charge(self, stripe_svc_charge):
-        """
-        Sets the stripe_svc_charge of this ConfigPayment.
-
-        :param stripe_svc_charge: The stripe_svc_charge of this ConfigPayment.
-        :type: int
-        """
-
-        self._stripe_svc_charge = stripe_svc_charge
 
     def to_dict(self):
         """

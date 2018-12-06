@@ -33,35 +33,35 @@ class LicenseLrnModify(object):
     swagger_types = {
         'ip': 'str',
         'package_lrn_uuid': 'str',
-        'enabled': 'bool',
-        'end_time': 'datetime'
+        'end_time': 'datetime',
+        'enabled': 'bool'
     }
 
     attribute_map = {
         'ip': 'ip',
         'package_lrn_uuid': 'package_lrn_uuid',
-        'enabled': 'enabled',
-        'end_time': 'end_time'
+        'end_time': 'end_time',
+        'enabled': 'enabled'
     }
 
-    def __init__(self, ip=None, package_lrn_uuid=None, enabled=None, end_time=None):
+    def __init__(self, ip=None, package_lrn_uuid=None, end_time=None, enabled=None):
         """
         LicenseLrnModify - a model defined in Swagger
         """
 
         self._ip = None
         self._package_lrn_uuid = None
-        self._enabled = None
         self._end_time = None
+        self._enabled = None
 
         if ip is not None:
           self.ip = ip
         if package_lrn_uuid is not None:
           self.package_lrn_uuid = package_lrn_uuid
-        if enabled is not None:
-          self.enabled = enabled
         if end_time is not None:
           self.end_time = end_time
+        if enabled is not None:
+          self.enabled = enabled
 
     @property
     def ip(self):
@@ -110,27 +110,6 @@ class LicenseLrnModify(object):
         self._package_lrn_uuid = package_lrn_uuid
 
     @property
-    def enabled(self):
-        """
-        Gets the enabled of this LicenseLrnModify.
-
-        :return: The enabled of this LicenseLrnModify.
-        :rtype: bool
-        """
-        return self._enabled
-
-    @enabled.setter
-    def enabled(self, enabled):
-        """
-        Sets the enabled of this LicenseLrnModify.
-
-        :param enabled: The enabled of this LicenseLrnModify.
-        :type: bool
-        """
-
-        self._enabled = enabled
-
-    @property
     def end_time(self):
         """
         Gets the end_time of this LicenseLrnModify.
@@ -150,6 +129,27 @@ class LicenseLrnModify(object):
         """
 
         self._end_time = end_time
+
+    @property
+    def enabled(self):
+        """
+        Gets the enabled of this LicenseLrnModify.
+
+        :return: The enabled of this LicenseLrnModify.
+        :rtype: bool
+        """
+        return self._enabled
+
+    @enabled.setter
+    def enabled(self, enabled):
+        """
+        Sets the enabled of this LicenseLrnModify.
+
+        :param enabled: The enabled of this LicenseLrnModify.
+        :type: bool
+        """
+
+        self._enabled = enabled
 
     def to_dict(self):
         """

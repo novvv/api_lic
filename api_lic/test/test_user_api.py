@@ -288,7 +288,8 @@ class TestUserApi(unittest.TestCase):
                     license_switch_uuid=license_switch_uuid,
                     amount_lrn=random.randint(1,1000)/10.0,
                     amount_swwitch=random.randint(1, 1000/10.0),
-                    type=random.choice(['paypal','strip']))
+                    type=random.choice(['paypal','strip']),
+                    switch_uuid=dig(16)+bla(10))
         print(json.dumps(data))
         ret=self.api.payment_post(body=data)
         assert(ret.success)

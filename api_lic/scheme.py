@@ -340,6 +340,7 @@ class PaymentScheme(BaseModelScheme):
         validate=[validate.Length(max=36), lambda value: _valid('LicenseLrn', 'license_lrn_uuid', value)])
     license_switch_uuid = Str(
         validate=[validate.Length(max=36), lambda value: _valid('LicenseSwitch', 'license_switch_uuid', value)])
+    switch_uuid=Str(validate=[validate.Length(max=64)])
     amount_lrn = Float()
     amount_switch = Float()
     paid_time = DateTime()
@@ -347,7 +348,7 @@ class PaymentScheme(BaseModelScheme):
 
     class Meta:
         model = model.Payment
-        fields = ('license_lrn_uuid', 'license_switch_uuid', 'amount_lrn', 'amount_switch', 'paid_time', 'type',)
+        fields = ('license_lrn_uuid', 'license_switch_uuid', 'amount_lrn', 'amount_switch', 'paid_time', 'type','switch_uuid')
 
 
 class PaymentSchemeGet(PaymentScheme):
@@ -355,8 +356,8 @@ class PaymentSchemeGet(PaymentScheme):
         model = model.Payment
         fields = (
         'payment_uuid', 'type', 'paid_time', 'user_uuid', 'license_lrn_uuid', 'license_switch_uuid', 'amount_lrn',
-        'amount_switch', 'amount_total')
-        search_fields = ('payment_uuid', 'type', 'period', 'user_uuid', 'license_lrn_uuid', 'license_switch_uuid')
+        'amount_switch', 'amount_total','switch_uuid')
+        search_fields = ('payment_uuid', 'type', 'period', 'user_uuid', 'license_lrn_uuid', 'license_switch_uuid','switch_uuid')
         query_fields = (
         'amount_lrn_gt', 'amount_lrn_lt', 'amount_switch_gt', 'amount_switch_lt', 'amount_total_gt', 'amount_total_lt',
         'paid_time_gt', 'paid_time_lt',)
@@ -461,8 +462,9 @@ class PackageSwitchScheme(BaseModelScheme):
     package_name = Str(validate=[validate.Length(max=64)])
     type = Choice()
     sub_type = Choice()
-    switch_uuid = Str(
-        validate=[validate.Length(max=36), lambda value: _valid('Switch', 'switch_uuid', value)])
+    switch_uuid = Str(validate=[validate.Length(max=64)])
+    # switch_uuid = Str(
+    #     validate=[validate.Length(max=36), lambda value: _valid('Switch', 'switch_uuid', value)])
     switch_port = Int()
     minute_count = Int()
     amount = Int()

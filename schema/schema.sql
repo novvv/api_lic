@@ -447,7 +447,8 @@ CREATE TABLE public.payment (
     license_switch_uuid character varying(36),
     amount_lrn numeric DEFAULT '0'::numeric NOT NULL,
     amount_switch numeric DEFAULT '0'::numeric NOT NULL,
-    amount_total numeric DEFAULT '0'::numeric NOT NULL
+    amount_total numeric DEFAULT '0'::numeric NOT NULL,
+    switch_uuid character varying(64)
 );
 
 
@@ -895,6 +896,13 @@ CREATE INDEX ix_payment_license_switch_uuid ON public.payment USING btree (licen
 
 
 --
+-- Name: ix_payment_switch_uuid; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX ix_payment_switch_uuid ON public.payment USING btree (switch_uuid);
+
+
+--
 -- Name: ix_payment_user_uuid; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -954,14 +962,6 @@ ALTER TABLE ONLY public.notification
 
 ALTER TABLE ONLY public.object_revision_record
     ADD CONSTRAINT object_revision_record_object_revision_id_fkey FOREIGN KEY (object_revision_id) REFERENCES public.object_revision(id) ON DELETE CASCADE;
-
-
---
--- Name: package_switch package_switch_switch_uuid_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.package_switch
-    ADD CONSTRAINT package_switch_switch_uuid_fkey FOREIGN KEY (switch_uuid) REFERENCES public.switch(switch_uuid) ON DELETE CASCADE;
 
 
 --

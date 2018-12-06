@@ -31,32 +31,53 @@ class OperationError(object):
                             and the value is json key in definition.
     """
     swagger_types = {
+        'error_type': 'str',
         'error': 'ForbiddenErrorError',
-        'success': 'bool',
-        'error_type': 'str'
+        'success': 'bool'
     }
 
     attribute_map = {
+        'error_type': 'error_type',
         'error': 'error',
-        'success': 'success',
-        'error_type': 'error_type'
+        'success': 'success'
     }
 
-    def __init__(self, error=None, success=False, error_type='operation_error'):
+    def __init__(self, error_type='operation_error', error=None, success=False):
         """
         OperationError - a model defined in Swagger
         """
 
+        self._error_type = None
         self._error = None
         self._success = None
-        self._error_type = None
 
+        if error_type is not None:
+          self.error_type = error_type
         if error is not None:
           self.error = error
         if success is not None:
           self.success = success
-        if error_type is not None:
-          self.error_type = error_type
+
+    @property
+    def error_type(self):
+        """
+        Gets the error_type of this OperationError.
+
+        :return: The error_type of this OperationError.
+        :rtype: str
+        """
+        return self._error_type
+
+    @error_type.setter
+    def error_type(self, error_type):
+        """
+        Sets the error_type of this OperationError.
+
+        :param error_type: The error_type of this OperationError.
+        :type: str
+        """
+
+        self._error_type = error_type
 
     @property
     def error(self):
@@ -99,27 +120,6 @@ class OperationError(object):
         """
 
         self._success = success
-
-    @property
-    def error_type(self):
-        """
-        Gets the error_type of this OperationError.
-
-        :return: The error_type of this OperationError.
-        :rtype: str
-        """
-        return self._error_type
-
-    @error_type.setter
-    def error_type(self, error_type):
-        """
-        Sets the error_type of this OperationError.
-
-        :param error_type: The error_type of this OperationError.
-        :type: str
-        """
-
-        self._error_type = error_type
 
     def to_dict(self):
         """

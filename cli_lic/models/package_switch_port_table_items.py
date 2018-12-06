@@ -31,58 +31,37 @@ class PackageSwitchPortTableItems(object):
                             and the value is json key in definition.
     """
     swagger_types = {
-        'one_time': 'PackageSwitchPort',
         'switch_port': 'int',
+        'one_time': 'PackageSwitchPort',
         'on_premise': 'PackageSwitchPort',
         'hosted_switch': 'PackageSwitchPort'
     }
 
     attribute_map = {
-        'one_time': 'one_time',
         'switch_port': 'switch_port',
+        'one_time': 'one_time',
         'on_premise': 'on_premise',
         'hosted_switch': 'hosted_switch'
     }
 
-    def __init__(self, one_time=None, switch_port=None, on_premise=None, hosted_switch=None):
+    def __init__(self, switch_port=None, one_time=None, on_premise=None, hosted_switch=None):
         """
         PackageSwitchPortTableItems - a model defined in Swagger
         """
 
-        self._one_time = None
         self._switch_port = None
+        self._one_time = None
         self._on_premise = None
         self._hosted_switch = None
 
-        if one_time is not None:
-          self.one_time = one_time
         if switch_port is not None:
           self.switch_port = switch_port
+        if one_time is not None:
+          self.one_time = one_time
         if on_premise is not None:
           self.on_premise = on_premise
         if hosted_switch is not None:
           self.hosted_switch = hosted_switch
-
-    @property
-    def one_time(self):
-        """
-        Gets the one_time of this PackageSwitchPortTableItems.
-
-        :return: The one_time of this PackageSwitchPortTableItems.
-        :rtype: PackageSwitchPort
-        """
-        return self._one_time
-
-    @one_time.setter
-    def one_time(self, one_time):
-        """
-        Sets the one_time of this PackageSwitchPortTableItems.
-
-        :param one_time: The one_time of this PackageSwitchPortTableItems.
-        :type: PackageSwitchPort
-        """
-
-        self._one_time = one_time
 
     @property
     def switch_port(self):
@@ -104,6 +83,27 @@ class PackageSwitchPortTableItems(object):
         """
 
         self._switch_port = switch_port
+
+    @property
+    def one_time(self):
+        """
+        Gets the one_time of this PackageSwitchPortTableItems.
+
+        :return: The one_time of this PackageSwitchPortTableItems.
+        :rtype: PackageSwitchPort
+        """
+        return self._one_time
+
+    @one_time.setter
+    def one_time(self, one_time):
+        """
+        Sets the one_time of this PackageSwitchPortTableItems.
+
+        :param one_time: The one_time of this PackageSwitchPortTableItems.
+        :type: PackageSwitchPort
+        """
+
+        self._one_time = one_time
 
     @property
     def on_premise(self):

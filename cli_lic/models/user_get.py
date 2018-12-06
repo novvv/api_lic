@@ -31,61 +31,82 @@ class UserGet(object):
                             and the value is json key in definition.
     """
     swagger_types = {
+        'last_login': 'datetime',
         'passwd': 'str',
+        'role_name': 'str',
+        'email': 'str',
+        'logo_file_uuid': 'str',
+        'user_uuid': 'str',
         'is_admin': 'bool',
         'created_on': 'datetime',
-        'logo_file_uuid': 'str',
-        'last_login': 'datetime',
-        'email': 'str',
-        'user_uuid': 'str',
-        'is_active': 'bool',
-        'role_name': 'str'
+        'is_active': 'bool'
     }
 
     attribute_map = {
+        'last_login': 'last_login',
         'passwd': 'passwd',
+        'role_name': 'role_name',
+        'email': 'email',
+        'logo_file_uuid': 'logo_file_uuid',
+        'user_uuid': 'user_uuid',
         'is_admin': 'is_admin',
         'created_on': 'created_on',
-        'logo_file_uuid': 'logo_file_uuid',
-        'last_login': 'last_login',
-        'email': 'email',
-        'user_uuid': 'user_uuid',
-        'is_active': 'is_active',
-        'role_name': 'role_name'
+        'is_active': 'is_active'
     }
 
-    def __init__(self, passwd=None, is_admin=None, created_on=None, logo_file_uuid=None, last_login=None, email=None, user_uuid=None, is_active=None, role_name=None):
+    def __init__(self, last_login=None, passwd=None, role_name=None, email=None, logo_file_uuid=None, user_uuid=None, is_admin=None, created_on=None, is_active=None):
         """
         UserGet - a model defined in Swagger
         """
 
+        self._last_login = None
         self._passwd = None
+        self._role_name = None
+        self._email = None
+        self._logo_file_uuid = None
+        self._user_uuid = None
         self._is_admin = None
         self._created_on = None
-        self._logo_file_uuid = None
-        self._last_login = None
-        self._email = None
-        self._user_uuid = None
         self._is_active = None
-        self._role_name = None
 
+        if last_login is not None:
+          self.last_login = last_login
         if passwd is not None:
           self.passwd = passwd
+        if role_name is not None:
+          self.role_name = role_name
+        self.email = email
+        if logo_file_uuid is not None:
+          self.logo_file_uuid = logo_file_uuid
+        if user_uuid is not None:
+          self.user_uuid = user_uuid
         if is_admin is not None:
           self.is_admin = is_admin
         if created_on is not None:
           self.created_on = created_on
-        if logo_file_uuid is not None:
-          self.logo_file_uuid = logo_file_uuid
-        if last_login is not None:
-          self.last_login = last_login
-        self.email = email
-        if user_uuid is not None:
-          self.user_uuid = user_uuid
         if is_active is not None:
           self.is_active = is_active
-        if role_name is not None:
-          self.role_name = role_name
+
+    @property
+    def last_login(self):
+        """
+        Gets the last_login of this UserGet.
+
+        :return: The last_login of this UserGet.
+        :rtype: datetime
+        """
+        return self._last_login
+
+    @last_login.setter
+    def last_login(self, last_login):
+        """
+        Sets the last_login of this UserGet.
+
+        :param last_login: The last_login of this UserGet.
+        :type: datetime
+        """
+
+        self._last_login = last_login
 
     @property
     def passwd(self):
@@ -107,6 +128,100 @@ class UserGet(object):
         """
 
         self._passwd = passwd
+
+    @property
+    def role_name(self):
+        """
+        Gets the role_name of this UserGet.
+
+        :return: The role_name of this UserGet.
+        :rtype: str
+        """
+        return self._role_name
+
+    @role_name.setter
+    def role_name(self, role_name):
+        """
+        Sets the role_name of this UserGet.
+
+        :param role_name: The role_name of this UserGet.
+        :type: str
+        """
+        allowed_values = ["admin", "user"]
+        if role_name not in allowed_values:
+            raise ValueError(
+                "Invalid value for `role_name` ({0}), must be one of {1}"
+                .format(role_name, allowed_values)
+            )
+
+        self._role_name = role_name
+
+    @property
+    def email(self):
+        """
+        Gets the email of this UserGet.
+
+        :return: The email of this UserGet.
+        :rtype: str
+        """
+        return self._email
+
+    @email.setter
+    def email(self, email):
+        """
+        Sets the email of this UserGet.
+
+        :param email: The email of this UserGet.
+        :type: str
+        """
+        if email is None:
+            raise ValueError("Invalid value for `email`, must not be `None`")
+
+        self._email = email
+
+    @property
+    def logo_file_uuid(self):
+        """
+        Gets the logo_file_uuid of this UserGet.
+
+        :return: The logo_file_uuid of this UserGet.
+        :rtype: str
+        """
+        return self._logo_file_uuid
+
+    @logo_file_uuid.setter
+    def logo_file_uuid(self, logo_file_uuid):
+        """
+        Sets the logo_file_uuid of this UserGet.
+
+        :param logo_file_uuid: The logo_file_uuid of this UserGet.
+        :type: str
+        """
+
+        self._logo_file_uuid = logo_file_uuid
+
+    @property
+    def user_uuid(self):
+        """
+        Gets the user_uuid of this UserGet.
+
+        :return: The user_uuid of this UserGet.
+        :rtype: str
+        """
+        return self._user_uuid
+
+    @user_uuid.setter
+    def user_uuid(self, user_uuid):
+        """
+        Sets the user_uuid of this UserGet.
+
+        :param user_uuid: The user_uuid of this UserGet.
+        :type: str
+        """
+        if user_uuid is not None and len(user_uuid) > 36:
+            raise ValueError("Invalid value for `user_uuid`, length must be less than or equal to `36`")
+
+        self._user_uuid = user_uuid
 
     @property
     def is_admin(self):
@@ -151,94 +266,6 @@ class UserGet(object):
         self._created_on = created_on
 
     @property
-    def logo_file_uuid(self):
-        """
-        Gets the logo_file_uuid of this UserGet.
-
-        :return: The logo_file_uuid of this UserGet.
-        :rtype: str
-        """
-        return self._logo_file_uuid
-
-    @logo_file_uuid.setter
-    def logo_file_uuid(self, logo_file_uuid):
-        """
-        Sets the logo_file_uuid of this UserGet.
-
-        :param logo_file_uuid: The logo_file_uuid of this UserGet.
-        :type: str
-        """
-
-        self._logo_file_uuid = logo_file_uuid
-
-    @property
-    def last_login(self):
-        """
-        Gets the last_login of this UserGet.
-
-        :return: The last_login of this UserGet.
-        :rtype: datetime
-        """
-        return self._last_login
-
-    @last_login.setter
-    def last_login(self, last_login):
-        """
-        Sets the last_login of this UserGet.
-
-        :param last_login: The last_login of this UserGet.
-        :type: datetime
-        """
-
-        self._last_login = last_login
-
-    @property
-    def email(self):
-        """
-        Gets the email of this UserGet.
-
-        :return: The email of this UserGet.
-        :rtype: str
-        """
-        return self._email
-
-    @email.setter
-    def email(self, email):
-        """
-        Sets the email of this UserGet.
-
-        :param email: The email of this UserGet.
-        :type: str
-        """
-        if email is None:
-            raise ValueError("Invalid value for `email`, must not be `None`")
-
-        self._email = email
-
-    @property
-    def user_uuid(self):
-        """
-        Gets the user_uuid of this UserGet.
-
-        :return: The user_uuid of this UserGet.
-        :rtype: str
-        """
-        return self._user_uuid
-
-    @user_uuid.setter
-    def user_uuid(self, user_uuid):
-        """
-        Sets the user_uuid of this UserGet.
-
-        :param user_uuid: The user_uuid of this UserGet.
-        :type: str
-        """
-        if user_uuid is not None and len(user_uuid) > 36:
-            raise ValueError("Invalid value for `user_uuid`, length must be less than or equal to `36`")
-
-        self._user_uuid = user_uuid
-
-    @property
     def is_active(self):
         """
         Gets the is_active of this UserGet.
@@ -258,33 +285,6 @@ class UserGet(object):
         """
 
         self._is_active = is_active
-
-    @property
-    def role_name(self):
-        """
-        Gets the role_name of this UserGet.
-
-        :return: The role_name of this UserGet.
-        :rtype: str
-        """
-        return self._role_name
-
-    @role_name.setter
-    def role_name(self, role_name):
-        """
-        Sets the role_name of this UserGet.
-
-        :param role_name: The role_name of this UserGet.
-        :type: str
-        """
-        allowed_values = ["admin", "user"]
-        if role_name not in allowed_values:
-            raise ValueError(
-                "Invalid value for `role_name` ({0}), must be one of {1}"
-                .format(role_name, allowed_values)
-            )
-
-        self._role_name = role_name
 
     def to_dict(self):
         """
