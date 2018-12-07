@@ -1,4 +1,5 @@
-6fa1546cba13 -> 98ce186d11f2 (head), payment swith_uuid remove rel betwee switch_uuid inpackage
+98ce186d11f2 -> e258be71ed9f (head), license duration
+6fa1546cba13 -> 98ce186d11f2, payment swith_uuid remove rel betwee switch_uuid inpackage
 cfa25697d301 -> 6fa1546cba13, payment lrn switch amount
 27aa3eebd22c -> cfa25697d301, user alerts flags
 a0ecabe25ded -> 27aa3eebd22c, email templ nullables

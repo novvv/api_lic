@@ -22,6 +22,7 @@ from marshmallow.fields import (
 from falcon_rest.contrib.files.models import FileSchemeField, FileModelField
 from .base_model import BaseModel
 from . import model
+from .model import add_months
 from datetime import datetime
 from dateutil.parser import parse as parse_datetime
 from email.utils import parseaddr
@@ -556,6 +557,7 @@ class LicenseLrnScheme(BaseModelScheme):
     user_uuid = Str(validate=[validate.Length(max=36)])
     start_time = DateTime()
     end_time = DateTime()
+    duration = Choice()
     ordered_amount = Int()
     cost = Float()
     package = Nested('PackageLrnScheme', many=False)
@@ -563,7 +565,7 @@ class LicenseLrnScheme(BaseModelScheme):
 
     class Meta:
         model = model.LicenseLrn
-        fields = ('package_lrn_uuid', 'ip', 'start_time', 'end_time')
+        fields = ('package_lrn_uuid', 'ip', 'start_time', 'end_time','duration')
 
 
 class LicenseLrnSchemeGet(LicenseLrnScheme):
@@ -606,6 +608,7 @@ class LicenseSwitchScheme(BaseModelScheme):
     user_uuid = Str(validate=[validate.Length(max=36), lambda value: _valid('User', 'user_uuid', value)])
     start_time = DateTime()
     end_time = DateTime()
+    duration = Choice()
     ordered_amount = Int()
     cost = Float()
     package = Nested('PackageSwitchScheme', many=False)
@@ -613,7 +616,7 @@ class LicenseSwitchScheme(BaseModelScheme):
 
     class Meta:
         model = model.LicenseSwitch
-        fields = ('package_switch_uuid', 'ip', 'start_time', 'start_time', 'end_time')
+        fields = ('package_switch_uuid', 'ip', 'start_time', 'start_time', 'end_time','duration')
 
 
 class LicenseSwitchSchemeGet(LicenseSwitchScheme):
@@ -623,7 +626,7 @@ class LicenseSwitchSchemeGet(LicenseSwitchScheme):
                   'package_switch_uuid', 'user_uuid', 'ordered_amount', 'package', 'enabled', 'start_time', 'end_time')
         search_fields = (
             'user_email', 'type', 'ip', 'switch_port', 'minute_count', 'amount', 'license_switch_uuid',
-            'package_switch_uuid', 'user_uuid', 'ordered_amount', 'package', 'enabled')
+            'package_switch_uuid', 'user_uuid', 'ordered_amount', 'package', 'enabled','duration')
         query_fields = ('start_time_gt', 'start_time_lt', 'end_time_gt', 'end_time_lt', 'cost_gt', 'cost_lt',)
 
 

@@ -57,7 +57,10 @@ def add_months(sourcedate, months):
     year = sourcedate.year + month // 12
     month = month % 12 + 1
     day = min(sourcedate.day, calendar.monthrange(year, month)[1])
-    return date(year, month, day)
+    if type(sourcedate)==type(date):
+        return date(year, month, day)
+    else:
+        return datetime(year, month, day,sourcedate.hour,sourcedate.minute,sourcedate.second,tzinfo=sourcedate.tzinfo)
 
 
 def init_db():
@@ -511,6 +514,10 @@ class LicenseLrn(BaseModel):
     def apply_mail(self, template_name):
         _apply_mail(self, template_name, 'license')
 
+    @property
+    def dur_months(self):
+        return rev(self.DURATION)[self.duration]
+
 
 class Switch(BaseModel):
     __tablename__ = 'switch'
@@ -598,6 +605,10 @@ class LicenseSwitch(BaseModel):
     amount = column_property(
         select([PackageSwitch.amount]).where(package_switch_uuid == PackageSwitch.package_switch_uuid).correlate_except(
             PackageSwitch))
+
+    @property
+    def dur_months(self):
+        return rev(self.DURATION)[self.duration]
 
     def renew(self):
         cost = self.package.amount

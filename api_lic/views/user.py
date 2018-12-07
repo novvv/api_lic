@@ -251,6 +251,9 @@ class LicenseLrnCreate(Create):
         # obj.created_by=user.name
         if not obj.start_time:
             obj.start_time = datetime.now(UTC)
+        if obj.duration:
+            obj.end_time = add_months(obj.start_time,obj.dur_months)
+
         return obj
 
     def after_create(self, object_id, req, resp, **kwargs):
@@ -328,6 +331,9 @@ class LicenseSwitchCreate(Create):
                 {'package_switch_uuid': ['duplicate package uuid {}'.format(obj.package_switch_uuid)]})
         if not obj.start_time:
             obj.start_time = datetime.now(UTC)
+        if obj.duration:
+            obj.end_time = add_months(obj.start_time,obj.dur_months)
+
         return obj
 
     def after_create(self, object_id, req, resp, **kwargs):

@@ -127,8 +127,9 @@ class TestUserApi(unittest.TestCase):
         auth_user()
         package_lrn_uuid = rand_package_lrn()[0]
         data=dict(package_lrn_uuid = package_lrn_uuid,ip=ip(),
-                  start_time=str(datetime.utcnow()),
-                  end_time=str(datetime.utcnow()+timedelta(days=random.randint(30,120)))
+                  start_time=str(datetime.now(UTC)),
+                  #end_time=str(datetime.now(UTC)+timedelta(days=random.randint(30,120)))
+                  duration='1 month'
                   )
         old = self.api.license_lrn_list_get(package_lrn_uuid=package_lrn_uuid)
         if old.payload.items:#clean duplicates
@@ -200,7 +201,7 @@ class TestUserApi(unittest.TestCase):
         """
         auth_user()
         package_switch_uuid = rand_package_switch()[0]
-        data = dict(package_switch_uuid =package_switch_uuid, ip=ip())
+        data = dict(package_switch_uuid =package_switch_uuid, ip=ip(),duration='3 months')
         old = self.api.license_switch_list_get(package_switch_uuid=package_switch_uuid)
         if old.payload.items:
             self.api.license_switch_license_switch_uuid_delete(license_switch_uuid=old.payload.items[0].license_switch_uuid)
