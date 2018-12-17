@@ -12,7 +12,7 @@ from pytz import UTC
 
 from sqlalchemy import (
     Integer, SmallInteger, Float, Text, String, DateTime, Date, Time, Boolean, ForeignKey, BigInteger,
-    Table, JSON
+    Table, JSON,text,CHAR
 )
 from sqlalchemy_utils import aggregated
 
@@ -545,7 +545,7 @@ class PackageSwitch(BaseModel):
 
     type = Column(ChoiceType(TYPE), default=1)
     sub_type = Column(ChoiceType(SUB_TYPE), nullable=True)
-    switch_uuid = Column(String(64),index=True)
+    switch_uuid = Column(String(128),index=True)
         #Column(ForeignKey('switch.switch_uuid', ondelete='CASCADE'), index=True)
     switch_port = Column(Integer())
     minute_count = Column(Integer())
@@ -658,3 +658,93 @@ class LrnPermissionUpdateHistory(BaseModel):
     operator = Column(String(50))
     create_on = Column(DateTime(True), nullable=False, server_default=func.now())
     remain = Column(String)
+
+
+class DnlLicenseInfo(BaseModel):
+    __tablename__ = 'dnl_license_info'
+
+    id = Column(Integer, primary_key=True)#, server_default=text("nextval('dnl_license_info_id_seq'::regclass)"))
+    carrier_name = Column(String(100), index=True)
+    ss_type = Column(SmallInteger, nullable=False, index=True, server_default=text("0"))
+    status = Column(SmallInteger, nullable=False, server_default=text("1"))
+    ss_name = Column(String(100), nullable=False, index=True)
+    uuid = Column(String(128), nullable=False, index=True)
+    recv_ip = Column(String(16), nullable=False)
+    recv_port = Column(Integer)
+    ss_bind_mac = Column(String(18), nullable=False, index=True)
+    ss_bind_ip = Column(String(16), nullable=False)
+    ss_bind_port = Column(Integer)
+    max_cap = Column(Integer, nullable=False, server_default=text("500"))
+    max_cps = Column(Integer, nullable=False, server_default=text("100"))
+    start_time = Column(DateTime(True), server_default=text("('now'::text)::date"))
+    end_time = Column(DateTime(True), server_default=text("(('now'::text)::date + '3650 days'::interval)"))
+    expires = Column(Integer, server_default=text("3650"))
+    update_time = Column(DateTime(True))
+    create_time = Column(DateTime(True) ,server_default=func.now())
+    create_user = Column(SmallInteger, nullable=False, server_default=text("0"))
+
+
+class DnlLcenseInfoRecord(BaseModel):
+    __tablename__ = 'dnl_license_info_record'
+    record_id=Column(Integer, nullable=False,primary_key=True)#, server_default=text("nextval('dnl_license_info_record_record_id_seq'::regclass)"))
+    id=Column(Integer)
+    carrier_name=Column(String(100))
+    ss_type=Column(SmallInteger)
+    status=Column(SmallInteger)
+    ss_name=Column(String(100))
+    uuid=Column(String(128))
+    recv_ip=Column(String(16))
+    recv_port=Column(Integer)
+    ss_bind_mac=Column(String(18))
+    ss_bind_ip=Column(String(16))
+    ss_bind_port=Column(Integer)
+    max_cap=Column(Integer)
+    max_cps=Column(Integer)
+    start_time=Column(DateTime(True))
+    end_time=Column(DateTime(True))
+    expires=Column(Integer)
+    update_time=Column(DateTime(True))
+    create_time=Column(DateTime(True))
+    create_user=Column(SmallInteger)
+    time=Column(Numeric)
+    flag=Column(CHAR(1))
+
+
+class DnlLicenseLog(BaseModel):
+    __tablename__ = 'dnl_license_log'
+
+    id = Column(Integer, primary_key=True)#, server_default=text("nextval('dnl_license_log_id_seq'::regclass)"))
+    uuid = Column(String(128), nullable=False, index=True)
+    recv_ip = Column(String(16), nullable=False, index=True)
+    recv_port = Column(Integer)
+    cap = Column(Integer, nullable=False, server_default=text("0"))
+    cps = Column(Integer, nullable=False, server_default=text("0"))
+    start_time = Column(DateTime(True))
+    end_time = Column(DateTime(True))
+    sip_addr = Column(String(256))
+    status = Column(SmallInteger, nullable=False, server_default=text("0"))
+    create_time = Column(DateTime(True), server_default=func.now())
+
+
+class DnlPreLicensingInfo(BaseModel):
+    __tablename__ = 'dnl_pre_licensing_info'
+
+    id = Column(Integer, primary_key=True)#, server_default=text("nextval('dnl_pre_licensing_info_id_seq'::regclass)"))
+    ip = Column(String(16), nullable=False)
+    cap = Column(Integer, nullable=False, server_default=text("0"))
+    cps = Column(Integer, nullable=False, server_default=text("0"))
+    expires = Column(Integer)
+    create_time = Column(DateTime(True),server_default=func.now())
+
+
+class DnlPreLicensingInfoRecord(BaseModel):
+    __tablename__ = 'dnl_pre_licensing_info_record'
+    record_id=Column(Integer, nullable=False, primary_key=True)#server_default=text("nextval('dnl_pre_licensing_info_record_record_id_seq'::regclass)"))
+    id=Column(Integer)
+    ip=Column(String(16))
+    cap=Column(Integer)
+    cps=Column(Integer)
+    expires=Column(Integer)
+    create_time=Column(DateTime(True),server_default=func.now())
+    time=Column(Numeric)
+    flag=Column(CHAR(1))

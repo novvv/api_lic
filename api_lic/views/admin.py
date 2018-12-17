@@ -151,52 +151,45 @@ class PackageLrnList(List):
             #ret = ret.filter(cls.pool_id != 0)#TODO:filter for user
         return filt, ret
 # ---PackageLrn---
-# +++Switch+++
-class SwitchCreate(Create):
-    scheme_class = SwitchScheme
-    model_class = model.Switch
-    entity = 'Switch'
+
+# +++DnlLicenseInfo+++
+class DnlLicenseInfoCreate(Create):
+    scheme_class = DnlLicenseInfoScheme
+    model_class = model.DnlLicenseInfo
+    entity = 'DnlLicenseInfo'
     path_parameters = ()
     security = (DEFAULT_SECURITY)
     restrict = ()
-
     def before_create(self, obj, **kwargs):
         user = self.get_user(self.req)
-        # obj.created_by=user.name
-        # obj.created_on=datetime.now(UTC)
+        #obj.created_by=user.name
+        #obj.created_on=datetime.now(UTC)
         return obj
-
-
-class SwitchResource(Resource):
-    model_class = model.Switch
-    scheme_class = SwitchScheme
-    scheme_class_get = SwitchSchemeGet
-    scheme_class_modify = SwitchSchemeModify
-    entity = 'Switch'
-    id_field = 'switch_uuid'
+class DnlLicenseInfoResource(Resource):
+    model_class = model.DnlLicenseInfo
+    scheme_class = DnlLicenseInfoScheme
+    scheme_class_get = DnlLicenseInfoSchemeGet
+    scheme_class_modify = DnlLicenseInfoSchemeModify
+    entity = 'DnlLicenseInfo'
+    id_field = 'id'
     security = (DEFAULT_SECURITY)
     path_parameters = ()
     restrict = ()
-
-
-class SwitchList(List):
-    scheme_class = SwitchSchemeGet
-    model_class = model.Switch
-    entity_plural = 'Switchs'
+class DnlLicenseInfoList(List):
+    scheme_class = DnlLicenseInfoSchemeGet
+    model_class = model.DnlLicenseInfo
+    entity_plural = 'DnlLicenseInfos'
     path_parameters = ()
     security = (DEFAULT_SECURITY)
     restrict = ()
-
     def modify_query_from_filtering_for_list(self, filtering, **kwargs):
         filt, ret = super().modify_query_from_filtering_for_list(filtering, **kwargs)
         user = self.get_user(self.req)
         if not user.is_admin:
             cls = self.model_class
-            # ret = ret.filter(cls.pool_id != 0)#TODO:filter for user
+            #ret = ret.filter(cls.pool_id != 0)#TODO:filter for user
         return filt, ret
-
-
-# ---Switch---
+# ---DnlLicenseInfo---
 
 # +++PackageSwitch+++
 class PackageSwitchCreate(Create):
@@ -212,6 +205,9 @@ class PackageSwitchCreate(Create):
         #obj.created_by=user.name
         #obj.created_on=datetime.now(UTC)
         return obj
+
+
+
 class PackageSwitchResource(Resource):
     model_class = model.PackageSwitch
     scheme_class = PackageSwitchScheme

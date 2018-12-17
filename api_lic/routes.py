@@ -37,9 +37,6 @@ _Admin = [
     dict(path='/package_lrn', method='post', resource=views.PackageLrnCreate()),
     dict(path='/package_lrn/{package_lrn_uuid}', method='path', resource=views.PackageLrnResource()),
     dict(path='/package_lrn/{package_lrn_uuid}/{user_uuid}', method='delete', resource=views.LicenseLrnAdminResource()),
-    dict(path='/switch', method='post', resource=views.SwitchCreate()),
-    dict(path='/switch/{switch_uuid}', method='path', resource=views.SwitchResource()),
-    dict(path='/switch/list', method='get', resource=views.SwitchList()),
     dict(path='/package_switch', method='post', resource=views.PackageSwitchCreate()),
     dict(path='/package_switch/{package_switch_uuid}', method='path', resource=views.PackageSwitchResource()),
     dict(path='/package_switch/{package_switch_uuid}/{user_uuid}', method='delete',
@@ -51,6 +48,7 @@ _Config = [
     dict(path='/email_template/list', method='get', resource=views.EmailTemplateList()),
 ]
 _Public = [
+    dict(path='/switch/list', method='get',resource=views.DnlLicenseInfoList() ),
     dict(path='/image', method='post', resource=views.SimpleFileCreate()),
     dict(path='/image/{file_name}', method='get', resource=views.SimpleFileGet()),
     dict(path='/file', method='post', resource=file.file_upload),

@@ -426,36 +426,39 @@ class PackageLrnSchemeModify(PackageLrnScheme):
 
 # ---PackageLrn---
 
-# +++Switch+++
-class SwitchScheme(BaseModelScheme):
-    switch_uuid = Str(validate=[validate.Length(max=36)])
-    switch_ip = Str(validate=[validate.Length(max=16)])
-    enabled = Bool()
-    current_port_count = Int()
-    minute_remaining = Int()
-    expired_on = DateTime()
-    email = Str(validate=[validate.Length(max=256)])
-    packages = Nested('PackageSwitchScheme', many=True)
-
+# +++DnlLicenseInfo+++
+class DnlLicenseInfoScheme(BaseModelScheme):
+    id = Int()
+    carrier_name = Str(validate=[validate.Length(max=100)])
+    ss_type = Int()
+    status = Int()
+    ss_name = Str(validate=[validate.Length(max=100)])
+    uuid = Str(validate=[validate.Length(max=128)])
+    recv_ip = Str(validate=[validate.Length(max=16)])
+    recv_port = Int()
+    ss_bind_mac = Str(validate=[validate.Length(max=18)])
+    ss_bind_ip = Str(validate=[validate.Length(max=16)])
+    ss_bind_port = Int()
+    max_cap = Int()
+    max_cps = Int()
+    start_time = DateTime()
+    end_time = DateTime()
+    expires = Int()
+    update_time = DateTime()
+    create_time = DateTime()
+    create_user = Int()
     class Meta:
-        model = model.Switch
-        fields = ('switch_ip', 'enabled', 'current_port_count', 'minute_remaining', 'expired_on', 'email',)
-
-
-class SwitchSchemeGet(SwitchScheme):
+        model = model.DnlLicenseInfo
+        fields = ('carrier_name','ss_type','status','ss_name','uuid','recv_ip','recv_port','ss_bind_mac','ss_bind_ip','ss_bind_port','max_cap','max_cps','start_time','end_time','expires','update_time','create_time','create_user',)
+class DnlLicenseInfoSchemeGet(DnlLicenseInfoScheme):
     class Meta:
-        model = model.Switch
-        fields = ('switch_uuid', 'switch_ip', 'enabled', 'current_port_count', 'minute_remaining', 'email', 'packages',)
-        search_fields = (
-            'switch_uuid', 'switch_ip', 'enabled', 'current_port_count', 'minute_remaining', 'email', 'packages',)
-        query_fields = ('expired_on_gt', 'expired_on_lt',)
-
-
-class SwitchSchemeModify(SwitchScheme):
+        model = model.DnlLicenseInfo
+        fields = ('id','carrier_name','ss_type','status','ss_name','uuid','recv_ip','recv_port','ss_bind_mac','ss_bind_ip','ss_bind_port','max_cap','max_cps','expires','create_user',)
+        search_fields = ('id','carrier_name','ss_type','status','ss_name','uuid','recv_ip','recv_port','ss_bind_mac','ss_bind_ip','ss_bind_port','max_cap','max_cps','expires','create_user',)
+        query_fields=('start_time_gt','start_time_lt','end_time_gt','end_time_lt','update_time_gt','update_time_lt','create_time_gt','create_time_lt',)
+class DnlLicenseInfoSchemeModify(DnlLicenseInfoScheme):
     pass
-
-
-# ---Switch---
+# ---DnlLicenseInfo---
 
 # +++PackageSwitch+++
 class PackageSwitchScheme(BaseModelScheme):
@@ -463,7 +466,7 @@ class PackageSwitchScheme(BaseModelScheme):
     package_name = Str(validate=[validate.Length(max=64)])
     type = Choice()
     sub_type = Choice()
-    switch_uuid = Str(validate=[validate.Length(max=64)])
+    switch_uuid = Str(validate=[validate.Length(max=64),lambda value:_valid('DnlLicenseInfo','uuid',value)])
     # switch_uuid = Str(
     #     validate=[validate.Length(max=36), lambda value: _valid('Switch', 'switch_uuid', value)])
     switch_port = Int()

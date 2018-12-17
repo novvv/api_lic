@@ -1,4 +1,6 @@
-98ce186d11f2 -> e258be71ed9f (head), license duration
+8abd30c15b00 -> 79ff7aba0109 (head), package switch switch uuid
+e258be71ed9f -> 8abd30c15b00, dnl_license_info
+98ce186d11f2 -> e258be71ed9f, license duration
 6fa1546cba13 -> 98ce186d11f2, payment swith_uuid remove rel betwee switch_uuid inpackage
 cfa25697d301 -> 6fa1546cba13, payment lrn switch amount
 27aa3eebd22c -> cfa25697d301, user alerts flags

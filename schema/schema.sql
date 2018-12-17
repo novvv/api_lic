@@ -95,6 +95,208 @@ ALTER SEQUENCE public.config_payment_id_seq OWNED BY public.config_payment.id;
 
 
 --
+-- Name: dnl_license_info; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.dnl_license_info (
+    id integer NOT NULL,
+    carrier_name character varying(100),
+    ss_type smallint DEFAULT 0 NOT NULL,
+    status smallint DEFAULT 1 NOT NULL,
+    ss_name character varying(100) NOT NULL,
+    uuid character varying(128) NOT NULL,
+    recv_ip character varying(16) NOT NULL,
+    recv_port integer,
+    ss_bind_mac character varying(18) NOT NULL,
+    ss_bind_ip character varying(16) NOT NULL,
+    ss_bind_port integer,
+    max_cap integer DEFAULT 500 NOT NULL,
+    max_cps integer DEFAULT 100 NOT NULL,
+    start_time timestamp with time zone DEFAULT ('now'::text)::date,
+    end_time timestamp with time zone DEFAULT (('now'::text)::date + '3650 days'::interval),
+    expires integer DEFAULT 3650,
+    update_time timestamp with time zone,
+    create_time timestamp with time zone DEFAULT now(),
+    create_user smallint DEFAULT 0 NOT NULL
+);
+
+
+--
+-- Name: dnl_license_info_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.dnl_license_info_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: dnl_license_info_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.dnl_license_info_id_seq OWNED BY public.dnl_license_info.id;
+
+
+--
+-- Name: dnl_license_info_record; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.dnl_license_info_record (
+    record_id integer NOT NULL,
+    id integer,
+    carrier_name character varying(100),
+    ss_type smallint,
+    status smallint,
+    ss_name character varying(100),
+    uuid character varying(128),
+    recv_ip character varying(16),
+    recv_port integer,
+    ss_bind_mac character varying(18),
+    ss_bind_ip character varying(16),
+    ss_bind_port integer,
+    max_cap integer,
+    max_cps integer,
+    start_time timestamp with time zone,
+    end_time timestamp with time zone,
+    expires integer,
+    update_time timestamp with time zone,
+    create_time timestamp with time zone,
+    create_user smallint,
+    "time" numeric,
+    flag character(1)
+);
+
+
+--
+-- Name: dnl_license_info_record_record_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.dnl_license_info_record_record_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: dnl_license_info_record_record_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.dnl_license_info_record_record_id_seq OWNED BY public.dnl_license_info_record.record_id;
+
+
+--
+-- Name: dnl_license_log; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.dnl_license_log (
+    id integer NOT NULL,
+    uuid character varying(128) NOT NULL,
+    recv_ip character varying(16) NOT NULL,
+    recv_port integer,
+    cap integer DEFAULT 0 NOT NULL,
+    cps integer DEFAULT 0 NOT NULL,
+    start_time timestamp with time zone,
+    end_time timestamp with time zone,
+    sip_addr character varying(256),
+    status smallint DEFAULT 0 NOT NULL,
+    create_time timestamp with time zone DEFAULT now()
+);
+
+
+--
+-- Name: dnl_license_log_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.dnl_license_log_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: dnl_license_log_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.dnl_license_log_id_seq OWNED BY public.dnl_license_log.id;
+
+
+--
+-- Name: dnl_pre_licensing_info; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.dnl_pre_licensing_info (
+    id integer NOT NULL,
+    ip character varying(16) NOT NULL,
+    cap integer DEFAULT 0 NOT NULL,
+    cps integer DEFAULT 0 NOT NULL,
+    expires integer,
+    create_time timestamp with time zone DEFAULT now()
+);
+
+
+--
+-- Name: dnl_pre_licensing_info_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.dnl_pre_licensing_info_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: dnl_pre_licensing_info_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.dnl_pre_licensing_info_id_seq OWNED BY public.dnl_pre_licensing_info.id;
+
+
+--
+-- Name: dnl_pre_licensing_info_record; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.dnl_pre_licensing_info_record (
+    record_id integer NOT NULL,
+    id integer,
+    ip character varying(16),
+    cap integer,
+    cps integer,
+    expires integer,
+    create_time timestamp with time zone DEFAULT now(),
+    "time" numeric,
+    flag character(1)
+);
+
+
+--
+-- Name: dnl_pre_licensing_info_record_record_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.dnl_pre_licensing_info_record_record_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: dnl_pre_licensing_info_record_record_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.dnl_pre_licensing_info_record_record_id_seq OWNED BY public.dnl_pre_licensing_info_record.record_id;
+
+
+--
 -- Name: email_log; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -428,7 +630,7 @@ CREATE TABLE public.package_switch (
     minute_count integer,
     amount integer,
     enabled boolean,
-    switch_uuid character varying(36),
+    switch_uuid character varying(128),
     sub_type integer,
     expire_date timestamp with time zone,
     start_date timestamp with time zone DEFAULT now() NOT NULL
@@ -450,7 +652,7 @@ CREATE TABLE public.payment (
     amount_lrn numeric DEFAULT '0'::numeric NOT NULL,
     amount_switch numeric DEFAULT '0'::numeric NOT NULL,
     amount_total numeric DEFAULT '0'::numeric NOT NULL,
-    switch_uuid character varying(64)
+    switch_uuid character varying(128)
 );
 
 
@@ -509,6 +711,41 @@ ALTER TABLE ONLY public.config_payment ALTER COLUMN id SET DEFAULT nextval('publ
 
 
 --
+-- Name: dnl_license_info id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.dnl_license_info ALTER COLUMN id SET DEFAULT nextval('public.dnl_license_info_id_seq'::regclass);
+
+
+--
+-- Name: dnl_license_info_record record_id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.dnl_license_info_record ALTER COLUMN record_id SET DEFAULT nextval('public.dnl_license_info_record_record_id_seq'::regclass);
+
+
+--
+-- Name: dnl_license_log id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.dnl_license_log ALTER COLUMN id SET DEFAULT nextval('public.dnl_license_log_id_seq'::regclass);
+
+
+--
+-- Name: dnl_pre_licensing_info id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.dnl_pre_licensing_info ALTER COLUMN id SET DEFAULT nextval('public.dnl_pre_licensing_info_id_seq'::regclass);
+
+
+--
+-- Name: dnl_pre_licensing_info_record record_id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.dnl_pre_licensing_info_record ALTER COLUMN record_id SET DEFAULT nextval('public.dnl_pre_licensing_info_record_record_id_seq'::regclass);
+
+
+--
 -- Name: email_log id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -564,6 +801,46 @@ ALTER TABLE ONLY public.alembic_version
 
 ALTER TABLE ONLY public.config_payment
     ADD CONSTRAINT config_payment_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: dnl_license_info dnl_license_info_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.dnl_license_info
+    ADD CONSTRAINT dnl_license_info_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: dnl_license_info_record dnl_license_info_record_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.dnl_license_info_record
+    ADD CONSTRAINT dnl_license_info_record_pkey PRIMARY KEY (record_id);
+
+
+--
+-- Name: dnl_license_log dnl_license_log_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.dnl_license_log
+    ADD CONSTRAINT dnl_license_log_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: dnl_pre_licensing_info dnl_pre_licensing_info_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.dnl_pre_licensing_info
+    ADD CONSTRAINT dnl_pre_licensing_info_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: dnl_pre_licensing_info_record dnl_pre_licensing_info_record_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.dnl_pre_licensing_info_record
+    ADD CONSTRAINT dnl_pre_licensing_info_record_pkey PRIMARY KEY (record_id);
 
 
 --
@@ -748,6 +1025,55 @@ ALTER TABLE ONLY public.license_switch
 
 ALTER TABLE ONLY public."user"
     ADD CONSTRAINT user_pkey PRIMARY KEY (user_uuid);
+
+
+--
+-- Name: ix_dnl_license_info_carrier_name; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX ix_dnl_license_info_carrier_name ON public.dnl_license_info USING btree (carrier_name);
+
+
+--
+-- Name: ix_dnl_license_info_ss_bind_mac; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX ix_dnl_license_info_ss_bind_mac ON public.dnl_license_info USING btree (ss_bind_mac);
+
+
+--
+-- Name: ix_dnl_license_info_ss_name; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX ix_dnl_license_info_ss_name ON public.dnl_license_info USING btree (ss_name);
+
+
+--
+-- Name: ix_dnl_license_info_ss_type; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX ix_dnl_license_info_ss_type ON public.dnl_license_info USING btree (ss_type);
+
+
+--
+-- Name: ix_dnl_license_info_uuid; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX ix_dnl_license_info_uuid ON public.dnl_license_info USING btree (uuid);
+
+
+--
+-- Name: ix_dnl_license_log_recv_ip; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX ix_dnl_license_log_recv_ip ON public.dnl_license_log USING btree (recv_ip);
+
+
+--
+-- Name: ix_dnl_license_log_uuid; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX ix_dnl_license_log_uuid ON public.dnl_license_log USING btree (uuid);
 
 
 --

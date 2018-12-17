@@ -1,3 +1,6 @@
+api_lic ver 1.0.12
+GET/switch/list <-- list of DnlLicenseInfo
+POST/license_switch <-- validation against DnlLicenseInfo LLP-83
 api_lic ver 1.0.11
 POST/license_lrn/ POST/license_switch <-  add "duration" LLP-67
 POST/payment <-- add 'switch_uuid' LLP-81

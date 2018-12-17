@@ -199,9 +199,15 @@ class TestUserApi(unittest.TestCase):
 
 
         """
+        auth()
+        package_switch_uuid,p,l = rand_package_switch()
+        switch_uuid = p.switch_uuid
+        if not switch_uuid:
+            switch_uuid = rand_switch()[0]
+            cli_lic.AdminApi().package_switch_package_switch_uuid_patch(package_switch_uuid=package_switch_uuid,body=dict(switch_uuid=switch_uuid))
+        sw=cli_lic.PublicApi().switch_list_get(uuid=switch_uuid)
+        data = dict(package_switch_uuid =package_switch_uuid,ip=sw.payload.items[0].recv_ip,duration='3 months')
         auth_user()
-        package_switch_uuid = rand_package_switch()[0]
-        data = dict(package_switch_uuid =package_switch_uuid, ip=ip(),duration='3 months')
         old = self.api.license_switch_list_get(package_switch_uuid=package_switch_uuid)
         if old.payload.items:
             self.api.license_switch_license_switch_uuid_delete(license_switch_uuid=old.payload.items[0].license_switch_uuid)
@@ -290,7 +296,7 @@ class TestUserApi(unittest.TestCase):
                     amount_lrn=random.randint(1,1000)/10.0,
                     amount_swwitch=random.randint(1, 1000/10.0),
                     type=random.choice(['paypal','strip']),
-                    switch_uuid=dig(16)+bla(10))
+                    switch_uuid=rand_switch()[0])
         print(json.dumps(data))
         ret=self.api.payment_post(body=data)
         assert(ret.success)

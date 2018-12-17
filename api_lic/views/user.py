@@ -110,12 +110,26 @@ class PaymentCreate(Create):
             obj.user_uuid = user.user_uuid
         if obj.license_lrn_uuid:
             lic = model.LicenseLrn.get(obj.license_lrn_uuid)
+            if not lic:
+                raise ValidationError({'license_switch_uuid': ['no such LRN license uuid!']})
             if lic and lic.user_uuid != user.user_uuid:
                 raise ValidationError({'license_lrn_uuid': ['not owned by current user!']})
         if obj.license_switch_uuid:
-            lic = model.LicenseLrn.get(obj.license_switch_uuid)
+            lic = model.LicenseSwitch.get(obj.license_switch_uuid)
+            if not lic:
+                raise ValidationError({'license_switch_uuid': ['no such switch license uuid!']})
             if lic and lic.user_uuid != user.user_uuid:
                 raise ValidationError({'license_switch_uuid': ['not owned by current user!']})
+            icls = model.DnlLicenseInfo
+            inq = icls.filter(icls.uuid == lic.switch_uuid).first()
+            if inq:
+                if lic.package.type=='switch pay per port':
+                    mcls = model.LicenseUpdateHistory
+                    mcls(uuid=lic.switch_uuid,license_channel=lic.amount,license_cps=inq.max_cps).save()
+                if lic.package.type=='switch pay per minute':
+                    mcls = model.LicenseUpdateHistory
+                    days=(lic.end_time-lic.start_time).days
+                    mcls(uuid=lic.switch_uuid,license_channel=lic.amount,license_cps=inq.max_cps,license_day=days).save()
         # obj.created_by=user.name
         # obj.created_on=datetime.now(UTC)
 
@@ -333,7 +347,11 @@ class LicenseSwitchCreate(Create):
             obj.start_time = datetime.now(UTC)
         if obj.duration:
             obj.end_time = add_months(obj.start_time,obj.dur_months)
-
+        mcls = model.DnlLicenseInfo
+        package = model.PackageSwitch.get(obj.package_switch_uuid)
+        q = mcls.filter(and_(mcls.uuid == package.switch_uuid, mcls.recv_ip == obj.ip)).first()
+        if not q:
+            raise ValidationError({'package_switch_uuid': ['no such switch and ip']})
         return obj
 
     def after_create(self, object_id, req, resp, **kwargs):

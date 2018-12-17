@@ -142,12 +142,12 @@ def rand_package_switch(**kwargs):
     return (it.package_switch_uuid,it,ret.payload.items)
 
 def rand_switch(**kwargs):
-    ret = cli_lic.AdminApi().switch_list_get(**kwargs)
+    ret = cli_lic.PublicApi().switch_list_get(**kwargs)
     if not len(ret.payload.items):
         return None
     assert (ret.success and len(ret.payload.items))
     it = random.choice(ret.payload.items)
-    return (it.switch_uuid,it,ret.payload.items)
+    return (it.uuid,it,ret.payload.items)
 
 def rand_license_lrn(**kwargs):
     ret = cli_lic.UserApi().license_lrn_list_get(**kwargs)

@@ -31,37 +31,81 @@ class LicenseSwitchModify(object):
                             and the value is json key in definition.
     """
     swagger_types = {
-        'ip': 'str',
-        'end_time': 'datetime',
+        'package_switch_uuid': 'str',
         'enabled': 'bool',
-        'package_switch_uuid': 'str'
+        'ip': 'str',
+        'end_time': 'datetime'
     }
 
     attribute_map = {
-        'ip': 'ip',
-        'end_time': 'end_time',
+        'package_switch_uuid': 'package_switch_uuid',
         'enabled': 'enabled',
-        'package_switch_uuid': 'package_switch_uuid'
+        'ip': 'ip',
+        'end_time': 'end_time'
     }
 
-    def __init__(self, ip=None, end_time=None, enabled=None, package_switch_uuid=None):
+    def __init__(self, package_switch_uuid=None, enabled=None, ip=None, end_time=None):
         """
         LicenseSwitchModify - a model defined in Swagger
         """
 
+        self._package_switch_uuid = None
+        self._enabled = None
         self._ip = None
         self._end_time = None
-        self._enabled = None
-        self._package_switch_uuid = None
 
+        if package_switch_uuid is not None:
+          self.package_switch_uuid = package_switch_uuid
+        if enabled is not None:
+          self.enabled = enabled
         if ip is not None:
           self.ip = ip
         if end_time is not None:
           self.end_time = end_time
-        if enabled is not None:
-          self.enabled = enabled
-        if package_switch_uuid is not None:
-          self.package_switch_uuid = package_switch_uuid
+
+    @property
+    def package_switch_uuid(self):
+        """
+        Gets the package_switch_uuid of this LicenseSwitchModify.
+
+        :return: The package_switch_uuid of this LicenseSwitchModify.
+        :rtype: str
+        """
+        return self._package_switch_uuid
+
+    @package_switch_uuid.setter
+    def package_switch_uuid(self, package_switch_uuid):
+        """
+        Sets the package_switch_uuid of this LicenseSwitchModify.
+
+        :param package_switch_uuid: The package_switch_uuid of this LicenseSwitchModify.
+        :type: str
+        """
+        if package_switch_uuid is not None and len(package_switch_uuid) > 36:
+            raise ValueError("Invalid value for `package_switch_uuid`, length must be less than or equal to `36`")
+
+        self._package_switch_uuid = package_switch_uuid
+
+    @property
+    def enabled(self):
+        """
+        Gets the enabled of this LicenseSwitchModify.
+
+        :return: The enabled of this LicenseSwitchModify.
+        :rtype: bool
+        """
+        return self._enabled
+
+    @enabled.setter
+    def enabled(self, enabled):
+        """
+        Sets the enabled of this LicenseSwitchModify.
+
+        :param enabled: The enabled of this LicenseSwitchModify.
+        :type: bool
+        """
+
+        self._enabled = enabled
 
     @property
     def ip(self):
@@ -106,50 +150,6 @@ class LicenseSwitchModify(object):
         """
 
         self._end_time = end_time
-
-    @property
-    def enabled(self):
-        """
-        Gets the enabled of this LicenseSwitchModify.
-
-        :return: The enabled of this LicenseSwitchModify.
-        :rtype: bool
-        """
-        return self._enabled
-
-    @enabled.setter
-    def enabled(self, enabled):
-        """
-        Sets the enabled of this LicenseSwitchModify.
-
-        :param enabled: The enabled of this LicenseSwitchModify.
-        :type: bool
-        """
-
-        self._enabled = enabled
-
-    @property
-    def package_switch_uuid(self):
-        """
-        Gets the package_switch_uuid of this LicenseSwitchModify.
-
-        :return: The package_switch_uuid of this LicenseSwitchModify.
-        :rtype: str
-        """
-        return self._package_switch_uuid
-
-    @package_switch_uuid.setter
-    def package_switch_uuid(self, package_switch_uuid):
-        """
-        Sets the package_switch_uuid of this LicenseSwitchModify.
-
-        :param package_switch_uuid: The package_switch_uuid of this LicenseSwitchModify.
-        :type: str
-        """
-        if package_switch_uuid is not None and len(package_switch_uuid) > 36:
-            raise ValueError("Invalid value for `package_switch_uuid`, length must be less than or equal to `36`")
-
-        self._package_switch_uuid = package_switch_uuid
 
     def to_dict(self):
         """

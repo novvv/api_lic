@@ -32,7 +32,7 @@ class InlineResponse2005(object):
     """
     swagger_types = {
         'success': 'bool',
-        'payload': 'SwitchGet'
+        'payload': 'PackageSwitchGet'
     }
 
     attribute_map = {
@@ -80,7 +80,7 @@ class InlineResponse2005(object):
         Gets the payload of this InlineResponse2005.
 
         :return: The payload of this InlineResponse2005.
-        :rtype: SwitchGet
+        :rtype: PackageSwitchGet
         """
         return self._payload
 
@@ -90,7 +90,7 @@ class InlineResponse2005(object):
         Sets the payload of this InlineResponse2005.
 
         :param payload: The payload of this InlineResponse2005.
-        :type: SwitchGet
+        :type: PackageSwitchGet
         """
 
         self._payload = payload
