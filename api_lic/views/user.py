@@ -125,7 +125,9 @@ class PaymentCreate(Create):
             if inq:
                 if lic.package.type=='switch pay per port':
                     mcls = model.LicenseUpdateHistory
-                    mcls(uuid=lic.switch_uuid,license_channel=lic.amount,license_cps=inq.max_cps).save()
+                    days = (lic.end_time - lic.start_time).days
+                    #mcls(uuid=lic.switch_uuid,license_channel=lic.amount,license_cps=inq.max_cps).save()
+                    mcls(uuid=lic.switch_uuid,license_channel=lic.amount,license_cps=inq.max_cps,license_day=days).save()
                 if lic.package.type=='switch pay per minute':
                     mcls = model.LicenseUpdateHistory
                     days=(lic.end_time-lic.start_time).days

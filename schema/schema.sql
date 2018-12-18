@@ -683,6 +683,45 @@ CREATE TABLE public.switch (
 
 
 --
+-- Name: switch_daily; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.switch_daily (
+    id integer NOT NULL,
+    client_id character varying(36),
+    from_ip character varying(30) NOT NULL,
+    from_port integer,
+    max_cps integer,
+    max_cap integer,
+    call_duration integer,
+    detail character varying(1024),
+    sip_addr character varying(250),
+    start_date timestamp with time zone,
+    report_date character varying(16),
+    create_time timestamp with time zone DEFAULT now()
+);
+
+
+--
+-- Name: switch_daily_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.switch_daily_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: switch_daily_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.switch_daily_id_seq OWNED BY public.switch_daily.id;
+
+
+--
 -- Name: user; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -785,6 +824,13 @@ ALTER TABLE ONLY public.object_revision ALTER COLUMN id SET DEFAULT nextval('pub
 --
 
 ALTER TABLE ONLY public.object_revision_record ALTER COLUMN id SET DEFAULT nextval('public.object_revision_record_id_seq'::regclass);
+
+
+--
+-- Name: switch_daily id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.switch_daily ALTER COLUMN id SET DEFAULT nextval('public.switch_daily_id_seq'::regclass);
 
 
 --
@@ -993,6 +1039,14 @@ ALTER TABLE ONLY public.payment
 
 ALTER TABLE ONLY public.plan
     ADD CONSTRAINT plan_pkey PRIMARY KEY (plan_uuid);
+
+
+--
+-- Name: switch_daily switch_daily_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.switch_daily
+    ADD CONSTRAINT switch_daily_pkey PRIMARY KEY (id);
 
 
 --
@@ -1235,6 +1289,27 @@ CREATE INDEX ix_payment_switch_uuid ON public.payment USING btree (switch_uuid);
 --
 
 CREATE INDEX ix_payment_user_uuid ON public.payment USING btree (user_uuid);
+
+
+--
+-- Name: ix_switch_daily_client_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX ix_switch_daily_client_id ON public.switch_daily USING btree (client_id);
+
+
+--
+-- Name: ix_switch_daily_from_ip; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX ix_switch_daily_from_ip ON public.switch_daily USING btree (from_ip);
+
+
+--
+-- Name: ix_switch_daily_report_date; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX ix_switch_daily_report_date ON public.switch_daily USING btree (report_date);
 
 
 --

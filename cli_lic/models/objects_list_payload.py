@@ -31,79 +31,37 @@ class ObjectsListPayload(object):
                             and the value is json key in definition.
     """
     swagger_types = {
-        'items': 'object',
-        'page': 'int',
         'total': 'int',
-        'per_page': 'int'
+        'items': 'object',
+        'per_page': 'int',
+        'page': 'int'
     }
 
     attribute_map = {
-        'items': 'items',
-        'page': 'page',
         'total': 'total',
-        'per_page': 'per_page'
+        'items': 'items',
+        'per_page': 'per_page',
+        'page': 'page'
     }
 
-    def __init__(self, items=None, page=None, total=None, per_page=None):
+    def __init__(self, total=None, items=None, per_page=None, page=None):
         """
         ObjectsListPayload - a model defined in Swagger
         """
 
-        self._items = None
-        self._page = None
         self._total = None
+        self._items = None
         self._per_page = None
+        self._page = None
 
-        if items is not None:
-          self.items = items
-        if page is not None:
-          self.page = page
         if total is not None:
           self.total = total
+        if items is not None:
+          self.items = items
         if per_page is not None:
           self.per_page = per_page
-
-    @property
-    def items(self):
-        """
-        Gets the items of this ObjectsListPayload.
-
-        :return: The items of this ObjectsListPayload.
-        :rtype: object
-        """
-        return self._items
-
-    @items.setter
-    def items(self, items):
-        """
-        Sets the items of this ObjectsListPayload.
-
-        :param items: The items of this ObjectsListPayload.
-        :type: object
-        """
-
-        self._items = items
-
-    @property
-    def page(self):
-        """
-        Gets the page of this ObjectsListPayload.
-
-        :return: The page of this ObjectsListPayload.
-        :rtype: int
-        """
-        return self._page
-
-    @page.setter
-    def page(self, page):
-        """
-        Sets the page of this ObjectsListPayload.
-
-        :param page: The page of this ObjectsListPayload.
-        :type: int
-        """
-
-        self._page = page
+        if page is not None:
+          self.page = page
 
     @property
     def total(self):
@@ -127,6 +85,27 @@ class ObjectsListPayload(object):
         self._total = total
 
     @property
+    def items(self):
+        """
+        Gets the items of this ObjectsListPayload.
+
+        :return: The items of this ObjectsListPayload.
+        :rtype: object
+        """
+        return self._items
+
+    @items.setter
+    def items(self, items):
+        """
+        Sets the items of this ObjectsListPayload.
+
+        :param items: The items of this ObjectsListPayload.
+        :type: object
+        """
+
+        self._items = items
+
+    @property
     def per_page(self):
         """
         Gets the per_page of this ObjectsListPayload.
@@ -146,6 +125,27 @@ class ObjectsListPayload(object):
         """
 
         self._per_page = per_page
+
+    @property
+    def page(self):
+        """
+        Gets the page of this ObjectsListPayload.
+
+        :return: The page of this ObjectsListPayload.
+        :rtype: int
+        """
+        return self._page
+
+    @page.setter
+    def page(self, page):
+        """
+        Sets the page of this ObjectsListPayload.
+
+        :param page: The page of this ObjectsListPayload.
+        :type: int
+        """
+
+        self._page = page
 
     def to_dict(self):
         """

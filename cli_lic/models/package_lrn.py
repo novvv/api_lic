@@ -33,50 +33,50 @@ class PackageLrn(object):
     swagger_types = {
         'amount': 'int',
         'lrn_port': 'int',
-        'type': 'str',
-        'package_name': 'str',
         'enabled': 'bool',
+        'package_name': 'str',
         'dip_count': 'int',
-        'cps': 'int'
+        'cps': 'int',
+        'type': 'str'
     }
 
     attribute_map = {
         'amount': 'amount',
         'lrn_port': 'lrn_port',
-        'type': 'type',
-        'package_name': 'package_name',
         'enabled': 'enabled',
+        'package_name': 'package_name',
         'dip_count': 'dip_count',
-        'cps': 'cps'
+        'cps': 'cps',
+        'type': 'type'
     }
 
-    def __init__(self, amount=None, lrn_port=None, type='LRN pay per CPS', package_name=None, enabled=None, dip_count=None, cps=None):
+    def __init__(self, amount=None, lrn_port=None, enabled=None, package_name=None, dip_count=None, cps=None, type='LRN pay per CPS'):
         """
         PackageLrn - a model defined in Swagger
         """
 
         self._amount = None
         self._lrn_port = None
-        self._type = None
-        self._package_name = None
         self._enabled = None
+        self._package_name = None
         self._dip_count = None
         self._cps = None
+        self._type = None
 
         if amount is not None:
           self.amount = amount
         if lrn_port is not None:
           self.lrn_port = lrn_port
-        if type is not None:
-          self.type = type
-        if package_name is not None:
-          self.package_name = package_name
         if enabled is not None:
           self.enabled = enabled
+        if package_name is not None:
+          self.package_name = package_name
         if dip_count is not None:
           self.dip_count = dip_count
         if cps is not None:
           self.cps = cps
+        if type is not None:
+          self.type = type
 
     @property
     def amount(self):
@@ -121,31 +121,25 @@ class PackageLrn(object):
         self._lrn_port = lrn_port
 
     @property
-    def type(self):
+    def enabled(self):
         """
-        Gets the type of this PackageLrn.
+        Gets the enabled of this PackageLrn.
 
-        :return: The type of this PackageLrn.
-        :rtype: str
+        :return: The enabled of this PackageLrn.
+        :rtype: bool
         """
-        return self._type
+        return self._enabled
 
-    @type.setter
-    def type(self, type):
+    @enabled.setter
+    def enabled(self, enabled):
         """
-        Sets the type of this PackageLrn.
+        Sets the enabled of this PackageLrn.
 
-        :param type: The type of this PackageLrn.
-        :type: str
+        :param enabled: The enabled of this PackageLrn.
+        :type: bool
         """
-        allowed_values = ["LRN pay per CPS", "LRN pay per DIP"]
-        if type not in allowed_values:
-            raise ValueError(
-                "Invalid value for `type` ({0}), must be one of {1}"
-                .format(type, allowed_values)
-            )
 
-        self._type = type
+        self._enabled = enabled
 
     @property
     def package_name(self):
@@ -169,27 +163,6 @@ class PackageLrn(object):
             raise ValueError("Invalid value for `package_name`, length must be less than or equal to `64`")
 
         self._package_name = package_name
-
-    @property
-    def enabled(self):
-        """
-        Gets the enabled of this PackageLrn.
-
-        :return: The enabled of this PackageLrn.
-        :rtype: bool
-        """
-        return self._enabled
-
-    @enabled.setter
-    def enabled(self, enabled):
-        """
-        Sets the enabled of this PackageLrn.
-
-        :param enabled: The enabled of this PackageLrn.
-        :type: bool
-        """
-
-        self._enabled = enabled
 
     @property
     def dip_count(self):
@@ -232,6 +205,33 @@ class PackageLrn(object):
         """
 
         self._cps = cps
+
+    @property
+    def type(self):
+        """
+        Gets the type of this PackageLrn.
+
+        :return: The type of this PackageLrn.
+        :rtype: str
+        """
+        return self._type
+
+    @type.setter
+    def type(self, type):
+        """
+        Sets the type of this PackageLrn.
+
+        :param type: The type of this PackageLrn.
+        :type: str
+        """
+        allowed_values = ["LRN pay per CPS", "LRN pay per DIP"]
+        if type not in allowed_values:
+            raise ValueError(
+                "Invalid value for `type` ({0}), must be one of {1}"
+                .format(type, allowed_values)
+            )
+
+        self._type = type
 
     def to_dict(self):
         """

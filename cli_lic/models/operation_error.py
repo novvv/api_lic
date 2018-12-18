@@ -31,32 +31,53 @@ class OperationError(object):
                             and the value is json key in definition.
     """
     swagger_types = {
+        'error': 'OperationErrorError',
         'error_type': 'str',
-        'error': 'ForbiddenErrorError',
         'success': 'bool'
     }
 
     attribute_map = {
-        'error_type': 'error_type',
         'error': 'error',
+        'error_type': 'error_type',
         'success': 'success'
     }
 
-    def __init__(self, error_type='operation_error', error=None, success=False):
+    def __init__(self, error=None, error_type='operation_error', success=False):
         """
         OperationError - a model defined in Swagger
         """
 
-        self._error_type = None
         self._error = None
+        self._error_type = None
         self._success = None
 
-        if error_type is not None:
-          self.error_type = error_type
         if error is not None:
           self.error = error
+        if error_type is not None:
+          self.error_type = error_type
         if success is not None:
           self.success = success
+
+    @property
+    def error(self):
+        """
+        Gets the error of this OperationError.
+
+        :return: The error of this OperationError.
+        :rtype: OperationErrorError
+        """
+        return self._error
+
+    @error.setter
+    def error(self, error):
+        """
+        Sets the error of this OperationError.
+
+        :param error: The error of this OperationError.
+        :type: OperationErrorError
+        """
+
+        self._error = error
 
     @property
     def error_type(self):
@@ -78,27 +99,6 @@ class OperationError(object):
         """
 
         self._error_type = error_type
-
-    @property
-    def error(self):
-        """
-        Gets the error of this OperationError.
-
-        :return: The error of this OperationError.
-        :rtype: ForbiddenErrorError
-        """
-        return self._error
-
-    @error.setter
-    def error(self, error):
-        """
-        Sets the error of this OperationError.
-
-        :param error: The error of this OperationError.
-        :type: ForbiddenErrorError
-        """
-
-        self._error = error
 
     @property
     def success(self):

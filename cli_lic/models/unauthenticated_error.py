@@ -31,53 +31,32 @@ class UnauthenticatedError(object):
                             and the value is json key in definition.
     """
     swagger_types = {
-        'error_type': 'str',
-        'error': 'ForbiddenErrorError',
-        'success': 'bool'
+        'error': 'OperationErrorError',
+        'success': 'bool',
+        'error_type': 'str'
     }
 
     attribute_map = {
-        'error_type': 'error_type',
         'error': 'error',
-        'success': 'success'
+        'success': 'success',
+        'error_type': 'error_type'
     }
 
-    def __init__(self, error_type='unauthenticated_error', error=None, success=False):
+    def __init__(self, error=None, success=False, error_type='unauthenticated_error'):
         """
         UnauthenticatedError - a model defined in Swagger
         """
 
-        self._error_type = None
         self._error = None
         self._success = None
+        self._error_type = None
 
-        if error_type is not None:
-          self.error_type = error_type
         if error is not None:
           self.error = error
         if success is not None:
           self.success = success
-
-    @property
-    def error_type(self):
-        """
-        Gets the error_type of this UnauthenticatedError.
-
-        :return: The error_type of this UnauthenticatedError.
-        :rtype: str
-        """
-        return self._error_type
-
-    @error_type.setter
-    def error_type(self, error_type):
-        """
-        Sets the error_type of this UnauthenticatedError.
-
-        :param error_type: The error_type of this UnauthenticatedError.
-        :type: str
-        """
-
-        self._error_type = error_type
+        if error_type is not None:
+          self.error_type = error_type
 
     @property
     def error(self):
@@ -85,7 +64,7 @@ class UnauthenticatedError(object):
         Gets the error of this UnauthenticatedError.
 
         :return: The error of this UnauthenticatedError.
-        :rtype: ForbiddenErrorError
+        :rtype: OperationErrorError
         """
         return self._error
 
@@ -95,7 +74,7 @@ class UnauthenticatedError(object):
         Sets the error of this UnauthenticatedError.
 
         :param error: The error of this UnauthenticatedError.
-        :type: ForbiddenErrorError
+        :type: OperationErrorError
         """
 
         self._error = error
@@ -120,6 +99,27 @@ class UnauthenticatedError(object):
         """
 
         self._success = success
+
+    @property
+    def error_type(self):
+        """
+        Gets the error_type of this UnauthenticatedError.
+
+        :return: The error_type of this UnauthenticatedError.
+        :rtype: str
+        """
+        return self._error_type
+
+    @error_type.setter
+    def error_type(self, error_type):
+        """
+        Sets the error_type of this UnauthenticatedError.
+
+        :param error_type: The error_type of this UnauthenticatedError.
+        :type: str
+        """
+
+        self._error_type = error_type
 
     def to_dict(self):
         """

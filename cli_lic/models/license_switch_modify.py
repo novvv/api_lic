@@ -31,37 +31,58 @@ class LicenseSwitchModify(object):
                             and the value is json key in definition.
     """
     swagger_types = {
-        'package_switch_uuid': 'str',
         'enabled': 'bool',
+        'package_switch_uuid': 'str',
         'ip': 'str',
         'end_time': 'datetime'
     }
 
     attribute_map = {
-        'package_switch_uuid': 'package_switch_uuid',
         'enabled': 'enabled',
+        'package_switch_uuid': 'package_switch_uuid',
         'ip': 'ip',
         'end_time': 'end_time'
     }
 
-    def __init__(self, package_switch_uuid=None, enabled=None, ip=None, end_time=None):
+    def __init__(self, enabled=None, package_switch_uuid=None, ip=None, end_time=None):
         """
         LicenseSwitchModify - a model defined in Swagger
         """
 
-        self._package_switch_uuid = None
         self._enabled = None
+        self._package_switch_uuid = None
         self._ip = None
         self._end_time = None
 
-        if package_switch_uuid is not None:
-          self.package_switch_uuid = package_switch_uuid
         if enabled is not None:
           self.enabled = enabled
+        if package_switch_uuid is not None:
+          self.package_switch_uuid = package_switch_uuid
         if ip is not None:
           self.ip = ip
         if end_time is not None:
           self.end_time = end_time
+
+    @property
+    def enabled(self):
+        """
+        Gets the enabled of this LicenseSwitchModify.
+
+        :return: The enabled of this LicenseSwitchModify.
+        :rtype: bool
+        """
+        return self._enabled
+
+    @enabled.setter
+    def enabled(self, enabled):
+        """
+        Sets the enabled of this LicenseSwitchModify.
+
+        :param enabled: The enabled of this LicenseSwitchModify.
+        :type: bool
+        """
+
+        self._enabled = enabled
 
     @property
     def package_switch_uuid(self):
@@ -85,27 +106,6 @@ class LicenseSwitchModify(object):
             raise ValueError("Invalid value for `package_switch_uuid`, length must be less than or equal to `36`")
 
         self._package_switch_uuid = package_switch_uuid
-
-    @property
-    def enabled(self):
-        """
-        Gets the enabled of this LicenseSwitchModify.
-
-        :return: The enabled of this LicenseSwitchModify.
-        :rtype: bool
-        """
-        return self._enabled
-
-    @enabled.setter
-    def enabled(self, enabled):
-        """
-        Sets the enabled of this LicenseSwitchModify.
-
-        :param enabled: The enabled of this LicenseSwitchModify.
-        :type: bool
-        """
-
-        self._enabled = enabled
 
     @property
     def ip(self):

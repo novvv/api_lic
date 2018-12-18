@@ -31,79 +31,75 @@ class Payment(object):
                             and the value is json key in definition.
     """
     swagger_types = {
-        'type': 'str',
+        'license_lrn_uuid': 'str',
         'paid_time': 'datetime',
+        'amount_lrn': 'float',
         'license_switch_uuid': 'str',
         'switch_uuid': 'str',
         'amount_switch': 'float',
-        'license_lrn_uuid': 'str',
-        'amount_lrn': 'float'
+        'type': 'str'
     }
 
     attribute_map = {
-        'type': 'type',
+        'license_lrn_uuid': 'license_lrn_uuid',
         'paid_time': 'paid_time',
+        'amount_lrn': 'amount_lrn',
         'license_switch_uuid': 'license_switch_uuid',
         'switch_uuid': 'switch_uuid',
         'amount_switch': 'amount_switch',
-        'license_lrn_uuid': 'license_lrn_uuid',
-        'amount_lrn': 'amount_lrn'
+        'type': 'type'
     }
 
-    def __init__(self, type='paypal', paid_time=None, license_switch_uuid=None, switch_uuid=None, amount_switch=None, license_lrn_uuid=None, amount_lrn=None):
+    def __init__(self, license_lrn_uuid=None, paid_time=None, amount_lrn=None, license_switch_uuid=None, switch_uuid=None, amount_switch=None, type='paypal'):
         """
         Payment - a model defined in Swagger
         """
 
-        self._type = None
+        self._license_lrn_uuid = None
         self._paid_time = None
+        self._amount_lrn = None
         self._license_switch_uuid = None
         self._switch_uuid = None
         self._amount_switch = None
-        self._license_lrn_uuid = None
-        self._amount_lrn = None
+        self._type = None
 
-        if type is not None:
-          self.type = type
+        if license_lrn_uuid is not None:
+          self.license_lrn_uuid = license_lrn_uuid
         if paid_time is not None:
           self.paid_time = paid_time
+        if amount_lrn is not None:
+          self.amount_lrn = amount_lrn
         if license_switch_uuid is not None:
           self.license_switch_uuid = license_switch_uuid
         if switch_uuid is not None:
           self.switch_uuid = switch_uuid
         if amount_switch is not None:
           self.amount_switch = amount_switch
-        if license_lrn_uuid is not None:
-          self.license_lrn_uuid = license_lrn_uuid
-        if amount_lrn is not None:
-          self.amount_lrn = amount_lrn
+        if type is not None:
+          self.type = type
 
     @property
-    def type(self):
+    def license_lrn_uuid(self):
         """
-        Gets the type of this Payment.
+        Gets the license_lrn_uuid of this Payment.
 
-        :return: The type of this Payment.
+        :return: The license_lrn_uuid of this Payment.
         :rtype: str
         """
-        return self._type
+        return self._license_lrn_uuid
 
-    @type.setter
-    def type(self, type):
+    @license_lrn_uuid.setter
+    def license_lrn_uuid(self, license_lrn_uuid):
         """
-        Sets the type of this Payment.
+        Sets the license_lrn_uuid of this Payment.
 
-        :param type: The type of this Payment.
+        :param license_lrn_uuid: The license_lrn_uuid of this Payment.
         :type: str
         """
-        allowed_values = ["paypal", "strip"]
-        if type not in allowed_values:
-            raise ValueError(
-                "Invalid value for `type` ({0}), must be one of {1}"
-                .format(type, allowed_values)
-            )
+        if license_lrn_uuid is not None and len(license_lrn_uuid) > 36:
+            raise ValueError("Invalid value for `license_lrn_uuid`, length must be less than or equal to `36`")
 
-        self._type = type
+        self._license_lrn_uuid = license_lrn_uuid
 
     @property
     def paid_time(self):
@@ -125,6 +121,27 @@ class Payment(object):
         """
 
         self._paid_time = paid_time
+
+    @property
+    def amount_lrn(self):
+        """
+        Gets the amount_lrn of this Payment.
+
+        :return: The amount_lrn of this Payment.
+        :rtype: float
+        """
+        return self._amount_lrn
+
+    @amount_lrn.setter
+    def amount_lrn(self, amount_lrn):
+        """
+        Sets the amount_lrn of this Payment.
+
+        :param amount_lrn: The amount_lrn of this Payment.
+        :type: float
+        """
+
+        self._amount_lrn = amount_lrn
 
     @property
     def license_switch_uuid(self):
@@ -194,48 +211,31 @@ class Payment(object):
         self._amount_switch = amount_switch
 
     @property
-    def license_lrn_uuid(self):
+    def type(self):
         """
-        Gets the license_lrn_uuid of this Payment.
+        Gets the type of this Payment.
 
-        :return: The license_lrn_uuid of this Payment.
+        :return: The type of this Payment.
         :rtype: str
         """
-        return self._license_lrn_uuid
+        return self._type
 
-    @license_lrn_uuid.setter
-    def license_lrn_uuid(self, license_lrn_uuid):
+    @type.setter
+    def type(self, type):
         """
-        Sets the license_lrn_uuid of this Payment.
+        Sets the type of this Payment.
 
-        :param license_lrn_uuid: The license_lrn_uuid of this Payment.
+        :param type: The type of this Payment.
         :type: str
         """
-        if license_lrn_uuid is not None and len(license_lrn_uuid) > 36:
-            raise ValueError("Invalid value for `license_lrn_uuid`, length must be less than or equal to `36`")
+        allowed_values = ["paypal", "strip"]
+        if type not in allowed_values:
+            raise ValueError(
+                "Invalid value for `type` ({0}), must be one of {1}"
+                .format(type, allowed_values)
+            )
 
-        self._license_lrn_uuid = license_lrn_uuid
-
-    @property
-    def amount_lrn(self):
-        """
-        Gets the amount_lrn of this Payment.
-
-        :return: The amount_lrn of this Payment.
-        :rtype: float
-        """
-        return self._amount_lrn
-
-    @amount_lrn.setter
-    def amount_lrn(self, amount_lrn):
-        """
-        Sets the amount_lrn of this Payment.
-
-        :param amount_lrn: The amount_lrn of this Payment.
-        :type: float
-        """
-
-        self._amount_lrn = amount_lrn
+        self._type = type
 
     def to_dict(self):
         """

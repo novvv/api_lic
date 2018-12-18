@@ -31,53 +31,53 @@ class UnauthenticatedErrorError(object):
                             and the value is json key in definition.
     """
     swagger_types = {
-        'message': 'str',
+        'code': 'int',
         'reason': 'str',
-        'code': 'int'
+        'message': 'str'
     }
 
     attribute_map = {
-        'message': 'message',
+        'code': 'code',
         'reason': 'reason',
-        'code': 'code'
+        'message': 'message'
     }
 
-    def __init__(self, message=None, reason=None, code=None):
+    def __init__(self, code=None, reason=None, message=None):
         """
         UnauthenticatedErrorError - a model defined in Swagger
         """
 
-        self._message = None
-        self._reason = None
         self._code = None
+        self._reason = None
+        self._message = None
 
-        if message is not None:
-          self.message = message
-        if reason is not None:
-          self.reason = reason
         if code is not None:
           self.code = code
+        if reason is not None:
+          self.reason = reason
+        if message is not None:
+          self.message = message
 
     @property
-    def message(self):
+    def code(self):
         """
-        Gets the message of this UnauthenticatedErrorError.
+        Gets the code of this UnauthenticatedErrorError.
 
-        :return: The message of this UnauthenticatedErrorError.
-        :rtype: str
+        :return: The code of this UnauthenticatedErrorError.
+        :rtype: int
         """
-        return self._message
+        return self._code
 
-    @message.setter
-    def message(self, message):
+    @code.setter
+    def code(self, code):
         """
-        Sets the message of this UnauthenticatedErrorError.
+        Sets the code of this UnauthenticatedErrorError.
 
-        :param message: The message of this UnauthenticatedErrorError.
-        :type: str
+        :param code: The code of this UnauthenticatedErrorError.
+        :type: int
         """
 
-        self._message = message
+        self._code = code
 
     @property
     def reason(self):
@@ -101,25 +101,25 @@ class UnauthenticatedErrorError(object):
         self._reason = reason
 
     @property
-    def code(self):
+    def message(self):
         """
-        Gets the code of this UnauthenticatedErrorError.
+        Gets the message of this UnauthenticatedErrorError.
 
-        :return: The code of this UnauthenticatedErrorError.
-        :rtype: int
+        :return: The message of this UnauthenticatedErrorError.
+        :rtype: str
         """
-        return self._code
+        return self._message
 
-    @code.setter
-    def code(self, code):
+    @message.setter
+    def message(self, message):
         """
-        Sets the code of this UnauthenticatedErrorError.
+        Sets the message of this UnauthenticatedErrorError.
 
-        :param code: The code of this UnauthenticatedErrorError.
-        :type: int
+        :param message: The message of this UnauthenticatedErrorError.
+        :type: str
         """
 
-        self._code = code
+        self._message = message
 
     def to_dict(self):
         """

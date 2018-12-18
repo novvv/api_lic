@@ -31,37 +31,58 @@ class NotificationModify(object):
                             and the value is json key in definition.
     """
     swagger_types = {
+        'created_on': 'datetime',
         'content': 'str',
         'user_uuid': 'str',
-        'created_on': 'datetime',
         'subject': 'str'
     }
 
     attribute_map = {
+        'created_on': 'created_on',
         'content': 'content',
         'user_uuid': 'user_uuid',
-        'created_on': 'created_on',
         'subject': 'subject'
     }
 
-    def __init__(self, content=None, user_uuid=None, created_on=None, subject=None):
+    def __init__(self, created_on=None, content=None, user_uuid=None, subject=None):
         """
         NotificationModify - a model defined in Swagger
         """
 
+        self._created_on = None
         self._content = None
         self._user_uuid = None
-        self._created_on = None
         self._subject = None
 
+        if created_on is not None:
+          self.created_on = created_on
         if content is not None:
           self.content = content
         if user_uuid is not None:
           self.user_uuid = user_uuid
-        if created_on is not None:
-          self.created_on = created_on
         if subject is not None:
           self.subject = subject
+
+    @property
+    def created_on(self):
+        """
+        Gets the created_on of this NotificationModify.
+
+        :return: The created_on of this NotificationModify.
+        :rtype: datetime
+        """
+        return self._created_on
+
+    @created_on.setter
+    def created_on(self, created_on):
+        """
+        Sets the created_on of this NotificationModify.
+
+        :param created_on: The created_on of this NotificationModify.
+        :type: datetime
+        """
+
+        self._created_on = created_on
 
     @property
     def content(self):
@@ -106,27 +127,6 @@ class NotificationModify(object):
             raise ValueError("Invalid value for `user_uuid`, length must be less than or equal to `36`")
 
         self._user_uuid = user_uuid
-
-    @property
-    def created_on(self):
-        """
-        Gets the created_on of this NotificationModify.
-
-        :return: The created_on of this NotificationModify.
-        :rtype: datetime
-        """
-        return self._created_on
-
-    @created_on.setter
-    def created_on(self, created_on):
-        """
-        Sets the created_on of this NotificationModify.
-
-        :param created_on: The created_on of this NotificationModify.
-        :type: datetime
-        """
-
-        self._created_on = created_on
 
     @property
     def subject(self):

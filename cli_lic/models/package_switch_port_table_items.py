@@ -32,34 +32,34 @@ class PackageSwitchPortTableItems(object):
     """
     swagger_types = {
         'one_time': 'PackageSwitchPort',
-        'hosted_switch': 'PackageSwitchPort',
         'on_premise': 'PackageSwitchPort',
+        'hosted_switch': 'PackageSwitchPort',
         'switch_port': 'int'
     }
 
     attribute_map = {
         'one_time': 'one_time',
-        'hosted_switch': 'hosted_switch',
         'on_premise': 'on_premise',
+        'hosted_switch': 'hosted_switch',
         'switch_port': 'switch_port'
     }
 
-    def __init__(self, one_time=None, hosted_switch=None, on_premise=None, switch_port=None):
+    def __init__(self, one_time=None, on_premise=None, hosted_switch=None, switch_port=None):
         """
         PackageSwitchPortTableItems - a model defined in Swagger
         """
 
         self._one_time = None
-        self._hosted_switch = None
         self._on_premise = None
+        self._hosted_switch = None
         self._switch_port = None
 
         if one_time is not None:
           self.one_time = one_time
-        if hosted_switch is not None:
-          self.hosted_switch = hosted_switch
         if on_premise is not None:
           self.on_premise = on_premise
+        if hosted_switch is not None:
+          self.hosted_switch = hosted_switch
         if switch_port is not None:
           self.switch_port = switch_port
 
@@ -85,27 +85,6 @@ class PackageSwitchPortTableItems(object):
         self._one_time = one_time
 
     @property
-    def hosted_switch(self):
-        """
-        Gets the hosted_switch of this PackageSwitchPortTableItems.
-
-        :return: The hosted_switch of this PackageSwitchPortTableItems.
-        :rtype: PackageSwitchPort
-        """
-        return self._hosted_switch
-
-    @hosted_switch.setter
-    def hosted_switch(self, hosted_switch):
-        """
-        Sets the hosted_switch of this PackageSwitchPortTableItems.
-
-        :param hosted_switch: The hosted_switch of this PackageSwitchPortTableItems.
-        :type: PackageSwitchPort
-        """
-
-        self._hosted_switch = hosted_switch
-
-    @property
     def on_premise(self):
         """
         Gets the on_premise of this PackageSwitchPortTableItems.
@@ -125,6 +104,27 @@ class PackageSwitchPortTableItems(object):
         """
 
         self._on_premise = on_premise
+
+    @property
+    def hosted_switch(self):
+        """
+        Gets the hosted_switch of this PackageSwitchPortTableItems.
+
+        :return: The hosted_switch of this PackageSwitchPortTableItems.
+        :rtype: PackageSwitchPort
+        """
+        return self._hosted_switch
+
+    @hosted_switch.setter
+    def hosted_switch(self, hosted_switch):
+        """
+        Sets the hosted_switch of this PackageSwitchPortTableItems.
+
+        :param hosted_switch: The hosted_switch of this PackageSwitchPortTableItems.
+        :type: PackageSwitchPort
+        """
+
+        self._hosted_switch = hosted_switch
 
     @property
     def switch_port(self):

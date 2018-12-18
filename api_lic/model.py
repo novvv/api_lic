@@ -125,7 +125,8 @@ def _apply_mail(self, template_name, var_name):
             template.subject, template.content_text, template.content_html
         )
     except Exception as e:
-        log.error(e)
+        import traceback
+        log.error('cannot render {}:{}:{}'.format(template.content_html,e,traceback.format_exc()))
         return False
     email = None
     if hasattr(self, 'email') and hasattr(self, 'user_uuid'):
@@ -428,6 +429,10 @@ class Payment(BaseModel):
     user = relationship('User')
 
     @property
+    def amount(self):
+        return self.amount_total
+
+    @property
     def license_uuid(self):
         if self.license_lrn_uuid:
             return self.license_lrn_uuid
@@ -440,7 +445,7 @@ class Payment(BaseModel):
         if self.license_lrn_uuid:
             return LicenseLrn.get(self.license_lrn_uuid)
         if self.license_switch_uuid:
-            return LicenseSwitch(self.license_switch_uuid)
+            return LicenseSwitch.get(self.license_switch_uuid)
         return None
 
     def apply_mail(self, template_name):
@@ -748,3 +753,18 @@ class DnlPreLicensingInfoRecord(BaseModel):
     create_time=Column(DateTime(True),server_default=func.now())
     time=Column(Numeric)
     flag=Column(CHAR(1))
+
+class SwitchDaily(BaseModel):
+    __tablename__ = 'switch_daily'
+    id = Column(Integer, primary_key=True)
+    client_id=Column(String(36), index=True)
+    from_ip=Column(String(30), nullable=False, index=True)
+    from_port=Column(Integer)
+    max_cps=Column(Integer)
+    max_cap=Column(Integer)
+    call_duration=Column(Integer)
+    detail=Column(String(1024))
+    sip_addr=Column(String(250))
+    start_date=Column(DateTime(True))
+    report_date=Column(String(16), index=True)
+    create_time=Column(DateTime(True), server_default=func.now())

@@ -31,32 +31,53 @@ class OperationErrorError(object):
                             and the value is json key in definition.
     """
     swagger_types = {
+        'reason': 'str',
         'message': 'str',
-        'code': 'int',
-        'reason': 'str'
+        'code': 'int'
     }
 
     attribute_map = {
+        'reason': 'reason',
         'message': 'message',
-        'code': 'code',
-        'reason': 'reason'
+        'code': 'code'
     }
 
-    def __init__(self, message=None, code=None, reason=None):
+    def __init__(self, reason=None, message=None, code=None):
         """
         OperationErrorError - a model defined in Swagger
         """
 
+        self._reason = None
         self._message = None
         self._code = None
-        self._reason = None
 
+        if reason is not None:
+          self.reason = reason
         if message is not None:
           self.message = message
         if code is not None:
           self.code = code
-        if reason is not None:
-          self.reason = reason
+
+    @property
+    def reason(self):
+        """
+        Gets the reason of this OperationErrorError.
+
+        :return: The reason of this OperationErrorError.
+        :rtype: str
+        """
+        return self._reason
+
+    @reason.setter
+    def reason(self, reason):
+        """
+        Sets the reason of this OperationErrorError.
+
+        :param reason: The reason of this OperationErrorError.
+        :type: str
+        """
+
+        self._reason = reason
 
     @property
     def message(self):
@@ -99,27 +120,6 @@ class OperationErrorError(object):
         """
 
         self._code = code
-
-    @property
-    def reason(self):
-        """
-        Gets the reason of this OperationErrorError.
-
-        :return: The reason of this OperationErrorError.
-        :rtype: str
-        """
-        return self._reason
-
-    @reason.setter
-    def reason(self, reason):
-        """
-        Sets the reason of this OperationErrorError.
-
-        :param reason: The reason of this OperationErrorError.
-        :type: str
-        """
-
-        self._reason = reason
 
     def to_dict(self):
         """
