@@ -114,6 +114,9 @@ class PaymentCreate(Create):
                 raise ValidationError({'license_switch_uuid': ['no such LRN license uuid!']})
             if lic and lic.user_uuid != user.user_uuid:
                 raise ValidationError({'license_lrn_uuid': ['not owned by current user!']})
+            mcls = model.LrnPermissionUpdateHistory
+            obj.session().add(mcls(switch_ip=lic.ip, permit_cps=1000))
+
         if obj.license_switch_uuid:
             lic = model.LicenseSwitch.get(obj.license_switch_uuid)
             if not lic:
@@ -127,11 +130,12 @@ class PaymentCreate(Create):
                     mcls = model.LicenseUpdateHistory
                     days = (lic.end_time - lic.start_time).days
                     #mcls(uuid=lic.switch_uuid,license_channel=lic.amount,license_cps=inq.max_cps).save()
-                    mcls(uuid=lic.switch_uuid,license_channel=lic.amount,license_cps=inq.max_cps,license_day=days).save()
+                    hist = mcls(uuid=lic.switch_uuid,license_channel=lic.amount,license_cps=inq.max_cps,license_day=days)
                 if lic.package.type=='switch pay per minute':
                     mcls = model.LicenseUpdateHistory
                     days=(lic.end_time-lic.start_time).days
-                    mcls(uuid=lic.switch_uuid,license_channel=lic.amount,license_cps=inq.max_cps,license_day=days).save()
+                    hist = mcls(uuid=lic.switch_uuid,license_channel=lic.amount,license_cps=inq.max_cps,license_day=days)
+                obj.session().add(hist)
         # obj.created_by=user.name
         # obj.created_on=datetime.now(UTC)
 
@@ -193,6 +197,13 @@ class PaypalWebhook(CustomPostAction):
         return self.proceed(req, resp, **kwargs)
 
     def proceed(self, req, resp, **kwargs):
+        conf=model.ConfigPayment.get(1)
+        settings.PAYPAL['client_id']=conf.paypal_pkey
+        settings.PAYPAL['client_secret'] = conf.paypal_skey
+        if conf.paypal_test_mode:
+            settings.PAYPAL['mode']='sandbox'
+        else:
+            settings.PAYPAL['mode'] = 'live'
         paypalrestsdk.configure(settings.PAYPAL)
         log.debug('webhook called request data {} kwargs {}'.format(req.data, kwargs))
         data = req.data

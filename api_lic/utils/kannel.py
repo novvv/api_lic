@@ -76,7 +76,7 @@ class SmsSender():
 # obviously, for this to work, the kannel user + password
 # must be correct (see /etc/kannel/kannel.conf)
 if __name__ == "__main__":
-    sender = SmsSender(username="denovo", password="yoo5Iche")
+    sender = SmsSender(username="denovo", password="xyoo5Ichex")
     sender.send('0301','0302', "Test message по русски")
     #sender.send('0301','8901891597', "Test message по русски")
 

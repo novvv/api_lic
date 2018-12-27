@@ -31,63 +31,86 @@ class PackageSwitchPort(object):
                             and the value is json key in definition.
     """
     swagger_types = {
-        'amount': 'int',
-        'package_name': 'str',
-        'rate_per_port': 'float',
         'package_switch_uuid': 'str',
+        'rate_per_port': 'float',
+        'package_name': 'str',
+        'amount': 'int',
         'enabled': 'bool'
     }
 
     attribute_map = {
-        'amount': 'amount',
-        'package_name': 'package_name',
-        'rate_per_port': 'rate_per_port',
         'package_switch_uuid': 'package_switch_uuid',
+        'rate_per_port': 'rate_per_port',
+        'package_name': 'package_name',
+        'amount': 'amount',
         'enabled': 'enabled'
     }
 
-    def __init__(self, amount=None, package_name=None, rate_per_port=None, package_switch_uuid=None, enabled=None):
+    def __init__(self, package_switch_uuid=None, rate_per_port=None, package_name=None, amount=None, enabled=None):
         """
         PackageSwitchPort - a model defined in Swagger
         """
 
-        self._amount = None
-        self._package_name = None
-        self._rate_per_port = None
         self._package_switch_uuid = None
+        self._rate_per_port = None
+        self._package_name = None
+        self._amount = None
         self._enabled = None
 
-        if amount is not None:
-          self.amount = amount
-        if package_name is not None:
-          self.package_name = package_name
-        if rate_per_port is not None:
-          self.rate_per_port = rate_per_port
         if package_switch_uuid is not None:
           self.package_switch_uuid = package_switch_uuid
+        if rate_per_port is not None:
+          self.rate_per_port = rate_per_port
+        if package_name is not None:
+          self.package_name = package_name
+        if amount is not None:
+          self.amount = amount
         if enabled is not None:
           self.enabled = enabled
 
     @property
-    def amount(self):
+    def package_switch_uuid(self):
         """
-        Gets the amount of this PackageSwitchPort.
+        Gets the package_switch_uuid of this PackageSwitchPort.
 
-        :return: The amount of this PackageSwitchPort.
-        :rtype: int
+        :return: The package_switch_uuid of this PackageSwitchPort.
+        :rtype: str
         """
-        return self._amount
+        return self._package_switch_uuid
 
-    @amount.setter
-    def amount(self, amount):
+    @package_switch_uuid.setter
+    def package_switch_uuid(self, package_switch_uuid):
         """
-        Sets the amount of this PackageSwitchPort.
+        Sets the package_switch_uuid of this PackageSwitchPort.
 
-        :param amount: The amount of this PackageSwitchPort.
-        :type: int
+        :param package_switch_uuid: The package_switch_uuid of this PackageSwitchPort.
+        :type: str
+        """
+        if package_switch_uuid is not None and len(package_switch_uuid) > 36:
+            raise ValueError("Invalid value for `package_switch_uuid`, length must be less than or equal to `36`")
+
+        self._package_switch_uuid = package_switch_uuid
+
+    @property
+    def rate_per_port(self):
+        """
+        Gets the rate_per_port of this PackageSwitchPort.
+
+        :return: The rate_per_port of this PackageSwitchPort.
+        :rtype: float
+        """
+        return self._rate_per_port
+
+    @rate_per_port.setter
+    def rate_per_port(self, rate_per_port):
+        """
+        Sets the rate_per_port of this PackageSwitchPort.
+
+        :param rate_per_port: The rate_per_port of this PackageSwitchPort.
+        :type: float
         """
 
-        self._amount = amount
+        self._rate_per_port = rate_per_port
 
     @property
     def package_name(self):
@@ -113,48 +136,25 @@ class PackageSwitchPort(object):
         self._package_name = package_name
 
     @property
-    def rate_per_port(self):
+    def amount(self):
         """
-        Gets the rate_per_port of this PackageSwitchPort.
+        Gets the amount of this PackageSwitchPort.
 
-        :return: The rate_per_port of this PackageSwitchPort.
-        :rtype: float
+        :return: The amount of this PackageSwitchPort.
+        :rtype: int
         """
-        return self._rate_per_port
+        return self._amount
 
-    @rate_per_port.setter
-    def rate_per_port(self, rate_per_port):
+    @amount.setter
+    def amount(self, amount):
         """
-        Sets the rate_per_port of this PackageSwitchPort.
+        Sets the amount of this PackageSwitchPort.
 
-        :param rate_per_port: The rate_per_port of this PackageSwitchPort.
-        :type: float
+        :param amount: The amount of this PackageSwitchPort.
+        :type: int
         """
 
-        self._rate_per_port = rate_per_port
-
-    @property
-    def package_switch_uuid(self):
-        """
-        Gets the package_switch_uuid of this PackageSwitchPort.
-
-        :return: The package_switch_uuid of this PackageSwitchPort.
-        :rtype: str
-        """
-        return self._package_switch_uuid
-
-    @package_switch_uuid.setter
-    def package_switch_uuid(self, package_switch_uuid):
-        """
-        Sets the package_switch_uuid of this PackageSwitchPort.
-
-        :param package_switch_uuid: The package_switch_uuid of this PackageSwitchPort.
-        :type: str
-        """
-        if package_switch_uuid is not None and len(package_switch_uuid) > 36:
-            raise ValueError("Invalid value for `package_switch_uuid`, length must be less than or equal to `36`")
-
-        self._package_switch_uuid = package_switch_uuid
+        self._amount = amount
 
     @property
     def enabled(self):

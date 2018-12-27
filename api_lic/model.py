@@ -372,6 +372,12 @@ class ConfigPayment(BaseModel):
     stripe_svc_charge = Column(Integer())
     stripe_test_mode = Column(Boolean())
 
+    paypal_email = Column(String(64))
+    paypal_skey = Column(String(128))
+    paypal_pkey = Column(String(128))
+    paypal_svc_charge = Column(Numeric())
+    paypal_test_mode = Column(Boolean())
+
     confirm_enabled = Column(Boolean())
     email_confirm_to = Column(String(64))
     notification_enabled = Column(Boolean())

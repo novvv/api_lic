@@ -31,67 +31,180 @@ class PackageSwitch(object):
                             and the value is json key in definition.
     """
     swagger_types = {
+        'switch_uuid': 'str',
+        'expire_date': 'datetime',
+        'sub_type': 'str',
+        'enabled': 'bool',
+        'start_date': 'datetime',
         'minute_count': 'int',
         'amount': 'int',
-        'enabled': 'bool',
-        'switch_uuid': 'str',
         'package_name': 'str',
-        'start_date': 'datetime',
-        'switch_port': 'int',
-        'sub_type': 'str',
         'type': 'str',
-        'expire_date': 'datetime'
+        'switch_port': 'int'
     }
 
     attribute_map = {
+        'switch_uuid': 'switch_uuid',
+        'expire_date': 'expire_date',
+        'sub_type': 'sub_type',
+        'enabled': 'enabled',
+        'start_date': 'start_date',
         'minute_count': 'minute_count',
         'amount': 'amount',
-        'enabled': 'enabled',
-        'switch_uuid': 'switch_uuid',
         'package_name': 'package_name',
-        'start_date': 'start_date',
-        'switch_port': 'switch_port',
-        'sub_type': 'sub_type',
         'type': 'type',
-        'expire_date': 'expire_date'
+        'switch_port': 'switch_port'
     }
 
-    def __init__(self, minute_count=None, amount=None, enabled=None, switch_uuid=None, package_name=None, start_date=None, switch_port=None, sub_type='hosted_switch', type='switch pay per port', expire_date=None):
+    def __init__(self, switch_uuid=None, expire_date=None, sub_type='hosted_switch', enabled=None, start_date=None, minute_count=None, amount=None, package_name=None, type='switch pay per port', switch_port=None):
         """
         PackageSwitch - a model defined in Swagger
         """
 
+        self._switch_uuid = None
+        self._expire_date = None
+        self._sub_type = None
+        self._enabled = None
+        self._start_date = None
         self._minute_count = None
         self._amount = None
-        self._enabled = None
-        self._switch_uuid = None
         self._package_name = None
-        self._start_date = None
-        self._switch_port = None
-        self._sub_type = None
         self._type = None
-        self._expire_date = None
+        self._switch_port = None
 
+        if switch_uuid is not None:
+          self.switch_uuid = switch_uuid
+        if expire_date is not None:
+          self.expire_date = expire_date
+        if sub_type is not None:
+          self.sub_type = sub_type
+        if enabled is not None:
+          self.enabled = enabled
+        if start_date is not None:
+          self.start_date = start_date
         if minute_count is not None:
           self.minute_count = minute_count
         if amount is not None:
           self.amount = amount
-        if enabled is not None:
-          self.enabled = enabled
-        if switch_uuid is not None:
-          self.switch_uuid = switch_uuid
         if package_name is not None:
           self.package_name = package_name
-        if start_date is not None:
-          self.start_date = start_date
-        if switch_port is not None:
-          self.switch_port = switch_port
-        if sub_type is not None:
-          self.sub_type = sub_type
         if type is not None:
           self.type = type
-        if expire_date is not None:
-          self.expire_date = expire_date
+        if switch_port is not None:
+          self.switch_port = switch_port
+
+    @property
+    def switch_uuid(self):
+        """
+        Gets the switch_uuid of this PackageSwitch.
+
+        :return: The switch_uuid of this PackageSwitch.
+        :rtype: str
+        """
+        return self._switch_uuid
+
+    @switch_uuid.setter
+    def switch_uuid(self, switch_uuid):
+        """
+        Sets the switch_uuid of this PackageSwitch.
+
+        :param switch_uuid: The switch_uuid of this PackageSwitch.
+        :type: str
+        """
+        if switch_uuid is not None and len(switch_uuid) > 64:
+            raise ValueError("Invalid value for `switch_uuid`, length must be less than or equal to `64`")
+
+        self._switch_uuid = switch_uuid
+
+    @property
+    def expire_date(self):
+        """
+        Gets the expire_date of this PackageSwitch.
+
+        :return: The expire_date of this PackageSwitch.
+        :rtype: datetime
+        """
+        return self._expire_date
+
+    @expire_date.setter
+    def expire_date(self, expire_date):
+        """
+        Sets the expire_date of this PackageSwitch.
+
+        :param expire_date: The expire_date of this PackageSwitch.
+        :type: datetime
+        """
+
+        self._expire_date = expire_date
+
+    @property
+    def sub_type(self):
+        """
+        Gets the sub_type of this PackageSwitch.
+
+        :return: The sub_type of this PackageSwitch.
+        :rtype: str
+        """
+        return self._sub_type
+
+    @sub_type.setter
+    def sub_type(self, sub_type):
+        """
+        Sets the sub_type of this PackageSwitch.
+
+        :param sub_type: The sub_type of this PackageSwitch.
+        :type: str
+        """
+        allowed_values = ["hosted_switch", "on_premise", "one_time"]
+        if sub_type not in allowed_values:
+            raise ValueError(
+                "Invalid value for `sub_type` ({0}), must be one of {1}"
+                .format(sub_type, allowed_values)
+            )
+
+        self._sub_type = sub_type
+
+    @property
+    def enabled(self):
+        """
+        Gets the enabled of this PackageSwitch.
+
+        :return: The enabled of this PackageSwitch.
+        :rtype: bool
+        """
+        return self._enabled
+
+    @enabled.setter
+    def enabled(self, enabled):
+        """
+        Sets the enabled of this PackageSwitch.
+
+        :param enabled: The enabled of this PackageSwitch.
+        :type: bool
+        """
+
+        self._enabled = enabled
+
+    @property
+    def start_date(self):
+        """
+        Gets the start_date of this PackageSwitch.
+
+        :return: The start_date of this PackageSwitch.
+        :rtype: datetime
+        """
+        return self._start_date
+
+    @start_date.setter
+    def start_date(self, start_date):
+        """
+        Sets the start_date of this PackageSwitch.
+
+        :param start_date: The start_date of this PackageSwitch.
+        :type: datetime
+        """
+
+        self._start_date = start_date
 
     @property
     def minute_count(self):
@@ -136,50 +249,6 @@ class PackageSwitch(object):
         self._amount = amount
 
     @property
-    def enabled(self):
-        """
-        Gets the enabled of this PackageSwitch.
-
-        :return: The enabled of this PackageSwitch.
-        :rtype: bool
-        """
-        return self._enabled
-
-    @enabled.setter
-    def enabled(self, enabled):
-        """
-        Sets the enabled of this PackageSwitch.
-
-        :param enabled: The enabled of this PackageSwitch.
-        :type: bool
-        """
-
-        self._enabled = enabled
-
-    @property
-    def switch_uuid(self):
-        """
-        Gets the switch_uuid of this PackageSwitch.
-
-        :return: The switch_uuid of this PackageSwitch.
-        :rtype: str
-        """
-        return self._switch_uuid
-
-    @switch_uuid.setter
-    def switch_uuid(self, switch_uuid):
-        """
-        Sets the switch_uuid of this PackageSwitch.
-
-        :param switch_uuid: The switch_uuid of this PackageSwitch.
-        :type: str
-        """
-        if switch_uuid is not None and len(switch_uuid) > 64:
-            raise ValueError("Invalid value for `switch_uuid`, length must be less than or equal to `64`")
-
-        self._switch_uuid = switch_uuid
-
-    @property
     def package_name(self):
         """
         Gets the package_name of this PackageSwitch.
@@ -201,75 +270,6 @@ class PackageSwitch(object):
             raise ValueError("Invalid value for `package_name`, length must be less than or equal to `64`")
 
         self._package_name = package_name
-
-    @property
-    def start_date(self):
-        """
-        Gets the start_date of this PackageSwitch.
-
-        :return: The start_date of this PackageSwitch.
-        :rtype: datetime
-        """
-        return self._start_date
-
-    @start_date.setter
-    def start_date(self, start_date):
-        """
-        Sets the start_date of this PackageSwitch.
-
-        :param start_date: The start_date of this PackageSwitch.
-        :type: datetime
-        """
-
-        self._start_date = start_date
-
-    @property
-    def switch_port(self):
-        """
-        Gets the switch_port of this PackageSwitch.
-
-        :return: The switch_port of this PackageSwitch.
-        :rtype: int
-        """
-        return self._switch_port
-
-    @switch_port.setter
-    def switch_port(self, switch_port):
-        """
-        Sets the switch_port of this PackageSwitch.
-
-        :param switch_port: The switch_port of this PackageSwitch.
-        :type: int
-        """
-
-        self._switch_port = switch_port
-
-    @property
-    def sub_type(self):
-        """
-        Gets the sub_type of this PackageSwitch.
-
-        :return: The sub_type of this PackageSwitch.
-        :rtype: str
-        """
-        return self._sub_type
-
-    @sub_type.setter
-    def sub_type(self, sub_type):
-        """
-        Sets the sub_type of this PackageSwitch.
-
-        :param sub_type: The sub_type of this PackageSwitch.
-        :type: str
-        """
-        allowed_values = ["hosted_switch", "on_premise", "one_time"]
-        if sub_type not in allowed_values:
-            raise ValueError(
-                "Invalid value for `sub_type` ({0}), must be one of {1}"
-                .format(sub_type, allowed_values)
-            )
-
-        self._sub_type = sub_type
 
     @property
     def type(self):
@@ -299,25 +299,25 @@ class PackageSwitch(object):
         self._type = type
 
     @property
-    def expire_date(self):
+    def switch_port(self):
         """
-        Gets the expire_date of this PackageSwitch.
+        Gets the switch_port of this PackageSwitch.
 
-        :return: The expire_date of this PackageSwitch.
-        :rtype: datetime
+        :return: The switch_port of this PackageSwitch.
+        :rtype: int
         """
-        return self._expire_date
+        return self._switch_port
 
-    @expire_date.setter
-    def expire_date(self, expire_date):
+    @switch_port.setter
+    def switch_port(self, switch_port):
         """
-        Sets the expire_date of this PackageSwitch.
+        Sets the switch_port of this PackageSwitch.
 
-        :param expire_date: The expire_date of this PackageSwitch.
-        :type: datetime
+        :param switch_port: The switch_port of this PackageSwitch.
+        :type: int
         """
 
-        self._expire_date = expire_date
+        self._switch_port = switch_port
 
     def to_dict(self):
         """

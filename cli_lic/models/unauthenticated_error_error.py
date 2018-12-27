@@ -31,53 +31,32 @@ class UnauthenticatedErrorError(object):
                             and the value is json key in definition.
     """
     swagger_types = {
-        'code': 'int',
         'reason': 'str',
+        'code': 'int',
         'message': 'str'
     }
 
     attribute_map = {
-        'code': 'code',
         'reason': 'reason',
+        'code': 'code',
         'message': 'message'
     }
 
-    def __init__(self, code=None, reason=None, message=None):
+    def __init__(self, reason=None, code=None, message=None):
         """
         UnauthenticatedErrorError - a model defined in Swagger
         """
 
-        self._code = None
         self._reason = None
+        self._code = None
         self._message = None
 
-        if code is not None:
-          self.code = code
         if reason is not None:
           self.reason = reason
+        if code is not None:
+          self.code = code
         if message is not None:
           self.message = message
-
-    @property
-    def code(self):
-        """
-        Gets the code of this UnauthenticatedErrorError.
-
-        :return: The code of this UnauthenticatedErrorError.
-        :rtype: int
-        """
-        return self._code
-
-    @code.setter
-    def code(self, code):
-        """
-        Sets the code of this UnauthenticatedErrorError.
-
-        :param code: The code of this UnauthenticatedErrorError.
-        :type: int
-        """
-
-        self._code = code
 
     @property
     def reason(self):
@@ -99,6 +78,27 @@ class UnauthenticatedErrorError(object):
         """
 
         self._reason = reason
+
+    @property
+    def code(self):
+        """
+        Gets the code of this UnauthenticatedErrorError.
+
+        :return: The code of this UnauthenticatedErrorError.
+        :rtype: int
+        """
+        return self._code
+
+    @code.setter
+    def code(self, code):
+        """
+        Sets the code of this UnauthenticatedErrorError.
+
+        :param code: The code of this UnauthenticatedErrorError.
+        :type: int
+        """
+
+        self._code = code
 
     @property
     def message(self):

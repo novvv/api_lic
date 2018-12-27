@@ -31,53 +31,32 @@ class AuthTokenInner(object):
                             and the value is json key in definition.
     """
     swagger_types = {
-        'token': 'str',
         'exp': 'datetime',
-        'user_type': 'str'
+        'user_type': 'str',
+        'token': 'str'
     }
 
     attribute_map = {
-        'token': 'token',
         'exp': 'exp',
-        'user_type': 'user_type'
+        'user_type': 'user_type',
+        'token': 'token'
     }
 
-    def __init__(self, token=None, exp=None, user_type=None):
+    def __init__(self, exp=None, user_type=None, token=None):
         """
         AuthTokenInner - a model defined in Swagger
         """
 
-        self._token = None
         self._exp = None
         self._user_type = None
+        self._token = None
 
-        if token is not None:
-          self.token = token
         if exp is not None:
           self.exp = exp
         if user_type is not None:
           self.user_type = user_type
-
-    @property
-    def token(self):
-        """
-        Gets the token of this AuthTokenInner.
-
-        :return: The token of this AuthTokenInner.
-        :rtype: str
-        """
-        return self._token
-
-    @token.setter
-    def token(self, token):
-        """
-        Sets the token of this AuthTokenInner.
-
-        :param token: The token of this AuthTokenInner.
-        :type: str
-        """
-
-        self._token = token
+        if token is not None:
+          self.token = token
 
     @property
     def exp(self):
@@ -120,6 +99,27 @@ class AuthTokenInner(object):
         """
 
         self._user_type = user_type
+
+    @property
+    def token(self):
+        """
+        Gets the token of this AuthTokenInner.
+
+        :return: The token of this AuthTokenInner.
+        :rtype: str
+        """
+        return self._token
+
+    @token.setter
+    def token(self, token):
+        """
+        Sets the token of this AuthTokenInner.
+
+        :param token: The token of this AuthTokenInner.
+        :type: str
+        """
+
+        self._token = token
 
     def to_dict(self):
         """

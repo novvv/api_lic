@@ -71,12 +71,7 @@ CREATE TABLE public.config_payment (
     confirm_enabled boolean,
     email_confirm_to character varying(64),
     notification_enabled boolean,
-    email_cc_to character varying(64),
-    paypal_email character varying(64),
-    paypal_pkey character varying(64),
-    paypal_skey character varying(64),
-    paypal_svc_charge numeric,
-    paypal_test_mode boolean
+    email_cc_to character varying(64)
 );
 
 

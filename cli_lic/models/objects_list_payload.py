@@ -31,37 +31,58 @@ class ObjectsListPayload(object):
                             and the value is json key in definition.
     """
     swagger_types = {
+        'per_page': 'int',
         'total': 'int',
         'items': 'object',
-        'per_page': 'int',
         'page': 'int'
     }
 
     attribute_map = {
+        'per_page': 'per_page',
         'total': 'total',
         'items': 'items',
-        'per_page': 'per_page',
         'page': 'page'
     }
 
-    def __init__(self, total=None, items=None, per_page=None, page=None):
+    def __init__(self, per_page=None, total=None, items=None, page=None):
         """
         ObjectsListPayload - a model defined in Swagger
         """
 
+        self._per_page = None
         self._total = None
         self._items = None
-        self._per_page = None
         self._page = None
 
+        if per_page is not None:
+          self.per_page = per_page
         if total is not None:
           self.total = total
         if items is not None:
           self.items = items
-        if per_page is not None:
-          self.per_page = per_page
         if page is not None:
           self.page = page
+
+    @property
+    def per_page(self):
+        """
+        Gets the per_page of this ObjectsListPayload.
+
+        :return: The per_page of this ObjectsListPayload.
+        :rtype: int
+        """
+        return self._per_page
+
+    @per_page.setter
+    def per_page(self, per_page):
+        """
+        Sets the per_page of this ObjectsListPayload.
+
+        :param per_page: The per_page of this ObjectsListPayload.
+        :type: int
+        """
+
+        self._per_page = per_page
 
     @property
     def total(self):
@@ -104,27 +125,6 @@ class ObjectsListPayload(object):
         """
 
         self._items = items
-
-    @property
-    def per_page(self):
-        """
-        Gets the per_page of this ObjectsListPayload.
-
-        :return: The per_page of this ObjectsListPayload.
-        :rtype: int
-        """
-        return self._per_page
-
-    @per_page.setter
-    def per_page(self, per_page):
-        """
-        Sets the per_page of this ObjectsListPayload.
-
-        :param per_page: The per_page of this ObjectsListPayload.
-        :type: int
-        """
-
-        self._per_page = per_page
 
     @property
     def page(self):

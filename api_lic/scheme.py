@@ -280,8 +280,13 @@ class ConfigPaymentScheme(BaseModelScheme):
     stripe_email = Str(validate=[validate.Length(max=64)])
     stripe_skey = Str(validate=[validate.Length(max=64)])
     stripe_pkey = Str(validate=[validate.Length(max=64)])
-    stripe_svc_charge = Int()
+    stripe_svc_charge = Float()
     stripe_test_mode = Bool()
+    paypal_email = Str(validate=[validate.Length(max=64)])
+    paypal_skey = Str(validate=[validate.Length(max=64)])
+    paypal_pkey = Str(validate=[validate.Length(max=64)])
+    paypal_svc_charge = Float()
+    paypal_test_mode = Bool()
     confirm_enabled = Bool()
     email_confirm_to = Str(validate=[validate.Length(max=64)])
     notification_enabled = Bool()
@@ -290,6 +295,7 @@ class ConfigPaymentScheme(BaseModelScheme):
     class Meta:
         model = model.ConfigPayment
         fields = ('charge_type', 'stripe_email', 'stripe_skey', 'stripe_pkey', 'stripe_svc_charge', 'stripe_test_mode',
+                  'paypal_email', 'paypal_skey', 'paypal_pkey', 'paypal_svc_charge', 'paypal_test_mode',
                   'confirm_enabled', 'email_confirm_to', 'notification_enabled', 'email_cc_to',)
 
 
@@ -297,6 +303,7 @@ class ConfigPaymentSchemeGet(ConfigPaymentScheme):
     class Meta:
         model = model.ConfigPayment
         fields = ('charge_type', 'stripe_email', 'stripe_skey', 'stripe_pkey', 'stripe_svc_charge', 'stripe_test_mode',
+                  'paypal_email', 'paypal_skey', 'paypal_pkey', 'paypal_svc_charge', 'paypal_test_mode',
                   'confirm_enabled', 'email_confirm_to', 'notification_enabled', 'email_cc_to',)
 
 

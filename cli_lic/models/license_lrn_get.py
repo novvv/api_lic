@@ -31,135 +31,91 @@ class LicenseLrnGet(object):
                             and the value is json key in definition.
     """
     swagger_types = {
-        'license_lrn_uuid': 'str',
-        'start_time': 'datetime',
         'end_time': 'datetime',
-        'ordered_amount': 'int',
         'dip_count': 'int',
+        'enabled': 'bool',
         'cps': 'int',
         'ip': 'str',
-        'amount': 'int',
-        'user_email': 'str',
         'lrn_port': 'int',
+        'license_lrn_uuid': 'str',
         'package': 'PackageLrn',
-        'enabled': 'bool',
+        'user_email': 'str',
+        'amount': 'int',
+        'ordered_amount': 'int',
         'user_uuid': 'str',
         'package_lrn_uuid': 'str',
-        'type': 'int'
+        'type': 'int',
+        'start_time': 'datetime'
     }
 
     attribute_map = {
-        'license_lrn_uuid': 'license_lrn_uuid',
-        'start_time': 'start_time',
         'end_time': 'end_time',
-        'ordered_amount': 'ordered_amount',
         'dip_count': 'dip_count',
+        'enabled': 'enabled',
         'cps': 'cps',
         'ip': 'ip',
-        'amount': 'amount',
-        'user_email': 'user_email',
         'lrn_port': 'lrn_port',
+        'license_lrn_uuid': 'license_lrn_uuid',
         'package': 'package',
-        'enabled': 'enabled',
+        'user_email': 'user_email',
+        'amount': 'amount',
+        'ordered_amount': 'ordered_amount',
         'user_uuid': 'user_uuid',
         'package_lrn_uuid': 'package_lrn_uuid',
-        'type': 'type'
+        'type': 'type',
+        'start_time': 'start_time'
     }
 
-    def __init__(self, license_lrn_uuid=None, start_time=None, end_time=None, ordered_amount=None, dip_count=None, cps=None, ip=None, amount=None, user_email=None, lrn_port=None, package=None, enabled=None, user_uuid=None, package_lrn_uuid=None, type=None):
+    def __init__(self, end_time=None, dip_count=None, enabled=None, cps=None, ip=None, lrn_port=None, license_lrn_uuid=None, package=None, user_email=None, amount=None, ordered_amount=None, user_uuid=None, package_lrn_uuid=None, type=None, start_time=None):
         """
         LicenseLrnGet - a model defined in Swagger
         """
 
-        self._license_lrn_uuid = None
-        self._start_time = None
         self._end_time = None
-        self._ordered_amount = None
         self._dip_count = None
+        self._enabled = None
         self._cps = None
         self._ip = None
-        self._amount = None
-        self._user_email = None
         self._lrn_port = None
+        self._license_lrn_uuid = None
         self._package = None
-        self._enabled = None
+        self._user_email = None
+        self._amount = None
+        self._ordered_amount = None
         self._user_uuid = None
         self._package_lrn_uuid = None
         self._type = None
+        self._start_time = None
 
-        if license_lrn_uuid is not None:
-          self.license_lrn_uuid = license_lrn_uuid
-        if start_time is not None:
-          self.start_time = start_time
         if end_time is not None:
           self.end_time = end_time
-        if ordered_amount is not None:
-          self.ordered_amount = ordered_amount
         if dip_count is not None:
           self.dip_count = dip_count
+        if enabled is not None:
+          self.enabled = enabled
         if cps is not None:
           self.cps = cps
         self.ip = ip
-        if amount is not None:
-          self.amount = amount
-        if user_email is not None:
-          self.user_email = user_email
         if lrn_port is not None:
           self.lrn_port = lrn_port
+        if license_lrn_uuid is not None:
+          self.license_lrn_uuid = license_lrn_uuid
         if package is not None:
           self.package = package
-        if enabled is not None:
-          self.enabled = enabled
+        if user_email is not None:
+          self.user_email = user_email
+        if amount is not None:
+          self.amount = amount
+        if ordered_amount is not None:
+          self.ordered_amount = ordered_amount
         if user_uuid is not None:
           self.user_uuid = user_uuid
         if package_lrn_uuid is not None:
           self.package_lrn_uuid = package_lrn_uuid
         if type is not None:
           self.type = type
-
-    @property
-    def license_lrn_uuid(self):
-        """
-        Gets the license_lrn_uuid of this LicenseLrnGet.
-
-        :return: The license_lrn_uuid of this LicenseLrnGet.
-        :rtype: str
-        """
-        return self._license_lrn_uuid
-
-    @license_lrn_uuid.setter
-    def license_lrn_uuid(self, license_lrn_uuid):
-        """
-        Sets the license_lrn_uuid of this LicenseLrnGet.
-
-        :param license_lrn_uuid: The license_lrn_uuid of this LicenseLrnGet.
-        :type: str
-        """
-        if license_lrn_uuid is not None and len(license_lrn_uuid) > 36:
-            raise ValueError("Invalid value for `license_lrn_uuid`, length must be less than or equal to `36`")
-
-        self._license_lrn_uuid = license_lrn_uuid
-
-    @property
-    def start_time(self):
-        """
-        Gets the start_time of this LicenseLrnGet.
-
-        :return: The start_time of this LicenseLrnGet.
-        :rtype: datetime
-        """
-        return self._start_time
-
-    @start_time.setter
-    def start_time(self, start_time):
-        """
-        Sets the start_time of this LicenseLrnGet.
-
-        :param start_time: The start_time of this LicenseLrnGet.
-        :type: datetime
-        """
-
-        self._start_time = start_time
+        if start_time is not None:
+          self.start_time = start_time
 
     @property
     def end_time(self):
@@ -183,27 +139,6 @@ class LicenseLrnGet(object):
         self._end_time = end_time
 
     @property
-    def ordered_amount(self):
-        """
-        Gets the ordered_amount of this LicenseLrnGet.
-
-        :return: The ordered_amount of this LicenseLrnGet.
-        :rtype: int
-        """
-        return self._ordered_amount
-
-    @ordered_amount.setter
-    def ordered_amount(self, ordered_amount):
-        """
-        Sets the ordered_amount of this LicenseLrnGet.
-
-        :param ordered_amount: The ordered_amount of this LicenseLrnGet.
-        :type: int
-        """
-
-        self._ordered_amount = ordered_amount
-
-    @property
     def dip_count(self):
         """
         Gets the dip_count of this LicenseLrnGet.
@@ -223,6 +158,27 @@ class LicenseLrnGet(object):
         """
 
         self._dip_count = dip_count
+
+    @property
+    def enabled(self):
+        """
+        Gets the enabled of this LicenseLrnGet.
+
+        :return: The enabled of this LicenseLrnGet.
+        :rtype: bool
+        """
+        return self._enabled
+
+    @enabled.setter
+    def enabled(self, enabled):
+        """
+        Sets the enabled of this LicenseLrnGet.
+
+        :param enabled: The enabled of this LicenseLrnGet.
+        :type: bool
+        """
+
+        self._enabled = enabled
 
     @property
     def cps(self):
@@ -271,25 +227,69 @@ class LicenseLrnGet(object):
         self._ip = ip
 
     @property
-    def amount(self):
+    def lrn_port(self):
         """
-        Gets the amount of this LicenseLrnGet.
+        Gets the lrn_port of this LicenseLrnGet.
 
-        :return: The amount of this LicenseLrnGet.
+        :return: The lrn_port of this LicenseLrnGet.
         :rtype: int
         """
-        return self._amount
+        return self._lrn_port
 
-    @amount.setter
-    def amount(self, amount):
+    @lrn_port.setter
+    def lrn_port(self, lrn_port):
         """
-        Sets the amount of this LicenseLrnGet.
+        Sets the lrn_port of this LicenseLrnGet.
 
-        :param amount: The amount of this LicenseLrnGet.
+        :param lrn_port: The lrn_port of this LicenseLrnGet.
         :type: int
         """
 
-        self._amount = amount
+        self._lrn_port = lrn_port
+
+    @property
+    def license_lrn_uuid(self):
+        """
+        Gets the license_lrn_uuid of this LicenseLrnGet.
+
+        :return: The license_lrn_uuid of this LicenseLrnGet.
+        :rtype: str
+        """
+        return self._license_lrn_uuid
+
+    @license_lrn_uuid.setter
+    def license_lrn_uuid(self, license_lrn_uuid):
+        """
+        Sets the license_lrn_uuid of this LicenseLrnGet.
+
+        :param license_lrn_uuid: The license_lrn_uuid of this LicenseLrnGet.
+        :type: str
+        """
+        if license_lrn_uuid is not None and len(license_lrn_uuid) > 36:
+            raise ValueError("Invalid value for `license_lrn_uuid`, length must be less than or equal to `36`")
+
+        self._license_lrn_uuid = license_lrn_uuid
+
+    @property
+    def package(self):
+        """
+        Gets the package of this LicenseLrnGet.
+
+        :return: The package of this LicenseLrnGet.
+        :rtype: PackageLrn
+        """
+        return self._package
+
+    @package.setter
+    def package(self, package):
+        """
+        Sets the package of this LicenseLrnGet.
+
+        :param package: The package of this LicenseLrnGet.
+        :type: PackageLrn
+        """
+
+        self._package = package
 
     @property
     def user_email(self):
@@ -315,67 +315,46 @@ class LicenseLrnGet(object):
         self._user_email = user_email
 
     @property
-    def lrn_port(self):
+    def amount(self):
         """
-        Gets the lrn_port of this LicenseLrnGet.
+        Gets the amount of this LicenseLrnGet.
 
-        :return: The lrn_port of this LicenseLrnGet.
+        :return: The amount of this LicenseLrnGet.
         :rtype: int
         """
-        return self._lrn_port
+        return self._amount
 
-    @lrn_port.setter
-    def lrn_port(self, lrn_port):
+    @amount.setter
+    def amount(self, amount):
         """
-        Sets the lrn_port of this LicenseLrnGet.
+        Sets the amount of this LicenseLrnGet.
 
-        :param lrn_port: The lrn_port of this LicenseLrnGet.
+        :param amount: The amount of this LicenseLrnGet.
         :type: int
         """
 
-        self._lrn_port = lrn_port
+        self._amount = amount
 
     @property
-    def package(self):
+    def ordered_amount(self):
         """
-        Gets the package of this LicenseLrnGet.
+        Gets the ordered_amount of this LicenseLrnGet.
 
-        :return: The package of this LicenseLrnGet.
-        :rtype: PackageLrn
+        :return: The ordered_amount of this LicenseLrnGet.
+        :rtype: int
         """
-        return self._package
+        return self._ordered_amount
 
-    @package.setter
-    def package(self, package):
+    @ordered_amount.setter
+    def ordered_amount(self, ordered_amount):
         """
-        Sets the package of this LicenseLrnGet.
+        Sets the ordered_amount of this LicenseLrnGet.
 
-        :param package: The package of this LicenseLrnGet.
-        :type: PackageLrn
-        """
-
-        self._package = package
-
-    @property
-    def enabled(self):
-        """
-        Gets the enabled of this LicenseLrnGet.
-
-        :return: The enabled of this LicenseLrnGet.
-        :rtype: bool
-        """
-        return self._enabled
-
-    @enabled.setter
-    def enabled(self, enabled):
-        """
-        Sets the enabled of this LicenseLrnGet.
-
-        :param enabled: The enabled of this LicenseLrnGet.
-        :type: bool
+        :param ordered_amount: The ordered_amount of this LicenseLrnGet.
+        :type: int
         """
 
-        self._enabled = enabled
+        self._ordered_amount = ordered_amount
 
     @property
     def user_uuid(self):
@@ -443,6 +422,27 @@ class LicenseLrnGet(object):
         """
 
         self._type = type
+
+    @property
+    def start_time(self):
+        """
+        Gets the start_time of this LicenseLrnGet.
+
+        :return: The start_time of this LicenseLrnGet.
+        :rtype: datetime
+        """
+        return self._start_time
+
+    @start_time.setter
+    def start_time(self, start_time):
+        """
+        Sets the start_time of this LicenseLrnGet.
+
+        :param start_time: The start_time of this LicenseLrnGet.
+        :type: datetime
+        """
+
+        self._start_time = start_time
 
     def to_dict(self):
         """

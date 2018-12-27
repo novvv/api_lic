@@ -71,6 +71,13 @@ class Middleware(object):
         )
 
         log_body = '<cut>' if 'swagger.' in req.path else resp.body
+        MAX_LOG_RESPONSE = 1024
+        if resp.body:
+            if len(resp.body) > MAX_LOG_RESPONSE:
+                cut = resp.body[0:MAX_LOG_RESPONSE]
+                if type(cut) == type(b''):
+                    cut = cut.decode('utf-8')
+                log_body = cut + '....<too long response for logging>'
         log.debug('Responding with {}: {}'.format(resp.status, log_body))
         middleware_signals.process_response_end.send(
             self, req=req, resp=resp, resource=resource, req_succeeded=req_succeeded

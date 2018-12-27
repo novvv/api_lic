@@ -31,140 +31,52 @@ class PaymentModify(object):
                             and the value is json key in definition.
     """
     swagger_types = {
-        'license_lrn_uuid': 'str',
-        'paid_time': 'datetime',
-        'amount_lrn': 'float',
-        'license_switch_uuid': 'str',
         'switch_uuid': 'str',
-        'amount_switch': 'float',
-        'type': 'str'
+        'amount_lrn': 'float',
+        'paid_time': 'datetime',
+        'license_switch_uuid': 'str',
+        'type': 'str',
+        'license_lrn_uuid': 'str',
+        'amount_switch': 'float'
     }
 
     attribute_map = {
-        'license_lrn_uuid': 'license_lrn_uuid',
-        'paid_time': 'paid_time',
-        'amount_lrn': 'amount_lrn',
-        'license_switch_uuid': 'license_switch_uuid',
         'switch_uuid': 'switch_uuid',
-        'amount_switch': 'amount_switch',
-        'type': 'type'
+        'amount_lrn': 'amount_lrn',
+        'paid_time': 'paid_time',
+        'license_switch_uuid': 'license_switch_uuid',
+        'type': 'type',
+        'license_lrn_uuid': 'license_lrn_uuid',
+        'amount_switch': 'amount_switch'
     }
 
-    def __init__(self, license_lrn_uuid=None, paid_time=None, amount_lrn=None, license_switch_uuid=None, switch_uuid=None, amount_switch=None, type='paypal'):
+    def __init__(self, switch_uuid=None, amount_lrn=None, paid_time=None, license_switch_uuid=None, type='paypal', license_lrn_uuid=None, amount_switch=None):
         """
         PaymentModify - a model defined in Swagger
         """
 
-        self._license_lrn_uuid = None
-        self._paid_time = None
-        self._amount_lrn = None
-        self._license_switch_uuid = None
         self._switch_uuid = None
-        self._amount_switch = None
+        self._amount_lrn = None
+        self._paid_time = None
+        self._license_switch_uuid = None
         self._type = None
+        self._license_lrn_uuid = None
+        self._amount_switch = None
 
-        if license_lrn_uuid is not None:
-          self.license_lrn_uuid = license_lrn_uuid
-        if paid_time is not None:
-          self.paid_time = paid_time
-        if amount_lrn is not None:
-          self.amount_lrn = amount_lrn
-        if license_switch_uuid is not None:
-          self.license_switch_uuid = license_switch_uuid
         if switch_uuid is not None:
           self.switch_uuid = switch_uuid
-        if amount_switch is not None:
-          self.amount_switch = amount_switch
+        if amount_lrn is not None:
+          self.amount_lrn = amount_lrn
+        if paid_time is not None:
+          self.paid_time = paid_time
+        if license_switch_uuid is not None:
+          self.license_switch_uuid = license_switch_uuid
         if type is not None:
           self.type = type
-
-    @property
-    def license_lrn_uuid(self):
-        """
-        Gets the license_lrn_uuid of this PaymentModify.
-
-        :return: The license_lrn_uuid of this PaymentModify.
-        :rtype: str
-        """
-        return self._license_lrn_uuid
-
-    @license_lrn_uuid.setter
-    def license_lrn_uuid(self, license_lrn_uuid):
-        """
-        Sets the license_lrn_uuid of this PaymentModify.
-
-        :param license_lrn_uuid: The license_lrn_uuid of this PaymentModify.
-        :type: str
-        """
-        if license_lrn_uuid is not None and len(license_lrn_uuid) > 36:
-            raise ValueError("Invalid value for `license_lrn_uuid`, length must be less than or equal to `36`")
-
-        self._license_lrn_uuid = license_lrn_uuid
-
-    @property
-    def paid_time(self):
-        """
-        Gets the paid_time of this PaymentModify.
-
-        :return: The paid_time of this PaymentModify.
-        :rtype: datetime
-        """
-        return self._paid_time
-
-    @paid_time.setter
-    def paid_time(self, paid_time):
-        """
-        Sets the paid_time of this PaymentModify.
-
-        :param paid_time: The paid_time of this PaymentModify.
-        :type: datetime
-        """
-
-        self._paid_time = paid_time
-
-    @property
-    def amount_lrn(self):
-        """
-        Gets the amount_lrn of this PaymentModify.
-
-        :return: The amount_lrn of this PaymentModify.
-        :rtype: float
-        """
-        return self._amount_lrn
-
-    @amount_lrn.setter
-    def amount_lrn(self, amount_lrn):
-        """
-        Sets the amount_lrn of this PaymentModify.
-
-        :param amount_lrn: The amount_lrn of this PaymentModify.
-        :type: float
-        """
-
-        self._amount_lrn = amount_lrn
-
-    @property
-    def license_switch_uuid(self):
-        """
-        Gets the license_switch_uuid of this PaymentModify.
-
-        :return: The license_switch_uuid of this PaymentModify.
-        :rtype: str
-        """
-        return self._license_switch_uuid
-
-    @license_switch_uuid.setter
-    def license_switch_uuid(self, license_switch_uuid):
-        """
-        Sets the license_switch_uuid of this PaymentModify.
-
-        :param license_switch_uuid: The license_switch_uuid of this PaymentModify.
-        :type: str
-        """
-        if license_switch_uuid is not None and len(license_switch_uuid) > 36:
-            raise ValueError("Invalid value for `license_switch_uuid`, length must be less than or equal to `36`")
-
-        self._license_switch_uuid = license_switch_uuid
+        if license_lrn_uuid is not None:
+          self.license_lrn_uuid = license_lrn_uuid
+        if amount_switch is not None:
+          self.amount_switch = amount_switch
 
     @property
     def switch_uuid(self):
@@ -190,25 +102,69 @@ class PaymentModify(object):
         self._switch_uuid = switch_uuid
 
     @property
-    def amount_switch(self):
+    def amount_lrn(self):
         """
-        Gets the amount_switch of this PaymentModify.
+        Gets the amount_lrn of this PaymentModify.
 
-        :return: The amount_switch of this PaymentModify.
+        :return: The amount_lrn of this PaymentModify.
         :rtype: float
         """
-        return self._amount_switch
+        return self._amount_lrn
 
-    @amount_switch.setter
-    def amount_switch(self, amount_switch):
+    @amount_lrn.setter
+    def amount_lrn(self, amount_lrn):
         """
-        Sets the amount_switch of this PaymentModify.
+        Sets the amount_lrn of this PaymentModify.
 
-        :param amount_switch: The amount_switch of this PaymentModify.
+        :param amount_lrn: The amount_lrn of this PaymentModify.
         :type: float
         """
 
-        self._amount_switch = amount_switch
+        self._amount_lrn = amount_lrn
+
+    @property
+    def paid_time(self):
+        """
+        Gets the paid_time of this PaymentModify.
+
+        :return: The paid_time of this PaymentModify.
+        :rtype: datetime
+        """
+        return self._paid_time
+
+    @paid_time.setter
+    def paid_time(self, paid_time):
+        """
+        Sets the paid_time of this PaymentModify.
+
+        :param paid_time: The paid_time of this PaymentModify.
+        :type: datetime
+        """
+
+        self._paid_time = paid_time
+
+    @property
+    def license_switch_uuid(self):
+        """
+        Gets the license_switch_uuid of this PaymentModify.
+
+        :return: The license_switch_uuid of this PaymentModify.
+        :rtype: str
+        """
+        return self._license_switch_uuid
+
+    @license_switch_uuid.setter
+    def license_switch_uuid(self, license_switch_uuid):
+        """
+        Sets the license_switch_uuid of this PaymentModify.
+
+        :param license_switch_uuid: The license_switch_uuid of this PaymentModify.
+        :type: str
+        """
+        if license_switch_uuid is not None and len(license_switch_uuid) > 36:
+            raise ValueError("Invalid value for `license_switch_uuid`, length must be less than or equal to `36`")
+
+        self._license_switch_uuid = license_switch_uuid
 
     @property
     def type(self):
@@ -236,6 +192,50 @@ class PaymentModify(object):
             )
 
         self._type = type
+
+    @property
+    def license_lrn_uuid(self):
+        """
+        Gets the license_lrn_uuid of this PaymentModify.
+
+        :return: The license_lrn_uuid of this PaymentModify.
+        :rtype: str
+        """
+        return self._license_lrn_uuid
+
+    @license_lrn_uuid.setter
+    def license_lrn_uuid(self, license_lrn_uuid):
+        """
+        Sets the license_lrn_uuid of this PaymentModify.
+
+        :param license_lrn_uuid: The license_lrn_uuid of this PaymentModify.
+        :type: str
+        """
+        if license_lrn_uuid is not None and len(license_lrn_uuid) > 36:
+            raise ValueError("Invalid value for `license_lrn_uuid`, length must be less than or equal to `36`")
+
+        self._license_lrn_uuid = license_lrn_uuid
+
+    @property
+    def amount_switch(self):
+        """
+        Gets the amount_switch of this PaymentModify.
+
+        :return: The amount_switch of this PaymentModify.
+        :rtype: float
+        """
+        return self._amount_switch
+
+    @amount_switch.setter
+    def amount_switch(self, amount_switch):
+        """
+        Sets the amount_switch of this PaymentModify.
+
+        :param amount_switch: The amount_switch of this PaymentModify.
+        :type: float
+        """
+
+        self._amount_switch = amount_switch
 
     def to_dict(self):
         """
