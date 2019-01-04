@@ -31,86 +31,84 @@ class PackageSwitchPort(object):
                             and the value is json key in definition.
     """
     swagger_types = {
-        'package_switch_uuid': 'str',
-        'rate_per_port': 'float',
-        'package_name': 'str',
+        'enabled': 'bool',
         'amount': 'int',
-        'enabled': 'bool'
+        'package_name': 'str',
+        'rate_per_port': 'float',
+        'package_switch_uuid': 'str'
     }
 
     attribute_map = {
-        'package_switch_uuid': 'package_switch_uuid',
-        'rate_per_port': 'rate_per_port',
-        'package_name': 'package_name',
+        'enabled': 'enabled',
         'amount': 'amount',
-        'enabled': 'enabled'
+        'package_name': 'package_name',
+        'rate_per_port': 'rate_per_port',
+        'package_switch_uuid': 'package_switch_uuid'
     }
 
-    def __init__(self, package_switch_uuid=None, rate_per_port=None, package_name=None, amount=None, enabled=None):
+    def __init__(self, enabled=None, amount=None, package_name=None, rate_per_port=None, package_switch_uuid=None):
         """
         PackageSwitchPort - a model defined in Swagger
         """
 
-        self._package_switch_uuid = None
-        self._rate_per_port = None
-        self._package_name = None
-        self._amount = None
         self._enabled = None
+        self._amount = None
+        self._package_name = None
+        self._rate_per_port = None
+        self._package_switch_uuid = None
 
-        if package_switch_uuid is not None:
-          self.package_switch_uuid = package_switch_uuid
-        if rate_per_port is not None:
-          self.rate_per_port = rate_per_port
-        if package_name is not None:
-          self.package_name = package_name
-        if amount is not None:
-          self.amount = amount
         if enabled is not None:
           self.enabled = enabled
+        if amount is not None:
+          self.amount = amount
+        if package_name is not None:
+          self.package_name = package_name
+        if rate_per_port is not None:
+          self.rate_per_port = rate_per_port
+        if package_switch_uuid is not None:
+          self.package_switch_uuid = package_switch_uuid
 
     @property
-    def package_switch_uuid(self):
+    def enabled(self):
         """
-        Gets the package_switch_uuid of this PackageSwitchPort.
+        Gets the enabled of this PackageSwitchPort.
 
-        :return: The package_switch_uuid of this PackageSwitchPort.
-        :rtype: str
+        :return: The enabled of this PackageSwitchPort.
+        :rtype: bool
         """
-        return self._package_switch_uuid
+        return self._enabled
 
-    @package_switch_uuid.setter
-    def package_switch_uuid(self, package_switch_uuid):
+    @enabled.setter
+    def enabled(self, enabled):
         """
-        Sets the package_switch_uuid of this PackageSwitchPort.
+        Sets the enabled of this PackageSwitchPort.
 
-        :param package_switch_uuid: The package_switch_uuid of this PackageSwitchPort.
-        :type: str
+        :param enabled: The enabled of this PackageSwitchPort.
+        :type: bool
         """
-        if package_switch_uuid is not None and len(package_switch_uuid) > 36:
-            raise ValueError("Invalid value for `package_switch_uuid`, length must be less than or equal to `36`")
 
-        self._package_switch_uuid = package_switch_uuid
+        self._enabled = enabled
 
     @property
-    def rate_per_port(self):
+    def amount(self):
         """
-        Gets the rate_per_port of this PackageSwitchPort.
+        Gets the amount of this PackageSwitchPort.
 
-        :return: The rate_per_port of this PackageSwitchPort.
-        :rtype: float
+        :return: The amount of this PackageSwitchPort.
+        :rtype: int
         """
-        return self._rate_per_port
+        return self._amount
 
-    @rate_per_port.setter
-    def rate_per_port(self, rate_per_port):
+    @amount.setter
+    def amount(self, amount):
         """
-        Sets the rate_per_port of this PackageSwitchPort.
+        Sets the amount of this PackageSwitchPort.
 
-        :param rate_per_port: The rate_per_port of this PackageSwitchPort.
-        :type: float
+        :param amount: The amount of this PackageSwitchPort.
+        :type: int
         """
 
-        self._rate_per_port = rate_per_port
+        self._amount = amount
 
     @property
     def package_name(self):
@@ -136,46 +134,48 @@ class PackageSwitchPort(object):
         self._package_name = package_name
 
     @property
-    def amount(self):
+    def rate_per_port(self):
         """
-        Gets the amount of this PackageSwitchPort.
+        Gets the rate_per_port of this PackageSwitchPort.
 
-        :return: The amount of this PackageSwitchPort.
-        :rtype: int
+        :return: The rate_per_port of this PackageSwitchPort.
+        :rtype: float
         """
-        return self._amount
+        return self._rate_per_port
 
-    @amount.setter
-    def amount(self, amount):
+    @rate_per_port.setter
+    def rate_per_port(self, rate_per_port):
         """
-        Sets the amount of this PackageSwitchPort.
+        Sets the rate_per_port of this PackageSwitchPort.
 
-        :param amount: The amount of this PackageSwitchPort.
-        :type: int
+        :param rate_per_port: The rate_per_port of this PackageSwitchPort.
+        :type: float
         """
 
-        self._amount = amount
+        self._rate_per_port = rate_per_port
 
     @property
-    def enabled(self):
+    def package_switch_uuid(self):
         """
-        Gets the enabled of this PackageSwitchPort.
+        Gets the package_switch_uuid of this PackageSwitchPort.
 
-        :return: The enabled of this PackageSwitchPort.
-        :rtype: bool
+        :return: The package_switch_uuid of this PackageSwitchPort.
+        :rtype: str
         """
-        return self._enabled
+        return self._package_switch_uuid
 
-    @enabled.setter
-    def enabled(self, enabled):
+    @package_switch_uuid.setter
+    def package_switch_uuid(self, package_switch_uuid):
         """
-        Sets the enabled of this PackageSwitchPort.
+        Sets the package_switch_uuid of this PackageSwitchPort.
 
-        :param enabled: The enabled of this PackageSwitchPort.
-        :type: bool
+        :param package_switch_uuid: The package_switch_uuid of this PackageSwitchPort.
+        :type: str
         """
+        if package_switch_uuid is not None and len(package_switch_uuid) > 36:
+            raise ValueError("Invalid value for `package_switch_uuid`, length must be less than or equal to `36`")
 
-        self._enabled = enabled
+        self._package_switch_uuid = package_switch_uuid
 
     def to_dict(self):
         """

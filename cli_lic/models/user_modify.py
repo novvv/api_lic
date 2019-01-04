@@ -31,63 +31,42 @@ class UserModify(object):
                             and the value is json key in definition.
     """
     swagger_types = {
-        'passwd': 'str',
         'email': 'str',
-        'logo_file_uuid': 'str',
+        'passwd': 'str',
         'is_active': 'bool',
+        'logo_file_uuid': 'str',
         'is_admin': 'bool'
     }
 
     attribute_map = {
-        'passwd': 'passwd',
         'email': 'email',
-        'logo_file_uuid': 'logo_file_uuid',
+        'passwd': 'passwd',
         'is_active': 'is_active',
+        'logo_file_uuid': 'logo_file_uuid',
         'is_admin': 'is_admin'
     }
 
-    def __init__(self, passwd=None, email=None, logo_file_uuid=None, is_active=None, is_admin=None):
+    def __init__(self, email=None, passwd=None, is_active=None, logo_file_uuid=None, is_admin=None):
         """
         UserModify - a model defined in Swagger
         """
 
-        self._passwd = None
         self._email = None
-        self._logo_file_uuid = None
+        self._passwd = None
         self._is_active = None
+        self._logo_file_uuid = None
         self._is_admin = None
 
-        if passwd is not None:
-          self.passwd = passwd
         if email is not None:
           self.email = email
-        if logo_file_uuid is not None:
-          self.logo_file_uuid = logo_file_uuid
+        if passwd is not None:
+          self.passwd = passwd
         if is_active is not None:
           self.is_active = is_active
+        if logo_file_uuid is not None:
+          self.logo_file_uuid = logo_file_uuid
         if is_admin is not None:
           self.is_admin = is_admin
-
-    @property
-    def passwd(self):
-        """
-        Gets the passwd of this UserModify.
-
-        :return: The passwd of this UserModify.
-        :rtype: str
-        """
-        return self._passwd
-
-    @passwd.setter
-    def passwd(self, passwd):
-        """
-        Sets the passwd of this UserModify.
-
-        :param passwd: The passwd of this UserModify.
-        :type: str
-        """
-
-        self._passwd = passwd
 
     @property
     def email(self):
@@ -111,25 +90,25 @@ class UserModify(object):
         self._email = email
 
     @property
-    def logo_file_uuid(self):
+    def passwd(self):
         """
-        Gets the logo_file_uuid of this UserModify.
+        Gets the passwd of this UserModify.
 
-        :return: The logo_file_uuid of this UserModify.
+        :return: The passwd of this UserModify.
         :rtype: str
         """
-        return self._logo_file_uuid
+        return self._passwd
 
-    @logo_file_uuid.setter
-    def logo_file_uuid(self, logo_file_uuid):
+    @passwd.setter
+    def passwd(self, passwd):
         """
-        Sets the logo_file_uuid of this UserModify.
+        Sets the passwd of this UserModify.
 
-        :param logo_file_uuid: The logo_file_uuid of this UserModify.
+        :param passwd: The passwd of this UserModify.
         :type: str
         """
 
-        self._logo_file_uuid = logo_file_uuid
+        self._passwd = passwd
 
     @property
     def is_active(self):
@@ -151,6 +130,27 @@ class UserModify(object):
         """
 
         self._is_active = is_active
+
+    @property
+    def logo_file_uuid(self):
+        """
+        Gets the logo_file_uuid of this UserModify.
+
+        :return: The logo_file_uuid of this UserModify.
+        :rtype: str
+        """
+        return self._logo_file_uuid
+
+    @logo_file_uuid.setter
+    def logo_file_uuid(self, logo_file_uuid):
+        """
+        Sets the logo_file_uuid of this UserModify.
+
+        :param logo_file_uuid: The logo_file_uuid of this UserModify.
+        :type: str
+        """
+
+        self._logo_file_uuid = logo_file_uuid
 
     @property
     def is_admin(self):

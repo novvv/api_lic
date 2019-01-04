@@ -88,6 +88,7 @@ from .models.object_revision_record_get import ObjectRevisionRecordGet
 from .models.objects_list import ObjectsList
 from .models.objects_list_payload import ObjectsListPayload
 from .models.operation_error import OperationError
+from .models.operation_error_error import OperationErrorError
 from .models.package_lrn import PackageLrn
 from .models.package_lrn_get import PackageLrnGet
 from .models.package_lrn_modify import PackageLrnModify
@@ -110,7 +111,6 @@ from .models.plan_modify import PlanModify
 from .models.success import Success
 from .models.token_check import TokenCheck
 from .models.unauthenticated_error import UnauthenticatedError
-from .models.unauthenticated_error_error import UnauthenticatedErrorError
 from .models.user import User
 from .models.user_confirm_register import UserConfirmRegister
 from .models.user_credentials import UserCredentials

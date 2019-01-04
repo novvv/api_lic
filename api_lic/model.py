@@ -127,7 +127,7 @@ def _apply_mail(self, template_name, var_name):
     except Exception as e:
         import traceback
         log.error('cannot render {}:{}:{}'.format(template.content_html,e,traceback.format_exc()))
-        return False
+        return 'Bad email template "{}" syntax. error {}'.format(template_name,str(e))
     email = None
     if hasattr(self, 'email') and hasattr(self, 'user_uuid'):
         email = self.email
@@ -271,7 +271,7 @@ class User(BaseModel, AuthUser, RbacUser, ModelUsingFiles):
             self.email = self.name
 
     def apply_mail(self, template_name):
-        _apply_mail(self, template_name, 'user')
+        return _apply_mail(self, template_name, 'user')
 
     @property
     def reset_password_url(self):
@@ -455,7 +455,7 @@ class Payment(BaseModel):
         return None
 
     def apply_mail(self, template_name):
-        _apply_mail(self, template_name, 'payment')
+        return _apply_mail(self, template_name, 'payment')
 
 
 class PackageLrn(BaseModel):
@@ -523,7 +523,7 @@ class LicenseLrn(BaseModel):
         self.end_time = add_months(self.start_time, months)
 
     def apply_mail(self, template_name):
-        _apply_mail(self, template_name, 'license')
+        return _apply_mail(self, template_name, 'license')
 
     @property
     def dur_months(self):
@@ -631,7 +631,7 @@ class LicenseSwitch(BaseModel):
         self.end_time = add_months(self.start_time, months)
 
     def apply_mail(self, template_name):
-        _apply_mail(self, template_name, 'license')
+        return _apply_mail(self, template_name, 'license')
 
 
 class LicenseUpdateHistory(BaseModel):

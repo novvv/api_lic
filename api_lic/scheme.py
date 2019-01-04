@@ -294,7 +294,8 @@ class ConfigPaymentScheme(BaseModelScheme):
 
     class Meta:
         model = model.ConfigPayment
-        fields = ('charge_type', 'stripe_email', 'stripe_skey', 'stripe_pkey', 'stripe_svc_charge', 'stripe_test_mode',
+        fields = ('charge_type', 'stripe_email', 'stripe_skey',
+                  'stripe_pkey', 'stripe_svc_charge', 'stripe_test_mode',
                   'paypal_email', 'paypal_skey', 'paypal_pkey', 'paypal_svc_charge', 'paypal_test_mode',
                   'confirm_enabled', 'email_confirm_to', 'notification_enabled', 'email_cc_to',)
 
@@ -302,8 +303,10 @@ class ConfigPaymentScheme(BaseModelScheme):
 class ConfigPaymentSchemeGet(ConfigPaymentScheme):
     class Meta:
         model = model.ConfigPayment
-        fields = ('charge_type', 'stripe_email', 'stripe_skey', 'stripe_pkey', 'stripe_svc_charge', 'stripe_test_mode',
-                  'paypal_email', 'paypal_skey', 'paypal_pkey', 'paypal_svc_charge', 'paypal_test_mode',
+        fields = ('charge_type', 'stripe_email', #'stripe_skey',
+                  'stripe_pkey', 'stripe_svc_charge', 'stripe_test_mode',
+                  'paypal_email', #'paypal_skey',
+                  'paypal_pkey', 'paypal_svc_charge', 'paypal_test_mode',
                   'confirm_enabled', 'email_confirm_to', 'notification_enabled', 'email_cc_to',)
 
 

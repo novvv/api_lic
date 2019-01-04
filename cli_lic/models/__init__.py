@@ -88,6 +88,7 @@ from .object_revision_record_get import ObjectRevisionRecordGet
 from .objects_list import ObjectsList
 from .objects_list_payload import ObjectsListPayload
 from .operation_error import OperationError
+from .operation_error_error import OperationErrorError
 from .package_lrn import PackageLrn
 from .package_lrn_get import PackageLrnGet
 from .package_lrn_modify import PackageLrnModify
@@ -110,7 +111,6 @@ from .plan_modify import PlanModify
 from .success import Success
 from .token_check import TokenCheck
 from .unauthenticated_error import UnauthenticatedError
-from .unauthenticated_error_error import UnauthenticatedErrorError
 from .user import User
 from .user_confirm_register import UserConfirmRegister
 from .user_credentials import UserCredentials

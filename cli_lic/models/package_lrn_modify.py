@@ -31,115 +31,52 @@ class PackageLrnModify(object):
                             and the value is json key in definition.
     """
     swagger_types = {
-        'dip_count': 'int',
-        'amount': 'int',
-        'cps': 'int',
         'enabled': 'bool',
-        'lrn_port': 'int',
+        'dip_count': 'int',
+        'cps': 'int',
+        'type': 'str',
         'package_name': 'str',
-        'type': 'str'
+        'amount': 'int',
+        'lrn_port': 'int'
     }
 
     attribute_map = {
-        'dip_count': 'dip_count',
-        'amount': 'amount',
-        'cps': 'cps',
         'enabled': 'enabled',
-        'lrn_port': 'lrn_port',
+        'dip_count': 'dip_count',
+        'cps': 'cps',
+        'type': 'type',
         'package_name': 'package_name',
-        'type': 'type'
+        'amount': 'amount',
+        'lrn_port': 'lrn_port'
     }
 
-    def __init__(self, dip_count=None, amount=None, cps=None, enabled=None, lrn_port=None, package_name=None, type='LRN pay per CPS'):
+    def __init__(self, enabled=None, dip_count=None, cps=None, type='LRN pay per CPS', package_name=None, amount=None, lrn_port=None):
         """
         PackageLrnModify - a model defined in Swagger
         """
 
-        self._dip_count = None
-        self._amount = None
-        self._cps = None
         self._enabled = None
-        self._lrn_port = None
-        self._package_name = None
+        self._dip_count = None
+        self._cps = None
         self._type = None
+        self._package_name = None
+        self._amount = None
+        self._lrn_port = None
 
-        if dip_count is not None:
-          self.dip_count = dip_count
-        if amount is not None:
-          self.amount = amount
-        if cps is not None:
-          self.cps = cps
         if enabled is not None:
           self.enabled = enabled
-        if lrn_port is not None:
-          self.lrn_port = lrn_port
-        if package_name is not None:
-          self.package_name = package_name
+        if dip_count is not None:
+          self.dip_count = dip_count
+        if cps is not None:
+          self.cps = cps
         if type is not None:
           self.type = type
-
-    @property
-    def dip_count(self):
-        """
-        Gets the dip_count of this PackageLrnModify.
-
-        :return: The dip_count of this PackageLrnModify.
-        :rtype: int
-        """
-        return self._dip_count
-
-    @dip_count.setter
-    def dip_count(self, dip_count):
-        """
-        Sets the dip_count of this PackageLrnModify.
-
-        :param dip_count: The dip_count of this PackageLrnModify.
-        :type: int
-        """
-
-        self._dip_count = dip_count
-
-    @property
-    def amount(self):
-        """
-        Gets the amount of this PackageLrnModify.
-
-        :return: The amount of this PackageLrnModify.
-        :rtype: int
-        """
-        return self._amount
-
-    @amount.setter
-    def amount(self, amount):
-        """
-        Sets the amount of this PackageLrnModify.
-
-        :param amount: The amount of this PackageLrnModify.
-        :type: int
-        """
-
-        self._amount = amount
-
-    @property
-    def cps(self):
-        """
-        Gets the cps of this PackageLrnModify.
-
-        :return: The cps of this PackageLrnModify.
-        :rtype: int
-        """
-        return self._cps
-
-    @cps.setter
-    def cps(self, cps):
-        """
-        Sets the cps of this PackageLrnModify.
-
-        :param cps: The cps of this PackageLrnModify.
-        :type: int
-        """
-
-        self._cps = cps
+        if package_name is not None:
+          self.package_name = package_name
+        if amount is not None:
+          self.amount = amount
+        if lrn_port is not None:
+          self.lrn_port = lrn_port
 
     @property
     def enabled(self):
@@ -163,48 +100,46 @@ class PackageLrnModify(object):
         self._enabled = enabled
 
     @property
-    def lrn_port(self):
+    def dip_count(self):
         """
-        Gets the lrn_port of this PackageLrnModify.
+        Gets the dip_count of this PackageLrnModify.
 
-        :return: The lrn_port of this PackageLrnModify.
+        :return: The dip_count of this PackageLrnModify.
         :rtype: int
         """
-        return self._lrn_port
+        return self._dip_count
 
-    @lrn_port.setter
-    def lrn_port(self, lrn_port):
+    @dip_count.setter
+    def dip_count(self, dip_count):
         """
-        Sets the lrn_port of this PackageLrnModify.
+        Sets the dip_count of this PackageLrnModify.
 
-        :param lrn_port: The lrn_port of this PackageLrnModify.
+        :param dip_count: The dip_count of this PackageLrnModify.
         :type: int
         """
 
-        self._lrn_port = lrn_port
+        self._dip_count = dip_count
 
     @property
-    def package_name(self):
+    def cps(self):
         """
-        Gets the package_name of this PackageLrnModify.
+        Gets the cps of this PackageLrnModify.
 
-        :return: The package_name of this PackageLrnModify.
-        :rtype: str
+        :return: The cps of this PackageLrnModify.
+        :rtype: int
         """
-        return self._package_name
+        return self._cps
 
-    @package_name.setter
-    def package_name(self, package_name):
+    @cps.setter
+    def cps(self, cps):
         """
-        Sets the package_name of this PackageLrnModify.
+        Sets the cps of this PackageLrnModify.
 
-        :param package_name: The package_name of this PackageLrnModify.
-        :type: str
+        :param cps: The cps of this PackageLrnModify.
+        :type: int
         """
-        if package_name is not None and len(package_name) > 64:
-            raise ValueError("Invalid value for `package_name`, length must be less than or equal to `64`")
 
-        self._package_name = package_name
+        self._cps = cps
 
     @property
     def type(self):
@@ -232,6 +167,71 @@ class PackageLrnModify(object):
             )
 
         self._type = type
+
+    @property
+    def package_name(self):
+        """
+        Gets the package_name of this PackageLrnModify.
+
+        :return: The package_name of this PackageLrnModify.
+        :rtype: str
+        """
+        return self._package_name
+
+    @package_name.setter
+    def package_name(self, package_name):
+        """
+        Sets the package_name of this PackageLrnModify.
+
+        :param package_name: The package_name of this PackageLrnModify.
+        :type: str
+        """
+        if package_name is not None and len(package_name) > 64:
+            raise ValueError("Invalid value for `package_name`, length must be less than or equal to `64`")
+
+        self._package_name = package_name
+
+    @property
+    def amount(self):
+        """
+        Gets the amount of this PackageLrnModify.
+
+        :return: The amount of this PackageLrnModify.
+        :rtype: int
+        """
+        return self._amount
+
+    @amount.setter
+    def amount(self, amount):
+        """
+        Sets the amount of this PackageLrnModify.
+
+        :param amount: The amount of this PackageLrnModify.
+        :type: int
+        """
+
+        self._amount = amount
+
+    @property
+    def lrn_port(self):
+        """
+        Gets the lrn_port of this PackageLrnModify.
+
+        :return: The lrn_port of this PackageLrnModify.
+        :rtype: int
+        """
+        return self._lrn_port
+
+    @lrn_port.setter
+    def lrn_port(self, lrn_port):
+        """
+        Sets the lrn_port of this PackageLrnModify.
+
+        :param lrn_port: The lrn_port of this PackageLrnModify.
+        :type: int
+        """
+
+        self._lrn_port = lrn_port
 
     def to_dict(self):
         """

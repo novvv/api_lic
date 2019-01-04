@@ -31,111 +31,46 @@ class UserInfo(object):
                             and the value is json key in definition.
     """
     swagger_types = {
-        'email': 'str',
-        'alert_license_purchased': 'bool',
-        'passwd': 'str',
         'alert_license_will_expired': 'bool',
+        'alert_license_purchased': 'bool',
         'alert_payment_received': 'bool',
-        'alert_license_expired': 'bool'
+        'alert_license_expired': 'bool',
+        'email': 'str',
+        'passwd': 'str'
     }
 
     attribute_map = {
-        'email': 'email',
-        'alert_license_purchased': 'alert_license_purchased',
-        'passwd': 'passwd',
         'alert_license_will_expired': 'alert_license_will_expired',
+        'alert_license_purchased': 'alert_license_purchased',
         'alert_payment_received': 'alert_payment_received',
-        'alert_license_expired': 'alert_license_expired'
+        'alert_license_expired': 'alert_license_expired',
+        'email': 'email',
+        'passwd': 'passwd'
     }
 
-    def __init__(self, email=None, alert_license_purchased=None, passwd=None, alert_license_will_expired=None, alert_payment_received=None, alert_license_expired=None):
+    def __init__(self, alert_license_will_expired=None, alert_license_purchased=None, alert_payment_received=None, alert_license_expired=None, email=None, passwd=None):
         """
         UserInfo - a model defined in Swagger
         """
 
-        self._email = None
-        self._alert_license_purchased = None
-        self._passwd = None
         self._alert_license_will_expired = None
+        self._alert_license_purchased = None
         self._alert_payment_received = None
         self._alert_license_expired = None
+        self._email = None
+        self._passwd = None
 
-        if email is not None:
-          self.email = email
-        if alert_license_purchased is not None:
-          self.alert_license_purchased = alert_license_purchased
-        self.passwd = passwd
         if alert_license_will_expired is not None:
           self.alert_license_will_expired = alert_license_will_expired
+        if alert_license_purchased is not None:
+          self.alert_license_purchased = alert_license_purchased
         if alert_payment_received is not None:
           self.alert_payment_received = alert_payment_received
         if alert_license_expired is not None:
           self.alert_license_expired = alert_license_expired
-
-    @property
-    def email(self):
-        """
-        Gets the email of this UserInfo.
-
-        :return: The email of this UserInfo.
-        :rtype: str
-        """
-        return self._email
-
-    @email.setter
-    def email(self, email):
-        """
-        Sets the email of this UserInfo.
-
-        :param email: The email of this UserInfo.
-        :type: str
-        """
-
-        self._email = email
-
-    @property
-    def alert_license_purchased(self):
-        """
-        Gets the alert_license_purchased of this UserInfo.
-
-        :return: The alert_license_purchased of this UserInfo.
-        :rtype: bool
-        """
-        return self._alert_license_purchased
-
-    @alert_license_purchased.setter
-    def alert_license_purchased(self, alert_license_purchased):
-        """
-        Sets the alert_license_purchased of this UserInfo.
-
-        :param alert_license_purchased: The alert_license_purchased of this UserInfo.
-        :type: bool
-        """
-
-        self._alert_license_purchased = alert_license_purchased
-
-    @property
-    def passwd(self):
-        """
-        Gets the passwd of this UserInfo.
-
-        :return: The passwd of this UserInfo.
-        :rtype: str
-        """
-        return self._passwd
-
-    @passwd.setter
-    def passwd(self, passwd):
-        """
-        Sets the passwd of this UserInfo.
-
-        :param passwd: The passwd of this UserInfo.
-        :type: str
-        """
-        if passwd is None:
-            raise ValueError("Invalid value for `passwd`, must not be `None`")
-
-        self._passwd = passwd
+        if email is not None:
+          self.email = email
+        self.passwd = passwd
 
     @property
     def alert_license_will_expired(self):
@@ -157,6 +92,27 @@ class UserInfo(object):
         """
 
         self._alert_license_will_expired = alert_license_will_expired
+
+    @property
+    def alert_license_purchased(self):
+        """
+        Gets the alert_license_purchased of this UserInfo.
+
+        :return: The alert_license_purchased of this UserInfo.
+        :rtype: bool
+        """
+        return self._alert_license_purchased
+
+    @alert_license_purchased.setter
+    def alert_license_purchased(self, alert_license_purchased):
+        """
+        Sets the alert_license_purchased of this UserInfo.
+
+        :param alert_license_purchased: The alert_license_purchased of this UserInfo.
+        :type: bool
+        """
+
+        self._alert_license_purchased = alert_license_purchased
 
     @property
     def alert_payment_received(self):
@@ -199,6 +155,50 @@ class UserInfo(object):
         """
 
         self._alert_license_expired = alert_license_expired
+
+    @property
+    def email(self):
+        """
+        Gets the email of this UserInfo.
+
+        :return: The email of this UserInfo.
+        :rtype: str
+        """
+        return self._email
+
+    @email.setter
+    def email(self, email):
+        """
+        Sets the email of this UserInfo.
+
+        :param email: The email of this UserInfo.
+        :type: str
+        """
+
+        self._email = email
+
+    @property
+    def passwd(self):
+        """
+        Gets the passwd of this UserInfo.
+
+        :return: The passwd of this UserInfo.
+        :rtype: str
+        """
+        return self._passwd
+
+    @passwd.setter
+    def passwd(self, passwd):
+        """
+        Sets the passwd of this UserInfo.
+
+        :param passwd: The passwd of this UserInfo.
+        :type: str
+        """
+        if passwd is None:
+            raise ValueError("Invalid value for `passwd`, must not be `None`")
+
+        self._passwd = passwd
 
     def to_dict(self):
         """

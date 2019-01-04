@@ -32,36 +32,36 @@ class LicenseLrnModify(object):
     """
     swagger_types = {
         'end_time': 'datetime',
-        'ip': 'str',
+        'package_lrn_uuid': 'str',
         'enabled': 'bool',
-        'package_lrn_uuid': 'str'
+        'ip': 'str'
     }
 
     attribute_map = {
         'end_time': 'end_time',
-        'ip': 'ip',
+        'package_lrn_uuid': 'package_lrn_uuid',
         'enabled': 'enabled',
-        'package_lrn_uuid': 'package_lrn_uuid'
+        'ip': 'ip'
     }
 
-    def __init__(self, end_time=None, ip=None, enabled=None, package_lrn_uuid=None):
+    def __init__(self, end_time=None, package_lrn_uuid=None, enabled=None, ip=None):
         """
         LicenseLrnModify - a model defined in Swagger
         """
 
         self._end_time = None
-        self._ip = None
-        self._enabled = None
         self._package_lrn_uuid = None
+        self._enabled = None
+        self._ip = None
 
         if end_time is not None:
           self.end_time = end_time
-        if ip is not None:
-          self.ip = ip
-        if enabled is not None:
-          self.enabled = enabled
         if package_lrn_uuid is not None:
           self.package_lrn_uuid = package_lrn_uuid
+        if enabled is not None:
+          self.enabled = enabled
+        if ip is not None:
+          self.ip = ip
 
     @property
     def end_time(self):
@@ -85,27 +85,27 @@ class LicenseLrnModify(object):
         self._end_time = end_time
 
     @property
-    def ip(self):
+    def package_lrn_uuid(self):
         """
-        Gets the ip of this LicenseLrnModify.
+        Gets the package_lrn_uuid of this LicenseLrnModify.
 
-        :return: The ip of this LicenseLrnModify.
+        :return: The package_lrn_uuid of this LicenseLrnModify.
         :rtype: str
         """
-        return self._ip
+        return self._package_lrn_uuid
 
-    @ip.setter
-    def ip(self, ip):
+    @package_lrn_uuid.setter
+    def package_lrn_uuid(self, package_lrn_uuid):
         """
-        Sets the ip of this LicenseLrnModify.
+        Sets the package_lrn_uuid of this LicenseLrnModify.
 
-        :param ip: The ip of this LicenseLrnModify.
+        :param package_lrn_uuid: The package_lrn_uuid of this LicenseLrnModify.
         :type: str
         """
-        if ip is not None and len(ip) > 16:
-            raise ValueError("Invalid value for `ip`, length must be less than or equal to `16`")
+        if package_lrn_uuid is not None and len(package_lrn_uuid) > 36:
+            raise ValueError("Invalid value for `package_lrn_uuid`, length must be less than or equal to `36`")
 
-        self._ip = ip
+        self._package_lrn_uuid = package_lrn_uuid
 
     @property
     def enabled(self):
@@ -129,27 +129,27 @@ class LicenseLrnModify(object):
         self._enabled = enabled
 
     @property
-    def package_lrn_uuid(self):
+    def ip(self):
         """
-        Gets the package_lrn_uuid of this LicenseLrnModify.
+        Gets the ip of this LicenseLrnModify.
 
-        :return: The package_lrn_uuid of this LicenseLrnModify.
+        :return: The ip of this LicenseLrnModify.
         :rtype: str
         """
-        return self._package_lrn_uuid
+        return self._ip
 
-    @package_lrn_uuid.setter
-    def package_lrn_uuid(self, package_lrn_uuid):
+    @ip.setter
+    def ip(self, ip):
         """
-        Sets the package_lrn_uuid of this LicenseLrnModify.
+        Sets the ip of this LicenseLrnModify.
 
-        :param package_lrn_uuid: The package_lrn_uuid of this LicenseLrnModify.
+        :param ip: The ip of this LicenseLrnModify.
         :type: str
         """
-        if package_lrn_uuid is not None and len(package_lrn_uuid) > 36:
-            raise ValueError("Invalid value for `package_lrn_uuid`, length must be less than or equal to `36`")
+        if ip is not None and len(ip) > 16:
+            raise ValueError("Invalid value for `ip`, length must be less than or equal to `16`")
 
-        self._package_lrn_uuid = package_lrn_uuid
+        self._ip = ip
 
     def to_dict(self):
         """

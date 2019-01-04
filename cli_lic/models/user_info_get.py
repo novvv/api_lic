@@ -31,61 +31,126 @@ class UserInfoGet(object):
                             and the value is json key in definition.
     """
     swagger_types = {
-        'alert_license_expired': 'bool',
-        'user_type': 'str',
-        'email': 'str',
+        'user_uuid': 'str',
+        'alert_payment_received': 'bool',
         'alert_license_purchased': 'bool',
+        'alert_license_expired': 'bool',
+        'email': 'str',
         'passwd': 'str',
         'alert_license_will_expired': 'bool',
-        'user_uuid': 'str',
         'last_login': 'datetime',
-        'alert_payment_received': 'bool'
+        'user_type': 'str'
     }
 
     attribute_map = {
-        'alert_license_expired': 'alert_license_expired',
-        'user_type': 'user_type',
-        'email': 'email',
+        'user_uuid': 'user_uuid',
+        'alert_payment_received': 'alert_payment_received',
         'alert_license_purchased': 'alert_license_purchased',
+        'alert_license_expired': 'alert_license_expired',
+        'email': 'email',
         'passwd': 'passwd',
         'alert_license_will_expired': 'alert_license_will_expired',
-        'user_uuid': 'user_uuid',
         'last_login': 'last_login',
-        'alert_payment_received': 'alert_payment_received'
+        'user_type': 'user_type'
     }
 
-    def __init__(self, alert_license_expired=None, user_type=None, email=None, alert_license_purchased=None, passwd=None, alert_license_will_expired=None, user_uuid=None, last_login=None, alert_payment_received=None):
+    def __init__(self, user_uuid=None, alert_payment_received=None, alert_license_purchased=None, alert_license_expired=None, email=None, passwd=None, alert_license_will_expired=None, last_login=None, user_type=None):
         """
         UserInfoGet - a model defined in Swagger
         """
 
-        self._alert_license_expired = None
-        self._user_type = None
-        self._email = None
+        self._user_uuid = None
+        self._alert_payment_received = None
         self._alert_license_purchased = None
+        self._alert_license_expired = None
+        self._email = None
         self._passwd = None
         self._alert_license_will_expired = None
-        self._user_uuid = None
         self._last_login = None
-        self._alert_payment_received = None
+        self._user_type = None
 
-        if alert_license_expired is not None:
-          self.alert_license_expired = alert_license_expired
-        if user_type is not None:
-          self.user_type = user_type
-        if email is not None:
-          self.email = email
+        if user_uuid is not None:
+          self.user_uuid = user_uuid
+        if alert_payment_received is not None:
+          self.alert_payment_received = alert_payment_received
         if alert_license_purchased is not None:
           self.alert_license_purchased = alert_license_purchased
+        if alert_license_expired is not None:
+          self.alert_license_expired = alert_license_expired
+        if email is not None:
+          self.email = email
         self.passwd = passwd
         if alert_license_will_expired is not None:
           self.alert_license_will_expired = alert_license_will_expired
-        if user_uuid is not None:
-          self.user_uuid = user_uuid
         if last_login is not None:
           self.last_login = last_login
-        if alert_payment_received is not None:
-          self.alert_payment_received = alert_payment_received
+        if user_type is not None:
+          self.user_type = user_type
+
+    @property
+    def user_uuid(self):
+        """
+        Gets the user_uuid of this UserInfoGet.
+
+        :return: The user_uuid of this UserInfoGet.
+        :rtype: str
+        """
+        return self._user_uuid
+
+    @user_uuid.setter
+    def user_uuid(self, user_uuid):
+        """
+        Sets the user_uuid of this UserInfoGet.
+
+        :param user_uuid: The user_uuid of this UserInfoGet.
+        :type: str
+        """
+        if user_uuid is not None and len(user_uuid) > 36:
+            raise ValueError("Invalid value for `user_uuid`, length must be less than or equal to `36`")
+
+        self._user_uuid = user_uuid
+
+    @property
+    def alert_payment_received(self):
+        """
+        Gets the alert_payment_received of this UserInfoGet.
+
+        :return: The alert_payment_received of this UserInfoGet.
+        :rtype: bool
+        """
+        return self._alert_payment_received
+
+    @alert_payment_received.setter
+    def alert_payment_received(self, alert_payment_received):
+        """
+        Sets the alert_payment_received of this UserInfoGet.
+
+        :param alert_payment_received: The alert_payment_received of this UserInfoGet.
+        :type: bool
+        """
+
+        self._alert_payment_received = alert_payment_received
+
+    @property
+    def alert_license_purchased(self):
+        """
+        Gets the alert_license_purchased of this UserInfoGet.
+
+        :return: The alert_license_purchased of this UserInfoGet.
+        :rtype: bool
+        """
+        return self._alert_license_purchased
+
+    @alert_license_purchased.setter
+    def alert_license_purchased(self, alert_license_purchased):
+        """
+        Sets the alert_license_purchased of this UserInfoGet.
+
+        :param alert_license_purchased: The alert_license_purchased of this UserInfoGet.
+        :type: bool
+        """
+
+        self._alert_license_purchased = alert_license_purchased
 
     @property
     def alert_license_expired(self):
@@ -109,27 +174,6 @@ class UserInfoGet(object):
         self._alert_license_expired = alert_license_expired
 
     @property
-    def user_type(self):
-        """
-        Gets the user_type of this UserInfoGet.
-
-        :return: The user_type of this UserInfoGet.
-        :rtype: str
-        """
-        return self._user_type
-
-    @user_type.setter
-    def user_type(self, user_type):
-        """
-        Sets the user_type of this UserInfoGet.
-
-        :param user_type: The user_type of this UserInfoGet.
-        :type: str
-        """
-
-        self._user_type = user_type
-
-    @property
     def email(self):
         """
         Gets the email of this UserInfoGet.
@@ -149,27 +193,6 @@ class UserInfoGet(object):
         """
 
         self._email = email
-
-    @property
-    def alert_license_purchased(self):
-        """
-        Gets the alert_license_purchased of this UserInfoGet.
-
-        :return: The alert_license_purchased of this UserInfoGet.
-        :rtype: bool
-        """
-        return self._alert_license_purchased
-
-    @alert_license_purchased.setter
-    def alert_license_purchased(self, alert_license_purchased):
-        """
-        Sets the alert_license_purchased of this UserInfoGet.
-
-        :param alert_license_purchased: The alert_license_purchased of this UserInfoGet.
-        :type: bool
-        """
-
-        self._alert_license_purchased = alert_license_purchased
 
     @property
     def passwd(self):
@@ -216,29 +239,6 @@ class UserInfoGet(object):
         self._alert_license_will_expired = alert_license_will_expired
 
     @property
-    def user_uuid(self):
-        """
-        Gets the user_uuid of this UserInfoGet.
-
-        :return: The user_uuid of this UserInfoGet.
-        :rtype: str
-        """
-        return self._user_uuid
-
-    @user_uuid.setter
-    def user_uuid(self, user_uuid):
-        """
-        Sets the user_uuid of this UserInfoGet.
-
-        :param user_uuid: The user_uuid of this UserInfoGet.
-        :type: str
-        """
-        if user_uuid is not None and len(user_uuid) > 36:
-            raise ValueError("Invalid value for `user_uuid`, length must be less than or equal to `36`")
-
-        self._user_uuid = user_uuid
-
-    @property
     def last_login(self):
         """
         Gets the last_login of this UserInfoGet.
@@ -260,25 +260,25 @@ class UserInfoGet(object):
         self._last_login = last_login
 
     @property
-    def alert_payment_received(self):
+    def user_type(self):
         """
-        Gets the alert_payment_received of this UserInfoGet.
+        Gets the user_type of this UserInfoGet.
 
-        :return: The alert_payment_received of this UserInfoGet.
-        :rtype: bool
+        :return: The user_type of this UserInfoGet.
+        :rtype: str
         """
-        return self._alert_payment_received
+        return self._user_type
 
-    @alert_payment_received.setter
-    def alert_payment_received(self, alert_payment_received):
+    @user_type.setter
+    def user_type(self, user_type):
         """
-        Sets the alert_payment_received of this UserInfoGet.
+        Sets the user_type of this UserInfoGet.
 
-        :param alert_payment_received: The alert_payment_received of this UserInfoGet.
-        :type: bool
+        :param user_type: The user_type of this UserInfoGet.
+        :type: str
         """
 
-        self._alert_payment_received = alert_payment_received
+        self._user_type = user_type
 
     def to_dict(self):
         """

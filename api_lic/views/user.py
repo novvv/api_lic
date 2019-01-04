@@ -75,7 +75,11 @@ class UserResetPasswordEmail(CustomAction):
         user = model.User.filter(email=req.data['email']).first()
         if user:
             user.token = auth.get_token(user)
-            user.apply_mail('retrieve_password')
+            ret=user.apply_mail('retrieve_password')
+            if ret:
+                self.set_response(resp, responses.OperationErrorResponse(
+                    data=dict(message=ret, reason='mail_error', code=406)))
+                return False
             # model.MailSender.apply_mail(user, 'retrieve_password', obj.client.billing_email)
 
 
@@ -144,7 +148,7 @@ class PaymentCreate(Create):
     def after_create(self, object_id, req, resp, **kwargs):
         obj = self.model_class.get(object_id)
         if obj.user.alert_payment_received:
-            obj.apply_mail('payment_received')
+            ret=obj.apply_mail('payment_received')
 
 
 class PaymentResource(Resource):

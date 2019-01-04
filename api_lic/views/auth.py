@@ -66,7 +66,9 @@ class UserRegisterCreate(Create):
         user = model.User.get(object_id)
         user.token = auth.get_token(user)
         if user:
-            user.apply_mail('registration')
+            ret = user.apply_mail('registration')
+            if ret:
+                raise Exception(ret)
 
 class UserResource(Resource):
     model_class = model.User
@@ -156,42 +158,13 @@ class UserResetPassword(CustomAction):
         user = auth.get_user_from_token(req.data['token'])
         if user:
             user.passwd = req.data['password']
-            user.apply_mail('welcome')
+            ret=user.apply_mail('welcome')
+            if ret:
+                self.set_response(resp, responses.OperationErrorResponse(
+                    data=dict(message=ret, reason='mail_error', code=406)))
+                return False
+        return True
             # model.MailSender.apply_mail(user, 'welcom', obj.client.billing_email)
-
-class UserResetPassword(CustomPostAction):
-    scheme_class = UserResetPasswordScheme
-    model_class = model.User
-    body_parameters = ('User data', UserResetPasswordScheme)
-    method = 'post'
-    path_parameters = ({'name': 'token', 'description': 'Token from email'},)
-
-    no_auth_needed = True
-
-    def on_post(self, req, resp, **kwargs):
-        return self.proceed(req, resp, **kwargs)
-
-    def proceed(self, req, resp, **kwargs):
-        import jwt
-        try:
-            token_data = jwt.decode(kwargs['token'], settings.JWT_SIGNATURE)
-            user = model.User.get(token_data['user_uuid'])
-            if user:
-                user.passwd = req.data['passwd']
-                user.save()
-                user.apply_mail('welcome')
-                # log = model.RetrievePasswordLog.get(token_data['log_id'])
-                # if log:
-                #     log.confirm_ip = get_request_ip(req)
-                #     log.modify_time = datetime.now(UTC)
-                #     log.status = 'Modified successfully'
-                #     log.save()
-                self.set_response(resp, responses.SuccessResponseJustOk())
-                return True
-                # model.MailSender.apply_mail(user, 'retrieve_password', user.email) # obj.client.billing_email)
-        except Exception as e:
-            pass
-        self.set_response(resp, responses.ObjectNotFoundErrorResponse())
 
 # class UserResetPassword(CustomAction):
 #     scheme_class = UserResetPasswordScheme
@@ -267,7 +240,7 @@ class UserForgotPassword(CustomPostAction):
             # '{}{}{}/auth/reset_password/{}'.format(settings.API_SCHEME, settings.API_HOST, settings.API_BASE_PATH, token)
             ret = user.apply_mail('retrieve_password')  # obj.client.billing_email
             if ret:
-                self.set_response(resp, responses.OperationErrorResponse(data='mail error'))
+                self.set_response(resp,responses.OperationErrorResponse(data=dict(message=ret,reason='mail_error',code=406)))
                 return False
             self.set_response(resp, responses.SuccessResponseJustOk())
             return False
