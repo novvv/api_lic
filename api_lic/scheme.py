@@ -182,7 +182,7 @@ class UserSchemeModify(UserScheme):
 class UserRegisterScheme(UserScheme):
     class Meta:
         model = model.User
-        fields = ('email', 'passwd',)
+        fields = ('email', 'passwd', 'first_name', 'last_name')
 
 
 class UserInfoScheme(BaseModelScheme):
@@ -200,7 +200,7 @@ class UserInfoScheme(BaseModelScheme):
     class Meta:
         model = model.User
         fields = ('passwd', 'email', 'alert_payment_received', 'alert_license_expired', 'alert_license_will_expired',
-                  'alert_license_purchased',)
+                  'alert_license_purchased', 'logo_file_uuid', 'first_name', 'last_name')
 
 
 class UserInfoSchemeGet(UserInfoScheme):
@@ -215,7 +215,9 @@ class UserInfoSchemeModify(BaseModelScheme):
 
     class Meta:
         model = model.User
-        fields = ('passwd', 'email',)
+        fields = ('passwd', 'email', 'logo_file_uuid', 'alert_payment_received', 'alert_license_expired',
+                  'alert_license_will_expired',
+                  'alert_license_purchased', 'first_name', 'last_name')
 
 
 class UserMinScheme(UserScheme):
@@ -303,9 +305,9 @@ class ConfigPaymentScheme(BaseModelScheme):
 class ConfigPaymentSchemeGet(ConfigPaymentScheme):
     class Meta:
         model = model.ConfigPayment
-        fields = ('charge_type', 'stripe_email', #'stripe_skey',
+        fields = ('charge_type', 'stripe_email',  # 'stripe_skey',
                   'stripe_pkey', 'stripe_svc_charge', 'stripe_test_mode',
-                  'paypal_email', #'paypal_skey',
+                  'paypal_email',  # 'paypal_skey',
                   'paypal_pkey', 'paypal_svc_charge', 'paypal_test_mode',
                   'confirm_enabled', 'email_confirm_to', 'notification_enabled', 'email_cc_to',)
 
@@ -351,7 +353,7 @@ class PaymentScheme(BaseModelScheme):
         validate=[validate.Length(max=36), lambda value: _valid('LicenseLrn', 'license_lrn_uuid', value)])
     license_switch_uuid = Str(
         validate=[validate.Length(max=36), lambda value: _valid('LicenseSwitch', 'license_switch_uuid', value)])
-    switch_uuid=Str(validate=[validate.Length(max=64)])
+    switch_uuid = Str(validate=[validate.Length(max=64)])
     amount_lrn = Float()
     amount_switch = Float()
     paid_time = DateTime()
@@ -359,19 +361,22 @@ class PaymentScheme(BaseModelScheme):
 
     class Meta:
         model = model.Payment
-        fields = ('license_lrn_uuid', 'license_switch_uuid', 'amount_lrn', 'amount_switch', 'paid_time', 'type','switch_uuid')
+        fields = (
+        'license_lrn_uuid', 'license_switch_uuid', 'amount_lrn', 'amount_switch', 'paid_time', 'type', 'switch_uuid')
 
 
 class PaymentSchemeGet(PaymentScheme):
     class Meta:
         model = model.Payment
         fields = (
-        'payment_uuid', 'type', 'paid_time', 'user_uuid', 'license_lrn_uuid', 'license_switch_uuid', 'amount_lrn',
-        'amount_switch', 'amount_total','switch_uuid')
-        search_fields = ('payment_uuid', 'type', 'period', 'user_uuid', 'license_lrn_uuid', 'license_switch_uuid','switch_uuid')
+            'payment_uuid', 'type', 'paid_time', 'user_uuid', 'license_lrn_uuid', 'license_switch_uuid', 'amount_lrn',
+            'amount_switch', 'amount_total', 'switch_uuid')
+        search_fields = (
+        'payment_uuid', 'type', 'period', 'user_uuid', 'license_lrn_uuid', 'license_switch_uuid', 'switch_uuid')
         query_fields = (
-        'amount_lrn_gt', 'amount_lrn_lt', 'amount_switch_gt', 'amount_switch_lt', 'amount_total_gt', 'amount_total_lt',
-        'paid_time_gt', 'paid_time_lt',)
+            'amount_lrn_gt', 'amount_lrn_lt', 'amount_switch_gt', 'amount_switch_lt', 'amount_total_gt',
+            'amount_total_lt',
+            'paid_time_gt', 'paid_time_lt',)
 
 
 class PaymentSchemeModify(PaymentScheme):
@@ -457,17 +462,32 @@ class DnlLicenseInfoScheme(BaseModelScheme):
     update_time = DateTime()
     create_time = DateTime()
     create_user = Int()
+
     class Meta:
         model = model.DnlLicenseInfo
-        fields = ('carrier_name','ss_type','status','ss_name','uuid','recv_ip','recv_port','ss_bind_mac','ss_bind_ip','ss_bind_port','max_cap','max_cps','start_time','end_time','expires','update_time','create_time','create_user',)
+        fields = (
+        'carrier_name', 'ss_type', 'status', 'ss_name', 'uuid', 'recv_ip', 'recv_port', 'ss_bind_mac', 'ss_bind_ip',
+        'ss_bind_port', 'max_cap', 'max_cps', 'start_time', 'end_time', 'expires', 'update_time', 'create_time',
+        'create_user',)
+
+
 class DnlLicenseInfoSchemeGet(DnlLicenseInfoScheme):
     class Meta:
         model = model.DnlLicenseInfo
-        fields = ('id','carrier_name','ss_type','status','ss_name','uuid','recv_ip','recv_port','ss_bind_mac','ss_bind_ip','ss_bind_port','max_cap','max_cps','expires','create_user',)
-        search_fields = ('id','carrier_name','ss_type','status','ss_name','uuid','recv_ip','recv_port','ss_bind_mac','ss_bind_ip','ss_bind_port','max_cap','max_cps','expires','create_user',)
-        query_fields=('start_time_gt','start_time_lt','end_time_gt','end_time_lt','update_time_gt','update_time_lt','create_time_gt','create_time_lt',)
+        fields = ('id', 'carrier_name', 'ss_type', 'status', 'ss_name', 'uuid', 'recv_ip', 'recv_port', 'ss_bind_mac',
+                  'ss_bind_ip', 'ss_bind_port', 'max_cap', 'max_cps', 'expires', 'create_user',)
+        search_fields = (
+        'id', 'carrier_name', 'ss_type', 'status', 'ss_name', 'uuid', 'recv_ip', 'recv_port', 'ss_bind_mac',
+        'ss_bind_ip', 'ss_bind_port', 'max_cap', 'max_cps', 'expires', 'create_user',)
+        query_fields = (
+        'start_time_gt', 'start_time_lt', 'end_time_gt', 'end_time_lt', 'update_time_gt', 'update_time_lt',
+        'create_time_gt', 'create_time_lt',)
+
+
 class DnlLicenseInfoSchemeModify(DnlLicenseInfoScheme):
     pass
+
+
 # ---DnlLicenseInfo---
 
 # +++PackageSwitch+++
@@ -476,7 +496,7 @@ class PackageSwitchScheme(BaseModelScheme):
     package_name = Str(validate=[validate.Length(max=64)])
     type = Choice()
     sub_type = Choice()
-    switch_uuid = Str(validate=[validate.Length(max=64),lambda value:_valid('DnlLicenseInfo','uuid',value)])
+    switch_uuid = Str(validate=[validate.Length(max=64), lambda value: _valid('DnlLicenseInfo', 'uuid', value)])
     # switch_uuid = Str(
     #     validate=[validate.Length(max=36), lambda value: _valid('Switch', 'switch_uuid', value)])
     switch_port = Int()
@@ -578,7 +598,7 @@ class LicenseLrnScheme(BaseModelScheme):
 
     class Meta:
         model = model.LicenseLrn
-        fields = ('package_lrn_uuid', 'ip', 'start_time', 'end_time','duration')
+        fields = ('package_lrn_uuid', 'ip', 'start_time', 'end_time', 'duration')
 
 
 class LicenseLrnSchemeGet(LicenseLrnScheme):
@@ -629,7 +649,7 @@ class LicenseSwitchScheme(BaseModelScheme):
 
     class Meta:
         model = model.LicenseSwitch
-        fields = ('package_switch_uuid', 'ip', 'start_time', 'start_time', 'end_time','duration')
+        fields = ('package_switch_uuid', 'ip', 'start_time', 'start_time', 'end_time', 'duration')
 
 
 class LicenseSwitchSchemeGet(LicenseSwitchScheme):
@@ -639,7 +659,7 @@ class LicenseSwitchSchemeGet(LicenseSwitchScheme):
                   'package_switch_uuid', 'user_uuid', 'ordered_amount', 'package', 'enabled', 'start_time', 'end_time')
         search_fields = (
             'user_email', 'type', 'ip', 'switch_port', 'minute_count', 'amount', 'license_switch_uuid',
-            'package_switch_uuid', 'user_uuid', 'ordered_amount', 'package', 'enabled','duration')
+            'package_switch_uuid', 'user_uuid', 'ordered_amount', 'package', 'enabled', 'duration')
         query_fields = ('start_time_gt', 'start_time_lt', 'end_time_gt', 'end_time_lt', 'cost_gt', 'cost_lt',)
 
 

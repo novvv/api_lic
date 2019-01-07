@@ -157,6 +157,9 @@ class User(BaseModel, AuthUser, RbacUser, ModelUsingFiles):
     logo_file_uuid = FileModelField(FileModel, nullable=True, backend=FILE_BACKEND)
     logo = file_relationship(FileModel, 'User', 'logo_file_uuid')
 
+    first_name = Column(String(32), nullable=True, index=True)
+    last_name = Column(String(32), nullable=True, index=True)
+
     # alerts flags
     alert_payment_received = Column(Boolean(), server_default='true')
     alert_license_expired = Column(Boolean(), server_default='true')
@@ -167,6 +170,8 @@ class User(BaseModel, AuthUser, RbacUser, ModelUsingFiles):
     name = synonym('email')
     user_name = synonym('email')
     is_confirmed = column_property(confirmed_on.isnot(None))
+
+    full_name = column_property(func.concat(first_name, ' ', last_name))
 
     @classmethod
     def init(cls):
