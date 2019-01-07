@@ -31,73 +31,73 @@ class EmailTemplateGet(object):
                             and the value is json key in definition.
     """
     swagger_types = {
-        'email_from': 'str',
+        'email_cc': 'str',
         'content_text': 'str',
+        'email_from': 'str',
         'hint': 'str',
-        'name': 'str',
         'content_html': 'str',
-        'subject': 'str',
-        'email_cc': 'str'
+        'name': 'str',
+        'subject': 'str'
     }
 
     attribute_map = {
-        'email_from': 'email_from',
+        'email_cc': 'email_cc',
         'content_text': 'content_text',
+        'email_from': 'email_from',
         'hint': 'hint',
-        'name': 'name',
         'content_html': 'content_html',
-        'subject': 'subject',
-        'email_cc': 'email_cc'
+        'name': 'name',
+        'subject': 'subject'
     }
 
-    def __init__(self, email_from=None, content_text=None, hint=None, name=None, content_html=None, subject=None, email_cc=None):
+    def __init__(self, email_cc=None, content_text=None, email_from=None, hint=None, content_html=None, name=None, subject=None):
         """
         EmailTemplateGet - a model defined in Swagger
         """
 
-        self._email_from = None
-        self._content_text = None
-        self._hint = None
-        self._name = None
-        self._content_html = None
-        self._subject = None
         self._email_cc = None
+        self._content_text = None
+        self._email_from = None
+        self._hint = None
+        self._content_html = None
+        self._name = None
+        self._subject = None
 
-        if email_from is not None:
-          self.email_from = email_from
-        if content_text is not None:
-          self.content_text = content_text
-        if hint is not None:
-          self.hint = hint
-        if name is not None:
-          self.name = name
-        if content_html is not None:
-          self.content_html = content_html
-        if subject is not None:
-          self.subject = subject
         if email_cc is not None:
           self.email_cc = email_cc
+        if content_text is not None:
+          self.content_text = content_text
+        if email_from is not None:
+          self.email_from = email_from
+        if hint is not None:
+          self.hint = hint
+        if content_html is not None:
+          self.content_html = content_html
+        if name is not None:
+          self.name = name
+        if subject is not None:
+          self.subject = subject
 
     @property
-    def email_from(self):
+    def email_cc(self):
         """
-        Gets the email_from of this EmailTemplateGet.
+        Gets the email_cc of this EmailTemplateGet.
 
-        :return: The email_from of this EmailTemplateGet.
+        :return: The email_cc of this EmailTemplateGet.
         :rtype: str
         """
-        return self._email_from
+        return self._email_cc
 
-    @email_from.setter
-    def email_from(self, email_from):
+    @email_cc.setter
+    def email_cc(self, email_cc):
         """
-        Sets the email_from of this EmailTemplateGet.
+        Sets the email_cc of this EmailTemplateGet.
 
-        :param email_from: The email_from of this EmailTemplateGet.
+        :param email_cc: The email_cc of this EmailTemplateGet.
         :type: str
         """
 
-        self._email_from = email_from
+        self._email_cc = email_cc
 
     @property
     def content_text(self):
@@ -121,6 +121,27 @@ class EmailTemplateGet(object):
         self._content_text = content_text
 
     @property
+    def email_from(self):
+        """
+        Gets the email_from of this EmailTemplateGet.
+
+        :return: The email_from of this EmailTemplateGet.
+        :rtype: str
+        """
+        return self._email_from
+
+    @email_from.setter
+    def email_from(self, email_from):
+        """
+        Sets the email_from of this EmailTemplateGet.
+
+        :param email_from: The email_from of this EmailTemplateGet.
+        :type: str
+        """
+
+        self._email_from = email_from
+
+    @property
     def hint(self):
         """
         Gets the hint of this EmailTemplateGet.
@@ -140,27 +161,6 @@ class EmailTemplateGet(object):
         """
 
         self._hint = hint
-
-    @property
-    def name(self):
-        """
-        Gets the name of this EmailTemplateGet.
-
-        :return: The name of this EmailTemplateGet.
-        :rtype: str
-        """
-        return self._name
-
-    @name.setter
-    def name(self, name):
-        """
-        Sets the name of this EmailTemplateGet.
-
-        :param name: The name of this EmailTemplateGet.
-        :type: str
-        """
-
-        self._name = name
 
     @property
     def content_html(self):
@@ -184,6 +184,27 @@ class EmailTemplateGet(object):
         self._content_html = content_html
 
     @property
+    def name(self):
+        """
+        Gets the name of this EmailTemplateGet.
+
+        :return: The name of this EmailTemplateGet.
+        :rtype: str
+        """
+        return self._name
+
+    @name.setter
+    def name(self, name):
+        """
+        Sets the name of this EmailTemplateGet.
+
+        :param name: The name of this EmailTemplateGet.
+        :type: str
+        """
+
+        self._name = name
+
+    @property
     def subject(self):
         """
         Gets the subject of this EmailTemplateGet.
@@ -203,27 +224,6 @@ class EmailTemplateGet(object):
         """
 
         self._subject = subject
-
-    @property
-    def email_cc(self):
-        """
-        Gets the email_cc of this EmailTemplateGet.
-
-        :return: The email_cc of this EmailTemplateGet.
-        :rtype: str
-        """
-        return self._email_cc
-
-    @email_cc.setter
-    def email_cc(self, email_cc):
-        """
-        Sets the email_cc of this EmailTemplateGet.
-
-        :param email_cc: The email_cc of this EmailTemplateGet.
-        :type: str
-        """
-
-        self._email_cc = email_cc
 
     def to_dict(self):
         """

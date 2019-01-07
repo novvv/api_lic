@@ -31,85 +31,41 @@ class User(object):
                             and the value is json key in definition.
     """
     swagger_types = {
-        'email': 'str',
-        'passwd': 'str',
         'is_active': 'bool',
+        'passwd': 'str',
         'logo_file_uuid': 'str',
-        'is_admin': 'bool'
+        'is_admin': 'bool',
+        'email': 'str'
     }
 
     attribute_map = {
-        'email': 'email',
-        'passwd': 'passwd',
         'is_active': 'is_active',
+        'passwd': 'passwd',
         'logo_file_uuid': 'logo_file_uuid',
-        'is_admin': 'is_admin'
+        'is_admin': 'is_admin',
+        'email': 'email'
     }
 
-    def __init__(self, email=None, passwd=None, is_active=None, logo_file_uuid=None, is_admin=None):
+    def __init__(self, is_active=None, passwd=None, logo_file_uuid=None, is_admin=None, email=None):
         """
         User - a model defined in Swagger
         """
 
-        self._email = None
-        self._passwd = None
         self._is_active = None
+        self._passwd = None
         self._logo_file_uuid = None
         self._is_admin = None
+        self._email = None
 
-        self.email = email
-        if passwd is not None:
-          self.passwd = passwd
         if is_active is not None:
           self.is_active = is_active
+        if passwd is not None:
+          self.passwd = passwd
         if logo_file_uuid is not None:
           self.logo_file_uuid = logo_file_uuid
         if is_admin is not None:
           self.is_admin = is_admin
-
-    @property
-    def email(self):
-        """
-        Gets the email of this User.
-
-        :return: The email of this User.
-        :rtype: str
-        """
-        return self._email
-
-    @email.setter
-    def email(self, email):
-        """
-        Sets the email of this User.
-
-        :param email: The email of this User.
-        :type: str
-        """
-        if email is None:
-            raise ValueError("Invalid value for `email`, must not be `None`")
-
-        self._email = email
-
-    @property
-    def passwd(self):
-        """
-        Gets the passwd of this User.
-
-        :return: The passwd of this User.
-        :rtype: str
-        """
-        return self._passwd
-
-    @passwd.setter
-    def passwd(self, passwd):
-        """
-        Sets the passwd of this User.
-
-        :param passwd: The passwd of this User.
-        :type: str
-        """
-
-        self._passwd = passwd
+        self.email = email
 
     @property
     def is_active(self):
@@ -131,6 +87,27 @@ class User(object):
         """
 
         self._is_active = is_active
+
+    @property
+    def passwd(self):
+        """
+        Gets the passwd of this User.
+
+        :return: The passwd of this User.
+        :rtype: str
+        """
+        return self._passwd
+
+    @passwd.setter
+    def passwd(self, passwd):
+        """
+        Sets the passwd of this User.
+
+        :param passwd: The passwd of this User.
+        :type: str
+        """
+
+        self._passwd = passwd
 
     @property
     def logo_file_uuid(self):
@@ -173,6 +150,29 @@ class User(object):
         """
 
         self._is_admin = is_admin
+
+    @property
+    def email(self):
+        """
+        Gets the email of this User.
+
+        :return: The email of this User.
+        :rtype: str
+        """
+        return self._email
+
+    @email.setter
+    def email(self, email):
+        """
+        Sets the email of this User.
+
+        :param email: The email of this User.
+        :type: str
+        """
+        if email is None:
+            raise ValueError("Invalid value for `email`, must not be `None`")
+
+        self._email = email
 
     def to_dict(self):
         """

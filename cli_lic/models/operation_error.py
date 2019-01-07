@@ -32,31 +32,31 @@ class OperationError(object):
     """
     swagger_types = {
         'success': 'bool',
-        'error': 'OperationErrorError',
-        'error_type': 'str'
+        'error_type': 'str',
+        'error': 'ForbiddenErrorError'
     }
 
     attribute_map = {
         'success': 'success',
-        'error': 'error',
-        'error_type': 'error_type'
+        'error_type': 'error_type',
+        'error': 'error'
     }
 
-    def __init__(self, success=False, error=None, error_type='operation_error'):
+    def __init__(self, success=False, error_type='operation_error', error=None):
         """
         OperationError - a model defined in Swagger
         """
 
         self._success = None
-        self._error = None
         self._error_type = None
+        self._error = None
 
         if success is not None:
           self.success = success
-        if error is not None:
-          self.error = error
         if error_type is not None:
           self.error_type = error_type
+        if error is not None:
+          self.error = error
 
     @property
     def success(self):
@@ -80,27 +80,6 @@ class OperationError(object):
         self._success = success
 
     @property
-    def error(self):
-        """
-        Gets the error of this OperationError.
-
-        :return: The error of this OperationError.
-        :rtype: OperationErrorError
-        """
-        return self._error
-
-    @error.setter
-    def error(self, error):
-        """
-        Sets the error of this OperationError.
-
-        :param error: The error of this OperationError.
-        :type: OperationErrorError
-        """
-
-        self._error = error
-
-    @property
     def error_type(self):
         """
         Gets the error_type of this OperationError.
@@ -120,6 +99,27 @@ class OperationError(object):
         """
 
         self._error_type = error_type
+
+    @property
+    def error(self):
+        """
+        Gets the error of this OperationError.
+
+        :return: The error of this OperationError.
+        :rtype: ForbiddenErrorError
+        """
+        return self._error
+
+    @error.setter
+    def error(self, error):
+        """
+        Sets the error of this OperationError.
+
+        :param error: The error of this OperationError.
+        :type: ForbiddenErrorError
+        """
+
+        self._error = error
 
     def to_dict(self):
         """

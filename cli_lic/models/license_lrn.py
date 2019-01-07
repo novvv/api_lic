@@ -32,37 +32,37 @@ class LicenseLrn(object):
     """
     swagger_types = {
         'end_time': 'datetime',
-        'package_lrn_uuid': 'str',
         'duration': 'str',
+        'package_lrn_uuid': 'str',
         'start_time': 'datetime',
         'ip': 'str'
     }
 
     attribute_map = {
         'end_time': 'end_time',
-        'package_lrn_uuid': 'package_lrn_uuid',
         'duration': 'duration',
+        'package_lrn_uuid': 'package_lrn_uuid',
         'start_time': 'start_time',
         'ip': 'ip'
     }
 
-    def __init__(self, end_time=None, package_lrn_uuid=None, duration='1 month', start_time=None, ip=None):
+    def __init__(self, end_time=None, duration='1 month', package_lrn_uuid=None, start_time=None, ip=None):
         """
         LicenseLrn - a model defined in Swagger
         """
 
         self._end_time = None
-        self._package_lrn_uuid = None
         self._duration = None
+        self._package_lrn_uuid = None
         self._start_time = None
         self._ip = None
 
         if end_time is not None:
           self.end_time = end_time
-        if package_lrn_uuid is not None:
-          self.package_lrn_uuid = package_lrn_uuid
         if duration is not None:
           self.duration = duration
+        if package_lrn_uuid is not None:
+          self.package_lrn_uuid = package_lrn_uuid
         if start_time is not None:
           self.start_time = start_time
         self.ip = ip
@@ -87,29 +87,6 @@ class LicenseLrn(object):
         """
 
         self._end_time = end_time
-
-    @property
-    def package_lrn_uuid(self):
-        """
-        Gets the package_lrn_uuid of this LicenseLrn.
-
-        :return: The package_lrn_uuid of this LicenseLrn.
-        :rtype: str
-        """
-        return self._package_lrn_uuid
-
-    @package_lrn_uuid.setter
-    def package_lrn_uuid(self, package_lrn_uuid):
-        """
-        Sets the package_lrn_uuid of this LicenseLrn.
-
-        :param package_lrn_uuid: The package_lrn_uuid of this LicenseLrn.
-        :type: str
-        """
-        if package_lrn_uuid is not None and len(package_lrn_uuid) > 36:
-            raise ValueError("Invalid value for `package_lrn_uuid`, length must be less than or equal to `36`")
-
-        self._package_lrn_uuid = package_lrn_uuid
 
     @property
     def duration(self):
@@ -137,6 +114,29 @@ class LicenseLrn(object):
             )
 
         self._duration = duration
+
+    @property
+    def package_lrn_uuid(self):
+        """
+        Gets the package_lrn_uuid of this LicenseLrn.
+
+        :return: The package_lrn_uuid of this LicenseLrn.
+        :rtype: str
+        """
+        return self._package_lrn_uuid
+
+    @package_lrn_uuid.setter
+    def package_lrn_uuid(self, package_lrn_uuid):
+        """
+        Sets the package_lrn_uuid of this LicenseLrn.
+
+        :param package_lrn_uuid: The package_lrn_uuid of this LicenseLrn.
+        :type: str
+        """
+        if package_lrn_uuid is not None and len(package_lrn_uuid) > 36:
+            raise ValueError("Invalid value for `package_lrn_uuid`, length must be less than or equal to `36`")
+
+        self._package_lrn_uuid = package_lrn_uuid
 
     @property
     def start_time(self):

@@ -165,7 +165,7 @@ class PaymentResource(Resource):
     def get_object(self, resp, model_class, **kwargs):
         obj = super().get_object(resp, model_class, **kwargs)
         user = self.get_user(self.req)
-        if user.get_role() == UserRole and obj.user_uuid != user.user_user_uuid:
+        if user.get_role() == UserRole and obj.user_uuid != user.user_uuid:
             raise NoResultFound
         return obj
 

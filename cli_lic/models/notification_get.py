@@ -31,37 +31,58 @@ class NotificationGet(object):
                             and the value is json key in definition.
     """
     swagger_types = {
+        'content': 'str',
         'notification_uuid': 'str',
         'user_uuid': 'str',
-        'subject': 'str',
-        'content': 'str'
+        'subject': 'str'
     }
 
     attribute_map = {
+        'content': 'content',
         'notification_uuid': 'notification_uuid',
         'user_uuid': 'user_uuid',
-        'subject': 'subject',
-        'content': 'content'
+        'subject': 'subject'
     }
 
-    def __init__(self, notification_uuid=None, user_uuid=None, subject=None, content=None):
+    def __init__(self, content=None, notification_uuid=None, user_uuid=None, subject=None):
         """
         NotificationGet - a model defined in Swagger
         """
 
+        self._content = None
         self._notification_uuid = None
         self._user_uuid = None
         self._subject = None
-        self._content = None
 
+        if content is not None:
+          self.content = content
         if notification_uuid is not None:
           self.notification_uuid = notification_uuid
         if user_uuid is not None:
           self.user_uuid = user_uuid
         if subject is not None:
           self.subject = subject
-        if content is not None:
-          self.content = content
+
+    @property
+    def content(self):
+        """
+        Gets the content of this NotificationGet.
+
+        :return: The content of this NotificationGet.
+        :rtype: str
+        """
+        return self._content
+
+    @content.setter
+    def content(self, content):
+        """
+        Sets the content of this NotificationGet.
+
+        :param content: The content of this NotificationGet.
+        :type: str
+        """
+
+        self._content = content
 
     @property
     def notification_uuid(self):
@@ -131,27 +152,6 @@ class NotificationGet(object):
             raise ValueError("Invalid value for `subject`, length must be less than or equal to `64`")
 
         self._subject = subject
-
-    @property
-    def content(self):
-        """
-        Gets the content of this NotificationGet.
-
-        :return: The content of this NotificationGet.
-        :rtype: str
-        """
-        return self._content
-
-    @content.setter
-    def content(self, content):
-        """
-        Sets the content of this NotificationGet.
-
-        :param content: The content of this NotificationGet.
-        :type: str
-        """
-
-        self._content = content
 
     def to_dict(self):
         """

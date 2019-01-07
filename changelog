@@ -1,4 +1,6 @@
-ma
+api_lic ver 1.0.13
+GET/payment/{} <-- fix error LLP-95
+
 api_lic ver 1.0.12
 GET/switch/list <-- list of DnlLicenseInfo
 POST/license_switch <-- validation against DnlLicenseInfo LLP-83
