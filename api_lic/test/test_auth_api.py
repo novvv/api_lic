@@ -129,7 +129,7 @@ class TestAuthApi(unittest.TestCase):
         """
 
         def bla_register(**kwargs):
-            data = dict(email=bla_mail(),passwd=bla(10))
+            data = dict(email=bla_mail(),passwd=bla(10),first_name=bla(random.randint(4,10)),last_name=bla(random.randint(4,8)))
             for k, v in kwargs.items():
                 data[k] = v
             return data

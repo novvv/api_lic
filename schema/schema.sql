@@ -742,7 +742,9 @@ CREATE TABLE public."user" (
     alert_license_expired boolean DEFAULT true,
     alert_license_purchased boolean DEFAULT true,
     alert_license_will_expired boolean DEFAULT true,
-    alert_payment_received boolean DEFAULT true
+    alert_payment_received boolean DEFAULT true,
+    first_name character varying(32),
+    last_name character varying(32)
 );
 
 
@@ -1321,6 +1323,20 @@ CREATE INDEX ix_switch_daily_report_date ON public.switch_daily USING btree (rep
 --
 
 CREATE UNIQUE INDEX ix_user_email ON public."user" USING btree (email);
+
+
+--
+-- Name: ix_user_first_name; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX ix_user_first_name ON public."user" USING btree (first_name);
+
+
+--
+-- Name: ix_user_last_name; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX ix_user_last_name ON public."user" USING btree (last_name);
 
 
 --
