@@ -31,48 +31,27 @@ class ObjectCreated(object):
                             and the value is json key in definition.
     """
     swagger_types = {
-        'success': 'bool',
-        'object_id': 'int'
+        'object_id': 'int',
+        'success': 'bool'
     }
 
     attribute_map = {
-        'success': 'success',
-        'object_id': 'object_id'
+        'object_id': 'object_id',
+        'success': 'success'
     }
 
-    def __init__(self, success=True, object_id=None):
+    def __init__(self, object_id=None, success=True):
         """
         ObjectCreated - a model defined in Swagger
         """
 
-        self._success = None
         self._object_id = None
+        self._success = None
 
-        if success is not None:
-          self.success = success
         if object_id is not None:
           self.object_id = object_id
-
-    @property
-    def success(self):
-        """
-        Gets the success of this ObjectCreated.
-
-        :return: The success of this ObjectCreated.
-        :rtype: bool
-        """
-        return self._success
-
-    @success.setter
-    def success(self, success):
-        """
-        Sets the success of this ObjectCreated.
-
-        :param success: The success of this ObjectCreated.
-        :type: bool
-        """
-
-        self._success = success
+        if success is not None:
+          self.success = success
 
     @property
     def object_id(self):
@@ -94,6 +73,27 @@ class ObjectCreated(object):
         """
 
         self._object_id = object_id
+
+    @property
+    def success(self):
+        """
+        Gets the success of this ObjectCreated.
+
+        :return: The success of this ObjectCreated.
+        :rtype: bool
+        """
+        return self._success
+
+    @success.setter
+    def success(self, success):
+        """
+        Sets the success of this ObjectCreated.
+
+        :param success: The success of this ObjectCreated.
+        :type: bool
+        """
+
+        self._success = success
 
     def to_dict(self):
         """

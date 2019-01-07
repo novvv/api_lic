@@ -31,53 +31,53 @@ class ForbiddenErrorError(object):
                             and the value is json key in definition.
     """
     swagger_types = {
-        'code': 'int',
+        'message': 'str',
         'reason': 'str',
-        'message': 'str'
+        'code': 'int'
     }
 
     attribute_map = {
-        'code': 'code',
+        'message': 'message',
         'reason': 'reason',
-        'message': 'message'
+        'code': 'code'
     }
 
-    def __init__(self, code=None, reason=None, message=None):
+    def __init__(self, message=None, reason=None, code=None):
         """
         ForbiddenErrorError - a model defined in Swagger
         """
 
-        self._code = None
-        self._reason = None
         self._message = None
+        self._reason = None
+        self._code = None
 
-        if code is not None:
-          self.code = code
-        if reason is not None:
-          self.reason = reason
         if message is not None:
           self.message = message
+        if reason is not None:
+          self.reason = reason
+        if code is not None:
+          self.code = code
 
     @property
-    def code(self):
+    def message(self):
         """
-        Gets the code of this ForbiddenErrorError.
+        Gets the message of this ForbiddenErrorError.
 
-        :return: The code of this ForbiddenErrorError.
-        :rtype: int
+        :return: The message of this ForbiddenErrorError.
+        :rtype: str
         """
-        return self._code
+        return self._message
 
-    @code.setter
-    def code(self, code):
+    @message.setter
+    def message(self, message):
         """
-        Sets the code of this ForbiddenErrorError.
+        Sets the message of this ForbiddenErrorError.
 
-        :param code: The code of this ForbiddenErrorError.
-        :type: int
+        :param message: The message of this ForbiddenErrorError.
+        :type: str
         """
 
-        self._code = code
+        self._message = message
 
     @property
     def reason(self):
@@ -101,25 +101,25 @@ class ForbiddenErrorError(object):
         self._reason = reason
 
     @property
-    def message(self):
+    def code(self):
         """
-        Gets the message of this ForbiddenErrorError.
+        Gets the code of this ForbiddenErrorError.
 
-        :return: The message of this ForbiddenErrorError.
-        :rtype: str
+        :return: The code of this ForbiddenErrorError.
+        :rtype: int
         """
-        return self._message
+        return self._code
 
-    @message.setter
-    def message(self, message):
+    @code.setter
+    def code(self, code):
         """
-        Sets the message of this ForbiddenErrorError.
+        Sets the code of this ForbiddenErrorError.
 
-        :param message: The message of this ForbiddenErrorError.
-        :type: str
+        :param code: The code of this ForbiddenErrorError.
+        :type: int
         """
 
-        self._message = message
+        self._code = code
 
     def to_dict(self):
         """

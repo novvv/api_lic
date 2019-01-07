@@ -31,48 +31,25 @@ class UserCredentials(object):
                             and the value is json key in definition.
     """
     swagger_types = {
-        'password': 'str',
-        'email': 'str'
+        'email': 'str',
+        'password': 'str'
     }
 
     attribute_map = {
-        'password': 'password',
-        'email': 'email'
+        'email': 'email',
+        'password': 'password'
     }
 
-    def __init__(self, password=None, email=None):
+    def __init__(self, email=None, password=None):
         """
         UserCredentials - a model defined in Swagger
         """
 
-        self._password = None
         self._email = None
+        self._password = None
 
-        self.password = password
         self.email = email
-
-    @property
-    def password(self):
-        """
-        Gets the password of this UserCredentials.
-
-        :return: The password of this UserCredentials.
-        :rtype: str
-        """
-        return self._password
-
-    @password.setter
-    def password(self, password):
-        """
-        Sets the password of this UserCredentials.
-
-        :param password: The password of this UserCredentials.
-        :type: str
-        """
-        if password is None:
-            raise ValueError("Invalid value for `password`, must not be `None`")
-
-        self._password = password
+        self.password = password
 
     @property
     def email(self):
@@ -96,6 +73,29 @@ class UserCredentials(object):
             raise ValueError("Invalid value for `email`, must not be `None`")
 
         self._email = email
+
+    @property
+    def password(self):
+        """
+        Gets the password of this UserCredentials.
+
+        :return: The password of this UserCredentials.
+        :rtype: str
+        """
+        return self._password
+
+    @password.setter
+    def password(self, password):
+        """
+        Sets the password of this UserCredentials.
+
+        :param password: The password of this UserCredentials.
+        :type: str
+        """
+        if password is None:
+            raise ValueError("Invalid value for `password`, must not be `None`")
+
+        self._password = password
 
     def to_dict(self):
         """

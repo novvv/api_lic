@@ -31,176 +31,67 @@ class PaymentGet(object):
                             and the value is json key in definition.
     """
     swagger_types = {
-        'paid_time': 'datetime',
-        'payment_uuid': 'str',
-        'license_switch_uuid': 'str',
-        'amount_total': 'str',
-        'user_uuid': 'str',
         'switch_uuid': 'str',
-        'amount_lrn': 'float',
+        'user_uuid': 'str',
         'license_lrn_uuid': 'str',
+        'amount_lrn': 'float',
+        'license_switch_uuid': 'str',
+        'payment_uuid': 'str',
+        'paid_time': 'datetime',
+        'type': 'str',
         'amount_switch': 'float',
-        'type': 'str'
+        'amount_total': 'str'
     }
 
     attribute_map = {
-        'paid_time': 'paid_time',
-        'payment_uuid': 'payment_uuid',
-        'license_switch_uuid': 'license_switch_uuid',
-        'amount_total': 'amount_total',
-        'user_uuid': 'user_uuid',
         'switch_uuid': 'switch_uuid',
-        'amount_lrn': 'amount_lrn',
+        'user_uuid': 'user_uuid',
         'license_lrn_uuid': 'license_lrn_uuid',
+        'amount_lrn': 'amount_lrn',
+        'license_switch_uuid': 'license_switch_uuid',
+        'payment_uuid': 'payment_uuid',
+        'paid_time': 'paid_time',
+        'type': 'type',
         'amount_switch': 'amount_switch',
-        'type': 'type'
+        'amount_total': 'amount_total'
     }
 
-    def __init__(self, paid_time=None, payment_uuid=None, license_switch_uuid=None, amount_total=None, user_uuid=None, switch_uuid=None, amount_lrn=None, license_lrn_uuid=None, amount_switch=None, type='paypal'):
+    def __init__(self, switch_uuid=None, user_uuid=None, license_lrn_uuid=None, amount_lrn=None, license_switch_uuid=None, payment_uuid=None, paid_time=None, type='paypal', amount_switch=None, amount_total=None):
         """
         PaymentGet - a model defined in Swagger
         """
 
-        self._paid_time = None
-        self._payment_uuid = None
-        self._license_switch_uuid = None
-        self._amount_total = None
-        self._user_uuid = None
         self._switch_uuid = None
-        self._amount_lrn = None
+        self._user_uuid = None
         self._license_lrn_uuid = None
-        self._amount_switch = None
+        self._amount_lrn = None
+        self._license_switch_uuid = None
+        self._payment_uuid = None
+        self._paid_time = None
         self._type = None
+        self._amount_switch = None
+        self._amount_total = None
 
-        if paid_time is not None:
-          self.paid_time = paid_time
-        if payment_uuid is not None:
-          self.payment_uuid = payment_uuid
-        if license_switch_uuid is not None:
-          self.license_switch_uuid = license_switch_uuid
-        if amount_total is not None:
-          self.amount_total = amount_total
-        if user_uuid is not None:
-          self.user_uuid = user_uuid
         if switch_uuid is not None:
           self.switch_uuid = switch_uuid
-        if amount_lrn is not None:
-          self.amount_lrn = amount_lrn
+        if user_uuid is not None:
+          self.user_uuid = user_uuid
         if license_lrn_uuid is not None:
           self.license_lrn_uuid = license_lrn_uuid
-        if amount_switch is not None:
-          self.amount_switch = amount_switch
+        if amount_lrn is not None:
+          self.amount_lrn = amount_lrn
+        if license_switch_uuid is not None:
+          self.license_switch_uuid = license_switch_uuid
+        if payment_uuid is not None:
+          self.payment_uuid = payment_uuid
+        if paid_time is not None:
+          self.paid_time = paid_time
         if type is not None:
           self.type = type
-
-    @property
-    def paid_time(self):
-        """
-        Gets the paid_time of this PaymentGet.
-
-        :return: The paid_time of this PaymentGet.
-        :rtype: datetime
-        """
-        return self._paid_time
-
-    @paid_time.setter
-    def paid_time(self, paid_time):
-        """
-        Sets the paid_time of this PaymentGet.
-
-        :param paid_time: The paid_time of this PaymentGet.
-        :type: datetime
-        """
-
-        self._paid_time = paid_time
-
-    @property
-    def payment_uuid(self):
-        """
-        Gets the payment_uuid of this PaymentGet.
-
-        :return: The payment_uuid of this PaymentGet.
-        :rtype: str
-        """
-        return self._payment_uuid
-
-    @payment_uuid.setter
-    def payment_uuid(self, payment_uuid):
-        """
-        Sets the payment_uuid of this PaymentGet.
-
-        :param payment_uuid: The payment_uuid of this PaymentGet.
-        :type: str
-        """
-        if payment_uuid is not None and len(payment_uuid) > 36:
-            raise ValueError("Invalid value for `payment_uuid`, length must be less than or equal to `36`")
-
-        self._payment_uuid = payment_uuid
-
-    @property
-    def license_switch_uuid(self):
-        """
-        Gets the license_switch_uuid of this PaymentGet.
-
-        :return: The license_switch_uuid of this PaymentGet.
-        :rtype: str
-        """
-        return self._license_switch_uuid
-
-    @license_switch_uuid.setter
-    def license_switch_uuid(self, license_switch_uuid):
-        """
-        Sets the license_switch_uuid of this PaymentGet.
-
-        :param license_switch_uuid: The license_switch_uuid of this PaymentGet.
-        :type: str
-        """
-        if license_switch_uuid is not None and len(license_switch_uuid) > 36:
-            raise ValueError("Invalid value for `license_switch_uuid`, length must be less than or equal to `36`")
-
-        self._license_switch_uuid = license_switch_uuid
-
-    @property
-    def amount_total(self):
-        """
-        Gets the amount_total of this PaymentGet.
-
-        :return: The amount_total of this PaymentGet.
-        :rtype: str
-        """
-        return self._amount_total
-
-    @amount_total.setter
-    def amount_total(self, amount_total):
-        """
-        Sets the amount_total of this PaymentGet.
-
-        :param amount_total: The amount_total of this PaymentGet.
-        :type: str
-        """
-
-        self._amount_total = amount_total
-
-    @property
-    def user_uuid(self):
-        """
-        Gets the user_uuid of this PaymentGet.
-
-        :return: The user_uuid of this PaymentGet.
-        :rtype: str
-        """
-        return self._user_uuid
-
-    @user_uuid.setter
-    def user_uuid(self, user_uuid):
-        """
-        Sets the user_uuid of this PaymentGet.
-
-        :param user_uuid: The user_uuid of this PaymentGet.
-        :type: str
-        """
-
-        self._user_uuid = user_uuid
+        if amount_switch is not None:
+          self.amount_switch = amount_switch
+        if amount_total is not None:
+          self.amount_total = amount_total
 
     @property
     def switch_uuid(self):
@@ -226,25 +117,25 @@ class PaymentGet(object):
         self._switch_uuid = switch_uuid
 
     @property
-    def amount_lrn(self):
+    def user_uuid(self):
         """
-        Gets the amount_lrn of this PaymentGet.
+        Gets the user_uuid of this PaymentGet.
 
-        :return: The amount_lrn of this PaymentGet.
-        :rtype: float
+        :return: The user_uuid of this PaymentGet.
+        :rtype: str
         """
-        return self._amount_lrn
+        return self._user_uuid
 
-    @amount_lrn.setter
-    def amount_lrn(self, amount_lrn):
+    @user_uuid.setter
+    def user_uuid(self, user_uuid):
         """
-        Sets the amount_lrn of this PaymentGet.
+        Sets the user_uuid of this PaymentGet.
 
-        :param amount_lrn: The amount_lrn of this PaymentGet.
-        :type: float
+        :param user_uuid: The user_uuid of this PaymentGet.
+        :type: str
         """
 
-        self._amount_lrn = amount_lrn
+        self._user_uuid = user_uuid
 
     @property
     def license_lrn_uuid(self):
@@ -270,25 +161,92 @@ class PaymentGet(object):
         self._license_lrn_uuid = license_lrn_uuid
 
     @property
-    def amount_switch(self):
+    def amount_lrn(self):
         """
-        Gets the amount_switch of this PaymentGet.
+        Gets the amount_lrn of this PaymentGet.
 
-        :return: The amount_switch of this PaymentGet.
+        :return: The amount_lrn of this PaymentGet.
         :rtype: float
         """
-        return self._amount_switch
+        return self._amount_lrn
 
-    @amount_switch.setter
-    def amount_switch(self, amount_switch):
+    @amount_lrn.setter
+    def amount_lrn(self, amount_lrn):
         """
-        Sets the amount_switch of this PaymentGet.
+        Sets the amount_lrn of this PaymentGet.
 
-        :param amount_switch: The amount_switch of this PaymentGet.
+        :param amount_lrn: The amount_lrn of this PaymentGet.
         :type: float
         """
 
-        self._amount_switch = amount_switch
+        self._amount_lrn = amount_lrn
+
+    @property
+    def license_switch_uuid(self):
+        """
+        Gets the license_switch_uuid of this PaymentGet.
+
+        :return: The license_switch_uuid of this PaymentGet.
+        :rtype: str
+        """
+        return self._license_switch_uuid
+
+    @license_switch_uuid.setter
+    def license_switch_uuid(self, license_switch_uuid):
+        """
+        Sets the license_switch_uuid of this PaymentGet.
+
+        :param license_switch_uuid: The license_switch_uuid of this PaymentGet.
+        :type: str
+        """
+        if license_switch_uuid is not None and len(license_switch_uuid) > 36:
+            raise ValueError("Invalid value for `license_switch_uuid`, length must be less than or equal to `36`")
+
+        self._license_switch_uuid = license_switch_uuid
+
+    @property
+    def payment_uuid(self):
+        """
+        Gets the payment_uuid of this PaymentGet.
+
+        :return: The payment_uuid of this PaymentGet.
+        :rtype: str
+        """
+        return self._payment_uuid
+
+    @payment_uuid.setter
+    def payment_uuid(self, payment_uuid):
+        """
+        Sets the payment_uuid of this PaymentGet.
+
+        :param payment_uuid: The payment_uuid of this PaymentGet.
+        :type: str
+        """
+        if payment_uuid is not None and len(payment_uuid) > 36:
+            raise ValueError("Invalid value for `payment_uuid`, length must be less than or equal to `36`")
+
+        self._payment_uuid = payment_uuid
+
+    @property
+    def paid_time(self):
+        """
+        Gets the paid_time of this PaymentGet.
+
+        :return: The paid_time of this PaymentGet.
+        :rtype: datetime
+        """
+        return self._paid_time
+
+    @paid_time.setter
+    def paid_time(self, paid_time):
+        """
+        Sets the paid_time of this PaymentGet.
+
+        :param paid_time: The paid_time of this PaymentGet.
+        :type: datetime
+        """
+
+        self._paid_time = paid_time
 
     @property
     def type(self):
@@ -316,6 +274,48 @@ class PaymentGet(object):
             )
 
         self._type = type
+
+    @property
+    def amount_switch(self):
+        """
+        Gets the amount_switch of this PaymentGet.
+
+        :return: The amount_switch of this PaymentGet.
+        :rtype: float
+        """
+        return self._amount_switch
+
+    @amount_switch.setter
+    def amount_switch(self, amount_switch):
+        """
+        Sets the amount_switch of this PaymentGet.
+
+        :param amount_switch: The amount_switch of this PaymentGet.
+        :type: float
+        """
+
+        self._amount_switch = amount_switch
+
+    @property
+    def amount_total(self):
+        """
+        Gets the amount_total of this PaymentGet.
+
+        :return: The amount_total of this PaymentGet.
+        :rtype: str
+        """
+        return self._amount_total
+
+    @amount_total.setter
+    def amount_total(self, amount_total):
+        """
+        Sets the amount_total of this PaymentGet.
+
+        :param amount_total: The amount_total of this PaymentGet.
+        :type: str
+        """
+
+        self._amount_total = amount_total
 
     def to_dict(self):
         """

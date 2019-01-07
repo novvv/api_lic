@@ -31,53 +31,32 @@ class ForbiddenError(object):
                             and the value is json key in definition.
     """
     swagger_types = {
-        'success': 'bool',
         'error_type': 'str',
+        'success': 'bool',
         'error': 'ForbiddenErrorError'
     }
 
     attribute_map = {
-        'success': 'success',
         'error_type': 'error_type',
+        'success': 'success',
         'error': 'error'
     }
 
-    def __init__(self, success=False, error_type='forbidden_error', error=None):
+    def __init__(self, error_type='forbidden_error', success=False, error=None):
         """
         ForbiddenError - a model defined in Swagger
         """
 
-        self._success = None
         self._error_type = None
+        self._success = None
         self._error = None
 
-        if success is not None:
-          self.success = success
         if error_type is not None:
           self.error_type = error_type
+        if success is not None:
+          self.success = success
         if error is not None:
           self.error = error
-
-    @property
-    def success(self):
-        """
-        Gets the success of this ForbiddenError.
-
-        :return: The success of this ForbiddenError.
-        :rtype: bool
-        """
-        return self._success
-
-    @success.setter
-    def success(self, success):
-        """
-        Sets the success of this ForbiddenError.
-
-        :param success: The success of this ForbiddenError.
-        :type: bool
-        """
-
-        self._success = success
 
     @property
     def error_type(self):
@@ -99,6 +78,27 @@ class ForbiddenError(object):
         """
 
         self._error_type = error_type
+
+    @property
+    def success(self):
+        """
+        Gets the success of this ForbiddenError.
+
+        :return: The success of this ForbiddenError.
+        :rtype: bool
+        """
+        return self._success
+
+    @success.setter
+    def success(self, success):
+        """
+        Sets the success of this ForbiddenError.
+
+        :param success: The success of this ForbiddenError.
+        :type: bool
+        """
+
+        self._success = success
 
     @property
     def error(self):

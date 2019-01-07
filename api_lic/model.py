@@ -427,16 +427,14 @@ class Payment(BaseModel):
     switch_uuid = Column(String(64),index=True)
     amount_lrn = Column(Numeric, nullable=False, server_default='0')
     amount_switch = Column(Numeric, nullable=False, server_default='0')
-    amount_total = Column(Numeric, nullable=False, server_default='0')
+    #amount_total = Column(Numeric, nullable=False, server_default='0')
     paid_time = Column(DateTime(True), nullable=False, server_default=func.now())
     type = Column(ChoiceType(TYPE), default=1)
     description = Column(Text)
 
     user = relationship('User')
 
-    @property
-    def amount(self):
-        return self.amount_total
+    amount_total = column_property(amount_lrn.op('+')(amount_switch))
 
     @property
     def license_uuid(self):

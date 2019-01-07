@@ -32,36 +32,36 @@ class NotificationGet(object):
     """
     swagger_types = {
         'content': 'str',
-        'notification_uuid': 'str',
         'user_uuid': 'str',
-        'subject': 'str'
+        'subject': 'str',
+        'notification_uuid': 'str'
     }
 
     attribute_map = {
         'content': 'content',
-        'notification_uuid': 'notification_uuid',
         'user_uuid': 'user_uuid',
-        'subject': 'subject'
+        'subject': 'subject',
+        'notification_uuid': 'notification_uuid'
     }
 
-    def __init__(self, content=None, notification_uuid=None, user_uuid=None, subject=None):
+    def __init__(self, content=None, user_uuid=None, subject=None, notification_uuid=None):
         """
         NotificationGet - a model defined in Swagger
         """
 
         self._content = None
-        self._notification_uuid = None
         self._user_uuid = None
         self._subject = None
+        self._notification_uuid = None
 
         if content is not None:
           self.content = content
-        if notification_uuid is not None:
-          self.notification_uuid = notification_uuid
         if user_uuid is not None:
           self.user_uuid = user_uuid
         if subject is not None:
           self.subject = subject
+        if notification_uuid is not None:
+          self.notification_uuid = notification_uuid
 
     @property
     def content(self):
@@ -83,29 +83,6 @@ class NotificationGet(object):
         """
 
         self._content = content
-
-    @property
-    def notification_uuid(self):
-        """
-        Gets the notification_uuid of this NotificationGet.
-
-        :return: The notification_uuid of this NotificationGet.
-        :rtype: str
-        """
-        return self._notification_uuid
-
-    @notification_uuid.setter
-    def notification_uuid(self, notification_uuid):
-        """
-        Sets the notification_uuid of this NotificationGet.
-
-        :param notification_uuid: The notification_uuid of this NotificationGet.
-        :type: str
-        """
-        if notification_uuid is not None and len(notification_uuid) > 36:
-            raise ValueError("Invalid value for `notification_uuid`, length must be less than or equal to `36`")
-
-        self._notification_uuid = notification_uuid
 
     @property
     def user_uuid(self):
@@ -152,6 +129,29 @@ class NotificationGet(object):
             raise ValueError("Invalid value for `subject`, length must be less than or equal to `64`")
 
         self._subject = subject
+
+    @property
+    def notification_uuid(self):
+        """
+        Gets the notification_uuid of this NotificationGet.
+
+        :return: The notification_uuid of this NotificationGet.
+        :rtype: str
+        """
+        return self._notification_uuid
+
+    @notification_uuid.setter
+    def notification_uuid(self, notification_uuid):
+        """
+        Sets the notification_uuid of this NotificationGet.
+
+        :param notification_uuid: The notification_uuid of this NotificationGet.
+        :type: str
+        """
+        if notification_uuid is not None and len(notification_uuid) > 36:
+            raise ValueError("Invalid value for `notification_uuid`, length must be less than or equal to `36`")
+
+        self._notification_uuid = notification_uuid
 
     def to_dict(self):
         """

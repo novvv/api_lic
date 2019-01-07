@@ -31,48 +31,27 @@ class Object(object):
                             and the value is json key in definition.
     """
     swagger_types = {
-        'success': 'bool',
-        'payload': 'object'
+        'payload': 'object',
+        'success': 'bool'
     }
 
     attribute_map = {
-        'success': 'success',
-        'payload': 'payload'
+        'payload': 'payload',
+        'success': 'success'
     }
 
-    def __init__(self, success=True, payload=None):
+    def __init__(self, payload=None, success=True):
         """
         Object - a model defined in Swagger
         """
 
-        self._success = None
         self._payload = None
+        self._success = None
 
-        if success is not None:
-          self.success = success
         if payload is not None:
           self.payload = payload
-
-    @property
-    def success(self):
-        """
-        Gets the success of this Object.
-
-        :return: The success of this Object.
-        :rtype: bool
-        """
-        return self._success
-
-    @success.setter
-    def success(self, success):
-        """
-        Sets the success of this Object.
-
-        :param success: The success of this Object.
-        :type: bool
-        """
-
-        self._success = success
+        if success is not None:
+          self.success = success
 
     @property
     def payload(self):
@@ -94,6 +73,27 @@ class Object(object):
         """
 
         self._payload = payload
+
+    @property
+    def success(self):
+        """
+        Gets the success of this Object.
+
+        :return: The success of this Object.
+        :rtype: bool
+        """
+        return self._success
+
+    @success.setter
+    def success(self, success):
+        """
+        Sets the success of this Object.
+
+        :param success: The success of this Object.
+        :type: bool
+        """
+
+        self._success = success
 
     def to_dict(self):
         """

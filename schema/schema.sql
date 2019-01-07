@@ -73,8 +73,8 @@ CREATE TABLE public.config_payment (
     notification_enabled boolean,
     email_cc_to character varying(64),
     paypal_email character varying(64),
-    paypal_pkey character varying(64),
-    paypal_skey character varying(64),
+    paypal_pkey character varying(128),
+    paypal_skey character varying(128),
     paypal_svc_charge numeric,
     paypal_test_mode boolean
 );
@@ -656,7 +656,6 @@ CREATE TABLE public.payment (
     license_switch_uuid character varying(36),
     amount_lrn numeric DEFAULT '0'::numeric NOT NULL,
     amount_switch numeric DEFAULT '0'::numeric NOT NULL,
-    amount_total numeric DEFAULT '0'::numeric NOT NULL,
     switch_uuid character varying(128)
 );
 

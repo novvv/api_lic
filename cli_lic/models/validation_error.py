@@ -31,53 +31,32 @@ class ValidationError(object):
                             and the value is json key in definition.
     """
     swagger_types = {
-        'success': 'bool',
         'error_type': 'str',
+        'success': 'bool',
         'errors': 'list[object]'
     }
 
     attribute_map = {
-        'success': 'success',
         'error_type': 'error_type',
+        'success': 'success',
         'errors': 'errors'
     }
 
-    def __init__(self, success=False, error_type='validation_error', errors=None):
+    def __init__(self, error_type='validation_error', success=False, errors=None):
         """
         ValidationError - a model defined in Swagger
         """
 
-        self._success = None
         self._error_type = None
+        self._success = None
         self._errors = None
 
-        if success is not None:
-          self.success = success
         if error_type is not None:
           self.error_type = error_type
+        if success is not None:
+          self.success = success
         if errors is not None:
           self.errors = errors
-
-    @property
-    def success(self):
-        """
-        Gets the success of this ValidationError.
-
-        :return: The success of this ValidationError.
-        :rtype: bool
-        """
-        return self._success
-
-    @success.setter
-    def success(self, success):
-        """
-        Sets the success of this ValidationError.
-
-        :param success: The success of this ValidationError.
-        :type: bool
-        """
-
-        self._success = success
 
     @property
     def error_type(self):
@@ -99,6 +78,27 @@ class ValidationError(object):
         """
 
         self._error_type = error_type
+
+    @property
+    def success(self):
+        """
+        Gets the success of this ValidationError.
+
+        :return: The success of this ValidationError.
+        :rtype: bool
+        """
+        return self._success
+
+    @success.setter
+    def success(self, success):
+        """
+        Sets the success of this ValidationError.
+
+        :param success: The success of this ValidationError.
+        :type: bool
+        """
+
+        self._success = success
 
     @property
     def errors(self):

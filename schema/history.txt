@@ -1,4 +1,5 @@
-5a18f169eb3c -> 82e5ccccac94 (head), paypal config
+82e5ccccac94 -> ac5b9a2035df (head), payment amount_total
+5a18f169eb3c -> 82e5ccccac94, paypal config
 79ff7aba0109 -> 5a18f169eb3c, switch daily
 8abd30c15b00 -> 79ff7aba0109, package switch switch uuid
 e258be71ed9f -> 8abd30c15b00, dnl_license_info

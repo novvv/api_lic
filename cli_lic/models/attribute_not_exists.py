@@ -31,53 +31,32 @@ class AttributeNotExists(object):
                             and the value is json key in definition.
     """
     swagger_types = {
-        'success': 'bool',
         'error_type': 'str',
+        'success': 'bool',
         'attribute': 'str'
     }
 
     attribute_map = {
-        'success': 'success',
         'error_type': 'error_type',
+        'success': 'success',
         'attribute': 'attribute'
     }
 
-    def __init__(self, success=False, error_type='attribute_not_exists', attribute=None):
+    def __init__(self, error_type='attribute_not_exists', success=False, attribute=None):
         """
         AttributeNotExists - a model defined in Swagger
         """
 
-        self._success = None
         self._error_type = None
+        self._success = None
         self._attribute = None
 
-        if success is not None:
-          self.success = success
         if error_type is not None:
           self.error_type = error_type
+        if success is not None:
+          self.success = success
         if attribute is not None:
           self.attribute = attribute
-
-    @property
-    def success(self):
-        """
-        Gets the success of this AttributeNotExists.
-
-        :return: The success of this AttributeNotExists.
-        :rtype: bool
-        """
-        return self._success
-
-    @success.setter
-    def success(self, success):
-        """
-        Sets the success of this AttributeNotExists.
-
-        :param success: The success of this AttributeNotExists.
-        :type: bool
-        """
-
-        self._success = success
 
     @property
     def error_type(self):
@@ -99,6 +78,27 @@ class AttributeNotExists(object):
         """
 
         self._error_type = error_type
+
+    @property
+    def success(self):
+        """
+        Gets the success of this AttributeNotExists.
+
+        :return: The success of this AttributeNotExists.
+        :rtype: bool
+        """
+        return self._success
+
+    @success.setter
+    def success(self, success):
+        """
+        Sets the success of this AttributeNotExists.
+
+        :param success: The success of this AttributeNotExists.
+        :type: bool
+        """
+
+        self._success = success
 
     @property
     def attribute(self):

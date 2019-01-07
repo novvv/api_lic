@@ -32,36 +32,36 @@ class Notification(object):
     """
     swagger_types = {
         'content': 'str',
-        'created_on': 'datetime',
+        'user_uuid': 'str',
         'subject': 'str',
-        'user_uuid': 'str'
+        'created_on': 'datetime'
     }
 
     attribute_map = {
         'content': 'content',
-        'created_on': 'created_on',
+        'user_uuid': 'user_uuid',
         'subject': 'subject',
-        'user_uuid': 'user_uuid'
+        'created_on': 'created_on'
     }
 
-    def __init__(self, content=None, created_on=None, subject=None, user_uuid=None):
+    def __init__(self, content=None, user_uuid=None, subject=None, created_on=None):
         """
         Notification - a model defined in Swagger
         """
 
         self._content = None
-        self._created_on = None
-        self._subject = None
         self._user_uuid = None
+        self._subject = None
+        self._created_on = None
 
         if content is not None:
           self.content = content
-        if created_on is not None:
-          self.created_on = created_on
-        if subject is not None:
-          self.subject = subject
         if user_uuid is not None:
           self.user_uuid = user_uuid
+        if subject is not None:
+          self.subject = subject
+        if created_on is not None:
+          self.created_on = created_on
 
     @property
     def content(self):
@@ -85,25 +85,27 @@ class Notification(object):
         self._content = content
 
     @property
-    def created_on(self):
+    def user_uuid(self):
         """
-        Gets the created_on of this Notification.
+        Gets the user_uuid of this Notification.
 
-        :return: The created_on of this Notification.
-        :rtype: datetime
+        :return: The user_uuid of this Notification.
+        :rtype: str
         """
-        return self._created_on
+        return self._user_uuid
 
-    @created_on.setter
-    def created_on(self, created_on):
+    @user_uuid.setter
+    def user_uuid(self, user_uuid):
         """
-        Sets the created_on of this Notification.
+        Sets the user_uuid of this Notification.
 
-        :param created_on: The created_on of this Notification.
-        :type: datetime
+        :param user_uuid: The user_uuid of this Notification.
+        :type: str
         """
+        if user_uuid is not None and len(user_uuid) > 36:
+            raise ValueError("Invalid value for `user_uuid`, length must be less than or equal to `36`")
 
-        self._created_on = created_on
+        self._user_uuid = user_uuid
 
     @property
     def subject(self):
@@ -129,27 +131,25 @@ class Notification(object):
         self._subject = subject
 
     @property
-    def user_uuid(self):
+    def created_on(self):
         """
-        Gets the user_uuid of this Notification.
+        Gets the created_on of this Notification.
 
-        :return: The user_uuid of this Notification.
-        :rtype: str
+        :return: The created_on of this Notification.
+        :rtype: datetime
         """
-        return self._user_uuid
+        return self._created_on
 
-    @user_uuid.setter
-    def user_uuid(self, user_uuid):
+    @created_on.setter
+    def created_on(self, created_on):
         """
-        Sets the user_uuid of this Notification.
+        Sets the created_on of this Notification.
 
-        :param user_uuid: The user_uuid of this Notification.
-        :type: str
+        :param created_on: The created_on of this Notification.
+        :type: datetime
         """
-        if user_uuid is not None and len(user_uuid) > 36:
-            raise ValueError("Invalid value for `user_uuid`, length must be less than or equal to `36`")
 
-        self._user_uuid = user_uuid
+        self._created_on = created_on
 
     def to_dict(self):
         """
