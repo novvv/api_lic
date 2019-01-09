@@ -237,7 +237,8 @@ class StripeWebhook(CustomPostAction):
         return self.proceed(req, resp, **kwargs)
 
     def proceed(self, req, resp, **kwargs):
-        stripe.api_key = settings.STRIPE['api_key']
+        conf=model.ConfigPayment.get(1)
+        stripe.api_key = conf.stripe_skey
         log.debug('webhook called request data {} kwargs {}'.format(req.data, kwargs))
         data = req.data
         if "type" in data:
@@ -245,12 +246,53 @@ class StripeWebhook(CustomPostAction):
                 try:
                     charge_id = data['data']['object']['id']
                     charge = stripe.Charge.retrieve(charge_id)
+                    description = charge['description']
+                    li = description.split(',')
+                    lrn_license_uuid = li[0]
+                    switch_license=None
+                    if len(li)>1:
+                        switch_license_uuid = li[1]
+                        switch_license = model.LicenseSwitch.get(switch_license_uuid)
+                    lrn_license=model.LicenseLrn.get(lrn_license_uuid)
+                    amount_lrn=0.0
+                    if not lrn_license:
+                        lrn_license_uuid=None
+                    else:
+                        amount_lrn = lrn_license.amount
+                    amount_switch=0.0
+                    if not switch_license:
+                        switch_license_uuid=None
+                    else:
+                        amount_switch = switch_license.amount
+
+                    amount = charge['amount'] / 100
                     ucls = model.User
-                    u = ucls.filter(ucls.email == charge['source']['name'])
+                    u = ucls.filter(ucls.email == charge['source']['customer']).first()
+                    if not u and lrn_license:
+                        u=lrn_license.user
+                    if not u and switch_license:
+                        u=switch_license.user
                     if u:
-                        pay = model.Payment(user_uuid=u.user_uuid, amount=charge['amount'] / 100, type='stripe',
-                                            description=charge['description'])
-                        pay.save()
+                        if not lrn_license_uuid and not switch_license:
+                            u.amount=amount
+                            u.payment_type='stripe'
+                            u.apply_mail('payment_failed')
+                            return True
+                        if amount < amount_lrn + amount_switch:
+                            u.amount = amount
+                            u.payment_type = 'stripe'
+                            u.apply_mail('payment_failed')
+                            return True
+                        pay = model.Payment(user_uuid=u.user_uuid,
+                                            lrn_license_uuid=lrn_license_uuid,
+                                            switch_license_uuid=switch_license_uuid,
+                                            amount_lrn=amount_lrn,
+                                            amount_switch=amount_switch,
+                                            type='stripe',
+                                            description=charge_id
+                                            )
+                        pay_uuid=pay.save()
+                        charge.update(dict(metadata=dict(payment_uuid=pay_uuid)))
                         if pay.user.alert_payment_received:
                             pay.apply_mail('payment_received')
                 except Exception as e:

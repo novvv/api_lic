@@ -419,6 +419,7 @@ class PackageLrnScheme(BaseModelScheme):
     dip_count = Int()
     amount = Int()
     enabled = Bool()
+    create_on = DateTime()
     licenses = Nested('LicenseLrnScheme', many=True)
 
     class Meta:
@@ -430,10 +431,10 @@ class PackageLrnSchemeGet(PackageLrnScheme):
     class Meta:
         model = model.PackageLrn
         fields = (
-            'package_lrn_uuid', 'package_name', 'cps', 'type', 'lrn_port', 'dip_count', 'amount', 'enabled')
+            'package_lrn_uuid', 'package_name', 'cps', 'type', 'lrn_port', 'dip_count', 'amount', 'enabled','create_on')
         search_fields = (
             'package_lrn_uuid', 'package_name', 'cps', 'type', 'lrn_port', 'dip_count', 'amount', 'enabled')
-
+        query_fields = ('create_on_gt', 'create_on_lt',)
 
 class PackageLrnSchemeModify(PackageLrnScheme):
     pass
@@ -514,15 +515,17 @@ class PackageSwitchScheme(BaseModelScheme):
 
 
 class PackageSwitchSchemeGet(PackageSwitchScheme):
+    create_on = DateTime()
     class Meta:
         model = model.PackageSwitch
         fields = (
             'package_switch_uuid', 'package_name', 'type', 'sub_type', 'switch_uuid', 'switch_port', 'minute_count',
-            'amount', 'enabled', 'start_date', 'expire_date')
+            'amount', 'enabled', 'start_date', 'expire_date','create_on')
         search_fields = (
             'package_switch_uuid', 'package_name', 'type', 'sub_type', 'switch_uuid', 'switch_port', 'minute_count',
             'amount', 'enabled')
-        query_fields = ('start_date_gt', 'start_date_lt', 'expire_date_gt', 'expire_date_lt')
+        query_fields = ('start_date_gt', 'start_date_lt', 'expire_date_gt', 'expire_date_lt','create_on_gt', 'create_on_lt',)
+
 
 
 class PackageSwitchSchemeModify(PackageSwitchScheme):

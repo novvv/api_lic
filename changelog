@@ -1,3 +1,8 @@
+api_lic ver 1.0.14
+POST /package_lrn <-- "create_on" LLP-105
+answered <-- switch license edit LLP-101
+answered <-- lrn license edit LLP-100
+
 api_lic ver 1.0.13
 GET/home <-- add "logo_file_uuid"
 POST/register <-- add "first_name" "last_name" LLP-91

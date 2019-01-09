@@ -1,4 +1,5 @@
-ac5b9a2035df -> caa44c8e5fbe (head), user first_name
+caa44c8e5fbe -> 17220f13141b (head), package_lrn create_on
+ac5b9a2035df -> caa44c8e5fbe, user first_name
 82e5ccccac94 -> ac5b9a2035df, payment amount_total
 5a18f169eb3c -> 82e5ccccac94, paypal config
 79ff7aba0109 -> 5a18f169eb3c, switch daily

@@ -475,6 +475,7 @@ class PackageLrn(BaseModel):
     amount = Column(Integer())
     enabled = Column(Boolean, default=True)
     licenses = relationship('LicenseLrn', uselist=True, back_populates='package')
+    create_on = Column(DateTime(True), nullable=True,server_default=func.now())
 
 
 class LicenseLrn(BaseModel):
@@ -567,6 +568,8 @@ class PackageSwitch(BaseModel):
     enabled = Column(Boolean, default=True)
     start_date = Column(DateTime(True), nullable=False, server_default=func.now())
     expire_date = Column(DateTime(True), nullable=True)
+    create_on = Column(DateTime(True), nullable=True, server_default=func.now())
+
     licenses = relationship('LicenseSwitch', uselist=True, back_populates='package')
     #switch = relationship('Switch', uselist=False, back_populates='packages')
     rate_per_port = column_property(case([(switch_port > 0, cast(amount, Float).op('/')(switch_port))], else_=None))
