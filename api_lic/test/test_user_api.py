@@ -295,7 +295,7 @@ class TestUserApi(unittest.TestCase):
                     license_switch_uuid=license_switch_uuid,
                     amount_lrn=random.randint(1,1000)/10.0,
                     amount_swwitch=random.randint(1, 1000/10.0),
-                    type=random.choice(['paypal','strip']),
+                    type=random.choice(['paypal','stripe']),
                     switch_uuid=rand_switch()[0])
         print(json.dumps(data))
         ret=self.api.payment_post(body=data)
@@ -307,7 +307,7 @@ class TestUserApi(unittest.TestCase):
             self.test_license_switch_post()
             license_switch_uuid = rand_license_switch()[0]
         data = dict(license_switch_uuid = license_switch_uuid , amount=random.randint(1, 1000),
-                        type=random.choice(['paypal', 'strip']))
+                        type=random.choice(['paypal', 'stripe']))
         ret = self.api.payment_post(body=data)
         assert (ret.success)
         pass

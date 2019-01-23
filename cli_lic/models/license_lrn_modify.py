@@ -31,81 +31,37 @@ class LicenseLrnModify(object):
                             and the value is json key in definition.
     """
     swagger_types = {
-        'enabled': 'bool',
-        'package_lrn_uuid': 'str',
         'ip': 'str',
-        'end_time': 'datetime'
+        'end_time': 'datetime',
+        'enabled': 'bool',
+        'package_lrn_uuid': 'str'
     }
 
     attribute_map = {
-        'enabled': 'enabled',
-        'package_lrn_uuid': 'package_lrn_uuid',
         'ip': 'ip',
-        'end_time': 'end_time'
+        'end_time': 'end_time',
+        'enabled': 'enabled',
+        'package_lrn_uuid': 'package_lrn_uuid'
     }
 
-    def __init__(self, enabled=None, package_lrn_uuid=None, ip=None, end_time=None):
+    def __init__(self, ip=None, end_time=None, enabled=None, package_lrn_uuid=None):
         """
         LicenseLrnModify - a model defined in Swagger
         """
 
-        self._enabled = None
-        self._package_lrn_uuid = None
         self._ip = None
         self._end_time = None
+        self._enabled = None
+        self._package_lrn_uuid = None
 
-        if enabled is not None:
-          self.enabled = enabled
-        if package_lrn_uuid is not None:
-          self.package_lrn_uuid = package_lrn_uuid
         if ip is not None:
           self.ip = ip
         if end_time is not None:
           self.end_time = end_time
-
-    @property
-    def enabled(self):
-        """
-        Gets the enabled of this LicenseLrnModify.
-
-        :return: The enabled of this LicenseLrnModify.
-        :rtype: bool
-        """
-        return self._enabled
-
-    @enabled.setter
-    def enabled(self, enabled):
-        """
-        Sets the enabled of this LicenseLrnModify.
-
-        :param enabled: The enabled of this LicenseLrnModify.
-        :type: bool
-        """
-
-        self._enabled = enabled
-
-    @property
-    def package_lrn_uuid(self):
-        """
-        Gets the package_lrn_uuid of this LicenseLrnModify.
-
-        :return: The package_lrn_uuid of this LicenseLrnModify.
-        :rtype: str
-        """
-        return self._package_lrn_uuid
-
-    @package_lrn_uuid.setter
-    def package_lrn_uuid(self, package_lrn_uuid):
-        """
-        Sets the package_lrn_uuid of this LicenseLrnModify.
-
-        :param package_lrn_uuid: The package_lrn_uuid of this LicenseLrnModify.
-        :type: str
-        """
-        if package_lrn_uuid is not None and len(package_lrn_uuid) > 36:
-            raise ValueError("Invalid value for `package_lrn_uuid`, length must be less than or equal to `36`")
-
-        self._package_lrn_uuid = package_lrn_uuid
+        if enabled is not None:
+          self.enabled = enabled
+        if package_lrn_uuid is not None:
+          self.package_lrn_uuid = package_lrn_uuid
 
     @property
     def ip(self):
@@ -150,6 +106,50 @@ class LicenseLrnModify(object):
         """
 
         self._end_time = end_time
+
+    @property
+    def enabled(self):
+        """
+        Gets the enabled of this LicenseLrnModify.
+
+        :return: The enabled of this LicenseLrnModify.
+        :rtype: bool
+        """
+        return self._enabled
+
+    @enabled.setter
+    def enabled(self, enabled):
+        """
+        Sets the enabled of this LicenseLrnModify.
+
+        :param enabled: The enabled of this LicenseLrnModify.
+        :type: bool
+        """
+
+        self._enabled = enabled
+
+    @property
+    def package_lrn_uuid(self):
+        """
+        Gets the package_lrn_uuid of this LicenseLrnModify.
+
+        :return: The package_lrn_uuid of this LicenseLrnModify.
+        :rtype: str
+        """
+        return self._package_lrn_uuid
+
+    @package_lrn_uuid.setter
+    def package_lrn_uuid(self, package_lrn_uuid):
+        """
+        Sets the package_lrn_uuid of this LicenseLrnModify.
+
+        :param package_lrn_uuid: The package_lrn_uuid of this LicenseLrnModify.
+        :type: str
+        """
+        if package_lrn_uuid is not None and len(package_lrn_uuid) > 36:
+            raise ValueError("Invalid value for `package_lrn_uuid`, length must be less than or equal to `36`")
+
+        self._package_lrn_uuid = package_lrn_uuid
 
     def to_dict(self):
         """

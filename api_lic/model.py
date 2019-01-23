@@ -326,8 +326,10 @@ class EmailTemplate(BaseModel):
     TEMPLATES = {'retrieve_password': 'Hi {{user.name}} your reset password url is {{user.reset_password_url}}',
                  'registration': 'Hi {{user.name}} your confirm registration url is {{user.token}}',
                  'welcome': 'WELCOME {{user.name}} ,your login url is {{user.login_url}}',
-                 'payment_received': 'Hi {{payment.user.name}} payment of {{payment.amount}} for license {{payment.license.license_uuid}} was received '
+                 'payment_received': 'Hi {{payment.user.name}} payment of {{payment.amount_total}} [{{payment.amount_lrn}}+{{payment.amount_switch}}] for licenses LRN:{{payment.license_lrn_uuid}},SWITCH:{{payment.license_switch_uuid}} was received '
                                      'on {{payment.paid_time}} from {{payment.type}} gateway',
+                 'payment_failed': 'Hi {{user.name}},for some reasons payment of {{user.amount_total}} was failed to accept on your account'
+                                     'on {{payment.paid_time}} from {{payment.type}} gateway. Probably payment description with licenses uuids is wrong',
                  'license_expired': 'Hi {{license.user.name}} your license {{license.license_uuid}} was expired on {{license.end_time}}',
                  'license_will_expired': 'Hi {{license.user.name}} your license {{license.license_uuid}} will expired on {{license.end_time}}',
                  'license_purchased': 'Hi {{license.user.name}} your license {{license.license_uuid}} purchased succesfulley ' \
@@ -418,9 +420,32 @@ class Plan(BaseModel):
     amount = Column(Numeric, nullable=False, server_default='0')
 
 
+class TransactionLog(BaseModel):
+    __tablename__ = 'transaction_log'
+    TYPE = {1: 'paypal', 2: 'stripe'}
+    STATUS = {1: 'success', -1: 'fail'}
+    transaction_log_uuid = Column(String(36), primary_key=True, default=generate_uuid_str(),
+                          server_default=func.uuid_generate_v4())
+    transaction_time = Column(DateTime(True), nullable=False, server_default=func.now())
+    license_lrn_uuid = Column(String(36))
+    license_switch_uuid = Column(String(36))
+    type = Column(ChoiceType(TYPE), default=1)
+    amount_total = Column(Numeric, nullable=False, server_default='0')
+    amount_lrn = Column(Numeric, nullable=False, server_default='0')
+    amount_switch = Column(Numeric, nullable=False, server_default='0')
+    transaction_fee = Column(Numeric, nullable=False, server_default='0')
+    transaction_id = Column(String(255))
+    transaction_type = Column(String(255))
+    from_ip = Column(String(36))
+    transaction_src = Column(JSON())
+    status = Column(ChoiceType(STATUS), default=-1)
+    result = Column(Text())
+    payment_uuid = Column(ForeignKey('payment.payment_uuid', ondelete='CASCADE'), index=True)
+
+
 class Payment(BaseModel):
     __tablename__ = 'payment'
-    TYPE = {1: 'paypal', 2: 'strip'}
+    TYPE = {1: 'paypal', 2: 'stripe'}
     payment_uuid = Column(String(36), primary_key=True, default=generate_uuid_str(),
                           server_default=func.uuid_generate_v4())
     user_uuid = Column(ForeignKey('user.user_uuid', ondelete='CASCADE'), index=True)
@@ -699,6 +724,21 @@ class DnlLicenseInfo(BaseModel):
     update_time = Column(DateTime(True))
     create_time = Column(DateTime(True) ,server_default=func.now())
     create_user = Column(SmallInteger, nullable=False, server_default=text("0"))
+
+    # switch_uuid = column_property(uuid)
+    # switch_ip = column_property(recv_ip)
+    # port_limit = column_property(max_cap)
+    # start_date = column_property(start_time)
+    # expire_date  = column_property(end_time)
+    switch_uuid = synonym('uuid')
+    switch_ip = synonym('recv_ip')
+    port_limit = synonym('max_cap')
+    start_date = synonym('start_time')
+    expire_date  = synonym('end_time')
+    bstatus = column_property(status==1)
+    plan_name = column_property(select([PackageSwitch.package_name]).where(PackageSwitch.switch_uuid==uuid).limit(1))
+
+
 
 
 class DnlLcenseInfoRecord(BaseModel):

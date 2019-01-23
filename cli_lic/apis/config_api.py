@@ -53,7 +53,7 @@ class ConfigApi(object):
 
         :param callback function: The callback function
             for asynchronous request. (optional)
-        :return: InlineResponse2006
+        :return: InlineResponse2008
                  If the method is called asynchronously,
                  returns the request thread.
         """
@@ -77,7 +77,7 @@ class ConfigApi(object):
 
         :param callback function: The callback function
             for asynchronous request. (optional)
-        :return: InlineResponse2006
+        :return: InlineResponse2008
                  If the method is called asynchronously,
                  returns the request thread.
         """
@@ -128,7 +128,7 @@ class ConfigApi(object):
                                         body=body_params,
                                         post_params=form_params,
                                         files=local_var_files,
-                                        response_type='InlineResponse2006',
+                                        response_type='InlineResponse2008',
                                         auth_settings=auth_settings,
                                         callback=params.get('callback'),
                                         _return_http_data_only=params.get('_return_http_data_only'),
@@ -150,7 +150,7 @@ class ConfigApi(object):
         :param callback function: The callback function
             for asynchronous request. (optional)
         :param ConfigPaymentModify body: ConfigPayment to modify
-        :return: InlineResponse2006
+        :return: InlineResponse2008
                  If the method is called asynchronously,
                  returns the request thread.
         """
@@ -175,7 +175,7 @@ class ConfigApi(object):
         :param callback function: The callback function
             for asynchronous request. (optional)
         :param ConfigPaymentModify body: ConfigPayment to modify
-        :return: InlineResponse2006
+        :return: InlineResponse2008
                  If the method is called asynchronously,
                  returns the request thread.
         """
@@ -229,7 +229,7 @@ class ConfigApi(object):
                                         body=body_params,
                                         post_params=form_params,
                                         files=local_var_files,
-                                        response_type='InlineResponse2006',
+                                        response_type='InlineResponse2008',
                                         auth_settings=auth_settings,
                                         callback=params.get('callback'),
                                         _return_http_data_only=params.get('_return_http_data_only'),
@@ -254,7 +254,7 @@ class ConfigApi(object):
         :param int per_page:
         :param str order_by:
         :param str order_dir:
-        :return: InlineResponse2008
+        :return: InlineResponse20010
                  If the method is called asynchronously,
                  returns the request thread.
         """
@@ -282,7 +282,7 @@ class ConfigApi(object):
         :param int per_page:
         :param str order_by:
         :param str order_dir:
-        :return: InlineResponse2008
+        :return: InlineResponse20010
                  If the method is called asynchronously,
                  returns the request thread.
         """
@@ -342,7 +342,7 @@ class ConfigApi(object):
                                         body=body_params,
                                         post_params=form_params,
                                         files=local_var_files,
-                                        response_type='InlineResponse2008',
+                                        response_type='InlineResponse20010',
                                         auth_settings=auth_settings,
                                         callback=params.get('callback'),
                                         _return_http_data_only=params.get('_return_http_data_only'),
@@ -364,7 +364,7 @@ class ConfigApi(object):
         :param callback function: The callback function
             for asynchronous request. (optional)
         :param str name: EmailTemplate id to get info about (required)
-        :return: InlineResponse2007
+        :return: InlineResponse2009
                  If the method is called asynchronously,
                  returns the request thread.
         """
@@ -389,7 +389,7 @@ class ConfigApi(object):
         :param callback function: The callback function
             for asynchronous request. (optional)
         :param str name: EmailTemplate id to get info about (required)
-        :return: InlineResponse2007
+        :return: InlineResponse2009
                  If the method is called asynchronously,
                  returns the request thread.
         """
@@ -446,7 +446,7 @@ class ConfigApi(object):
                                         body=body_params,
                                         post_params=form_params,
                                         files=local_var_files,
-                                        response_type='InlineResponse2007',
+                                        response_type='InlineResponse2009',
                                         auth_settings=auth_settings,
                                         callback=params.get('callback'),
                                         _return_http_data_only=params.get('_return_http_data_only'),
@@ -469,7 +469,7 @@ class ConfigApi(object):
             for asynchronous request. (optional)
         :param str name: EmailTemplate id to get info about (required)
         :param EmailTemplate body: EmailTemplate to modify
-        :return: InlineResponse2007
+        :return: InlineResponse2009
                  If the method is called asynchronously,
                  returns the request thread.
         """
@@ -495,7 +495,7 @@ class ConfigApi(object):
             for asynchronous request. (optional)
         :param str name: EmailTemplate id to get info about (required)
         :param EmailTemplate body: EmailTemplate to modify
-        :return: InlineResponse2007
+        :return: InlineResponse2009
                  If the method is called asynchronously,
                  returns the request thread.
         """
@@ -554,7 +554,7 @@ class ConfigApi(object):
                                         body=body_params,
                                         post_params=form_params,
                                         files=local_var_files,
-                                        response_type='InlineResponse2007',
+                                        response_type='InlineResponse2009',
                                         auth_settings=auth_settings,
                                         callback=params.get('callback'),
                                         _return_http_data_only=params.get('_return_http_data_only'),

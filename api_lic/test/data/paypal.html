@@ -31,7 +31,7 @@ funding: {
 // PayPal Client IDs - replace with your own
 // Create a PayPal app: https://developer.paypal.com/developer/applications/create
 client: {
-  sandbox: 'AQUKH7lyP526akUBJEobHP_vszBNEIqX87T8AS4llPiaZsZx_YRn1yxNsmF4UY3WT7XQP5cexS0egIsp'
+  sandbox: 'AdzuYdXFheG3cegB2tZWm1u74ZZ1HYGHze9GKlky_xj9kvEOh2fJ1a9K0cH3zktFvEd-nwgK5XggU9b-'
  // production: '<insert production client id>'
 },
 
@@ -41,9 +41,38 @@ payment: function (data, actions) {
       transactions: [
         {
           amount: {
-            total: '100.01',
-            currency: 'RUB'
-          }
+            total: '2285.00',
+            currency: 'USD'
+          },
+          item_list: {
+        items: [
+        {
+          name: 'LRN',
+          description: 'lrn license',
+          quantity: '1',
+          price: '1040',
+          sku: 'a77c75b6-6af9-4af4-9b37-2f5bfebd6bbe',
+          currency: 'USD'
+        },
+        {
+          name: 'SWITCH',
+          description: 'switch license',
+          quantity: '1',
+          price: '1245',
+          sku: '70dd2020-4e36-4126-a9ac-d702d1f5a9e2',
+          currency: 'USD'
+        }],
+        shipping_address: {
+          recipient_name: 'Brian Robinson',
+          line1: '4th Floor',
+          line2: 'Unit #34',
+          city: 'San Jose',
+          country_code: 'US',
+          postal_code: '95131',
+          phone: '011862212345678',
+          state: 'CA'
+        }
+      }
         }
       ]
     }

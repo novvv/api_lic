@@ -34,7 +34,7 @@ class InlineResponse20019Payload(object):
         'total': 'int',
         'page': 'int',
         'per_page': 'int',
-        'items': 'list[PaymentGet]'
+        'items': 'list[NotificationGet]'
     }
 
     attribute_map = {
@@ -138,7 +138,7 @@ class InlineResponse20019Payload(object):
         Gets the items of this InlineResponse20019Payload.
 
         :return: The items of this InlineResponse20019Payload.
-        :rtype: list[PaymentGet]
+        :rtype: list[NotificationGet]
         """
         return self._items
 
@@ -148,7 +148,7 @@ class InlineResponse20019Payload(object):
         Sets the items of this InlineResponse20019Payload.
 
         :param items: The items of this InlineResponse20019Payload.
-        :type: list[PaymentGet]
+        :type: list[NotificationGet]
         """
 
         self._items = items

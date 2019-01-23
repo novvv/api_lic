@@ -31,57 +31,59 @@ class UserRegister(object):
                             and the value is json key in definition.
     """
     swagger_types = {
-        'passwd': 'str',
-        'last_name': 'str',
         'email': 'str',
+        'last_name': 'str',
+        'passwd': 'str',
         'first_name': 'str'
     }
 
     attribute_map = {
-        'passwd': 'passwd',
-        'last_name': 'last_name',
         'email': 'email',
+        'last_name': 'last_name',
+        'passwd': 'passwd',
         'first_name': 'first_name'
     }
 
-    def __init__(self, passwd=None, last_name=None, email=None, first_name=None):
+    def __init__(self, email=None, last_name=None, passwd=None, first_name=None):
         """
         UserRegister - a model defined in Swagger
         """
 
-        self._passwd = None
-        self._last_name = None
         self._email = None
+        self._last_name = None
+        self._passwd = None
         self._first_name = None
 
-        if passwd is not None:
-          self.passwd = passwd
+        self.email = email
         if last_name is not None:
           self.last_name = last_name
-        self.email = email
+        if passwd is not None:
+          self.passwd = passwd
         if first_name is not None:
           self.first_name = first_name
 
     @property
-    def passwd(self):
+    def email(self):
         """
-        Gets the passwd of this UserRegister.
+        Gets the email of this UserRegister.
 
-        :return: The passwd of this UserRegister.
+        :return: The email of this UserRegister.
         :rtype: str
         """
-        return self._passwd
+        return self._email
 
-    @passwd.setter
-    def passwd(self, passwd):
+    @email.setter
+    def email(self, email):
         """
-        Sets the passwd of this UserRegister.
+        Sets the email of this UserRegister.
 
-        :param passwd: The passwd of this UserRegister.
+        :param email: The email of this UserRegister.
         :type: str
         """
+        if email is None:
+            raise ValueError("Invalid value for `email`, must not be `None`")
 
-        self._passwd = passwd
+        self._email = email
 
     @property
     def last_name(self):
@@ -107,27 +109,25 @@ class UserRegister(object):
         self._last_name = last_name
 
     @property
-    def email(self):
+    def passwd(self):
         """
-        Gets the email of this UserRegister.
+        Gets the passwd of this UserRegister.
 
-        :return: The email of this UserRegister.
+        :return: The passwd of this UserRegister.
         :rtype: str
         """
-        return self._email
+        return self._passwd
 
-    @email.setter
-    def email(self, email):
+    @passwd.setter
+    def passwd(self, passwd):
         """
-        Sets the email of this UserRegister.
+        Sets the passwd of this UserRegister.
 
-        :param email: The email of this UserRegister.
+        :param passwd: The passwd of this UserRegister.
         :type: str
         """
-        if email is None:
-            raise ValueError("Invalid value for `email`, must not be `None`")
 
-        self._email = email
+        self._passwd = passwd
 
     @property
     def first_name(self):

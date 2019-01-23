@@ -1,4 +1,7 @@
-caa44c8e5fbe -> 17220f13141b (head), package_lrn create_on
+f11572091a96 -> 95d13495228a (head), transaction_log amount
+ca11a5c702c2 -> f11572091a96, transaction_log fee
+17220f13141b -> ca11a5c702c2, transaction_log
+caa44c8e5fbe -> 17220f13141b, package_lrn create_on
 ac5b9a2035df -> caa44c8e5fbe, user first_name
 82e5ccccac94 -> ac5b9a2035df, payment amount_total
 5a18f169eb3c -> 82e5ccccac94, paypal config

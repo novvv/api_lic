@@ -31,58 +31,37 @@ class LicenseSwitchModify(object):
                             and the value is json key in definition.
     """
     swagger_types = {
-        'enabled': 'bool',
         'ip': 'str',
-        'package_switch_uuid': 'str',
-        'end_time': 'datetime'
+        'end_time': 'datetime',
+        'enabled': 'bool',
+        'package_switch_uuid': 'str'
     }
 
     attribute_map = {
-        'enabled': 'enabled',
         'ip': 'ip',
-        'package_switch_uuid': 'package_switch_uuid',
-        'end_time': 'end_time'
+        'end_time': 'end_time',
+        'enabled': 'enabled',
+        'package_switch_uuid': 'package_switch_uuid'
     }
 
-    def __init__(self, enabled=None, ip=None, package_switch_uuid=None, end_time=None):
+    def __init__(self, ip=None, end_time=None, enabled=None, package_switch_uuid=None):
         """
         LicenseSwitchModify - a model defined in Swagger
         """
 
-        self._enabled = None
         self._ip = None
-        self._package_switch_uuid = None
         self._end_time = None
+        self._enabled = None
+        self._package_switch_uuid = None
 
-        if enabled is not None:
-          self.enabled = enabled
         if ip is not None:
           self.ip = ip
-        if package_switch_uuid is not None:
-          self.package_switch_uuid = package_switch_uuid
         if end_time is not None:
           self.end_time = end_time
-
-    @property
-    def enabled(self):
-        """
-        Gets the enabled of this LicenseSwitchModify.
-
-        :return: The enabled of this LicenseSwitchModify.
-        :rtype: bool
-        """
-        return self._enabled
-
-    @enabled.setter
-    def enabled(self, enabled):
-        """
-        Sets the enabled of this LicenseSwitchModify.
-
-        :param enabled: The enabled of this LicenseSwitchModify.
-        :type: bool
-        """
-
-        self._enabled = enabled
+        if enabled is not None:
+          self.enabled = enabled
+        if package_switch_uuid is not None:
+          self.package_switch_uuid = package_switch_uuid
 
     @property
     def ip(self):
@@ -108,6 +87,48 @@ class LicenseSwitchModify(object):
         self._ip = ip
 
     @property
+    def end_time(self):
+        """
+        Gets the end_time of this LicenseSwitchModify.
+
+        :return: The end_time of this LicenseSwitchModify.
+        :rtype: datetime
+        """
+        return self._end_time
+
+    @end_time.setter
+    def end_time(self, end_time):
+        """
+        Sets the end_time of this LicenseSwitchModify.
+
+        :param end_time: The end_time of this LicenseSwitchModify.
+        :type: datetime
+        """
+
+        self._end_time = end_time
+
+    @property
+    def enabled(self):
+        """
+        Gets the enabled of this LicenseSwitchModify.
+
+        :return: The enabled of this LicenseSwitchModify.
+        :rtype: bool
+        """
+        return self._enabled
+
+    @enabled.setter
+    def enabled(self, enabled):
+        """
+        Sets the enabled of this LicenseSwitchModify.
+
+        :param enabled: The enabled of this LicenseSwitchModify.
+        :type: bool
+        """
+
+        self._enabled = enabled
+
+    @property
     def package_switch_uuid(self):
         """
         Gets the package_switch_uuid of this LicenseSwitchModify.
@@ -129,27 +150,6 @@ class LicenseSwitchModify(object):
             raise ValueError("Invalid value for `package_switch_uuid`, length must be less than or equal to `36`")
 
         self._package_switch_uuid = package_switch_uuid
-
-    @property
-    def end_time(self):
-        """
-        Gets the end_time of this LicenseSwitchModify.
-
-        :return: The end_time of this LicenseSwitchModify.
-        :rtype: datetime
-        """
-        return self._end_time
-
-    @end_time.setter
-    def end_time(self, end_time):
-        """
-        Sets the end_time of this LicenseSwitchModify.
-
-        :param end_time: The end_time of this LicenseSwitchModify.
-        :type: datetime
-        """
-
-        self._end_time = end_time
 
     def to_dict(self):
         """

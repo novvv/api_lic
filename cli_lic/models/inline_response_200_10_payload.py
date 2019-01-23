@@ -34,7 +34,7 @@ class InlineResponse20010Payload(object):
         'total': 'int',
         'page': 'int',
         'per_page': 'int',
-        'items': 'list[FalconRestContribFilesFile]'
+        'items': 'list[EmailTemplateGet]'
     }
 
     attribute_map = {
@@ -138,7 +138,7 @@ class InlineResponse20010Payload(object):
         Gets the items of this InlineResponse20010Payload.
 
         :return: The items of this InlineResponse20010Payload.
-        :rtype: list[FalconRestContribFilesFile]
+        :rtype: list[EmailTemplateGet]
         """
         return self._items
 
@@ -148,7 +148,7 @@ class InlineResponse20010Payload(object):
         Sets the items of this InlineResponse20010Payload.
 
         :param items: The items of this InlineResponse20010Payload.
-        :type: list[FalconRestContribFilesFile]
+        :type: list[EmailTemplateGet]
         """
 
         self._items = items

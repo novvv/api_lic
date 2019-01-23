@@ -285,8 +285,8 @@ class ConfigPaymentScheme(BaseModelScheme):
     stripe_svc_charge = Float()
     stripe_test_mode = Bool()
     paypal_email = Str(validate=[validate.Length(max=64)])
-    paypal_skey = Str(validate=[validate.Length(max=64)])
-    paypal_pkey = Str(validate=[validate.Length(max=64)])
+    paypal_skey = Str(validate=[validate.Length(max=128)])
+    paypal_pkey = Str(validate=[validate.Length(max=128)])
     paypal_svc_charge = Float()
     paypal_test_mode = Bool()
     confirm_enabled = Bool()
@@ -353,7 +353,7 @@ class PaymentScheme(BaseModelScheme):
         validate=[validate.Length(max=36), lambda value: _valid('LicenseLrn', 'license_lrn_uuid', value)])
     license_switch_uuid = Str(
         validate=[validate.Length(max=36), lambda value: _valid('LicenseSwitch', 'license_switch_uuid', value)])
-    switch_uuid = Str(validate=[validate.Length(max=64)])
+    # switch_uuid = Str(validate=[validate.Length(max=64)])
     amount_lrn = Float()
     amount_switch = Float()
     paid_time = DateTime()
@@ -362,17 +362,21 @@ class PaymentScheme(BaseModelScheme):
     class Meta:
         model = model.Payment
         fields = (
-        'license_lrn_uuid', 'license_switch_uuid', 'amount_lrn', 'amount_switch', 'paid_time', 'type', 'switch_uuid')
+            'license_lrn_uuid', 'license_switch_uuid', 'amount_lrn', 'amount_switch', 'paid_time',
+            'type')  # , 'switch_uuid')
 
 
 class PaymentSchemeGet(PaymentScheme):
+    description = Str()
+
     class Meta:
         model = model.Payment
         fields = (
             'payment_uuid', 'type', 'paid_time', 'user_uuid', 'license_lrn_uuid', 'license_switch_uuid', 'amount_lrn',
-            'amount_switch', 'amount_total', 'switch_uuid')
+            'amount_switch', 'amount_total', 'switch_uuid', 'description')
         search_fields = (
-        'payment_uuid', 'type', 'period', 'user_uuid', 'license_lrn_uuid', 'license_switch_uuid', 'switch_uuid')
+            'payment_uuid', 'type', 'period', 'user_uuid', 'license_lrn_uuid', 'license_switch_uuid', 'switch_uuid',
+            'description')
         query_fields = (
             'amount_lrn_gt', 'amount_lrn_lt', 'amount_switch_gt', 'amount_switch_lt', 'amount_total_gt',
             'amount_total_lt',
@@ -384,6 +388,45 @@ class PaymentSchemeModify(PaymentScheme):
 
 
 # ---Payment---
+
+# +++TransactionLog+++
+class TransactionLogScheme(BaseModelScheme):
+    transaction_log_uuid = Str(validate=[validate.Length(max=36)])
+    transaction_time = DateTime()
+    license_lrn_uuid = Str(validate=[validate.Length(max=36)])
+    license_switch_uuid = Str(validate=[validate.Length(max=36)])
+    type = Int()
+    amount_total = Float()
+    amount_lrn = Float()
+    amount_switch = Float()
+    transaction_id = Str(validate=[validate.Length(max=255)])
+    transaction_type = Str(validate=[validate.Length(max=255)])
+    from_ip = Str(validate=[validate.Length(max=36)])
+    transaction_src = Dict()
+    status = Int()
+    result = Str()
+    payment_uuid = Str(validate=[validate.Length(max=36)])
+
+    class Meta:
+        model = model.TransactionLog
+        fields = ('transaction_time', 'license_lrn_uuid', 'license_switch_uuid', 'type', 'amount_total', 'amount_lrn',
+                  'amount_switch', 'transaction_id', 'transaction_type', 'from_ip', 'transaction_src', 'status',
+                  'result', 'payment_uuid',)
+
+
+class TransactionLogSchemeGet(TransactionLogScheme):
+    class Meta:
+        model = model.TransactionLog
+        fields = ('transaction_time', 'license_lrn_uuid', 'license_switch_uuid', 'type', 'amount_lrn', 'amount_switch',
+                  'amount_total',
+                  'transaction_id', 'transaction_type', 'from_ip', 'transaction_src', 'status', 'result',
+                  'payment_uuid',)
+        search_fields = ('license_lrn_uuid', 'license_switch_uuid', 'type', 'amount_lrn', 'amount_switch',
+                         'transaction_id', 'transaction_type', 'from_ip', 'status', 'result',
+                         'payment_uuid',)
+        query_fields = ('transaction_time_gt', 'transaction_time_lt','amount_total_lt','amount_total_gt')
+
+
 # +++Plan+++
 class PlanScheme(BaseModelScheme):
     plan_uuid = Str(validate=[validate.Length(max=36)])
@@ -431,10 +474,12 @@ class PackageLrnSchemeGet(PackageLrnScheme):
     class Meta:
         model = model.PackageLrn
         fields = (
-            'package_lrn_uuid', 'package_name', 'cps', 'type', 'lrn_port', 'dip_count', 'amount', 'enabled','create_on')
+            'package_lrn_uuid', 'package_name', 'cps', 'type', 'lrn_port', 'dip_count', 'amount', 'enabled',
+            'create_on')
         search_fields = (
             'package_lrn_uuid', 'package_name', 'cps', 'type', 'lrn_port', 'dip_count', 'amount', 'enabled')
         query_fields = ('create_on_gt', 'create_on_lt',)
+
 
 class PackageLrnSchemeModify(PackageLrnScheme):
     pass
@@ -467,22 +512,28 @@ class DnlLicenseInfoScheme(BaseModelScheme):
     class Meta:
         model = model.DnlLicenseInfo
         fields = (
-        'carrier_name', 'ss_type', 'status', 'ss_name', 'uuid', 'recv_ip', 'recv_port', 'ss_bind_mac', 'ss_bind_ip',
-        'ss_bind_port', 'max_cap', 'max_cps', 'start_time', 'end_time', 'expires', 'update_time', 'create_time',
-        'create_user',)
+            'carrier_name', 'ss_type', 'status', 'ss_name', 'uuid', 'recv_ip', 'recv_port', 'ss_bind_mac', 'ss_bind_ip',
+            'ss_bind_port', 'max_cap', 'max_cps', 'start_time', 'end_time', 'expires', 'update_time', 'create_time',
+            'create_user',)
 
 
 class DnlLicenseInfoSchemeGet(DnlLicenseInfoScheme):
+    status = Boolean(attribute='bstatus')
+
     class Meta:
         model = model.DnlLicenseInfo
-        fields = ('id', 'carrier_name', 'ss_type', 'status', 'ss_name', 'uuid', 'recv_ip', 'recv_port', 'ss_bind_mac',
-                  'ss_bind_ip', 'ss_bind_port', 'max_cap', 'max_cps', 'expires', 'create_user',)
+        fields = ('switch_uuid', 'switch_ip', 'port_limit', 'start_date', 'expire_date', 'plan_name',
+                  # 'uuid',
+                  'id',
+                  'carrier_name', 'ss_type', 'status', 'ss_name', 'recv_port', 'ss_bind_mac',
+                  'ss_bind_ip', 'ss_bind_port', 'max_cps', 'expires', 'create_user',)
         search_fields = (
-        'id', 'carrier_name', 'ss_type', 'status', 'ss_name', 'uuid', 'recv_ip', 'recv_port', 'ss_bind_mac',
-        'ss_bind_ip', 'ss_bind_port', 'max_cap', 'max_cps', 'expires', 'create_user',)
+            'switch_uuid', 'switch_ip', 'port_limit', 'start_date', 'expire_date', 'plan_name',
+            'id', 'carrier_name', 'ss_type', 'status', 'ss_name', 'uuid', 'recv_ip', 'recv_port', 'ss_bind_mac',
+            'ss_bind_ip', 'ss_bind_port', 'max_cap', 'max_cps', 'expires', 'create_user',)
         query_fields = (
-        'start_time_gt', 'start_time_lt', 'end_time_gt', 'end_time_lt', 'update_time_gt', 'update_time_lt',
-        'create_time_gt', 'create_time_lt',)
+            'start_date_gt', 'start_date_lt', 'expire_date_gt', 'expire_date_lt', 'update_time_gt', 'update_time_lt',
+            'create_time_gt', 'create_time_lt',)
 
 
 class DnlLicenseInfoSchemeModify(DnlLicenseInfoScheme):
@@ -516,16 +567,17 @@ class PackageSwitchScheme(BaseModelScheme):
 
 class PackageSwitchSchemeGet(PackageSwitchScheme):
     create_on = DateTime()
+
     class Meta:
         model = model.PackageSwitch
         fields = (
             'package_switch_uuid', 'package_name', 'type', 'sub_type', 'switch_uuid', 'switch_port', 'minute_count',
-            'amount', 'enabled', 'start_date', 'expire_date','create_on')
+            'amount', 'enabled', 'start_date', 'expire_date', 'create_on')
         search_fields = (
             'package_switch_uuid', 'package_name', 'type', 'sub_type', 'switch_uuid', 'switch_port', 'minute_count',
             'amount', 'enabled')
-        query_fields = ('start_date_gt', 'start_date_lt', 'expire_date_gt', 'expire_date_lt','create_on_gt', 'create_on_lt',)
-
+        query_fields = (
+            'start_date_gt', 'start_date_lt', 'expire_date_gt', 'expire_date_lt', 'create_on_gt', 'create_on_lt',)
 
 
 class PackageSwitchSchemeModify(PackageSwitchScheme):

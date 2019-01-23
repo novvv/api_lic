@@ -31,53 +31,32 @@ class AttributeNotExists(object):
                             and the value is json key in definition.
     """
     swagger_types = {
-        'error_type': 'str',
         'success': 'bool',
+        'error_type': 'str',
         'attribute': 'str'
     }
 
     attribute_map = {
-        'error_type': 'error_type',
         'success': 'success',
+        'error_type': 'error_type',
         'attribute': 'attribute'
     }
 
-    def __init__(self, error_type='attribute_not_exists', success=False, attribute=None):
+    def __init__(self, success=False, error_type='attribute_not_exists', attribute=None):
         """
         AttributeNotExists - a model defined in Swagger
         """
 
-        self._error_type = None
         self._success = None
+        self._error_type = None
         self._attribute = None
 
-        if error_type is not None:
-          self.error_type = error_type
         if success is not None:
           self.success = success
+        if error_type is not None:
+          self.error_type = error_type
         if attribute is not None:
           self.attribute = attribute
-
-    @property
-    def error_type(self):
-        """
-        Gets the error_type of this AttributeNotExists.
-
-        :return: The error_type of this AttributeNotExists.
-        :rtype: str
-        """
-        return self._error_type
-
-    @error_type.setter
-    def error_type(self, error_type):
-        """
-        Sets the error_type of this AttributeNotExists.
-
-        :param error_type: The error_type of this AttributeNotExists.
-        :type: str
-        """
-
-        self._error_type = error_type
 
     @property
     def success(self):
@@ -99,6 +78,27 @@ class AttributeNotExists(object):
         """
 
         self._success = success
+
+    @property
+    def error_type(self):
+        """
+        Gets the error_type of this AttributeNotExists.
+
+        :return: The error_type of this AttributeNotExists.
+        :rtype: str
+        """
+        return self._error_type
+
+    @error_type.setter
+    def error_type(self, error_type):
+        """
+        Sets the error_type of this AttributeNotExists.
+
+        :param error_type: The error_type of this AttributeNotExists.
+        :type: str
+        """
+
+        self._error_type = error_type
 
     @property
     def attribute(self):

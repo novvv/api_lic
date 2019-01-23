@@ -1929,3 +1929,280 @@ class AdminApi(object):
                                         _preload_content=params.get('_preload_content', True),
                                         _request_timeout=params.get('_request_timeout'),
                                         collection_formats=collection_formats)
+
+    def transaction_log_get(self, **kwargs):
+        """
+        Gets transactionlogs
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please define a `callback` function
+        to be invoked when receiving the response.
+        >>> def callback_function(response):
+        >>>     pprint(response)
+        >>>
+        >>> thread = api.transaction_log_get(callback=callback_function)
+
+        :param callback function: The callback function
+            for asynchronous request. (optional)
+        :param int page:
+        :param int per_page:
+        :param str order_by:
+        :param str order_dir:
+        :param str amount_lrn:
+        :param str amount_switch:
+        :param str from_ip:
+        :param str license_lrn_uuid:
+        :param str license_switch_uuid:
+        :param str payment_uuid:
+        :param str result:
+        :param int status:
+        :param str transaction_id:
+        :param str transaction_type:
+        :param int type:
+        :param str amount_total_gt:
+        :param str amount_total_lt:
+        :param str transaction_time_gt:
+        :param str transaction_time_lt:
+        :return: InlineResponse2007
+                 If the method is called asynchronously,
+                 returns the request thread.
+        """
+        kwargs['_return_http_data_only'] = True
+        if kwargs.get('callback'):
+            return self.transaction_log_get_with_http_info(**kwargs)
+        else:
+            (data) = self.transaction_log_get_with_http_info(**kwargs)
+            return data
+
+    def transaction_log_get_with_http_info(self, **kwargs):
+        """
+        Gets transactionlogs
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please define a `callback` function
+        to be invoked when receiving the response.
+        >>> def callback_function(response):
+        >>>     pprint(response)
+        >>>
+        >>> thread = api.transaction_log_get_with_http_info(callback=callback_function)
+
+        :param callback function: The callback function
+            for asynchronous request. (optional)
+        :param int page:
+        :param int per_page:
+        :param str order_by:
+        :param str order_dir:
+        :param str amount_lrn:
+        :param str amount_switch:
+        :param str from_ip:
+        :param str license_lrn_uuid:
+        :param str license_switch_uuid:
+        :param str payment_uuid:
+        :param str result:
+        :param int status:
+        :param str transaction_id:
+        :param str transaction_type:
+        :param int type:
+        :param str amount_total_gt:
+        :param str amount_total_lt:
+        :param str transaction_time_gt:
+        :param str transaction_time_lt:
+        :return: InlineResponse2007
+                 If the method is called asynchronously,
+                 returns the request thread.
+        """
+
+        all_params = ['page', 'per_page', 'order_by', 'order_dir', 'amount_lrn', 'amount_switch', 'from_ip', 'license_lrn_uuid', 'license_switch_uuid', 'payment_uuid', 'result', 'status', 'transaction_id', 'transaction_type', 'type', 'amount_total_gt', 'amount_total_lt', 'transaction_time_gt', 'transaction_time_lt']
+        all_params.append('callback')
+        all_params.append('_return_http_data_only')
+        all_params.append('_preload_content')
+        all_params.append('_request_timeout')
+
+        params = locals()
+        for key, val in iteritems(params['kwargs']):
+            if key not in all_params:
+                raise TypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method transaction_log_get" % key
+                )
+            params[key] = val
+        del params['kwargs']
+
+
+        collection_formats = {}
+
+        path_params = {}
+
+        query_params = []
+        if 'page' in params:
+            query_params.append(('page', params['page']))
+        if 'per_page' in params:
+            query_params.append(('per_page', params['per_page']))
+        if 'order_by' in params:
+            query_params.append(('order_by', params['order_by']))
+        if 'order_dir' in params:
+            query_params.append(('order_dir', params['order_dir']))
+        if 'amount_lrn' in params:
+            query_params.append(('amount_lrn', params['amount_lrn']))
+        if 'amount_switch' in params:
+            query_params.append(('amount_switch', params['amount_switch']))
+        if 'from_ip' in params:
+            query_params.append(('from_ip', params['from_ip']))
+        if 'license_lrn_uuid' in params:
+            query_params.append(('license_lrn_uuid', params['license_lrn_uuid']))
+        if 'license_switch_uuid' in params:
+            query_params.append(('license_switch_uuid', params['license_switch_uuid']))
+        if 'payment_uuid' in params:
+            query_params.append(('payment_uuid', params['payment_uuid']))
+        if 'result' in params:
+            query_params.append(('result', params['result']))
+        if 'status' in params:
+            query_params.append(('status', params['status']))
+        if 'transaction_id' in params:
+            query_params.append(('transaction_id', params['transaction_id']))
+        if 'transaction_type' in params:
+            query_params.append(('transaction_type', params['transaction_type']))
+        if 'type' in params:
+            query_params.append(('type', params['type']))
+        if 'amount_total_gt' in params:
+            query_params.append(('amount_total_gt', params['amount_total_gt']))
+        if 'amount_total_lt' in params:
+            query_params.append(('amount_total_lt', params['amount_total_lt']))
+        if 'transaction_time_gt' in params:
+            query_params.append(('transaction_time_gt', params['transaction_time_gt']))
+        if 'transaction_time_lt' in params:
+            query_params.append(('transaction_time_lt', params['transaction_time_lt']))
+
+        header_params = {}
+
+        form_params = []
+        local_var_files = {}
+
+        body_params = None
+        # HTTP header `Accept`
+        header_params['Accept'] = self.api_client.\
+            select_header_accept(['application/json', 'text/csv', 'text/xml'])
+
+        # HTTP header `Content-Type`
+        header_params['Content-Type'] = self.api_client.\
+            select_header_content_type(['application/json'])
+
+        # Authentication setting
+        auth_settings = ['auth_token']
+
+        return self.api_client.call_api('/transaction/log', 'GET',
+                                        path_params,
+                                        query_params,
+                                        header_params,
+                                        body=body_params,
+                                        post_params=form_params,
+                                        files=local_var_files,
+                                        response_type='InlineResponse2007',
+                                        auth_settings=auth_settings,
+                                        callback=params.get('callback'),
+                                        _return_http_data_only=params.get('_return_http_data_only'),
+                                        _preload_content=params.get('_preload_content', True),
+                                        _request_timeout=params.get('_request_timeout'),
+                                        collection_formats=collection_formats)
+
+    def transaction_transaction_log_uuid_get(self, transaction_log_uuid, **kwargs):
+        """
+        Gets transactionlog
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please define a `callback` function
+        to be invoked when receiving the response.
+        >>> def callback_function(response):
+        >>>     pprint(response)
+        >>>
+        >>> thread = api.transaction_transaction_log_uuid_get(transaction_log_uuid, callback=callback_function)
+
+        :param callback function: The callback function
+            for asynchronous request. (optional)
+        :param str transaction_log_uuid: TransactionLog id to get info about (required)
+        :return: InlineResponse2006
+                 If the method is called asynchronously,
+                 returns the request thread.
+        """
+        kwargs['_return_http_data_only'] = True
+        if kwargs.get('callback'):
+            return self.transaction_transaction_log_uuid_get_with_http_info(transaction_log_uuid, **kwargs)
+        else:
+            (data) = self.transaction_transaction_log_uuid_get_with_http_info(transaction_log_uuid, **kwargs)
+            return data
+
+    def transaction_transaction_log_uuid_get_with_http_info(self, transaction_log_uuid, **kwargs):
+        """
+        Gets transactionlog
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please define a `callback` function
+        to be invoked when receiving the response.
+        >>> def callback_function(response):
+        >>>     pprint(response)
+        >>>
+        >>> thread = api.transaction_transaction_log_uuid_get_with_http_info(transaction_log_uuid, callback=callback_function)
+
+        :param callback function: The callback function
+            for asynchronous request. (optional)
+        :param str transaction_log_uuid: TransactionLog id to get info about (required)
+        :return: InlineResponse2006
+                 If the method is called asynchronously,
+                 returns the request thread.
+        """
+
+        all_params = ['transaction_log_uuid']
+        all_params.append('callback')
+        all_params.append('_return_http_data_only')
+        all_params.append('_preload_content')
+        all_params.append('_request_timeout')
+
+        params = locals()
+        for key, val in iteritems(params['kwargs']):
+            if key not in all_params:
+                raise TypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method transaction_transaction_log_uuid_get" % key
+                )
+            params[key] = val
+        del params['kwargs']
+        # verify the required parameter 'transaction_log_uuid' is set
+        if ('transaction_log_uuid' not in params) or (params['transaction_log_uuid'] is None):
+            raise ValueError("Missing the required parameter `transaction_log_uuid` when calling `transaction_transaction_log_uuid_get`")
+
+
+        collection_formats = {}
+
+        path_params = {}
+        if 'transaction_log_uuid' in params:
+            path_params['transaction_log_uuid'] = params['transaction_log_uuid']
+
+        query_params = []
+
+        header_params = {}
+
+        form_params = []
+        local_var_files = {}
+
+        body_params = None
+        # HTTP header `Accept`
+        header_params['Accept'] = self.api_client.\
+            select_header_accept(['application/json'])
+
+        # HTTP header `Content-Type`
+        header_params['Content-Type'] = self.api_client.\
+            select_header_content_type(['application/json'])
+
+        # Authentication setting
+        auth_settings = ['auth_token']
+
+        return self.api_client.call_api('/transaction/{transaction_log_uuid}', 'GET',
+                                        path_params,
+                                        query_params,
+                                        header_params,
+                                        body=body_params,
+                                        post_params=form_params,
+                                        files=local_var_files,
+                                        response_type='InlineResponse2006',
+                                        auth_settings=auth_settings,
+                                        callback=params.get('callback'),
+                                        _return_http_data_only=params.get('_return_http_data_only'),
+                                        _preload_content=params.get('_preload_content', True),
+                                        _request_timeout=params.get('_request_timeout'),
+                                        collection_formats=collection_formats)

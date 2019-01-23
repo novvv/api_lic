@@ -281,3 +281,34 @@ class LicenseSwitchAdminResource(Resource):
         else:
             self.set_response(resp, responses.ObjectNotFoundErrorResponse())
             return None
+
+
+# +++TransactionLog+++
+
+class TransactionLogResource(Resource):
+    model_class = model.TransactionLog
+    scheme_class = TransactionLogScheme
+    scheme_class_get = TransactionLogSchemeGet
+    entity = 'TransactionLog'
+    id_field = 'transaction_log_uuid'
+    security = (DEFAULT_SECURITY)
+    path_parameters = ()
+    restrict = ()
+    has_modify_operation = False
+    has_delete_operation = False
+
+class TransactionLogList(List):
+    scheme_class = TransactionLogSchemeGet
+    model_class = model.TransactionLog
+    entity_plural = 'TransactionLogs'
+    path_parameters = ()
+    security = (DEFAULT_SECURITY)
+    restrict = ()
+    def modify_query_from_filtering_for_list(self, filtering, **kwargs):
+        filt, ret = super().modify_query_from_filtering_for_list(filtering, **kwargs)
+        user = self.get_user(self.req)
+        if not user.is_admin:
+            cls = self.model_class
+            #ret = ret.filter(cls.pool_id != 0)#TODO:filter for user
+        return filt, ret
+# ---TransactionLog---

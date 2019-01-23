@@ -31,107 +31,42 @@ class PackageSwitchPort(object):
                             and the value is json key in definition.
     """
     swagger_types = {
-        'enabled': 'bool',
-        'rate_per_port': 'float',
-        'package_name': 'str',
         'amount': 'int',
-        'package_switch_uuid': 'str'
+        'rate_per_port': 'float',
+        'enabled': 'bool',
+        'package_switch_uuid': 'str',
+        'package_name': 'str'
     }
 
     attribute_map = {
-        'enabled': 'enabled',
-        'rate_per_port': 'rate_per_port',
-        'package_name': 'package_name',
         'amount': 'amount',
-        'package_switch_uuid': 'package_switch_uuid'
+        'rate_per_port': 'rate_per_port',
+        'enabled': 'enabled',
+        'package_switch_uuid': 'package_switch_uuid',
+        'package_name': 'package_name'
     }
 
-    def __init__(self, enabled=None, rate_per_port=None, package_name=None, amount=None, package_switch_uuid=None):
+    def __init__(self, amount=None, rate_per_port=None, enabled=None, package_switch_uuid=None, package_name=None):
         """
         PackageSwitchPort - a model defined in Swagger
         """
 
-        self._enabled = None
-        self._rate_per_port = None
-        self._package_name = None
         self._amount = None
+        self._rate_per_port = None
+        self._enabled = None
         self._package_switch_uuid = None
+        self._package_name = None
 
-        if enabled is not None:
-          self.enabled = enabled
-        if rate_per_port is not None:
-          self.rate_per_port = rate_per_port
-        if package_name is not None:
-          self.package_name = package_name
         if amount is not None:
           self.amount = amount
+        if rate_per_port is not None:
+          self.rate_per_port = rate_per_port
+        if enabled is not None:
+          self.enabled = enabled
         if package_switch_uuid is not None:
           self.package_switch_uuid = package_switch_uuid
-
-    @property
-    def enabled(self):
-        """
-        Gets the enabled of this PackageSwitchPort.
-
-        :return: The enabled of this PackageSwitchPort.
-        :rtype: bool
-        """
-        return self._enabled
-
-    @enabled.setter
-    def enabled(self, enabled):
-        """
-        Sets the enabled of this PackageSwitchPort.
-
-        :param enabled: The enabled of this PackageSwitchPort.
-        :type: bool
-        """
-
-        self._enabled = enabled
-
-    @property
-    def rate_per_port(self):
-        """
-        Gets the rate_per_port of this PackageSwitchPort.
-
-        :return: The rate_per_port of this PackageSwitchPort.
-        :rtype: float
-        """
-        return self._rate_per_port
-
-    @rate_per_port.setter
-    def rate_per_port(self, rate_per_port):
-        """
-        Sets the rate_per_port of this PackageSwitchPort.
-
-        :param rate_per_port: The rate_per_port of this PackageSwitchPort.
-        :type: float
-        """
-
-        self._rate_per_port = rate_per_port
-
-    @property
-    def package_name(self):
-        """
-        Gets the package_name of this PackageSwitchPort.
-
-        :return: The package_name of this PackageSwitchPort.
-        :rtype: str
-        """
-        return self._package_name
-
-    @package_name.setter
-    def package_name(self, package_name):
-        """
-        Sets the package_name of this PackageSwitchPort.
-
-        :param package_name: The package_name of this PackageSwitchPort.
-        :type: str
-        """
-        if package_name is not None and len(package_name) > 64:
-            raise ValueError("Invalid value for `package_name`, length must be less than or equal to `64`")
-
-        self._package_name = package_name
+        if package_name is not None:
+          self.package_name = package_name
 
     @property
     def amount(self):
@@ -155,6 +90,48 @@ class PackageSwitchPort(object):
         self._amount = amount
 
     @property
+    def rate_per_port(self):
+        """
+        Gets the rate_per_port of this PackageSwitchPort.
+
+        :return: The rate_per_port of this PackageSwitchPort.
+        :rtype: float
+        """
+        return self._rate_per_port
+
+    @rate_per_port.setter
+    def rate_per_port(self, rate_per_port):
+        """
+        Sets the rate_per_port of this PackageSwitchPort.
+
+        :param rate_per_port: The rate_per_port of this PackageSwitchPort.
+        :type: float
+        """
+
+        self._rate_per_port = rate_per_port
+
+    @property
+    def enabled(self):
+        """
+        Gets the enabled of this PackageSwitchPort.
+
+        :return: The enabled of this PackageSwitchPort.
+        :rtype: bool
+        """
+        return self._enabled
+
+    @enabled.setter
+    def enabled(self, enabled):
+        """
+        Sets the enabled of this PackageSwitchPort.
+
+        :param enabled: The enabled of this PackageSwitchPort.
+        :type: bool
+        """
+
+        self._enabled = enabled
+
+    @property
     def package_switch_uuid(self):
         """
         Gets the package_switch_uuid of this PackageSwitchPort.
@@ -176,6 +153,29 @@ class PackageSwitchPort(object):
             raise ValueError("Invalid value for `package_switch_uuid`, length must be less than or equal to `36`")
 
         self._package_switch_uuid = package_switch_uuid
+
+    @property
+    def package_name(self):
+        """
+        Gets the package_name of this PackageSwitchPort.
+
+        :return: The package_name of this PackageSwitchPort.
+        :rtype: str
+        """
+        return self._package_name
+
+    @package_name.setter
+    def package_name(self, package_name):
+        """
+        Sets the package_name of this PackageSwitchPort.
+
+        :param package_name: The package_name of this PackageSwitchPort.
+        :type: str
+        """
+        if package_name is not None and len(package_name) > 64:
+            raise ValueError("Invalid value for `package_name`, length must be less than or equal to `64`")
+
+        self._package_name = package_name
 
     def to_dict(self):
         """

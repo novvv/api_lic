@@ -75,7 +75,7 @@ class UserResetPasswordEmail(CustomAction):
         user = model.User.filter(email=req.data['email']).first()
         if user:
             user.token = auth.get_token(user)
-            ret=user.apply_mail('retrieve_password')
+            ret = user.apply_mail('retrieve_password')
             if ret:
                 self.set_response(resp, responses.OperationErrorResponse(
                     data=dict(message=ret, reason='mail_error', code=406)))
@@ -119,7 +119,8 @@ class PaymentCreate(Create):
             if lic and lic.user_uuid != user.user_uuid:
                 raise ValidationError({'license_lrn_uuid': ['not owned by current user!']})
             mcls = model.LrnPermissionUpdateHistory
-            obj.session().add(mcls(switch_ip=lic.ip, permit_cps=1000))
+            lic_user = lic.user
+            obj.session().add(mcls(switch_ip=lic.ip, permit_cps=1000, client_name=lic_user.name, operator=user.name))
 
         if obj.license_switch_uuid:
             lic = model.LicenseSwitch.get(obj.license_switch_uuid)
@@ -127,18 +128,24 @@ class PaymentCreate(Create):
                 raise ValidationError({'license_switch_uuid': ['no such switch license uuid!']})
             if lic and lic.user_uuid != user.user_uuid:
                 raise ValidationError({'license_switch_uuid': ['not owned by current user!']})
+
+            lic_user = lic.user
             icls = model.DnlLicenseInfo
             inq = icls.filter(icls.uuid == lic.switch_uuid).first()
             if inq:
-                if lic.package.type=='switch pay per port':
-                    mcls = model.LicenseUpdateHistory
+                if lic.end_time:
                     days = (lic.end_time - lic.start_time).days
-                    #mcls(uuid=lic.switch_uuid,license_channel=lic.amount,license_cps=inq.max_cps).save()
-                    hist = mcls(uuid=lic.switch_uuid,license_channel=lic.amount,license_cps=inq.max_cps,license_day=days)
-                if lic.package.type=='switch pay per minute':
+                else:
+                    days = 89
+                if lic.package.type == 'switch pay per port':
                     mcls = model.LicenseUpdateHistory
-                    days=(lic.end_time-lic.start_time).days
-                    hist = mcls(uuid=lic.switch_uuid,license_channel=lic.amount,license_cps=inq.max_cps,license_day=days)
+                    # mcls(uuid=lic.switch_uuid,license_channel=lic.amount,license_cps=inq.max_cps).save()
+                    hist = mcls(uuid=lic.switch_uuid, license_channel=lic.amount, license_cps=inq.max_cps,
+                                license_day=days, client_name=lic_user.name, operator=user.name)
+                if lic.package.type == 'switch pay per minute':
+                    mcls = model.LicenseUpdateHistory
+                    hist = mcls(uuid=lic.switch_uuid, license_channel=lic.amount, license_cps=inq.max_cps,
+                                license_day=days, client_name=lic_user.name, operator=user.name)
                 obj.session().add(hist)
         # obj.created_by=user.name
         # obj.created_on=datetime.now(UTC)
@@ -148,7 +155,7 @@ class PaymentCreate(Create):
     def after_create(self, object_id, req, resp, **kwargs):
         obj = self.model_class.get(object_id)
         if obj.user.alert_payment_received:
-            ret=obj.apply_mail('payment_received')
+            ret = obj.apply_mail('payment_received')
 
 
 class PaymentResource(Resource):
@@ -201,25 +208,144 @@ class PaypalWebhook(CustomPostAction):
         return self.proceed(req, resp, **kwargs)
 
     def proceed(self, req, resp, **kwargs):
-        conf=model.ConfigPayment.get(1)
-        settings.PAYPAL['client_id']=conf.paypal_pkey
-        settings.PAYPAL['client_secret'] = conf.paypal_skey
-        if conf.paypal_test_mode:
-            settings.PAYPAL['mode']='sandbox'
-        else:
-            settings.PAYPAL['mode'] = 'live'
-        paypalrestsdk.configure(settings.PAYPAL)
-        log.debug('webhook called request data {} kwargs {}'.format(req.data, kwargs))
-        data = req.data
-        if "event_type" in data:
-            if data["event_type"] == 'PAYMENT.SALE.PENDING':
-                pay_id = data['resource']['parent_payment']
-                pay = paypalrestsdk.Payment.find(pay_id)
-                log.debug('pay {}'.format(pay))
+        req_ip = get_request_ip(req)
+        l = model.TransactionLog(transaction_src=req.data,from_ip=req_ip,type='paypal')
+        try:
+            conf = model.ConfigPayment.get(1)
+            settings.PAYPAL['client_id'] = conf.paypal_pkey
+            settings.PAYPAL['client_secret'] = conf.paypal_skey
+            if conf.paypal_test_mode:
+                settings.PAYPAL['mode'] = 'sandbox'
             else:
-                log.debug('---event {}'.format(data["event_type"]))
-        else:
-            raise NoResultFound
+                settings.PAYPAL['mode'] = 'live'
+            paypalrestsdk.configure(settings.PAYPAL)
+        except Exception as e:
+            l.result='bad paypal configuration:{}'.format(e)
+            l.save()
+            self.set_response(resp, OperationalError(e))
+            return False
+        try:
+            log.debug('webhook called request data {} kwargs {}'.format(req.data, kwargs))
+            data = req.data
+            if 'event_type' in data:
+                l.transaction_type = data['event_type']
+                if data["event_type"] == 'PAYMENT.SALE.COMPLETED':
+                    pay_id = data['resource']['parent_payment']
+                    l.transaction_id = pay_id
+                    pay = paypalrestsdk.Payment.find(pay_id)
+                    #l.transaction_src = pay
+                    if 'transactions' in pay and pay['transactions']:
+                        tr=pay['transactions'][0]
+                        try:
+                            l.transaction_fee = float(tr['related_resources'][0]['sale']['transaction_fee']['value'])
+                        except:
+                            pass
+                        if 'amount' in tr and 'total' in tr['amount']:
+                            l.amount_total = tr['amount']['total']
+                        items = tr['item_list']['items']
+                        license_lrn = None
+                        license_switch = None
+                        for item in items:
+                            if 'LRN' in item['name'].upper():
+                                l.amount_lrn = float(item['price'])
+                                l.license_lrn_uuid = item['sku']
+                                license_lrn = model.LicenseLrn.get(l.license_lrn_uuid)
+                                lic =  license_lrn
+                                if not license_lrn:
+                                    raise Exception('wrong license lrn uuid - must be in "sku" field')
+                                if item['quantity']!=1:
+                                    raise Exception('wrong license lrn quantity - must be 1')
+
+                                mcls = model.LrnPermissionUpdateHistory
+                                lic_user = lic.user
+                                l.session().add(mcls(switch_ip=lic.ip, permit_cps=1000, client_name=lic_user.name,
+                                                       operator='paypal'))
+                            if 'SWITCH' in item['name'].upper():
+                                l.amount_switch = float(item['price'])
+                                l.license_switch_uuid = item['sku']
+                                license_switch = model.LicenseSwitch.get(l.license_switch_uuid)
+                                lic = license_switch
+                                if not license_switch:
+                                    raise Exception('wrong license switch uuid - must be in "sku" field')
+                                if item['quantity']!=1:
+                                    raise Exception('wrong license switch quantity - must be 1')
+
+                                lic_user = lic.user
+                                icls = model.DnlLicenseInfo
+                                inq = icls.filter(icls.uuid == lic.switch_uuid).first()
+                                if inq:
+                                    if lic.end_time:
+                                        days = (lic.end_time - lic.start_time).days
+                                    else:
+                                        days = 89
+                                    hist=None
+                                    if lic.package.type == 'switch pay per port':
+                                        mcls = model.LicenseUpdateHistory
+                                        # mcls(uuid=lic.switch_uuid,license_channel=lic.amount,license_cps=inq.max_cps).save()
+                                        hist = mcls(uuid=lic.switch_uuid, license_channel=lic.amount,
+                                                    license_cps=inq.max_cps,
+                                                    license_day=days, client_name=lic_user.name, operator='paypal')
+                                    if lic.package.type == 'switch pay per minute':
+                                        mcls = model.LicenseUpdateHistory
+                                        hist = mcls(uuid=lic.switch_uuid, license_channel=lic.amount,
+                                                    license_cps=inq.max_cps,
+                                                    license_day=days, client_name=lic_user.name, operator='paypal')
+                                    if hist:
+                                        l.session().add(hist)
+
+                        if l.license_lrn_uuid or l.license_switch_uuid:
+                            if license_lrn:
+                                u = license_lrn.user
+                                if license_switch:
+                                    u1 = license_switch.user
+                                    if u.user_uuid != u1.user_uuid:
+                                        raise Exception('LRN license and SWITCH licence from different users: {} and {}'.format(u.name,u1.name))
+                            else:
+                                u = license_switch.user
+                            pay = model.Payment(user_uuid=u.user_uuid,
+                                                license_lrn_uuid=l.license_lrn_uuid,
+                                                license_switch_uuid=l.license_switch_uuid,
+                                                amount_lrn=l.amount_lrn,
+                                                amount_switch=l.amount_switch,
+                                                type='paypal',
+                                                description=pay_id
+                                                )
+                            pay_uuid = pay.save()
+                            l.payment_uuid = pay_uuid
+                            l.result = 'ok'
+                            l.status = 'success'
+                            l.save()
+                            ret = None
+                            if u.alert_payment_received:
+                                ret = pay.apply_mail('payment_received')
+                            if ret:
+                                l.result = 'ok, but email notification not sent: {}'.format(str(ret))
+                                l.save()
+
+                    else:
+                        l.result = 'paypal transaction error: empty transaction'
+                        l.status = 'fail'
+                    log.debug('pay {}'.format(pay))
+                    l.save()
+                else:
+                    log.debug('---event {}'.format(data["event_type"]))
+            else:
+                l.result = 'paypal transaction error: wrong paypal event'
+                l.save()
+                self.set_response(resp,responses.ObjectNotFoundErrorResponse())
+                return False
+        except Exception as e:
+            try:
+                l.result = 'paypal transaction error:{}'.format(str(e))
+                l.save()
+                self.set_response(resp, OperationalError(e))
+                return False
+            except Exception as e1:
+                from traceback import format_exc
+                log.debug('paypal accept failure:{}'.format(format_exc()))
+                l.session().rollback()
+                self.set_response(resp, OperationalError(e1))
+                return False
         return True
 
 
@@ -237,7 +363,7 @@ class StripeWebhook(CustomPostAction):
         return self.proceed(req, resp, **kwargs)
 
     def proceed(self, req, resp, **kwargs):
-        conf=model.ConfigPayment.get(1)
+        conf = model.ConfigPayment.get(1)
         stripe.api_key = conf.stripe_skey
         log.debug('webhook called request data {} kwargs {}'.format(req.data, kwargs))
         data = req.data
@@ -249,19 +375,20 @@ class StripeWebhook(CustomPostAction):
                     description = charge['description']
                     li = description.split(',')
                     lrn_license_uuid = li[0]
-                    switch_license=None
-                    if len(li)>1:
+                    switch_license = None
+                    switch_license_uuid = None
+                    if len(li) > 1:
                         switch_license_uuid = li[1]
                         switch_license = model.LicenseSwitch.get(switch_license_uuid)
-                    lrn_license=model.LicenseLrn.get(lrn_license_uuid)
-                    amount_lrn=0.0
+                    lrn_license = model.LicenseLrn.get(lrn_license_uuid)
+                    amount_lrn = 0.0
                     if not lrn_license:
-                        lrn_license_uuid=None
+                        lrn_license_uuid = None
                     else:
                         amount_lrn = lrn_license.amount
-                    amount_switch=0.0
+                    amount_switch = 0.0
                     if not switch_license:
-                        switch_license_uuid=None
+                        switch_license_uuid = None
                     else:
                         amount_switch = switch_license.amount
 
@@ -269,29 +396,29 @@ class StripeWebhook(CustomPostAction):
                     ucls = model.User
                     u = ucls.filter(ucls.email == charge['source']['customer']).first()
                     if not u and lrn_license:
-                        u=lrn_license.user
+                        u = lrn_license.user
                     if not u and switch_license:
-                        u=switch_license.user
+                        u = switch_license.user
                     if u:
                         if not lrn_license_uuid and not switch_license:
-                            u.amount=amount
-                            u.payment_type='stripe'
+                            u.total_amount = amount
+                            u.payment_type = 'stripe'
                             u.apply_mail('payment_failed')
                             return True
                         if amount < amount_lrn + amount_switch:
-                            u.amount = amount
+                            u.total_amount = amount
                             u.payment_type = 'stripe'
                             u.apply_mail('payment_failed')
                             return True
                         pay = model.Payment(user_uuid=u.user_uuid,
-                                            lrn_license_uuid=lrn_license_uuid,
-                                            switch_license_uuid=switch_license_uuid,
+                                            license_lrn_uuid=lrn_license_uuid,
+                                            license_switch_uuid=switch_license_uuid,
                                             amount_lrn=amount_lrn,
                                             amount_switch=amount_switch,
                                             type='stripe',
                                             description=charge_id
                                             )
-                        pay_uuid=pay.save()
+                        pay_uuid = pay.save()
                         charge.update(dict(metadata=dict(payment_uuid=pay_uuid)))
                         if pay.user.alert_payment_received:
                             pay.apply_mail('payment_received')
@@ -325,7 +452,7 @@ class LicenseLrnCreate(Create):
         if not obj.start_time:
             obj.start_time = datetime.now(UTC)
         if obj.duration:
-            obj.end_time = add_months(obj.start_time,obj.dur_months)
+            obj.end_time = add_months(obj.start_time, obj.dur_months)
 
         return obj
 
@@ -405,7 +532,7 @@ class LicenseSwitchCreate(Create):
         if not obj.start_time:
             obj.start_time = datetime.now(UTC)
         if obj.duration:
-            obj.end_time = add_months(obj.start_time,obj.dur_months)
+            obj.end_time = add_months(obj.start_time, obj.dur_months)
         mcls = model.DnlLicenseInfo
         package = model.PackageSwitch.get(obj.package_switch_uuid)
         q = mcls.filter(and_(mcls.uuid == package.switch_uuid, mcls.recv_ip == obj.ip)).first()

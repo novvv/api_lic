@@ -32,7 +32,7 @@ class InlineResponse2006(object):
     """
     swagger_types = {
         'success': 'bool',
-        'payload': 'ConfigPaymentGet'
+        'payload': 'TransactionLogGet'
     }
 
     attribute_map = {
@@ -80,7 +80,7 @@ class InlineResponse2006(object):
         Gets the payload of this InlineResponse2006.
 
         :return: The payload of this InlineResponse2006.
-        :rtype: ConfigPaymentGet
+        :rtype: TransactionLogGet
         """
         return self._payload
 
@@ -90,7 +90,7 @@ class InlineResponse2006(object):
         Sets the payload of this InlineResponse2006.
 
         :param payload: The payload of this InlineResponse2006.
-        :type: ConfigPaymentGet
+        :type: TransactionLogGet
         """
 
         self._payload = payload

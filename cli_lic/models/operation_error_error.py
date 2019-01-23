@@ -31,53 +31,32 @@ class OperationErrorError(object):
                             and the value is json key in definition.
     """
     swagger_types = {
-        'reason': 'str',
         'message': 'str',
+        'reason': 'str',
         'code': 'int'
     }
 
     attribute_map = {
-        'reason': 'reason',
         'message': 'message',
+        'reason': 'reason',
         'code': 'code'
     }
 
-    def __init__(self, reason=None, message=None, code=None):
+    def __init__(self, message=None, reason=None, code=None):
         """
         OperationErrorError - a model defined in Swagger
         """
 
-        self._reason = None
         self._message = None
+        self._reason = None
         self._code = None
 
-        if reason is not None:
-          self.reason = reason
         if message is not None:
           self.message = message
+        if reason is not None:
+          self.reason = reason
         if code is not None:
           self.code = code
-
-    @property
-    def reason(self):
-        """
-        Gets the reason of this OperationErrorError.
-
-        :return: The reason of this OperationErrorError.
-        :rtype: str
-        """
-        return self._reason
-
-    @reason.setter
-    def reason(self, reason):
-        """
-        Sets the reason of this OperationErrorError.
-
-        :param reason: The reason of this OperationErrorError.
-        :type: str
-        """
-
-        self._reason = reason
 
     @property
     def message(self):
@@ -99,6 +78,27 @@ class OperationErrorError(object):
         """
 
         self._message = message
+
+    @property
+    def reason(self):
+        """
+        Gets the reason of this OperationErrorError.
+
+        :return: The reason of this OperationErrorError.
+        :rtype: str
+        """
+        return self._reason
+
+    @reason.setter
+    def reason(self, reason):
+        """
+        Sets the reason of this OperationErrorError.
+
+        :param reason: The reason of this OperationErrorError.
+        :type: str
+        """
+
+        self._reason = reason
 
     @property
     def code(self):

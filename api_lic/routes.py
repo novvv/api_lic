@@ -41,6 +41,8 @@ _Admin = [
     dict(path='/package_switch/{package_switch_uuid}', method='path', resource=views.PackageSwitchResource()),
     dict(path='/package_switch/{package_switch_uuid}/{user_uuid}', method='delete',
          resource=views.LicenseSwitchAdminResource()),
+    dict(path='/transaction/{transaction_log_uuid}', method='get', resource=views.TransactionLogResource()),
+    dict(path='/transaction/log', method='get', resource=views.TransactionLogList()),
 ]
 _Config = [
     dict(path='/config/payment', method='path', resource=views.ConfigPaymentResource()),

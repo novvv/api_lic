@@ -31,90 +31,65 @@ class FalconRestContribFilesFileTmp(object):
                             and the value is json key in definition.
     """
     swagger_types = {
-        'uploaded_on': 'datetime',
-        'belongs_to_field': 'str',
+        'public': 'bool',
         'belongs_to_table': 'str',
-        'path': 'str',
+        'uploaded_on': 'datetime',
         'uuid': 'str',
-        'public': 'bool'
+        'belongs_to_field': 'str',
+        'path': 'str'
     }
 
     attribute_map = {
-        'uploaded_on': 'uploaded_on',
-        'belongs_to_field': 'belongs_to_field',
+        'public': 'public',
         'belongs_to_table': 'belongs_to_table',
-        'path': 'path',
+        'uploaded_on': 'uploaded_on',
         'uuid': 'uuid',
-        'public': 'public'
+        'belongs_to_field': 'belongs_to_field',
+        'path': 'path'
     }
 
-    def __init__(self, uploaded_on=None, belongs_to_field=None, belongs_to_table=None, path=None, uuid=None, public=None):
+    def __init__(self, public=None, belongs_to_table=None, uploaded_on=None, uuid=None, belongs_to_field=None, path=None):
         """
         FalconRestContribFilesFileTmp - a model defined in Swagger
         """
 
-        self._uploaded_on = None
-        self._belongs_to_field = None
-        self._belongs_to_table = None
-        self._path = None
-        self._uuid = None
         self._public = None
+        self._belongs_to_table = None
+        self._uploaded_on = None
+        self._uuid = None
+        self._belongs_to_field = None
+        self._path = None
 
-        if uploaded_on is not None:
-          self.uploaded_on = uploaded_on
-        self.belongs_to_field = belongs_to_field
-        self.belongs_to_table = belongs_to_table
-        self.path = path
-        if uuid is not None:
-          self.uuid = uuid
         if public is not None:
           self.public = public
+        self.belongs_to_table = belongs_to_table
+        if uploaded_on is not None:
+          self.uploaded_on = uploaded_on
+        if uuid is not None:
+          self.uuid = uuid
+        self.belongs_to_field = belongs_to_field
+        self.path = path
 
     @property
-    def uploaded_on(self):
+    def public(self):
         """
-        Gets the uploaded_on of this FalconRestContribFilesFileTmp.
+        Gets the public of this FalconRestContribFilesFileTmp.
 
-        :return: The uploaded_on of this FalconRestContribFilesFileTmp.
-        :rtype: datetime
+        :return: The public of this FalconRestContribFilesFileTmp.
+        :rtype: bool
         """
-        return self._uploaded_on
+        return self._public
 
-    @uploaded_on.setter
-    def uploaded_on(self, uploaded_on):
+    @public.setter
+    def public(self, public):
         """
-        Sets the uploaded_on of this FalconRestContribFilesFileTmp.
+        Sets the public of this FalconRestContribFilesFileTmp.
 
-        :param uploaded_on: The uploaded_on of this FalconRestContribFilesFileTmp.
-        :type: datetime
+        :param public: The public of this FalconRestContribFilesFileTmp.
+        :type: bool
         """
 
-        self._uploaded_on = uploaded_on
-
-    @property
-    def belongs_to_field(self):
-        """
-        Gets the belongs_to_field of this FalconRestContribFilesFileTmp.
-
-        :return: The belongs_to_field of this FalconRestContribFilesFileTmp.
-        :rtype: str
-        """
-        return self._belongs_to_field
-
-    @belongs_to_field.setter
-    def belongs_to_field(self, belongs_to_field):
-        """
-        Sets the belongs_to_field of this FalconRestContribFilesFileTmp.
-
-        :param belongs_to_field: The belongs_to_field of this FalconRestContribFilesFileTmp.
-        :type: str
-        """
-        if belongs_to_field is None:
-            raise ValueError("Invalid value for `belongs_to_field`, must not be `None`")
-        if belongs_to_field is not None and len(belongs_to_field) > 255:
-            raise ValueError("Invalid value for `belongs_to_field`, length must be less than or equal to `255`")
-
-        self._belongs_to_field = belongs_to_field
+        self._public = public
 
     @property
     def belongs_to_table(self):
@@ -142,29 +117,25 @@ class FalconRestContribFilesFileTmp(object):
         self._belongs_to_table = belongs_to_table
 
     @property
-    def path(self):
+    def uploaded_on(self):
         """
-        Gets the path of this FalconRestContribFilesFileTmp.
+        Gets the uploaded_on of this FalconRestContribFilesFileTmp.
 
-        :return: The path of this FalconRestContribFilesFileTmp.
-        :rtype: str
+        :return: The uploaded_on of this FalconRestContribFilesFileTmp.
+        :rtype: datetime
         """
-        return self._path
+        return self._uploaded_on
 
-    @path.setter
-    def path(self, path):
+    @uploaded_on.setter
+    def uploaded_on(self, uploaded_on):
         """
-        Sets the path of this FalconRestContribFilesFileTmp.
+        Sets the uploaded_on of this FalconRestContribFilesFileTmp.
 
-        :param path: The path of this FalconRestContribFilesFileTmp.
-        :type: str
+        :param uploaded_on: The uploaded_on of this FalconRestContribFilesFileTmp.
+        :type: datetime
         """
-        if path is None:
-            raise ValueError("Invalid value for `path`, must not be `None`")
-        if path is not None and len(path) > 1024:
-            raise ValueError("Invalid value for `path`, length must be less than or equal to `1024`")
 
-        self._path = path
+        self._uploaded_on = uploaded_on
 
     @property
     def uuid(self):
@@ -190,25 +161,54 @@ class FalconRestContribFilesFileTmp(object):
         self._uuid = uuid
 
     @property
-    def public(self):
+    def belongs_to_field(self):
         """
-        Gets the public of this FalconRestContribFilesFileTmp.
+        Gets the belongs_to_field of this FalconRestContribFilesFileTmp.
 
-        :return: The public of this FalconRestContribFilesFileTmp.
-        :rtype: bool
+        :return: The belongs_to_field of this FalconRestContribFilesFileTmp.
+        :rtype: str
         """
-        return self._public
+        return self._belongs_to_field
 
-    @public.setter
-    def public(self, public):
+    @belongs_to_field.setter
+    def belongs_to_field(self, belongs_to_field):
         """
-        Sets the public of this FalconRestContribFilesFileTmp.
+        Sets the belongs_to_field of this FalconRestContribFilesFileTmp.
 
-        :param public: The public of this FalconRestContribFilesFileTmp.
-        :type: bool
+        :param belongs_to_field: The belongs_to_field of this FalconRestContribFilesFileTmp.
+        :type: str
         """
+        if belongs_to_field is None:
+            raise ValueError("Invalid value for `belongs_to_field`, must not be `None`")
+        if belongs_to_field is not None and len(belongs_to_field) > 255:
+            raise ValueError("Invalid value for `belongs_to_field`, length must be less than or equal to `255`")
 
-        self._public = public
+        self._belongs_to_field = belongs_to_field
+
+    @property
+    def path(self):
+        """
+        Gets the path of this FalconRestContribFilesFileTmp.
+
+        :return: The path of this FalconRestContribFilesFileTmp.
+        :rtype: str
+        """
+        return self._path
+
+    @path.setter
+    def path(self, path):
+        """
+        Sets the path of this FalconRestContribFilesFileTmp.
+
+        :param path: The path of this FalconRestContribFilesFileTmp.
+        :type: str
+        """
+        if path is None:
+            raise ValueError("Invalid value for `path`, must not be `None`")
+        if path is not None and len(path) > 1024:
+            raise ValueError("Invalid value for `path`, length must be less than or equal to `1024`")
+
+        self._path = path
 
     def to_dict(self):
         """

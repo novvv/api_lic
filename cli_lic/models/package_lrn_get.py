@@ -31,104 +31,104 @@ class PackageLrnGet(object):
                             and the value is json key in definition.
     """
     swagger_types = {
-        'cps': 'int',
-        'enabled': 'bool',
-        'package_lrn_uuid': 'str',
-        'dip_count': 'int',
-        'amount': 'int',
-        'type': 'str',
         'lrn_port': 'int',
+        'dip_count': 'int',
+        'package_lrn_uuid': 'str',
+        'cps': 'int',
+        'amount': 'int',
         'create_on': 'datetime',
+        'enabled': 'bool',
+        'type': 'str',
         'package_name': 'str'
     }
 
     attribute_map = {
-        'cps': 'cps',
-        'enabled': 'enabled',
-        'package_lrn_uuid': 'package_lrn_uuid',
-        'dip_count': 'dip_count',
-        'amount': 'amount',
-        'type': 'type',
         'lrn_port': 'lrn_port',
+        'dip_count': 'dip_count',
+        'package_lrn_uuid': 'package_lrn_uuid',
+        'cps': 'cps',
+        'amount': 'amount',
         'create_on': 'create_on',
+        'enabled': 'enabled',
+        'type': 'type',
         'package_name': 'package_name'
     }
 
-    def __init__(self, cps=None, enabled=None, package_lrn_uuid=None, dip_count=None, amount=None, type='LRN pay per CPS', lrn_port=None, create_on=None, package_name=None):
+    def __init__(self, lrn_port=None, dip_count=None, package_lrn_uuid=None, cps=None, amount=None, create_on=None, enabled=None, type='LRN pay per CPS', package_name=None):
         """
         PackageLrnGet - a model defined in Swagger
         """
 
-        self._cps = None
-        self._enabled = None
-        self._package_lrn_uuid = None
-        self._dip_count = None
-        self._amount = None
-        self._type = None
         self._lrn_port = None
+        self._dip_count = None
+        self._package_lrn_uuid = None
+        self._cps = None
+        self._amount = None
         self._create_on = None
+        self._enabled = None
+        self._type = None
         self._package_name = None
 
-        if cps is not None:
-          self.cps = cps
-        if enabled is not None:
-          self.enabled = enabled
-        if package_lrn_uuid is not None:
-          self.package_lrn_uuid = package_lrn_uuid
-        if dip_count is not None:
-          self.dip_count = dip_count
-        if amount is not None:
-          self.amount = amount
-        if type is not None:
-          self.type = type
         if lrn_port is not None:
           self.lrn_port = lrn_port
+        if dip_count is not None:
+          self.dip_count = dip_count
+        if package_lrn_uuid is not None:
+          self.package_lrn_uuid = package_lrn_uuid
+        if cps is not None:
+          self.cps = cps
+        if amount is not None:
+          self.amount = amount
         if create_on is not None:
           self.create_on = create_on
+        if enabled is not None:
+          self.enabled = enabled
+        if type is not None:
+          self.type = type
         if package_name is not None:
           self.package_name = package_name
 
     @property
-    def cps(self):
+    def lrn_port(self):
         """
-        Gets the cps of this PackageLrnGet.
+        Gets the lrn_port of this PackageLrnGet.
 
-        :return: The cps of this PackageLrnGet.
+        :return: The lrn_port of this PackageLrnGet.
         :rtype: int
         """
-        return self._cps
+        return self._lrn_port
 
-    @cps.setter
-    def cps(self, cps):
+    @lrn_port.setter
+    def lrn_port(self, lrn_port):
         """
-        Sets the cps of this PackageLrnGet.
+        Sets the lrn_port of this PackageLrnGet.
 
-        :param cps: The cps of this PackageLrnGet.
+        :param lrn_port: The lrn_port of this PackageLrnGet.
         :type: int
         """
 
-        self._cps = cps
+        self._lrn_port = lrn_port
 
     @property
-    def enabled(self):
+    def dip_count(self):
         """
-        Gets the enabled of this PackageLrnGet.
+        Gets the dip_count of this PackageLrnGet.
 
-        :return: The enabled of this PackageLrnGet.
-        :rtype: bool
+        :return: The dip_count of this PackageLrnGet.
+        :rtype: int
         """
-        return self._enabled
+        return self._dip_count
 
-    @enabled.setter
-    def enabled(self, enabled):
+    @dip_count.setter
+    def dip_count(self, dip_count):
         """
-        Sets the enabled of this PackageLrnGet.
+        Sets the dip_count of this PackageLrnGet.
 
-        :param enabled: The enabled of this PackageLrnGet.
-        :type: bool
+        :param dip_count: The dip_count of this PackageLrnGet.
+        :type: int
         """
 
-        self._enabled = enabled
+        self._dip_count = dip_count
 
     @property
     def package_lrn_uuid(self):
@@ -154,25 +154,25 @@ class PackageLrnGet(object):
         self._package_lrn_uuid = package_lrn_uuid
 
     @property
-    def dip_count(self):
+    def cps(self):
         """
-        Gets the dip_count of this PackageLrnGet.
+        Gets the cps of this PackageLrnGet.
 
-        :return: The dip_count of this PackageLrnGet.
+        :return: The cps of this PackageLrnGet.
         :rtype: int
         """
-        return self._dip_count
+        return self._cps
 
-    @dip_count.setter
-    def dip_count(self, dip_count):
+    @cps.setter
+    def cps(self, cps):
         """
-        Sets the dip_count of this PackageLrnGet.
+        Sets the cps of this PackageLrnGet.
 
-        :param dip_count: The dip_count of this PackageLrnGet.
+        :param cps: The cps of this PackageLrnGet.
         :type: int
         """
 
-        self._dip_count = dip_count
+        self._cps = cps
 
     @property
     def amount(self):
@@ -194,6 +194,48 @@ class PackageLrnGet(object):
         """
 
         self._amount = amount
+
+    @property
+    def create_on(self):
+        """
+        Gets the create_on of this PackageLrnGet.
+
+        :return: The create_on of this PackageLrnGet.
+        :rtype: datetime
+        """
+        return self._create_on
+
+    @create_on.setter
+    def create_on(self, create_on):
+        """
+        Sets the create_on of this PackageLrnGet.
+
+        :param create_on: The create_on of this PackageLrnGet.
+        :type: datetime
+        """
+
+        self._create_on = create_on
+
+    @property
+    def enabled(self):
+        """
+        Gets the enabled of this PackageLrnGet.
+
+        :return: The enabled of this PackageLrnGet.
+        :rtype: bool
+        """
+        return self._enabled
+
+    @enabled.setter
+    def enabled(self, enabled):
+        """
+        Sets the enabled of this PackageLrnGet.
+
+        :param enabled: The enabled of this PackageLrnGet.
+        :type: bool
+        """
+
+        self._enabled = enabled
 
     @property
     def type(self):
@@ -221,48 +263,6 @@ class PackageLrnGet(object):
             )
 
         self._type = type
-
-    @property
-    def lrn_port(self):
-        """
-        Gets the lrn_port of this PackageLrnGet.
-
-        :return: The lrn_port of this PackageLrnGet.
-        :rtype: int
-        """
-        return self._lrn_port
-
-    @lrn_port.setter
-    def lrn_port(self, lrn_port):
-        """
-        Sets the lrn_port of this PackageLrnGet.
-
-        :param lrn_port: The lrn_port of this PackageLrnGet.
-        :type: int
-        """
-
-        self._lrn_port = lrn_port
-
-    @property
-    def create_on(self):
-        """
-        Gets the create_on of this PackageLrnGet.
-
-        :return: The create_on of this PackageLrnGet.
-        :rtype: datetime
-        """
-        return self._create_on
-
-    @create_on.setter
-    def create_on(self, create_on):
-        """
-        Sets the create_on of this PackageLrnGet.
-
-        :param create_on: The create_on of this PackageLrnGet.
-        :type: datetime
-        """
-
-        self._create_on = create_on
 
     @property
     def package_name(self):

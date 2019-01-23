@@ -372,7 +372,7 @@ class PublicApi(object):
         :param str belongs_to_table:
         :param bool public:
         :param str uuid:
-        :return: InlineResponse20010
+        :return: InlineResponse20012
                  If the method is called asynchronously,
                  returns the request thread.
         """
@@ -404,7 +404,7 @@ class PublicApi(object):
         :param str belongs_to_table:
         :param bool public:
         :param str uuid:
-        :return: InlineResponse20010
+        :return: InlineResponse20012
                  If the method is called asynchronously,
                  returns the request thread.
         """
@@ -472,7 +472,7 @@ class PublicApi(object):
                                         body=body_params,
                                         post_params=form_params,
                                         files=local_var_files,
-                                        response_type='InlineResponse20010',
+                                        response_type='InlineResponse20012',
                                         auth_settings=auth_settings,
                                         callback=params.get('callback'),
                                         _return_http_data_only=params.get('_return_http_data_only'),
@@ -497,7 +497,7 @@ class PublicApi(object):
         :param int per_page:
         :param str order_by:
         :param str order_dir:
-        :return: InlineResponse20011
+        :return: InlineResponse20013
                  If the method is called asynchronously,
                  returns the request thread.
         """
@@ -525,7 +525,7 @@ class PublicApi(object):
         :param int per_page:
         :param str order_by:
         :param str order_dir:
-        :return: InlineResponse20011
+        :return: InlineResponse20013
                  If the method is called asynchronously,
                  returns the request thread.
         """
@@ -585,7 +585,7 @@ class PublicApi(object):
                                         body=body_params,
                                         post_params=form_params,
                                         files=local_var_files,
-                                        response_type='InlineResponse20011',
+                                        response_type='InlineResponse20013',
                                         auth_settings=auth_settings,
                                         callback=params.get('callback'),
                                         _return_http_data_only=params.get('_return_http_data_only'),
@@ -943,7 +943,7 @@ class PublicApi(object):
         :param str type:
         :param str create_on_gt:
         :param str create_on_lt:
-        :return: InlineResponse20012
+        :return: InlineResponse20014
                  If the method is called asynchronously,
                  returns the request thread.
         """
@@ -981,7 +981,7 @@ class PublicApi(object):
         :param str type:
         :param str create_on_gt:
         :param str create_on_lt:
-        :return: InlineResponse20012
+        :return: InlineResponse20014
                  If the method is called asynchronously,
                  returns the request thread.
         """
@@ -1061,7 +1061,7 @@ class PublicApi(object):
                                         body=body_params,
                                         post_params=form_params,
                                         files=local_var_files,
-                                        response_type='InlineResponse20012',
+                                        response_type='InlineResponse20014',
                                         auth_settings=auth_settings,
                                         callback=params.get('callback'),
                                         _return_http_data_only=params.get('_return_http_data_only'),
@@ -1101,7 +1101,7 @@ class PublicApi(object):
         :param str expire_date_lt:
         :param str start_date_gt:
         :param str start_date_lt:
-        :return: InlineResponse20013
+        :return: InlineResponse20015
                  If the method is called asynchronously,
                  returns the request thread.
         """
@@ -1144,7 +1144,7 @@ class PublicApi(object):
         :param str expire_date_lt:
         :param str start_date_gt:
         :param str start_date_lt:
-        :return: InlineResponse20013
+        :return: InlineResponse20015
                  If the method is called asynchronously,
                  returns the request thread.
         """
@@ -1234,7 +1234,7 @@ class PublicApi(object):
                                         body=body_params,
                                         post_params=form_params,
                                         files=local_var_files,
-                                        response_type='InlineResponse20013',
+                                        response_type='InlineResponse20015',
                                         auth_settings=auth_settings,
                                         callback=params.get('callback'),
                                         _return_http_data_only=params.get('_return_http_data_only'),
@@ -1255,7 +1255,7 @@ class PublicApi(object):
 
         :param callback function: The callback function
             for asynchronous request. (optional)
-        :return: InlineResponse20015
+        :return: InlineResponse20017
                  If the method is called asynchronously,
                  returns the request thread.
         """
@@ -1279,7 +1279,7 @@ class PublicApi(object):
 
         :param callback function: The callback function
             for asynchronous request. (optional)
-        :return: InlineResponse20015
+        :return: InlineResponse20017
                  If the method is called asynchronously,
                  returns the request thread.
         """
@@ -1330,7 +1330,7 @@ class PublicApi(object):
                                         body=body_params,
                                         post_params=form_params,
                                         files=local_var_files,
-                                        response_type='InlineResponse20015',
+                                        response_type='InlineResponse20017',
                                         auth_settings=auth_settings,
                                         callback=params.get('callback'),
                                         _return_http_data_only=params.get('_return_http_data_only'),
@@ -1351,7 +1351,7 @@ class PublicApi(object):
 
         :param callback function: The callback function
             for asynchronous request. (optional)
-        :return: InlineResponse20014
+        :return: InlineResponse20016
                  If the method is called asynchronously,
                  returns the request thread.
         """
@@ -1375,7 +1375,7 @@ class PublicApi(object):
 
         :param callback function: The callback function
             for asynchronous request. (optional)
-        :return: InlineResponse20014
+        :return: InlineResponse20016
                  If the method is called asynchronously,
                  returns the request thread.
         """
@@ -1426,7 +1426,7 @@ class PublicApi(object):
                                         body=body_params,
                                         post_params=form_params,
                                         files=local_var_files,
-                                        response_type='InlineResponse20014',
+                                        response_type='InlineResponse20016',
                                         auth_settings=auth_settings,
                                         callback=params.get('callback'),
                                         _return_http_data_only=params.get('_return_http_data_only'),
@@ -1457,6 +1457,8 @@ class PublicApi(object):
         :param int id:
         :param int max_cap:
         :param int max_cps:
+        :param str plan_name:
+        :param int port_limit:
         :param str recv_ip:
         :param int recv_port:
         :param str ss_bind_ip:
@@ -1464,17 +1466,19 @@ class PublicApi(object):
         :param int ss_bind_port:
         :param str ss_name:
         :param int ss_type:
-        :param int status:
+        :param bool status:
+        :param str switch_ip:
+        :param str switch_uuid:
         :param str uuid:
         :param str create_time_gt:
         :param str create_time_lt:
-        :param str end_time_gt:
-        :param str end_time_lt:
-        :param str start_time_gt:
-        :param str start_time_lt:
+        :param str expire_date_gt:
+        :param str expire_date_lt:
+        :param str start_date_gt:
+        :param str start_date_lt:
         :param str update_time_gt:
         :param str update_time_lt:
-        :return: InlineResponse2009
+        :return: InlineResponse20011
                  If the method is called asynchronously,
                  returns the request thread.
         """
@@ -1508,6 +1512,8 @@ class PublicApi(object):
         :param int id:
         :param int max_cap:
         :param int max_cps:
+        :param str plan_name:
+        :param int port_limit:
         :param str recv_ip:
         :param int recv_port:
         :param str ss_bind_ip:
@@ -1515,22 +1521,24 @@ class PublicApi(object):
         :param int ss_bind_port:
         :param str ss_name:
         :param int ss_type:
-        :param int status:
+        :param bool status:
+        :param str switch_ip:
+        :param str switch_uuid:
         :param str uuid:
         :param str create_time_gt:
         :param str create_time_lt:
-        :param str end_time_gt:
-        :param str end_time_lt:
-        :param str start_time_gt:
-        :param str start_time_lt:
+        :param str expire_date_gt:
+        :param str expire_date_lt:
+        :param str start_date_gt:
+        :param str start_date_lt:
         :param str update_time_gt:
         :param str update_time_lt:
-        :return: InlineResponse2009
+        :return: InlineResponse20011
                  If the method is called asynchronously,
                  returns the request thread.
         """
 
-        all_params = ['page', 'per_page', 'order_by', 'order_dir', 'carrier_name', 'create_user', 'expires', 'id', 'max_cap', 'max_cps', 'recv_ip', 'recv_port', 'ss_bind_ip', 'ss_bind_mac', 'ss_bind_port', 'ss_name', 'ss_type', 'status', 'uuid', 'create_time_gt', 'create_time_lt', 'end_time_gt', 'end_time_lt', 'start_time_gt', 'start_time_lt', 'update_time_gt', 'update_time_lt']
+        all_params = ['page', 'per_page', 'order_by', 'order_dir', 'carrier_name', 'create_user', 'expires', 'id', 'max_cap', 'max_cps', 'plan_name', 'port_limit', 'recv_ip', 'recv_port', 'ss_bind_ip', 'ss_bind_mac', 'ss_bind_port', 'ss_name', 'ss_type', 'status', 'switch_ip', 'switch_uuid', 'uuid', 'create_time_gt', 'create_time_lt', 'expire_date_gt', 'expire_date_lt', 'start_date_gt', 'start_date_lt', 'update_time_gt', 'update_time_lt']
         all_params.append('callback')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
@@ -1572,6 +1580,10 @@ class PublicApi(object):
             query_params.append(('max_cap', params['max_cap']))
         if 'max_cps' in params:
             query_params.append(('max_cps', params['max_cps']))
+        if 'plan_name' in params:
+            query_params.append(('plan_name', params['plan_name']))
+        if 'port_limit' in params:
+            query_params.append(('port_limit', params['port_limit']))
         if 'recv_ip' in params:
             query_params.append(('recv_ip', params['recv_ip']))
         if 'recv_port' in params:
@@ -1588,20 +1600,24 @@ class PublicApi(object):
             query_params.append(('ss_type', params['ss_type']))
         if 'status' in params:
             query_params.append(('status', params['status']))
+        if 'switch_ip' in params:
+            query_params.append(('switch_ip', params['switch_ip']))
+        if 'switch_uuid' in params:
+            query_params.append(('switch_uuid', params['switch_uuid']))
         if 'uuid' in params:
             query_params.append(('uuid', params['uuid']))
         if 'create_time_gt' in params:
             query_params.append(('create_time_gt', params['create_time_gt']))
         if 'create_time_lt' in params:
             query_params.append(('create_time_lt', params['create_time_lt']))
-        if 'end_time_gt' in params:
-            query_params.append(('end_time_gt', params['end_time_gt']))
-        if 'end_time_lt' in params:
-            query_params.append(('end_time_lt', params['end_time_lt']))
-        if 'start_time_gt' in params:
-            query_params.append(('start_time_gt', params['start_time_gt']))
-        if 'start_time_lt' in params:
-            query_params.append(('start_time_lt', params['start_time_lt']))
+        if 'expire_date_gt' in params:
+            query_params.append(('expire_date_gt', params['expire_date_gt']))
+        if 'expire_date_lt' in params:
+            query_params.append(('expire_date_lt', params['expire_date_lt']))
+        if 'start_date_gt' in params:
+            query_params.append(('start_date_gt', params['start_date_gt']))
+        if 'start_date_lt' in params:
+            query_params.append(('start_date_lt', params['start_date_lt']))
         if 'update_time_gt' in params:
             query_params.append(('update_time_gt', params['update_time_gt']))
         if 'update_time_lt' in params:
@@ -1631,7 +1647,7 @@ class PublicApi(object):
                                         body=body_params,
                                         post_params=form_params,
                                         files=local_var_files,
-                                        response_type='InlineResponse2009',
+                                        response_type='InlineResponse20011',
                                         auth_settings=auth_settings,
                                         callback=params.get('callback'),
                                         _return_http_data_only=params.get('_return_http_data_only'),
