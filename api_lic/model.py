@@ -559,6 +559,13 @@ class LicenseLrn(BaseModel):
         return rev(self.DURATION)[self.duration]
 
 
+    def add_history(self,gw):
+        lic = self
+        mcls = LrnPermissionUpdateHistory
+        lic_user = lic.user
+        return mcls(switch_ip=lic.ip, permit_cps=1000, client_name=lic_user.name,
+                             operator=gw)
+
 class Switch(BaseModel):
     __tablename__ = 'switch'
     switch_uuid = Column \
@@ -663,6 +670,31 @@ class LicenseSwitch(BaseModel):
 
     def apply_mail(self, template_name):
         return _apply_mail(self, template_name, 'license')
+
+    def add_history(self,gw):
+        lic = self
+        lic_user = lic.user
+        icls = DnlLicenseInfo
+        inq = icls.filter(icls.uuid == lic.switch_uuid).first()
+        hist = None
+        if inq:
+            if lic.end_time:
+                days = (lic.end_time - lic.start_time).days
+            else:
+                days = 89
+            if lic.package.type == 'switch pay per port':
+                mcls = LicenseUpdateHistory
+                # mcls(uuid=lic.switch_uuid,license_channel=lic.amount,license_cps=inq.max_cps).save()
+                hist = mcls(uuid=lic.switch_uuid, license_channel=lic.amount,
+                            license_cps=inq.max_cps,
+                            license_day=days, client_name=lic_user.name, operator=gw)
+            if lic.package.type == 'switch pay per minute':
+                mcls = LicenseUpdateHistory
+                hist = mcls(uuid=lic.switch_uuid, license_channel=lic.amount,
+                            license_cps=inq.max_cps,
+                            license_day=days, client_name=lic_user.name, operator=gw)
+        return hist
+
 
 
 class LicenseUpdateHistory(BaseModel):
