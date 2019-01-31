@@ -31,41 +31,62 @@ class LicenseSwitch(object):
                             and the value is json key in definition.
     """
     swagger_types = {
+        'end_time': 'datetime',
         'start_time': 'datetime',
         'ip': 'str',
-        'duration': 'str',
         'package_switch_uuid': 'str',
-        'end_time': 'datetime'
+        'duration': 'str'
     }
 
     attribute_map = {
+        'end_time': 'end_time',
         'start_time': 'start_time',
         'ip': 'ip',
-        'duration': 'duration',
         'package_switch_uuid': 'package_switch_uuid',
-        'end_time': 'end_time'
+        'duration': 'duration'
     }
 
-    def __init__(self, start_time=None, ip=None, duration='1 month', package_switch_uuid=None, end_time=None):
+    def __init__(self, end_time=None, start_time=None, ip=None, package_switch_uuid=None, duration='1 month'):
         """
         LicenseSwitch - a model defined in Swagger
         """
 
+        self._end_time = None
         self._start_time = None
         self._ip = None
-        self._duration = None
         self._package_switch_uuid = None
-        self._end_time = None
+        self._duration = None
 
+        if end_time is not None:
+          self.end_time = end_time
         if start_time is not None:
           self.start_time = start_time
         self.ip = ip
-        if duration is not None:
-          self.duration = duration
         if package_switch_uuid is not None:
           self.package_switch_uuid = package_switch_uuid
-        if end_time is not None:
-          self.end_time = end_time
+        if duration is not None:
+          self.duration = duration
+
+    @property
+    def end_time(self):
+        """
+        Gets the end_time of this LicenseSwitch.
+
+        :return: The end_time of this LicenseSwitch.
+        :rtype: datetime
+        """
+        return self._end_time
+
+    @end_time.setter
+    def end_time(self, end_time):
+        """
+        Sets the end_time of this LicenseSwitch.
+
+        :param end_time: The end_time of this LicenseSwitch.
+        :type: datetime
+        """
+
+        self._end_time = end_time
 
     @property
     def start_time(self):
@@ -114,6 +135,29 @@ class LicenseSwitch(object):
         self._ip = ip
 
     @property
+    def package_switch_uuid(self):
+        """
+        Gets the package_switch_uuid of this LicenseSwitch.
+
+        :return: The package_switch_uuid of this LicenseSwitch.
+        :rtype: str
+        """
+        return self._package_switch_uuid
+
+    @package_switch_uuid.setter
+    def package_switch_uuid(self, package_switch_uuid):
+        """
+        Sets the package_switch_uuid of this LicenseSwitch.
+
+        :param package_switch_uuid: The package_switch_uuid of this LicenseSwitch.
+        :type: str
+        """
+        if package_switch_uuid is not None and len(package_switch_uuid) > 36:
+            raise ValueError("Invalid value for `package_switch_uuid`, length must be less than or equal to `36`")
+
+        self._package_switch_uuid = package_switch_uuid
+
+    @property
     def duration(self):
         """
         Gets the duration of this LicenseSwitch.
@@ -139,50 +183,6 @@ class LicenseSwitch(object):
             )
 
         self._duration = duration
-
-    @property
-    def package_switch_uuid(self):
-        """
-        Gets the package_switch_uuid of this LicenseSwitch.
-
-        :return: The package_switch_uuid of this LicenseSwitch.
-        :rtype: str
-        """
-        return self._package_switch_uuid
-
-    @package_switch_uuid.setter
-    def package_switch_uuid(self, package_switch_uuid):
-        """
-        Sets the package_switch_uuid of this LicenseSwitch.
-
-        :param package_switch_uuid: The package_switch_uuid of this LicenseSwitch.
-        :type: str
-        """
-        if package_switch_uuid is not None and len(package_switch_uuid) > 36:
-            raise ValueError("Invalid value for `package_switch_uuid`, length must be less than or equal to `36`")
-
-        self._package_switch_uuid = package_switch_uuid
-
-    @property
-    def end_time(self):
-        """
-        Gets the end_time of this LicenseSwitch.
-
-        :return: The end_time of this LicenseSwitch.
-        :rtype: datetime
-        """
-        return self._end_time
-
-    @end_time.setter
-    def end_time(self, end_time):
-        """
-        Sets the end_time of this LicenseSwitch.
-
-        :param end_time: The end_time of this LicenseSwitch.
-        :type: datetime
-        """
-
-        self._end_time = end_time
 
     def to_dict(self):
         """

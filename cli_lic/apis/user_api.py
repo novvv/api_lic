@@ -1814,7 +1814,9 @@ class UserApi(object):
         :param str description:
         :param str license_lrn_uuid:
         :param str license_switch_uuid:
+        :param str lrn_package_name:
         :param str payment_uuid:
+        :param str switch_package_name:
         :param str switch_uuid:
         :param str type:
         :param str amount_lrn_gt:
@@ -1856,7 +1858,9 @@ class UserApi(object):
         :param str description:
         :param str license_lrn_uuid:
         :param str license_switch_uuid:
+        :param str lrn_package_name:
         :param str payment_uuid:
+        :param str switch_package_name:
         :param str switch_uuid:
         :param str type:
         :param str amount_lrn_gt:
@@ -1872,7 +1876,7 @@ class UserApi(object):
                  returns the request thread.
         """
 
-        all_params = ['page', 'per_page', 'order_by', 'order_dir', 'description', 'license_lrn_uuid', 'license_switch_uuid', 'payment_uuid', 'switch_uuid', 'type', 'amount_lrn_gt', 'amount_lrn_lt', 'amount_switch_gt', 'amount_switch_lt', 'amount_total_gt', 'amount_total_lt', 'paid_time_gt', 'paid_time_lt']
+        all_params = ['page', 'per_page', 'order_by', 'order_dir', 'description', 'license_lrn_uuid', 'license_switch_uuid', 'lrn_package_name', 'payment_uuid', 'switch_package_name', 'switch_uuid', 'type', 'amount_lrn_gt', 'amount_lrn_lt', 'amount_switch_gt', 'amount_switch_lt', 'amount_total_gt', 'amount_total_lt', 'paid_time_gt', 'paid_time_lt']
         all_params.append('callback')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
@@ -1908,8 +1912,12 @@ class UserApi(object):
             query_params.append(('license_lrn_uuid', params['license_lrn_uuid']))
         if 'license_switch_uuid' in params:
             query_params.append(('license_switch_uuid', params['license_switch_uuid']))
+        if 'lrn_package_name' in params:
+            query_params.append(('lrn_package_name', params['lrn_package_name']))
         if 'payment_uuid' in params:
             query_params.append(('payment_uuid', params['payment_uuid']))
+        if 'switch_package_name' in params:
+            query_params.append(('switch_package_name', params['switch_package_name']))
         if 'switch_uuid' in params:
             query_params.append(('switch_uuid', params['switch_uuid']))
         if 'type' in params:

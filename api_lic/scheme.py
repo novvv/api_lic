@@ -368,15 +368,16 @@ class PaymentScheme(BaseModelScheme):
 
 class PaymentSchemeGet(PaymentScheme):
     description = Str()
-
+    switch_package_name = Str()
+    lrn_package_name = Str()
     class Meta:
         model = model.Payment
         fields = (
             'payment_uuid', 'type', 'paid_time', 'user_uuid', 'license_lrn_uuid', 'license_switch_uuid', 'amount_lrn',
-            'amount_switch', 'amount_total', 'switch_uuid', 'description')
+            'amount_switch', 'amount_total', 'switch_uuid', 'description','lrn_package_name','switch_package_name')
         search_fields = (
             'payment_uuid', 'type', 'period', 'user_uuid', 'license_lrn_uuid', 'license_switch_uuid', 'switch_uuid',
-            'description')
+            'description','lrn_package_name','switch_package_name')
         query_fields = (
             'amount_lrn_gt', 'amount_lrn_lt', 'amount_switch_gt', 'amount_switch_lt', 'amount_total_gt',
             'amount_total_lt',

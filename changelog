@@ -1,5 +1,5 @@
 api_lic ver 1.0.15
-LLP-111
+GET/payment/list <-- add 'lrn_package_name','switch_package_name' LLP-119
 answered <-- paypal payment UI LLP-109
 
 api_lic ver 1.0.14

@@ -466,6 +466,7 @@ class Payment(BaseModel):
 
     amount_total = column_property(amount_lrn.op('+')(amount_switch))
 
+
     @property
     def license_uuid(self):
         if self.license_lrn_uuid:
@@ -541,6 +542,8 @@ class LicenseLrn(BaseModel):
         select([PackageLrn.amount]).where(package_lrn_uuid == PackageLrn.package_lrn_uuid).correlate_except(PackageLrn))
     enabled = column_property(select([and_(PackageLrn.enabled, is_enabled, end_time > func.now())]).where(
         package_lrn_uuid == PackageLrn.package_lrn_uuid).correlate_except(PackageLrn))
+    package_name = column_property(
+        select([PackageLrn.package_name]).where(package_lrn_uuid == PackageLrn.package_lrn_uuid).correlate_except(PackageLrn))
 
     def renew(self):
         cost = self.package.amount
@@ -565,6 +568,9 @@ class LicenseLrn(BaseModel):
         lic_user = lic.user
         return mcls(switch_ip=lic.ip, permit_cps=1000, client_name=lic_user.name,
                              operator=gw)
+
+Payment.lrn_package_name = column_property(
+        select([LicenseLrn.package_name]).where(Payment.license_lrn_uuid == LicenseLrn.license_lrn_uuid).correlate_except(LicenseLrn))
 
 class Switch(BaseModel):
     __tablename__ = 'switch'
@@ -655,7 +661,9 @@ class LicenseSwitch(BaseModel):
     amount = column_property(
         select([PackageSwitch.amount]).where(package_switch_uuid == PackageSwitch.package_switch_uuid).correlate_except(
             PackageSwitch))
-
+    package_name =column_property(
+        select([PackageSwitch.package_name]).where(package_switch_uuid == PackageSwitch.package_switch_uuid).correlate_except(
+            PackageSwitch))
     @property
     def dur_months(self):
         return rev(self.DURATION)[self.duration]
@@ -696,6 +704,9 @@ class LicenseSwitch(BaseModel):
                             license_day=days, client_name=lic_user.name, operator=gw)
         return hist
 
+
+Payment.switch_package_name = column_property(
+        select([LicenseSwitch.package_name]).where(Payment.license_switch_uuid == LicenseSwitch.license_switch_uuid).correlate_except(LicenseSwitch))
 
 
 class LicenseUpdateHistory(BaseModel):

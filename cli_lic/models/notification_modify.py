@@ -31,81 +31,37 @@ class NotificationModify(object):
                             and the value is json key in definition.
     """
     swagger_types = {
-        'user_uuid': 'str',
-        'content': 'str',
         'subject': 'str',
-        'created_on': 'datetime'
+        'content': 'str',
+        'created_on': 'datetime',
+        'user_uuid': 'str'
     }
 
     attribute_map = {
-        'user_uuid': 'user_uuid',
-        'content': 'content',
         'subject': 'subject',
-        'created_on': 'created_on'
+        'content': 'content',
+        'created_on': 'created_on',
+        'user_uuid': 'user_uuid'
     }
 
-    def __init__(self, user_uuid=None, content=None, subject=None, created_on=None):
+    def __init__(self, subject=None, content=None, created_on=None, user_uuid=None):
         """
         NotificationModify - a model defined in Swagger
         """
 
-        self._user_uuid = None
-        self._content = None
         self._subject = None
+        self._content = None
         self._created_on = None
+        self._user_uuid = None
 
-        if user_uuid is not None:
-          self.user_uuid = user_uuid
-        if content is not None:
-          self.content = content
         if subject is not None:
           self.subject = subject
+        if content is not None:
+          self.content = content
         if created_on is not None:
           self.created_on = created_on
-
-    @property
-    def user_uuid(self):
-        """
-        Gets the user_uuid of this NotificationModify.
-
-        :return: The user_uuid of this NotificationModify.
-        :rtype: str
-        """
-        return self._user_uuid
-
-    @user_uuid.setter
-    def user_uuid(self, user_uuid):
-        """
-        Sets the user_uuid of this NotificationModify.
-
-        :param user_uuid: The user_uuid of this NotificationModify.
-        :type: str
-        """
-        if user_uuid is not None and len(user_uuid) > 36:
-            raise ValueError("Invalid value for `user_uuid`, length must be less than or equal to `36`")
-
-        self._user_uuid = user_uuid
-
-    @property
-    def content(self):
-        """
-        Gets the content of this NotificationModify.
-
-        :return: The content of this NotificationModify.
-        :rtype: str
-        """
-        return self._content
-
-    @content.setter
-    def content(self, content):
-        """
-        Sets the content of this NotificationModify.
-
-        :param content: The content of this NotificationModify.
-        :type: str
-        """
-
-        self._content = content
+        if user_uuid is not None:
+          self.user_uuid = user_uuid
 
     @property
     def subject(self):
@@ -131,6 +87,27 @@ class NotificationModify(object):
         self._subject = subject
 
     @property
+    def content(self):
+        """
+        Gets the content of this NotificationModify.
+
+        :return: The content of this NotificationModify.
+        :rtype: str
+        """
+        return self._content
+
+    @content.setter
+    def content(self, content):
+        """
+        Sets the content of this NotificationModify.
+
+        :param content: The content of this NotificationModify.
+        :type: str
+        """
+
+        self._content = content
+
+    @property
     def created_on(self):
         """
         Gets the created_on of this NotificationModify.
@@ -150,6 +127,29 @@ class NotificationModify(object):
         """
 
         self._created_on = created_on
+
+    @property
+    def user_uuid(self):
+        """
+        Gets the user_uuid of this NotificationModify.
+
+        :return: The user_uuid of this NotificationModify.
+        :rtype: str
+        """
+        return self._user_uuid
+
+    @user_uuid.setter
+    def user_uuid(self, user_uuid):
+        """
+        Sets the user_uuid of this NotificationModify.
+
+        :param user_uuid: The user_uuid of this NotificationModify.
+        :type: str
+        """
+        if user_uuid is not None and len(user_uuid) > 36:
+            raise ValueError("Invalid value for `user_uuid`, length must be less than or equal to `36`")
+
+        self._user_uuid = user_uuid
 
     def to_dict(self):
         """

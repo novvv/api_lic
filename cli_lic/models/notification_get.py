@@ -31,37 +31,60 @@ class NotificationGet(object):
                             and the value is json key in definition.
     """
     swagger_types = {
+        'subject': 'str',
         'notification_uuid': 'str',
         'content': 'str',
-        'subject': 'str',
         'user_uuid': 'str'
     }
 
     attribute_map = {
+        'subject': 'subject',
         'notification_uuid': 'notification_uuid',
         'content': 'content',
-        'subject': 'subject',
         'user_uuid': 'user_uuid'
     }
 
-    def __init__(self, notification_uuid=None, content=None, subject=None, user_uuid=None):
+    def __init__(self, subject=None, notification_uuid=None, content=None, user_uuid=None):
         """
         NotificationGet - a model defined in Swagger
         """
 
+        self._subject = None
         self._notification_uuid = None
         self._content = None
-        self._subject = None
         self._user_uuid = None
 
+        if subject is not None:
+          self.subject = subject
         if notification_uuid is not None:
           self.notification_uuid = notification_uuid
         if content is not None:
           self.content = content
-        if subject is not None:
-          self.subject = subject
         if user_uuid is not None:
           self.user_uuid = user_uuid
+
+    @property
+    def subject(self):
+        """
+        Gets the subject of this NotificationGet.
+
+        :return: The subject of this NotificationGet.
+        :rtype: str
+        """
+        return self._subject
+
+    @subject.setter
+    def subject(self, subject):
+        """
+        Sets the subject of this NotificationGet.
+
+        :param subject: The subject of this NotificationGet.
+        :type: str
+        """
+        if subject is not None and len(subject) > 64:
+            raise ValueError("Invalid value for `subject`, length must be less than or equal to `64`")
+
+        self._subject = subject
 
     @property
     def notification_uuid(self):
@@ -106,29 +129,6 @@ class NotificationGet(object):
         """
 
         self._content = content
-
-    @property
-    def subject(self):
-        """
-        Gets the subject of this NotificationGet.
-
-        :return: The subject of this NotificationGet.
-        :rtype: str
-        """
-        return self._subject
-
-    @subject.setter
-    def subject(self, subject):
-        """
-        Sets the subject of this NotificationGet.
-
-        :param subject: The subject of this NotificationGet.
-        :type: str
-        """
-        if subject is not None and len(subject) > 64:
-            raise ValueError("Invalid value for `subject`, length must be less than or equal to `64`")
-
-        self._subject = subject
 
     @property
     def user_uuid(self):

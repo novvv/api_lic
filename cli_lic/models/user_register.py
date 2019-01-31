@@ -31,36 +31,59 @@ class UserRegister(object):
                             and the value is json key in definition.
     """
     swagger_types = {
+        'first_name': 'str',
         'passwd': 'str',
         'email': 'str',
-        'last_name': 'str',
-        'first_name': 'str'
+        'last_name': 'str'
     }
 
     attribute_map = {
+        'first_name': 'first_name',
         'passwd': 'passwd',
         'email': 'email',
-        'last_name': 'last_name',
-        'first_name': 'first_name'
+        'last_name': 'last_name'
     }
 
-    def __init__(self, passwd=None, email=None, last_name=None, first_name=None):
+    def __init__(self, first_name=None, passwd=None, email=None, last_name=None):
         """
         UserRegister - a model defined in Swagger
         """
 
+        self._first_name = None
         self._passwd = None
         self._email = None
         self._last_name = None
-        self._first_name = None
 
+        if first_name is not None:
+          self.first_name = first_name
         if passwd is not None:
           self.passwd = passwd
         self.email = email
         if last_name is not None:
           self.last_name = last_name
-        if first_name is not None:
-          self.first_name = first_name
+
+    @property
+    def first_name(self):
+        """
+        Gets the first_name of this UserRegister.
+
+        :return: The first_name of this UserRegister.
+        :rtype: str
+        """
+        return self._first_name
+
+    @first_name.setter
+    def first_name(self, first_name):
+        """
+        Sets the first_name of this UserRegister.
+
+        :param first_name: The first_name of this UserRegister.
+        :type: str
+        """
+        if first_name is not None and len(first_name) > 32:
+            raise ValueError("Invalid value for `first_name`, length must be less than or equal to `32`")
+
+        self._first_name = first_name
 
     @property
     def passwd(self):
@@ -128,29 +151,6 @@ class UserRegister(object):
             raise ValueError("Invalid value for `last_name`, length must be less than or equal to `32`")
 
         self._last_name = last_name
-
-    @property
-    def first_name(self):
-        """
-        Gets the first_name of this UserRegister.
-
-        :return: The first_name of this UserRegister.
-        :rtype: str
-        """
-        return self._first_name
-
-    @first_name.setter
-    def first_name(self, first_name):
-        """
-        Sets the first_name of this UserRegister.
-
-        :param first_name: The first_name of this UserRegister.
-        :type: str
-        """
-        if first_name is not None and len(first_name) > 32:
-            raise ValueError("Invalid value for `first_name`, length must be less than or equal to `32`")
-
-        self._first_name = first_name
 
     def to_dict(self):
         """
