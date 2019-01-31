@@ -31,79 +31,37 @@ class ObjectsListPayload(object):
                             and the value is json key in definition.
     """
     swagger_types = {
-        'items': 'object',
-        'per_page': 'int',
         'page': 'int',
-        'total': 'int'
+        'total': 'int',
+        'items': 'object',
+        'per_page': 'int'
     }
 
     attribute_map = {
-        'items': 'items',
-        'per_page': 'per_page',
         'page': 'page',
-        'total': 'total'
+        'total': 'total',
+        'items': 'items',
+        'per_page': 'per_page'
     }
 
-    def __init__(self, items=None, per_page=None, page=None, total=None):
+    def __init__(self, page=None, total=None, items=None, per_page=None):
         """
         ObjectsListPayload - a model defined in Swagger
         """
 
-        self._items = None
-        self._per_page = None
         self._page = None
         self._total = None
+        self._items = None
+        self._per_page = None
 
-        if items is not None:
-          self.items = items
-        if per_page is not None:
-          self.per_page = per_page
         if page is not None:
           self.page = page
         if total is not None:
           self.total = total
-
-    @property
-    def items(self):
-        """
-        Gets the items of this ObjectsListPayload.
-
-        :return: The items of this ObjectsListPayload.
-        :rtype: object
-        """
-        return self._items
-
-    @items.setter
-    def items(self, items):
-        """
-        Sets the items of this ObjectsListPayload.
-
-        :param items: The items of this ObjectsListPayload.
-        :type: object
-        """
-
-        self._items = items
-
-    @property
-    def per_page(self):
-        """
-        Gets the per_page of this ObjectsListPayload.
-
-        :return: The per_page of this ObjectsListPayload.
-        :rtype: int
-        """
-        return self._per_page
-
-    @per_page.setter
-    def per_page(self, per_page):
-        """
-        Sets the per_page of this ObjectsListPayload.
-
-        :param per_page: The per_page of this ObjectsListPayload.
-        :type: int
-        """
-
-        self._per_page = per_page
+        if items is not None:
+          self.items = items
+        if per_page is not None:
+          self.per_page = per_page
 
     @property
     def page(self):
@@ -146,6 +104,48 @@ class ObjectsListPayload(object):
         """
 
         self._total = total
+
+    @property
+    def items(self):
+        """
+        Gets the items of this ObjectsListPayload.
+
+        :return: The items of this ObjectsListPayload.
+        :rtype: object
+        """
+        return self._items
+
+    @items.setter
+    def items(self, items):
+        """
+        Sets the items of this ObjectsListPayload.
+
+        :param items: The items of this ObjectsListPayload.
+        :type: object
+        """
+
+        self._items = items
+
+    @property
+    def per_page(self):
+        """
+        Gets the per_page of this ObjectsListPayload.
+
+        :return: The per_page of this ObjectsListPayload.
+        :rtype: int
+        """
+        return self._per_page
+
+    @per_page.setter
+    def per_page(self, per_page):
+        """
+        Sets the per_page of this ObjectsListPayload.
+
+        :param per_page: The per_page of this ObjectsListPayload.
+        :type: int
+        """
+
+        self._per_page = per_page
 
     def to_dict(self):
         """

@@ -31,41 +31,62 @@ class UserMin(object):
                             and the value is json key in definition.
     """
     swagger_types = {
-        'email': 'str',
-        'is_admin': 'bool',
         'passwd': 'str',
-        'logo_file_uuid': 'str',
-        'is_active': 'bool'
+        'email': 'str',
+        'is_active': 'bool',
+        'is_admin': 'bool',
+        'logo_file_uuid': 'str'
     }
 
     attribute_map = {
-        'email': 'email',
-        'is_admin': 'is_admin',
         'passwd': 'passwd',
-        'logo_file_uuid': 'logo_file_uuid',
-        'is_active': 'is_active'
+        'email': 'email',
+        'is_active': 'is_active',
+        'is_admin': 'is_admin',
+        'logo_file_uuid': 'logo_file_uuid'
     }
 
-    def __init__(self, email=None, is_admin=None, passwd=None, logo_file_uuid=None, is_active=None):
+    def __init__(self, passwd=None, email=None, is_active=None, is_admin=None, logo_file_uuid=None):
         """
         UserMin - a model defined in Swagger
         """
 
-        self._email = None
-        self._is_admin = None
         self._passwd = None
-        self._logo_file_uuid = None
+        self._email = None
         self._is_active = None
+        self._is_admin = None
+        self._logo_file_uuid = None
 
-        self.email = email
-        if is_admin is not None:
-          self.is_admin = is_admin
         if passwd is not None:
           self.passwd = passwd
-        if logo_file_uuid is not None:
-          self.logo_file_uuid = logo_file_uuid
+        self.email = email
         if is_active is not None:
           self.is_active = is_active
+        if is_admin is not None:
+          self.is_admin = is_admin
+        if logo_file_uuid is not None:
+          self.logo_file_uuid = logo_file_uuid
+
+    @property
+    def passwd(self):
+        """
+        Gets the passwd of this UserMin.
+
+        :return: The passwd of this UserMin.
+        :rtype: str
+        """
+        return self._passwd
+
+    @passwd.setter
+    def passwd(self, passwd):
+        """
+        Sets the passwd of this UserMin.
+
+        :param passwd: The passwd of this UserMin.
+        :type: str
+        """
+
+        self._passwd = passwd
 
     @property
     def email(self):
@@ -91,6 +112,27 @@ class UserMin(object):
         self._email = email
 
     @property
+    def is_active(self):
+        """
+        Gets the is_active of this UserMin.
+
+        :return: The is_active of this UserMin.
+        :rtype: bool
+        """
+        return self._is_active
+
+    @is_active.setter
+    def is_active(self, is_active):
+        """
+        Sets the is_active of this UserMin.
+
+        :param is_active: The is_active of this UserMin.
+        :type: bool
+        """
+
+        self._is_active = is_active
+
+    @property
     def is_admin(self):
         """
         Gets the is_admin of this UserMin.
@@ -112,27 +154,6 @@ class UserMin(object):
         self._is_admin = is_admin
 
     @property
-    def passwd(self):
-        """
-        Gets the passwd of this UserMin.
-
-        :return: The passwd of this UserMin.
-        :rtype: str
-        """
-        return self._passwd
-
-    @passwd.setter
-    def passwd(self, passwd):
-        """
-        Sets the passwd of this UserMin.
-
-        :param passwd: The passwd of this UserMin.
-        :type: str
-        """
-
-        self._passwd = passwd
-
-    @property
     def logo_file_uuid(self):
         """
         Gets the logo_file_uuid of this UserMin.
@@ -152,27 +173,6 @@ class UserMin(object):
         """
 
         self._logo_file_uuid = logo_file_uuid
-
-    @property
-    def is_active(self):
-        """
-        Gets the is_active of this UserMin.
-
-        :return: The is_active of this UserMin.
-        :rtype: bool
-        """
-        return self._is_active
-
-    @is_active.setter
-    def is_active(self, is_active):
-        """
-        Sets the is_active of this UserMin.
-
-        :param is_active: The is_active of this UserMin.
-        :type: bool
-        """
-
-        self._is_active = is_active
 
     def to_dict(self):
         """

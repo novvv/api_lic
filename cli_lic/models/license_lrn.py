@@ -31,41 +31,62 @@ class LicenseLrn(object):
                             and the value is json key in definition.
     """
     swagger_types = {
-        'ip': 'str',
         'start_time': 'datetime',
-        'end_time': 'datetime',
+        'ip': 'str',
         'duration': 'str',
+        'end_time': 'datetime',
         'package_lrn_uuid': 'str'
     }
 
     attribute_map = {
-        'ip': 'ip',
         'start_time': 'start_time',
-        'end_time': 'end_time',
+        'ip': 'ip',
         'duration': 'duration',
+        'end_time': 'end_time',
         'package_lrn_uuid': 'package_lrn_uuid'
     }
 
-    def __init__(self, ip=None, start_time=None, end_time=None, duration='1 month', package_lrn_uuid=None):
+    def __init__(self, start_time=None, ip=None, duration='1 month', end_time=None, package_lrn_uuid=None):
         """
         LicenseLrn - a model defined in Swagger
         """
 
-        self._ip = None
         self._start_time = None
-        self._end_time = None
+        self._ip = None
         self._duration = None
+        self._end_time = None
         self._package_lrn_uuid = None
 
-        self.ip = ip
         if start_time is not None:
           self.start_time = start_time
-        if end_time is not None:
-          self.end_time = end_time
+        self.ip = ip
         if duration is not None:
           self.duration = duration
+        if end_time is not None:
+          self.end_time = end_time
         if package_lrn_uuid is not None:
           self.package_lrn_uuid = package_lrn_uuid
+
+    @property
+    def start_time(self):
+        """
+        Gets the start_time of this LicenseLrn.
+
+        :return: The start_time of this LicenseLrn.
+        :rtype: datetime
+        """
+        return self._start_time
+
+    @start_time.setter
+    def start_time(self, start_time):
+        """
+        Sets the start_time of this LicenseLrn.
+
+        :param start_time: The start_time of this LicenseLrn.
+        :type: datetime
+        """
+
+        self._start_time = start_time
 
     @property
     def ip(self):
@@ -93,48 +114,6 @@ class LicenseLrn(object):
         self._ip = ip
 
     @property
-    def start_time(self):
-        """
-        Gets the start_time of this LicenseLrn.
-
-        :return: The start_time of this LicenseLrn.
-        :rtype: datetime
-        """
-        return self._start_time
-
-    @start_time.setter
-    def start_time(self, start_time):
-        """
-        Sets the start_time of this LicenseLrn.
-
-        :param start_time: The start_time of this LicenseLrn.
-        :type: datetime
-        """
-
-        self._start_time = start_time
-
-    @property
-    def end_time(self):
-        """
-        Gets the end_time of this LicenseLrn.
-
-        :return: The end_time of this LicenseLrn.
-        :rtype: datetime
-        """
-        return self._end_time
-
-    @end_time.setter
-    def end_time(self, end_time):
-        """
-        Sets the end_time of this LicenseLrn.
-
-        :param end_time: The end_time of this LicenseLrn.
-        :type: datetime
-        """
-
-        self._end_time = end_time
-
-    @property
     def duration(self):
         """
         Gets the duration of this LicenseLrn.
@@ -160,6 +139,27 @@ class LicenseLrn(object):
             )
 
         self._duration = duration
+
+    @property
+    def end_time(self):
+        """
+        Gets the end_time of this LicenseLrn.
+
+        :return: The end_time of this LicenseLrn.
+        :rtype: datetime
+        """
+        return self._end_time
+
+    @end_time.setter
+    def end_time(self, end_time):
+        """
+        Sets the end_time of this LicenseLrn.
+
+        :param end_time: The end_time of this LicenseLrn.
+        :type: datetime
+        """
+
+        self._end_time = end_time
 
     @property
     def package_lrn_uuid(self):

@@ -558,6 +558,7 @@ class PackageSwitchScheme(BaseModelScheme):
     start_date = DateTime()
     expire_date = DateTime()
     licenses = Nested('LicenseSwitchScheme', many=True)
+    switch_ip = Str()
 
     class Meta:
         model = model.PackageSwitch
@@ -572,10 +573,10 @@ class PackageSwitchSchemeGet(PackageSwitchScheme):
         model = model.PackageSwitch
         fields = (
             'package_switch_uuid', 'package_name', 'type', 'sub_type', 'switch_uuid', 'switch_port', 'minute_count',
-            'amount', 'enabled', 'start_date', 'expire_date', 'create_on')
+            'amount', 'enabled', 'start_date', 'expire_date', 'create_on','switch_ip')
         search_fields = (
             'package_switch_uuid', 'package_name', 'type', 'sub_type', 'switch_uuid', 'switch_port', 'minute_count',
-            'amount', 'enabled')
+            'amount', 'enabled','switch_ip')
         query_fields = (
             'start_date_gt', 'start_date_lt', 'expire_date_gt', 'expire_date_lt', 'create_on_gt', 'create_on_lt',)
 

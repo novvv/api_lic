@@ -31,53 +31,32 @@ class AuthTokenInner(object):
                             and the value is json key in definition.
     """
     swagger_types = {
-        'token': 'str',
         'exp': 'datetime',
+        'token': 'str',
         'user_type': 'str'
     }
 
     attribute_map = {
-        'token': 'token',
         'exp': 'exp',
+        'token': 'token',
         'user_type': 'user_type'
     }
 
-    def __init__(self, token=None, exp=None, user_type=None):
+    def __init__(self, exp=None, token=None, user_type=None):
         """
         AuthTokenInner - a model defined in Swagger
         """
 
-        self._token = None
         self._exp = None
+        self._token = None
         self._user_type = None
 
-        if token is not None:
-          self.token = token
         if exp is not None:
           self.exp = exp
+        if token is not None:
+          self.token = token
         if user_type is not None:
           self.user_type = user_type
-
-    @property
-    def token(self):
-        """
-        Gets the token of this AuthTokenInner.
-
-        :return: The token of this AuthTokenInner.
-        :rtype: str
-        """
-        return self._token
-
-    @token.setter
-    def token(self, token):
-        """
-        Sets the token of this AuthTokenInner.
-
-        :param token: The token of this AuthTokenInner.
-        :type: str
-        """
-
-        self._token = token
 
     @property
     def exp(self):
@@ -99,6 +78,27 @@ class AuthTokenInner(object):
         """
 
         self._exp = exp
+
+    @property
+    def token(self):
+        """
+        Gets the token of this AuthTokenInner.
+
+        :return: The token of this AuthTokenInner.
+        :rtype: str
+        """
+        return self._token
+
+    @token.setter
+    def token(self, token):
+        """
+        Sets the token of this AuthTokenInner.
+
+        :param token: The token of this AuthTokenInner.
+        :type: str
+        """
+
+        self._token = token
 
     @property
     def user_type(self):

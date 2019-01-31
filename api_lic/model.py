@@ -608,6 +608,7 @@ class PackageSwitch(BaseModel):
     rate_per_minute = column_property(case([(minute_count > 0, cast(amount, Float).op('/')(minute_count))], else_=None))
 
 
+
 class LicenseSwitch(BaseModel):
     __tablename__ = 'license_switch'
     __table_args__ = (
@@ -797,6 +798,9 @@ class DnlLcenseInfoRecord(BaseModel):
     create_user=Column(SmallInteger)
     time=Column(Numeric)
     flag=Column(CHAR(1))
+
+
+PackageSwitch.switch_ip = column_property(select([DnlLicenseInfo.recv_ip]).where(PackageSwitch.switch_uuid==DnlLicenseInfo.uuid).correlate_except(DnlLicenseInfo))
 
 
 class DnlLicenseLog(BaseModel):

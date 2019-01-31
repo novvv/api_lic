@@ -32,36 +32,36 @@ class Notification(object):
     """
     swagger_types = {
         'user_uuid': 'str',
-        'created_on': 'datetime',
         'content': 'str',
-        'subject': 'str'
+        'subject': 'str',
+        'created_on': 'datetime'
     }
 
     attribute_map = {
         'user_uuid': 'user_uuid',
-        'created_on': 'created_on',
         'content': 'content',
-        'subject': 'subject'
+        'subject': 'subject',
+        'created_on': 'created_on'
     }
 
-    def __init__(self, user_uuid=None, created_on=None, content=None, subject=None):
+    def __init__(self, user_uuid=None, content=None, subject=None, created_on=None):
         """
         Notification - a model defined in Swagger
         """
 
         self._user_uuid = None
-        self._created_on = None
         self._content = None
         self._subject = None
+        self._created_on = None
 
         if user_uuid is not None:
           self.user_uuid = user_uuid
-        if created_on is not None:
-          self.created_on = created_on
         if content is not None:
           self.content = content
         if subject is not None:
           self.subject = subject
+        if created_on is not None:
+          self.created_on = created_on
 
     @property
     def user_uuid(self):
@@ -85,27 +85,6 @@ class Notification(object):
             raise ValueError("Invalid value for `user_uuid`, length must be less than or equal to `36`")
 
         self._user_uuid = user_uuid
-
-    @property
-    def created_on(self):
-        """
-        Gets the created_on of this Notification.
-
-        :return: The created_on of this Notification.
-        :rtype: datetime
-        """
-        return self._created_on
-
-    @created_on.setter
-    def created_on(self, created_on):
-        """
-        Sets the created_on of this Notification.
-
-        :param created_on: The created_on of this Notification.
-        :type: datetime
-        """
-
-        self._created_on = created_on
 
     @property
     def content(self):
@@ -150,6 +129,27 @@ class Notification(object):
             raise ValueError("Invalid value for `subject`, length must be less than or equal to `64`")
 
         self._subject = subject
+
+    @property
+    def created_on(self):
+        """
+        Gets the created_on of this Notification.
+
+        :return: The created_on of this Notification.
+        :rtype: datetime
+        """
+        return self._created_on
+
+    @created_on.setter
+    def created_on(self, created_on):
+        """
+        Sets the created_on of this Notification.
+
+        :param created_on: The created_on of this Notification.
+        :type: datetime
+        """
+
+        self._created_on = created_on
 
     def to_dict(self):
         """
