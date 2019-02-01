@@ -677,6 +677,7 @@ class UserApi(object):
         :param int amount:
         :param int cps:
         :param int dip_count:
+        :param str duration:
         :param bool enabled:
         :param str ip:
         :param str license_lrn_uuid:
@@ -723,6 +724,7 @@ class UserApi(object):
         :param int amount:
         :param int cps:
         :param int dip_count:
+        :param str duration:
         :param bool enabled:
         :param str ip:
         :param str license_lrn_uuid:
@@ -743,7 +745,7 @@ class UserApi(object):
                  returns the request thread.
         """
 
-        all_params = ['page', 'per_page', 'order_by', 'order_dir', 'amount', 'cps', 'dip_count', 'enabled', 'ip', 'license_lrn_uuid', 'lrn_port', 'ordered_amount', 'package_lrn_uuid', 'type', 'user_email', 'user_uuid', 'cost_gt', 'cost_lt', 'end_time_gt', 'end_time_lt', 'start_time_gt', 'start_time_lt']
+        all_params = ['page', 'per_page', 'order_by', 'order_dir', 'amount', 'cps', 'dip_count', 'duration', 'enabled', 'ip', 'license_lrn_uuid', 'lrn_port', 'ordered_amount', 'package_lrn_uuid', 'type', 'user_email', 'user_uuid', 'cost_gt', 'cost_lt', 'end_time_gt', 'end_time_lt', 'start_time_gt', 'start_time_lt']
         all_params.append('callback')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
@@ -779,6 +781,8 @@ class UserApi(object):
             query_params.append(('cps', params['cps']))
         if 'dip_count' in params:
             query_params.append(('dip_count', params['dip_count']))
+        if 'duration' in params:
+            query_params.append(('duration', params['duration']))
         if 'enabled' in params:
             query_params.append(('enabled', params['enabled']))
         if 'ip' in params:
@@ -1811,6 +1815,7 @@ class UserApi(object):
         :param str switch_package_name:
         :param str switch_uuid:
         :param str type:
+        :param str user_email:
         :param str amount_lrn_gt:
         :param str amount_lrn_lt:
         :param str amount_switch_gt:
@@ -1855,6 +1860,7 @@ class UserApi(object):
         :param str switch_package_name:
         :param str switch_uuid:
         :param str type:
+        :param str user_email:
         :param str amount_lrn_gt:
         :param str amount_lrn_lt:
         :param str amount_switch_gt:
@@ -1868,7 +1874,7 @@ class UserApi(object):
                  returns the request thread.
         """
 
-        all_params = ['page', 'per_page', 'order_by', 'order_dir', 'description', 'license_lrn_uuid', 'license_switch_uuid', 'lrn_package_name', 'payment_uuid', 'switch_package_name', 'switch_uuid', 'type', 'amount_lrn_gt', 'amount_lrn_lt', 'amount_switch_gt', 'amount_switch_lt', 'amount_total_gt', 'amount_total_lt', 'paid_time_gt', 'paid_time_lt']
+        all_params = ['page', 'per_page', 'order_by', 'order_dir', 'description', 'license_lrn_uuid', 'license_switch_uuid', 'lrn_package_name', 'payment_uuid', 'switch_package_name', 'switch_uuid', 'type', 'user_email', 'amount_lrn_gt', 'amount_lrn_lt', 'amount_switch_gt', 'amount_switch_lt', 'amount_total_gt', 'amount_total_lt', 'paid_time_gt', 'paid_time_lt']
         all_params.append('callback')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
@@ -1914,6 +1920,8 @@ class UserApi(object):
             query_params.append(('switch_uuid', params['switch_uuid']))
         if 'type' in params:
             query_params.append(('type', params['type']))
+        if 'user_email' in params:
+            query_params.append(('user_email', params['user_email']))
         if 'amount_lrn_gt' in params:
             query_params.append(('amount_lrn_gt', params['amount_lrn_gt']))
         if 'amount_lrn_lt' in params:

@@ -31,60 +31,37 @@ class NotificationModify(object):
                             and the value is json key in definition.
     """
     swagger_types = {
-        'subject': 'str',
         'created_on': 'datetime',
         'content': 'str',
+        'subject': 'str',
         'user_uuid': 'str'
     }
 
     attribute_map = {
-        'subject': 'subject',
         'created_on': 'created_on',
         'content': 'content',
+        'subject': 'subject',
         'user_uuid': 'user_uuid'
     }
 
-    def __init__(self, subject=None, created_on=None, content=None, user_uuid=None):
+    def __init__(self, created_on=None, content=None, subject=None, user_uuid=None):
         """
         NotificationModify - a model defined in Swagger
         """
 
-        self._subject = None
         self._created_on = None
         self._content = None
+        self._subject = None
         self._user_uuid = None
 
-        if subject is not None:
-          self.subject = subject
         if created_on is not None:
           self.created_on = created_on
         if content is not None:
           self.content = content
+        if subject is not None:
+          self.subject = subject
         if user_uuid is not None:
           self.user_uuid = user_uuid
-
-    @property
-    def subject(self):
-        """
-        Gets the subject of this NotificationModify.
-
-        :return: The subject of this NotificationModify.
-        :rtype: str
-        """
-        return self._subject
-
-    @subject.setter
-    def subject(self, subject):
-        """
-        Sets the subject of this NotificationModify.
-
-        :param subject: The subject of this NotificationModify.
-        :type: str
-        """
-        if subject is not None and len(subject) > 64:
-            raise ValueError("Invalid value for `subject`, length must be less than or equal to `64`")
-
-        self._subject = subject
 
     @property
     def created_on(self):
@@ -127,6 +104,29 @@ class NotificationModify(object):
         """
 
         self._content = content
+
+    @property
+    def subject(self):
+        """
+        Gets the subject of this NotificationModify.
+
+        :return: The subject of this NotificationModify.
+        :rtype: str
+        """
+        return self._subject
+
+    @subject.setter
+    def subject(self, subject):
+        """
+        Sets the subject of this NotificationModify.
+
+        :param subject: The subject of this NotificationModify.
+        :type: str
+        """
+        if subject is not None and len(subject) > 64:
+            raise ValueError("Invalid value for `subject`, length must be less than or equal to `64`")
+
+        self._subject = subject
 
     @property
     def user_uuid(self):

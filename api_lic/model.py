@@ -465,6 +465,7 @@ class Payment(BaseModel):
     user = relationship('User')
 
     amount_total = column_property(amount_lrn.op('+')(amount_switch))
+    user_email = column_property(select([User.email]).where(User.user_uuid == user_uuid).correlate_except(User))
 
 
     @property

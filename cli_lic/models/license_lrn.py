@@ -31,57 +31,36 @@ class LicenseLrn(object):
                             and the value is json key in definition.
     """
     swagger_types = {
-        'start_time': 'datetime',
         'ip': 'str',
+        'package_lrn_uuid': 'str',
         'duration': 'str',
-        'package_lrn_uuid': 'str'
+        'start_time': 'datetime'
     }
 
     attribute_map = {
-        'start_time': 'start_time',
         'ip': 'ip',
+        'package_lrn_uuid': 'package_lrn_uuid',
         'duration': 'duration',
-        'package_lrn_uuid': 'package_lrn_uuid'
+        'start_time': 'start_time'
     }
 
-    def __init__(self, start_time=None, ip=None, duration='1 month', package_lrn_uuid=None):
+    def __init__(self, ip=None, package_lrn_uuid=None, duration='1 month', start_time=None):
         """
         LicenseLrn - a model defined in Swagger
         """
 
-        self._start_time = None
         self._ip = None
-        self._duration = None
         self._package_lrn_uuid = None
+        self._duration = None
+        self._start_time = None
 
-        if start_time is not None:
-          self.start_time = start_time
         self.ip = ip
-        if duration is not None:
-          self.duration = duration
         if package_lrn_uuid is not None:
           self.package_lrn_uuid = package_lrn_uuid
-
-    @property
-    def start_time(self):
-        """
-        Gets the start_time of this LicenseLrn.
-
-        :return: The start_time of this LicenseLrn.
-        :rtype: datetime
-        """
-        return self._start_time
-
-    @start_time.setter
-    def start_time(self, start_time):
-        """
-        Sets the start_time of this LicenseLrn.
-
-        :param start_time: The start_time of this LicenseLrn.
-        :type: datetime
-        """
-
-        self._start_time = start_time
+        if duration is not None:
+          self.duration = duration
+        if start_time is not None:
+          self.start_time = start_time
 
     @property
     def ip(self):
@@ -107,6 +86,29 @@ class LicenseLrn(object):
             raise ValueError("Invalid value for `ip`, length must be less than or equal to `16`")
 
         self._ip = ip
+
+    @property
+    def package_lrn_uuid(self):
+        """
+        Gets the package_lrn_uuid of this LicenseLrn.
+
+        :return: The package_lrn_uuid of this LicenseLrn.
+        :rtype: str
+        """
+        return self._package_lrn_uuid
+
+    @package_lrn_uuid.setter
+    def package_lrn_uuid(self, package_lrn_uuid):
+        """
+        Sets the package_lrn_uuid of this LicenseLrn.
+
+        :param package_lrn_uuid: The package_lrn_uuid of this LicenseLrn.
+        :type: str
+        """
+        if package_lrn_uuid is not None and len(package_lrn_uuid) > 36:
+            raise ValueError("Invalid value for `package_lrn_uuid`, length must be less than or equal to `36`")
+
+        self._package_lrn_uuid = package_lrn_uuid
 
     @property
     def duration(self):
@@ -136,27 +138,25 @@ class LicenseLrn(object):
         self._duration = duration
 
     @property
-    def package_lrn_uuid(self):
+    def start_time(self):
         """
-        Gets the package_lrn_uuid of this LicenseLrn.
+        Gets the start_time of this LicenseLrn.
 
-        :return: The package_lrn_uuid of this LicenseLrn.
-        :rtype: str
+        :return: The start_time of this LicenseLrn.
+        :rtype: datetime
         """
-        return self._package_lrn_uuid
+        return self._start_time
 
-    @package_lrn_uuid.setter
-    def package_lrn_uuid(self, package_lrn_uuid):
+    @start_time.setter
+    def start_time(self, start_time):
         """
-        Sets the package_lrn_uuid of this LicenseLrn.
+        Sets the start_time of this LicenseLrn.
 
-        :param package_lrn_uuid: The package_lrn_uuid of this LicenseLrn.
-        :type: str
+        :param start_time: The start_time of this LicenseLrn.
+        :type: datetime
         """
-        if package_lrn_uuid is not None and len(package_lrn_uuid) > 36:
-            raise ValueError("Invalid value for `package_lrn_uuid`, length must be less than or equal to `36`")
 
-        self._package_lrn_uuid = package_lrn_uuid
+        self._start_time = start_time
 
     def to_dict(self):
         """

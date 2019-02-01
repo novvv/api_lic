@@ -370,14 +370,18 @@ class PaymentSchemeGet(PaymentScheme):
     description = Str()
     switch_package_name = Str()
     lrn_package_name = Str()
+    user_email = Str()
+
     class Meta:
         model = model.Payment
         fields = (
             'payment_uuid', 'type', 'paid_time', 'user_uuid', 'license_lrn_uuid', 'license_switch_uuid', 'amount_lrn',
-            'amount_switch', 'amount_total', 'switch_uuid', 'description','lrn_package_name','switch_package_name')
+            'amount_switch', 'amount_total', 'switch_uuid', 'description', 'lrn_package_name', 'switch_package_name',
+            'user_email'
+        )
         search_fields = (
             'payment_uuid', 'type', 'period', 'user_uuid', 'license_lrn_uuid', 'license_switch_uuid', 'switch_uuid',
-            'description','lrn_package_name','switch_package_name')
+            'description', 'lrn_package_name', 'switch_package_name', 'user_email')
         query_fields = (
             'amount_lrn_gt', 'amount_lrn_lt', 'amount_switch_gt', 'amount_switch_lt', 'amount_total_gt',
             'amount_total_lt',
@@ -425,7 +429,7 @@ class TransactionLogSchemeGet(TransactionLogScheme):
         search_fields = ('license_lrn_uuid', 'license_switch_uuid', 'type', 'amount_lrn', 'amount_switch',
                          'transaction_id', 'transaction_type', 'from_ip', 'status', 'result',
                          'payment_uuid',)
-        query_fields = ('transaction_time_gt', 'transaction_time_lt','amount_total_lt','amount_total_gt')
+        query_fields = ('transaction_time_gt', 'transaction_time_lt', 'amount_total_lt', 'amount_total_gt')
 
 
 # +++Plan+++
@@ -574,10 +578,10 @@ class PackageSwitchSchemeGet(PackageSwitchScheme):
         model = model.PackageSwitch
         fields = (
             'package_switch_uuid', 'package_name', 'type', 'sub_type', 'switch_uuid', 'switch_port', 'minute_count',
-            'amount', 'enabled', 'start_date', 'expire_date', 'create_on','switch_ip')
+            'amount', 'enabled', 'start_date', 'expire_date', 'create_on', 'switch_ip')
         search_fields = (
             'package_switch_uuid', 'package_name', 'type', 'sub_type', 'switch_uuid', 'switch_port', 'minute_count',
-            'amount', 'enabled','switch_ip')
+            'amount', 'enabled', 'switch_ip')
         query_fields = (
             'start_date_gt', 'start_date_lt', 'expire_date_gt', 'expire_date_lt', 'create_on_gt', 'create_on_lt',)
 
@@ -662,9 +666,9 @@ class LicenseLrnSchemeGet(LicenseLrnScheme):
     class Meta:
         model = model.LicenseLrn
         fields = ('user_email', 'cps', 'type', 'ip', 'lrn_port', 'dip_count', 'amount', 'license_lrn_uuid',
-                  'package_lrn_uuid', 'user_uuid',  'package', 'start_time', 'end_time', 'enabled')
+                  'package_lrn_uuid', 'user_uuid', 'package', 'start_time', 'end_time', 'enabled', 'duration')
         search_fields = ('user_email', 'cps', 'type', 'ip', 'lrn_port', 'dip_count', 'amount', 'license_lrn_uuid',
-                         'package_lrn_uuid', 'user_uuid', 'ordered_amount', 'enabled')
+                         'package_lrn_uuid', 'user_uuid', 'ordered_amount', 'enabled', 'duration')
         query_fields = ('start_time_gt', 'start_time_lt', 'end_time_gt', 'end_time_lt', 'cost_gt', 'cost_lt',)
 
 
@@ -707,7 +711,8 @@ class LicenseSwitchSchemeGet(LicenseSwitchScheme):
     class Meta:
         model = model.LicenseSwitch
         fields = ('user_email', 'type', 'ip', 'switch_port', 'minute_count', 'amount', 'license_switch_uuid',
-                  'package_switch_uuid', 'user_uuid', 'ordered_amount', 'package', 'enabled', 'start_time', 'end_time')
+                  'package_switch_uuid', 'user_uuid', 'ordered_amount', 'package', 'enabled', 'start_time', 'end_time',
+                  'duration')
         search_fields = (
             'user_email', 'type', 'ip', 'switch_port', 'minute_count', 'amount', 'license_switch_uuid',
             'package_switch_uuid', 'user_uuid', 'ordered_amount', 'package', 'enabled', 'duration')

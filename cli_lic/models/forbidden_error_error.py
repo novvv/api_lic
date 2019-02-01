@@ -31,53 +31,32 @@ class ForbiddenErrorError(object):
                             and the value is json key in definition.
     """
     swagger_types = {
-        'code': 'int',
         'message': 'str',
-        'reason': 'str'
+        'reason': 'str',
+        'code': 'int'
     }
 
     attribute_map = {
-        'code': 'code',
         'message': 'message',
-        'reason': 'reason'
+        'reason': 'reason',
+        'code': 'code'
     }
 
-    def __init__(self, code=None, message=None, reason=None):
+    def __init__(self, message=None, reason=None, code=None):
         """
         ForbiddenErrorError - a model defined in Swagger
         """
 
-        self._code = None
         self._message = None
         self._reason = None
+        self._code = None
 
-        if code is not None:
-          self.code = code
         if message is not None:
           self.message = message
         if reason is not None:
           self.reason = reason
-
-    @property
-    def code(self):
-        """
-        Gets the code of this ForbiddenErrorError.
-
-        :return: The code of this ForbiddenErrorError.
-        :rtype: int
-        """
-        return self._code
-
-    @code.setter
-    def code(self, code):
-        """
-        Sets the code of this ForbiddenErrorError.
-
-        :param code: The code of this ForbiddenErrorError.
-        :type: int
-        """
-
-        self._code = code
+        if code is not None:
+          self.code = code
 
     @property
     def message(self):
@@ -120,6 +99,27 @@ class ForbiddenErrorError(object):
         """
 
         self._reason = reason
+
+    @property
+    def code(self):
+        """
+        Gets the code of this ForbiddenErrorError.
+
+        :return: The code of this ForbiddenErrorError.
+        :rtype: int
+        """
+        return self._code
+
+    @code.setter
+    def code(self, code):
+        """
+        Sets the code of this ForbiddenErrorError.
+
+        :param code: The code of this ForbiddenErrorError.
+        :type: int
+        """
+
+        self._code = code
 
     def to_dict(self):
         """

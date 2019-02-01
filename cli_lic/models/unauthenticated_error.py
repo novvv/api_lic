@@ -31,53 +31,32 @@ class UnauthenticatedError(object):
                             and the value is json key in definition.
     """
     swagger_types = {
-        'success': 'bool',
         'error': 'ForbiddenErrorError',
+        'success': 'bool',
         'error_type': 'str'
     }
 
     attribute_map = {
-        'success': 'success',
         'error': 'error',
+        'success': 'success',
         'error_type': 'error_type'
     }
 
-    def __init__(self, success=False, error=None, error_type='unauthenticated_error'):
+    def __init__(self, error=None, success=False, error_type='unauthenticated_error'):
         """
         UnauthenticatedError - a model defined in Swagger
         """
 
-        self._success = None
         self._error = None
+        self._success = None
         self._error_type = None
 
-        if success is not None:
-          self.success = success
         if error is not None:
           self.error = error
+        if success is not None:
+          self.success = success
         if error_type is not None:
           self.error_type = error_type
-
-    @property
-    def success(self):
-        """
-        Gets the success of this UnauthenticatedError.
-
-        :return: The success of this UnauthenticatedError.
-        :rtype: bool
-        """
-        return self._success
-
-    @success.setter
-    def success(self, success):
-        """
-        Sets the success of this UnauthenticatedError.
-
-        :param success: The success of this UnauthenticatedError.
-        :type: bool
-        """
-
-        self._success = success
 
     @property
     def error(self):
@@ -99,6 +78,27 @@ class UnauthenticatedError(object):
         """
 
         self._error = error
+
+    @property
+    def success(self):
+        """
+        Gets the success of this UnauthenticatedError.
+
+        :return: The success of this UnauthenticatedError.
+        :rtype: bool
+        """
+        return self._success
+
+    @success.setter
+    def success(self, success):
+        """
+        Sets the success of this UnauthenticatedError.
+
+        :param success: The success of this UnauthenticatedError.
+        :type: bool
+        """
+
+        self._success = success
 
     @property
     def error_type(self):

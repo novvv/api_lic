@@ -32,36 +32,36 @@ class LicenseSwitchModify(object):
     """
     swagger_types = {
         'enabled': 'bool',
-        'ip': 'str',
         'package_switch_uuid': 'str',
-        'end_time': 'datetime'
+        'end_time': 'datetime',
+        'ip': 'str'
     }
 
     attribute_map = {
         'enabled': 'enabled',
-        'ip': 'ip',
         'package_switch_uuid': 'package_switch_uuid',
-        'end_time': 'end_time'
+        'end_time': 'end_time',
+        'ip': 'ip'
     }
 
-    def __init__(self, enabled=None, ip=None, package_switch_uuid=None, end_time=None):
+    def __init__(self, enabled=None, package_switch_uuid=None, end_time=None, ip=None):
         """
         LicenseSwitchModify - a model defined in Swagger
         """
 
         self._enabled = None
-        self._ip = None
         self._package_switch_uuid = None
         self._end_time = None
+        self._ip = None
 
         if enabled is not None:
           self.enabled = enabled
-        if ip is not None:
-          self.ip = ip
         if package_switch_uuid is not None:
           self.package_switch_uuid = package_switch_uuid
         if end_time is not None:
           self.end_time = end_time
+        if ip is not None:
+          self.ip = ip
 
     @property
     def enabled(self):
@@ -83,29 +83,6 @@ class LicenseSwitchModify(object):
         """
 
         self._enabled = enabled
-
-    @property
-    def ip(self):
-        """
-        Gets the ip of this LicenseSwitchModify.
-
-        :return: The ip of this LicenseSwitchModify.
-        :rtype: str
-        """
-        return self._ip
-
-    @ip.setter
-    def ip(self, ip):
-        """
-        Sets the ip of this LicenseSwitchModify.
-
-        :param ip: The ip of this LicenseSwitchModify.
-        :type: str
-        """
-        if ip is not None and len(ip) > 16:
-            raise ValueError("Invalid value for `ip`, length must be less than or equal to `16`")
-
-        self._ip = ip
 
     @property
     def package_switch_uuid(self):
@@ -150,6 +127,29 @@ class LicenseSwitchModify(object):
         """
 
         self._end_time = end_time
+
+    @property
+    def ip(self):
+        """
+        Gets the ip of this LicenseSwitchModify.
+
+        :return: The ip of this LicenseSwitchModify.
+        :rtype: str
+        """
+        return self._ip
+
+    @ip.setter
+    def ip(self, ip):
+        """
+        Sets the ip of this LicenseSwitchModify.
+
+        :param ip: The ip of this LicenseSwitchModify.
+        :type: str
+        """
+        if ip is not None and len(ip) > 16:
+            raise ValueError("Invalid value for `ip`, length must be less than or equal to `16`")
+
+        self._ip = ip
 
     def to_dict(self):
         """

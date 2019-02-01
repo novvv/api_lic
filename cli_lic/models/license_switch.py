@@ -31,57 +31,59 @@ class LicenseSwitch(object):
                             and the value is json key in definition.
     """
     swagger_types = {
-        'start_time': 'datetime',
+        'package_switch_uuid': 'str',
         'ip': 'str',
         'duration': 'str',
-        'package_switch_uuid': 'str'
+        'start_time': 'datetime'
     }
 
     attribute_map = {
-        'start_time': 'start_time',
+        'package_switch_uuid': 'package_switch_uuid',
         'ip': 'ip',
         'duration': 'duration',
-        'package_switch_uuid': 'package_switch_uuid'
+        'start_time': 'start_time'
     }
 
-    def __init__(self, start_time=None, ip=None, duration='1 month', package_switch_uuid=None):
+    def __init__(self, package_switch_uuid=None, ip=None, duration='1 month', start_time=None):
         """
         LicenseSwitch - a model defined in Swagger
         """
 
-        self._start_time = None
+        self._package_switch_uuid = None
         self._ip = None
         self._duration = None
-        self._package_switch_uuid = None
+        self._start_time = None
 
-        if start_time is not None:
-          self.start_time = start_time
+        if package_switch_uuid is not None:
+          self.package_switch_uuid = package_switch_uuid
         self.ip = ip
         if duration is not None:
           self.duration = duration
-        if package_switch_uuid is not None:
-          self.package_switch_uuid = package_switch_uuid
+        if start_time is not None:
+          self.start_time = start_time
 
     @property
-    def start_time(self):
+    def package_switch_uuid(self):
         """
-        Gets the start_time of this LicenseSwitch.
+        Gets the package_switch_uuid of this LicenseSwitch.
 
-        :return: The start_time of this LicenseSwitch.
-        :rtype: datetime
+        :return: The package_switch_uuid of this LicenseSwitch.
+        :rtype: str
         """
-        return self._start_time
+        return self._package_switch_uuid
 
-    @start_time.setter
-    def start_time(self, start_time):
+    @package_switch_uuid.setter
+    def package_switch_uuid(self, package_switch_uuid):
         """
-        Sets the start_time of this LicenseSwitch.
+        Sets the package_switch_uuid of this LicenseSwitch.
 
-        :param start_time: The start_time of this LicenseSwitch.
-        :type: datetime
+        :param package_switch_uuid: The package_switch_uuid of this LicenseSwitch.
+        :type: str
         """
+        if package_switch_uuid is not None and len(package_switch_uuid) > 36:
+            raise ValueError("Invalid value for `package_switch_uuid`, length must be less than or equal to `36`")
 
-        self._start_time = start_time
+        self._package_switch_uuid = package_switch_uuid
 
     @property
     def ip(self):
@@ -136,27 +138,25 @@ class LicenseSwitch(object):
         self._duration = duration
 
     @property
-    def package_switch_uuid(self):
+    def start_time(self):
         """
-        Gets the package_switch_uuid of this LicenseSwitch.
+        Gets the start_time of this LicenseSwitch.
 
-        :return: The package_switch_uuid of this LicenseSwitch.
-        :rtype: str
+        :return: The start_time of this LicenseSwitch.
+        :rtype: datetime
         """
-        return self._package_switch_uuid
+        return self._start_time
 
-    @package_switch_uuid.setter
-    def package_switch_uuid(self, package_switch_uuid):
+    @start_time.setter
+    def start_time(self, start_time):
         """
-        Sets the package_switch_uuid of this LicenseSwitch.
+        Sets the start_time of this LicenseSwitch.
 
-        :param package_switch_uuid: The package_switch_uuid of this LicenseSwitch.
-        :type: str
+        :param start_time: The start_time of this LicenseSwitch.
+        :type: datetime
         """
-        if package_switch_uuid is not None and len(package_switch_uuid) > 36:
-            raise ValueError("Invalid value for `package_switch_uuid`, length must be less than or equal to `36`")
 
-        self._package_switch_uuid = package_switch_uuid
+        self._start_time = start_time
 
     def to_dict(self):
         """

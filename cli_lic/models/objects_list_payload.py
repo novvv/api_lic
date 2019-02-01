@@ -32,36 +32,36 @@ class ObjectsListPayload(object):
     """
     swagger_types = {
         'page': 'int',
+        'items': 'object',
         'per_page': 'int',
-        'total': 'int',
-        'items': 'object'
+        'total': 'int'
     }
 
     attribute_map = {
         'page': 'page',
+        'items': 'items',
         'per_page': 'per_page',
-        'total': 'total',
-        'items': 'items'
+        'total': 'total'
     }
 
-    def __init__(self, page=None, per_page=None, total=None, items=None):
+    def __init__(self, page=None, items=None, per_page=None, total=None):
         """
         ObjectsListPayload - a model defined in Swagger
         """
 
         self._page = None
+        self._items = None
         self._per_page = None
         self._total = None
-        self._items = None
 
         if page is not None:
           self.page = page
+        if items is not None:
+          self.items = items
         if per_page is not None:
           self.per_page = per_page
         if total is not None:
           self.total = total
-        if items is not None:
-          self.items = items
 
     @property
     def page(self):
@@ -83,6 +83,27 @@ class ObjectsListPayload(object):
         """
 
         self._page = page
+
+    @property
+    def items(self):
+        """
+        Gets the items of this ObjectsListPayload.
+
+        :return: The items of this ObjectsListPayload.
+        :rtype: object
+        """
+        return self._items
+
+    @items.setter
+    def items(self, items):
+        """
+        Sets the items of this ObjectsListPayload.
+
+        :param items: The items of this ObjectsListPayload.
+        :type: object
+        """
+
+        self._items = items
 
     @property
     def per_page(self):
@@ -125,27 +146,6 @@ class ObjectsListPayload(object):
         """
 
         self._total = total
-
-    @property
-    def items(self):
-        """
-        Gets the items of this ObjectsListPayload.
-
-        :return: The items of this ObjectsListPayload.
-        :rtype: object
-        """
-        return self._items
-
-    @items.setter
-    def items(self, items):
-        """
-        Sets the items of this ObjectsListPayload.
-
-        :param items: The items of this ObjectsListPayload.
-        :type: object
-        """
-
-        self._items = items
 
     def to_dict(self):
         """
