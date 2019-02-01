@@ -34,7 +34,7 @@ from api_lic import settings
 from .auth import DEFAULT_SECURITY
 from ..scheme import *
 from ..scheme import _valid
-from ..resources.resources import Create, Resource, List, CustomAction, CustomPostAction
+from ..resources.resources import Create, Resource, List, CustomAction, CustomPostAction, CustomPatchAction
 from ..rbac.rbac_role import UserRole, AdminRole
 import paypalrestsdk
 import stripe
@@ -481,23 +481,25 @@ class LicenseLrnResource(Resource):
     restrict = ()
 
 
-class LicenseLrnRenewResource(Resource):
+class LicenseLrnRenewResource(CustomPatchAction):
     model_class = model.LicenseLrn
-    scheme_class = LicenseLrnScheme
-    scheme_class_get = LicenseLrnSchemeGet
-    scheme_class_modify = LicenseLrnSchemeRenew
+    scheme_class = LicenseLrnSchemeGet
     entity = 'LicenseLrn'
     id_field = 'license_lrn_uuid'
     security = (DEFAULT_SECURITY)
-    path_parameters = ()
+    path_parameters = ({'name':'license_lrn_uuid'},)
     restrict = ()
-    has_info_operation = False
-    has_delete_operation = False
+    body_parameters = ()
 
-    def before_update(self, obj, req):
+    def apply(self, obj, req, resp, **kwargs):
         obj.renew()
-        return obj
-
+        obj.save()
+        self.scheme_class.get_object_created_response()
+        data = self.get_object_data(resp, self.model_class, self.scheme_class, **kwargs)
+        if data:
+            self.set_response(resp, responses.SuccessResponseObjectInfo(data=data))
+            return False
+        return True
 
 class LicenseLrnList(List):
     scheme_class = LicenseLrnSchemeGet
@@ -565,22 +567,24 @@ class LicenseSwitchResource(Resource):
     restrict = ()
 
 
-class LicenseSwitchRenewResource(Resource):
+class LicenseSwitchRenewResource(CustomPatchAction):
     model_class = model.LicenseSwitch
-    scheme_class = LicenseSwitchScheme
-    scheme_class_get = LicenseSwitchSchemeGet
-    scheme_class_modify = LicenseSwitchSchemeRenew
+    scheme_class = LicenseSwitchSchemeGet
     entity = 'LicenseSwitch'
     id_field = 'license_switch_uuid'
     security = (DEFAULT_SECURITY)
-    path_parameters = ()
+    path_parameters = ({'name':'license_switch_uuid'},)
     restrict = ()
-    has_info_operation = False
-    has_delete_operation = False
 
-    def before_update(self, obj, req):
+    def apply(self, obj, req, resp, **kwargs):
         obj.renew()
-        return obj
+        obj.save()
+        self.scheme_class.get_object_created_response()
+        data = self.get_object_data(resp, self.model_class, self.scheme_class, **kwargs)
+        if data:
+            self.set_response(resp, responses.SuccessResponseObjectInfo(data=data))
+            return False
+        return True
 
 
 class LicenseSwitchList(List):

@@ -1,4 +1,11 @@
+api_lic ver 1.0.16
+GET/lrn_licence{} <-- add "duration" LLP-126
+PATCH/license_lrn/{license_lrn_uuid}/renew <-- remove all fields LLP-124
+POST/lrn_licence <-- remove "end_date" LLP-123
+not needed <-- LLP-84,LLP-85
+
 api_lic ver 1.0.15
+LLP-118
 GET/payment/list <-- add 'lrn_package_name','switch_package_name' LLP-119
 answered <-- paypal payment UI LLP-109
 

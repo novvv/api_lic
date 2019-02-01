@@ -31,53 +31,53 @@ class AuthTokenInner(object):
                             and the value is json key in definition.
     """
     swagger_types = {
-        'exp': 'datetime',
+        'token': 'str',
         'user_type': 'str',
-        'token': 'str'
+        'exp': 'datetime'
     }
 
     attribute_map = {
-        'exp': 'exp',
+        'token': 'token',
         'user_type': 'user_type',
-        'token': 'token'
+        'exp': 'exp'
     }
 
-    def __init__(self, exp=None, user_type=None, token=None):
+    def __init__(self, token=None, user_type=None, exp=None):
         """
         AuthTokenInner - a model defined in Swagger
         """
 
-        self._exp = None
-        self._user_type = None
         self._token = None
+        self._user_type = None
+        self._exp = None
 
-        if exp is not None:
-          self.exp = exp
-        if user_type is not None:
-          self.user_type = user_type
         if token is not None:
           self.token = token
+        if user_type is not None:
+          self.user_type = user_type
+        if exp is not None:
+          self.exp = exp
 
     @property
-    def exp(self):
+    def token(self):
         """
-        Gets the exp of this AuthTokenInner.
+        Gets the token of this AuthTokenInner.
 
-        :return: The exp of this AuthTokenInner.
-        :rtype: datetime
+        :return: The token of this AuthTokenInner.
+        :rtype: str
         """
-        return self._exp
+        return self._token
 
-    @exp.setter
-    def exp(self, exp):
+    @token.setter
+    def token(self, token):
         """
-        Sets the exp of this AuthTokenInner.
+        Sets the token of this AuthTokenInner.
 
-        :param exp: The exp of this AuthTokenInner.
-        :type: datetime
+        :param token: The token of this AuthTokenInner.
+        :type: str
         """
 
-        self._exp = exp
+        self._token = token
 
     @property
     def user_type(self):
@@ -101,25 +101,25 @@ class AuthTokenInner(object):
         self._user_type = user_type
 
     @property
-    def token(self):
+    def exp(self):
         """
-        Gets the token of this AuthTokenInner.
+        Gets the exp of this AuthTokenInner.
 
-        :return: The token of this AuthTokenInner.
-        :rtype: str
+        :return: The exp of this AuthTokenInner.
+        :rtype: datetime
         """
-        return self._token
+        return self._exp
 
-    @token.setter
-    def token(self, token):
+    @exp.setter
+    def exp(self, exp):
         """
-        Sets the token of this AuthTokenInner.
+        Sets the exp of this AuthTokenInner.
 
-        :param token: The token of this AuthTokenInner.
-        :type: str
+        :param exp: The exp of this AuthTokenInner.
+        :type: datetime
         """
 
-        self._token = token
+        self._exp = exp
 
     def to_dict(self):
         """

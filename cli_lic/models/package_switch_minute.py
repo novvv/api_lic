@@ -31,63 +31,42 @@ class PackageSwitchMinute(object):
                             and the value is json key in definition.
     """
     swagger_types = {
-        'enabled': 'bool',
         'amount': 'int',
+        'enabled': 'bool',
         'rate_per_minute': 'float',
         'package_switch_uuid': 'str',
         'package_name': 'str'
     }
 
     attribute_map = {
-        'enabled': 'enabled',
         'amount': 'amount',
+        'enabled': 'enabled',
         'rate_per_minute': 'rate_per_minute',
         'package_switch_uuid': 'package_switch_uuid',
         'package_name': 'package_name'
     }
 
-    def __init__(self, enabled=None, amount=None, rate_per_minute=None, package_switch_uuid=None, package_name=None):
+    def __init__(self, amount=None, enabled=None, rate_per_minute=None, package_switch_uuid=None, package_name=None):
         """
         PackageSwitchMinute - a model defined in Swagger
         """
 
-        self._enabled = None
         self._amount = None
+        self._enabled = None
         self._rate_per_minute = None
         self._package_switch_uuid = None
         self._package_name = None
 
-        if enabled is not None:
-          self.enabled = enabled
         if amount is not None:
           self.amount = amount
+        if enabled is not None:
+          self.enabled = enabled
         if rate_per_minute is not None:
           self.rate_per_minute = rate_per_minute
         if package_switch_uuid is not None:
           self.package_switch_uuid = package_switch_uuid
         if package_name is not None:
           self.package_name = package_name
-
-    @property
-    def enabled(self):
-        """
-        Gets the enabled of this PackageSwitchMinute.
-
-        :return: The enabled of this PackageSwitchMinute.
-        :rtype: bool
-        """
-        return self._enabled
-
-    @enabled.setter
-    def enabled(self, enabled):
-        """
-        Sets the enabled of this PackageSwitchMinute.
-
-        :param enabled: The enabled of this PackageSwitchMinute.
-        :type: bool
-        """
-
-        self._enabled = enabled
 
     @property
     def amount(self):
@@ -109,6 +88,27 @@ class PackageSwitchMinute(object):
         """
 
         self._amount = amount
+
+    @property
+    def enabled(self):
+        """
+        Gets the enabled of this PackageSwitchMinute.
+
+        :return: The enabled of this PackageSwitchMinute.
+        :rtype: bool
+        """
+        return self._enabled
+
+    @enabled.setter
+    def enabled(self, enabled):
+        """
+        Sets the enabled of this PackageSwitchMinute.
+
+        :param enabled: The enabled of this PackageSwitchMinute.
+        :type: bool
+        """
+
+        self._enabled = enabled
 
     @property
     def rate_per_minute(self):

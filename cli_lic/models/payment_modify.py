@@ -31,89 +31,47 @@ class PaymentModify(object):
                             and the value is json key in definition.
     """
     swagger_types = {
-        'amount_lrn': 'float',
-        'paid_time': 'datetime',
         'license_switch_uuid': 'str',
         'type': 'str',
         'license_lrn_uuid': 'str',
-        'amount_switch': 'float'
+        'paid_time': 'datetime',
+        'amount_switch': 'float',
+        'amount_lrn': 'float'
     }
 
     attribute_map = {
-        'amount_lrn': 'amount_lrn',
-        'paid_time': 'paid_time',
         'license_switch_uuid': 'license_switch_uuid',
         'type': 'type',
         'license_lrn_uuid': 'license_lrn_uuid',
-        'amount_switch': 'amount_switch'
+        'paid_time': 'paid_time',
+        'amount_switch': 'amount_switch',
+        'amount_lrn': 'amount_lrn'
     }
 
-    def __init__(self, amount_lrn=None, paid_time=None, license_switch_uuid=None, type='paypal', license_lrn_uuid=None, amount_switch=None):
+    def __init__(self, license_switch_uuid=None, type='paypal', license_lrn_uuid=None, paid_time=None, amount_switch=None, amount_lrn=None):
         """
         PaymentModify - a model defined in Swagger
         """
 
-        self._amount_lrn = None
-        self._paid_time = None
         self._license_switch_uuid = None
         self._type = None
         self._license_lrn_uuid = None
+        self._paid_time = None
         self._amount_switch = None
+        self._amount_lrn = None
 
-        if amount_lrn is not None:
-          self.amount_lrn = amount_lrn
-        if paid_time is not None:
-          self.paid_time = paid_time
         if license_switch_uuid is not None:
           self.license_switch_uuid = license_switch_uuid
         if type is not None:
           self.type = type
         if license_lrn_uuid is not None:
           self.license_lrn_uuid = license_lrn_uuid
+        if paid_time is not None:
+          self.paid_time = paid_time
         if amount_switch is not None:
           self.amount_switch = amount_switch
-
-    @property
-    def amount_lrn(self):
-        """
-        Gets the amount_lrn of this PaymentModify.
-
-        :return: The amount_lrn of this PaymentModify.
-        :rtype: float
-        """
-        return self._amount_lrn
-
-    @amount_lrn.setter
-    def amount_lrn(self, amount_lrn):
-        """
-        Sets the amount_lrn of this PaymentModify.
-
-        :param amount_lrn: The amount_lrn of this PaymentModify.
-        :type: float
-        """
-
-        self._amount_lrn = amount_lrn
-
-    @property
-    def paid_time(self):
-        """
-        Gets the paid_time of this PaymentModify.
-
-        :return: The paid_time of this PaymentModify.
-        :rtype: datetime
-        """
-        return self._paid_time
-
-    @paid_time.setter
-    def paid_time(self, paid_time):
-        """
-        Sets the paid_time of this PaymentModify.
-
-        :param paid_time: The paid_time of this PaymentModify.
-        :type: datetime
-        """
-
-        self._paid_time = paid_time
+        if amount_lrn is not None:
+          self.amount_lrn = amount_lrn
 
     @property
     def license_switch_uuid(self):
@@ -189,6 +147,27 @@ class PaymentModify(object):
         self._license_lrn_uuid = license_lrn_uuid
 
     @property
+    def paid_time(self):
+        """
+        Gets the paid_time of this PaymentModify.
+
+        :return: The paid_time of this PaymentModify.
+        :rtype: datetime
+        """
+        return self._paid_time
+
+    @paid_time.setter
+    def paid_time(self, paid_time):
+        """
+        Sets the paid_time of this PaymentModify.
+
+        :param paid_time: The paid_time of this PaymentModify.
+        :type: datetime
+        """
+
+        self._paid_time = paid_time
+
+    @property
     def amount_switch(self):
         """
         Gets the amount_switch of this PaymentModify.
@@ -208,6 +187,27 @@ class PaymentModify(object):
         """
 
         self._amount_switch = amount_switch
+
+    @property
+    def amount_lrn(self):
+        """
+        Gets the amount_lrn of this PaymentModify.
+
+        :return: The amount_lrn of this PaymentModify.
+        :rtype: float
+        """
+        return self._amount_lrn
+
+    @amount_lrn.setter
+    def amount_lrn(self, amount_lrn):
+        """
+        Sets the amount_lrn of this PaymentModify.
+
+        :param amount_lrn: The amount_lrn of this PaymentModify.
+        :type: float
+        """
+
+        self._amount_lrn = amount_lrn
 
     def to_dict(self):
         """

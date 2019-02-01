@@ -32,35 +32,35 @@ class UserRegister(object):
     """
     swagger_types = {
         'first_name': 'str',
-        'passwd': 'str',
         'email': 'str',
-        'last_name': 'str'
+        'last_name': 'str',
+        'passwd': 'str'
     }
 
     attribute_map = {
         'first_name': 'first_name',
-        'passwd': 'passwd',
         'email': 'email',
-        'last_name': 'last_name'
+        'last_name': 'last_name',
+        'passwd': 'passwd'
     }
 
-    def __init__(self, first_name=None, passwd=None, email=None, last_name=None):
+    def __init__(self, first_name=None, email=None, last_name=None, passwd=None):
         """
         UserRegister - a model defined in Swagger
         """
 
         self._first_name = None
-        self._passwd = None
         self._email = None
         self._last_name = None
+        self._passwd = None
 
         if first_name is not None:
           self.first_name = first_name
-        if passwd is not None:
-          self.passwd = passwd
         self.email = email
         if last_name is not None:
           self.last_name = last_name
+        if passwd is not None:
+          self.passwd = passwd
 
     @property
     def first_name(self):
@@ -84,27 +84,6 @@ class UserRegister(object):
             raise ValueError("Invalid value for `first_name`, length must be less than or equal to `32`")
 
         self._first_name = first_name
-
-    @property
-    def passwd(self):
-        """
-        Gets the passwd of this UserRegister.
-
-        :return: The passwd of this UserRegister.
-        :rtype: str
-        """
-        return self._passwd
-
-    @passwd.setter
-    def passwd(self, passwd):
-        """
-        Sets the passwd of this UserRegister.
-
-        :param passwd: The passwd of this UserRegister.
-        :type: str
-        """
-
-        self._passwd = passwd
 
     @property
     def email(self):
@@ -151,6 +130,27 @@ class UserRegister(object):
             raise ValueError("Invalid value for `last_name`, length must be less than or equal to `32`")
 
         self._last_name = last_name
+
+    @property
+    def passwd(self):
+        """
+        Gets the passwd of this UserRegister.
+
+        :return: The passwd of this UserRegister.
+        :rtype: str
+        """
+        return self._passwd
+
+    @passwd.setter
+    def passwd(self, passwd):
+        """
+        Sets the passwd of this UserRegister.
+
+        :param passwd: The passwd of this UserRegister.
+        :type: str
+        """
+
+        self._passwd = passwd
 
     def to_dict(self):
         """

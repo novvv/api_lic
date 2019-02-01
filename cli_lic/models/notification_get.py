@@ -32,34 +32,34 @@ class NotificationGet(object):
     """
     swagger_types = {
         'subject': 'str',
-        'notification_uuid': 'str',
         'content': 'str',
+        'notification_uuid': 'str',
         'user_uuid': 'str'
     }
 
     attribute_map = {
         'subject': 'subject',
-        'notification_uuid': 'notification_uuid',
         'content': 'content',
+        'notification_uuid': 'notification_uuid',
         'user_uuid': 'user_uuid'
     }
 
-    def __init__(self, subject=None, notification_uuid=None, content=None, user_uuid=None):
+    def __init__(self, subject=None, content=None, notification_uuid=None, user_uuid=None):
         """
         NotificationGet - a model defined in Swagger
         """
 
         self._subject = None
-        self._notification_uuid = None
         self._content = None
+        self._notification_uuid = None
         self._user_uuid = None
 
         if subject is not None:
           self.subject = subject
-        if notification_uuid is not None:
-          self.notification_uuid = notification_uuid
         if content is not None:
           self.content = content
+        if notification_uuid is not None:
+          self.notification_uuid = notification_uuid
         if user_uuid is not None:
           self.user_uuid = user_uuid
 
@@ -87,6 +87,27 @@ class NotificationGet(object):
         self._subject = subject
 
     @property
+    def content(self):
+        """
+        Gets the content of this NotificationGet.
+
+        :return: The content of this NotificationGet.
+        :rtype: str
+        """
+        return self._content
+
+    @content.setter
+    def content(self, content):
+        """
+        Sets the content of this NotificationGet.
+
+        :param content: The content of this NotificationGet.
+        :type: str
+        """
+
+        self._content = content
+
+    @property
     def notification_uuid(self):
         """
         Gets the notification_uuid of this NotificationGet.
@@ -108,27 +129,6 @@ class NotificationGet(object):
             raise ValueError("Invalid value for `notification_uuid`, length must be less than or equal to `36`")
 
         self._notification_uuid = notification_uuid
-
-    @property
-    def content(self):
-        """
-        Gets the content of this NotificationGet.
-
-        :return: The content of this NotificationGet.
-        :rtype: str
-        """
-        return self._content
-
-    @content.setter
-    def content(self, content):
-        """
-        Sets the content of this NotificationGet.
-
-        :param content: The content of this NotificationGet.
-        :type: str
-        """
-
-        self._content = content
 
     @property
     def user_uuid(self):

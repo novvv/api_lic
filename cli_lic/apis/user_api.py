@@ -555,7 +555,7 @@ class UserApi(object):
 
     def license_lrn_license_lrn_uuid_renew_patch(self, license_lrn_uuid, **kwargs):
         """
-        Modifies licenselrn
+        
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please define a `callback` function
         to be invoked when receiving the response.
@@ -566,9 +566,8 @@ class UserApi(object):
 
         :param callback function: The callback function
             for asynchronous request. (optional)
-        :param str license_lrn_uuid: LicenseLrn id to get info about (required)
-        :param LicenseLrnRenew body: LicenseLrn to modify
-        :return: InlineResponse20022
+        :param str license_lrn_uuid:  (required)
+        :return: Success
                  If the method is called asynchronously,
                  returns the request thread.
         """
@@ -581,7 +580,7 @@ class UserApi(object):
 
     def license_lrn_license_lrn_uuid_renew_patch_with_http_info(self, license_lrn_uuid, **kwargs):
         """
-        Modifies licenselrn
+        
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please define a `callback` function
         to be invoked when receiving the response.
@@ -592,14 +591,13 @@ class UserApi(object):
 
         :param callback function: The callback function
             for asynchronous request. (optional)
-        :param str license_lrn_uuid: LicenseLrn id to get info about (required)
-        :param LicenseLrnRenew body: LicenseLrn to modify
-        :return: InlineResponse20022
+        :param str license_lrn_uuid:  (required)
+        :return: Success
                  If the method is called asynchronously,
                  returns the request thread.
         """
 
-        all_params = ['license_lrn_uuid', 'body']
+        all_params = ['license_lrn_uuid']
         all_params.append('callback')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
@@ -633,8 +631,6 @@ class UserApi(object):
         local_var_files = {}
 
         body_params = None
-        if 'body' in params:
-            body_params = params['body']
         # HTTP header `Accept`
         header_params['Accept'] = self.api_client.\
             select_header_accept(['application/json'])
@@ -653,7 +649,7 @@ class UserApi(object):
                                         body=body_params,
                                         post_params=form_params,
                                         files=local_var_files,
-                                        response_type='InlineResponse20022',
+                                        response_type='Success',
                                         auth_settings=auth_settings,
                                         callback=params.get('callback'),
                                         _return_http_data_only=params.get('_return_http_data_only'),
@@ -1265,7 +1261,7 @@ class UserApi(object):
 
     def license_switch_license_switch_uuid_renew_patch(self, license_switch_uuid, **kwargs):
         """
-        Modifies licenseswitch
+        
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please define a `callback` function
         to be invoked when receiving the response.
@@ -1276,9 +1272,8 @@ class UserApi(object):
 
         :param callback function: The callback function
             for asynchronous request. (optional)
-        :param str license_switch_uuid: LicenseSwitch id to get info about (required)
-        :param LicenseSwitchRenew body: LicenseSwitch to modify
-        :return: InlineResponse20024
+        :param str license_switch_uuid:  (required)
+        :return: Success
                  If the method is called asynchronously,
                  returns the request thread.
         """
@@ -1291,7 +1286,7 @@ class UserApi(object):
 
     def license_switch_license_switch_uuid_renew_patch_with_http_info(self, license_switch_uuid, **kwargs):
         """
-        Modifies licenseswitch
+        
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please define a `callback` function
         to be invoked when receiving the response.
@@ -1302,14 +1297,13 @@ class UserApi(object):
 
         :param callback function: The callback function
             for asynchronous request. (optional)
-        :param str license_switch_uuid: LicenseSwitch id to get info about (required)
-        :param LicenseSwitchRenew body: LicenseSwitch to modify
-        :return: InlineResponse20024
+        :param str license_switch_uuid:  (required)
+        :return: Success
                  If the method is called asynchronously,
                  returns the request thread.
         """
 
-        all_params = ['license_switch_uuid', 'body']
+        all_params = ['license_switch_uuid']
         all_params.append('callback')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
@@ -1343,8 +1337,6 @@ class UserApi(object):
         local_var_files = {}
 
         body_params = None
-        if 'body' in params:
-            body_params = params['body']
         # HTTP header `Accept`
         header_params['Accept'] = self.api_client.\
             select_header_accept(['application/json'])
@@ -1363,7 +1355,7 @@ class UserApi(object):
                                         body=body_params,
                                         post_params=form_params,
                                         files=local_var_files,
-                                        response_type='InlineResponse20024',
+                                        response_type='Success',
                                         auth_settings=auth_settings,
                                         callback=params.get('callback'),
                                         _return_http_data_only=params.get('_return_http_data_only'),

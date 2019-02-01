@@ -546,13 +546,10 @@ class LicenseLrn(BaseModel):
         select([PackageLrn.package_name]).where(package_lrn_uuid == PackageLrn.package_lrn_uuid).correlate_except(PackageLrn))
 
     def renew(self):
-        cost = self.package.amount
-        pay = self.session().query(func.sum(Payment.amount).label('pay')).filter(
-            Payment.license_lrn_uuid == self.license_lrn_uuid).first().pay
-        if pay is None:
-            pay = Decimal(0.0)
-        months = int(pay / cost)
-        self.end_time = add_months(self.start_time, months)
+        months = self.dur_months
+        self.start_time = add_months(self.start_time, months)
+        self.end_time = add_months(self.end_time, months)
+
 
     def apply_mail(self, template_name):
         return _apply_mail(self, template_name, 'license')
@@ -669,13 +666,9 @@ class LicenseSwitch(BaseModel):
         return rev(self.DURATION)[self.duration]
 
     def renew(self):
-        cost = self.package.amount
-        pay = self.session().query(func.sum(Payment.amount).label('pay')).filter(
-            Payment.license_switch_uuid == self.license_switch_uuid).first().pay
-        if pay is None:
-            pay = Decimal(0.0)
-        months = int(pay / cost)
-        self.end_time = add_months(self.start_time, months)
+        months=self.dur_months
+        self.start_time = add_months(self.start_time, months)
+        self.end_time = add_months(self.end_time, months)
 
     def apply_mail(self, template_name):
         return _apply_mail(self, template_name, 'license')

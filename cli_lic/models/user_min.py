@@ -31,62 +31,62 @@ class UserMin(object):
                             and the value is json key in definition.
     """
     swagger_types = {
-        'passwd': 'str',
+        'is_admin': 'bool',
         'email': 'str',
         'is_active': 'bool',
-        'is_admin': 'bool',
+        'passwd': 'str',
         'logo_file_uuid': 'str'
     }
 
     attribute_map = {
-        'passwd': 'passwd',
+        'is_admin': 'is_admin',
         'email': 'email',
         'is_active': 'is_active',
-        'is_admin': 'is_admin',
+        'passwd': 'passwd',
         'logo_file_uuid': 'logo_file_uuid'
     }
 
-    def __init__(self, passwd=None, email=None, is_active=None, is_admin=None, logo_file_uuid=None):
+    def __init__(self, is_admin=None, email=None, is_active=None, passwd=None, logo_file_uuid=None):
         """
         UserMin - a model defined in Swagger
         """
 
-        self._passwd = None
+        self._is_admin = None
         self._email = None
         self._is_active = None
-        self._is_admin = None
+        self._passwd = None
         self._logo_file_uuid = None
 
-        if passwd is not None:
-          self.passwd = passwd
+        if is_admin is not None:
+          self.is_admin = is_admin
         self.email = email
         if is_active is not None:
           self.is_active = is_active
-        if is_admin is not None:
-          self.is_admin = is_admin
+        if passwd is not None:
+          self.passwd = passwd
         if logo_file_uuid is not None:
           self.logo_file_uuid = logo_file_uuid
 
     @property
-    def passwd(self):
+    def is_admin(self):
         """
-        Gets the passwd of this UserMin.
+        Gets the is_admin of this UserMin.
 
-        :return: The passwd of this UserMin.
-        :rtype: str
+        :return: The is_admin of this UserMin.
+        :rtype: bool
         """
-        return self._passwd
+        return self._is_admin
 
-    @passwd.setter
-    def passwd(self, passwd):
+    @is_admin.setter
+    def is_admin(self, is_admin):
         """
-        Sets the passwd of this UserMin.
+        Sets the is_admin of this UserMin.
 
-        :param passwd: The passwd of this UserMin.
-        :type: str
+        :param is_admin: The is_admin of this UserMin.
+        :type: bool
         """
 
-        self._passwd = passwd
+        self._is_admin = is_admin
 
     @property
     def email(self):
@@ -133,25 +133,25 @@ class UserMin(object):
         self._is_active = is_active
 
     @property
-    def is_admin(self):
+    def passwd(self):
         """
-        Gets the is_admin of this UserMin.
+        Gets the passwd of this UserMin.
 
-        :return: The is_admin of this UserMin.
-        :rtype: bool
+        :return: The passwd of this UserMin.
+        :rtype: str
         """
-        return self._is_admin
+        return self._passwd
 
-    @is_admin.setter
-    def is_admin(self, is_admin):
+    @passwd.setter
+    def passwd(self, passwd):
         """
-        Sets the is_admin of this UserMin.
+        Sets the passwd of this UserMin.
 
-        :param is_admin: The is_admin of this UserMin.
-        :type: bool
+        :param passwd: The passwd of this UserMin.
+        :type: str
         """
 
-        self._is_admin = is_admin
+        self._passwd = passwd
 
     @property
     def logo_file_uuid(self):

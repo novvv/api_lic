@@ -655,14 +655,14 @@ class LicenseLrnScheme(BaseModelScheme):
 
     class Meta:
         model = model.LicenseLrn
-        fields = ('package_lrn_uuid', 'ip', 'start_time', 'end_time', 'duration')
+        fields = ('package_lrn_uuid', 'ip', 'start_time', 'duration')
 
 
 class LicenseLrnSchemeGet(LicenseLrnScheme):
     class Meta:
         model = model.LicenseLrn
         fields = ('user_email', 'cps', 'type', 'ip', 'lrn_port', 'dip_count', 'amount', 'license_lrn_uuid',
-                  'package_lrn_uuid', 'user_uuid', 'ordered_amount', 'package', 'start_time', 'end_time', 'enabled')
+                  'package_lrn_uuid', 'user_uuid',  'package', 'start_time', 'end_time', 'enabled')
         search_fields = ('user_email', 'cps', 'type', 'ip', 'lrn_port', 'dip_count', 'amount', 'license_lrn_uuid',
                          'package_lrn_uuid', 'user_uuid', 'ordered_amount', 'enabled')
         query_fields = ('start_time_gt', 'start_time_lt', 'end_time_gt', 'end_time_lt', 'cost_gt', 'cost_lt',)
@@ -675,12 +675,6 @@ class LicenseLrnSchemeModify(LicenseLrnScheme):
     class Meta:
         model = model.LicenseLrn
         fields = ('package_lrn_uuid', 'ip', 'enabled', 'end_time')
-
-
-class LicenseLrnSchemeRenew(LicenseLrnScheme):
-    class Meta:
-        model = model.LicenseLrn
-        fields = ('quantity',)
 
 
 # ---LicenseLrn---
@@ -706,7 +700,7 @@ class LicenseSwitchScheme(BaseModelScheme):
 
     class Meta:
         model = model.LicenseSwitch
-        fields = ('package_switch_uuid', 'ip', 'start_time', 'start_time', 'end_time', 'duration')
+        fields = ('package_switch_uuid', 'ip', 'start_time', 'duration')
 
 
 class LicenseSwitchSchemeGet(LicenseSwitchScheme):
