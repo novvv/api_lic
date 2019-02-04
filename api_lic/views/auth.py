@@ -150,14 +150,16 @@ class UserResetPassword(CustomAction):
     model_class = model.User
     body_parameters = ('User data', UserResetPasswordScheme)
     method = 'post'
+    path_parameters = ({'name': 'token', 'description': 'Token from email'},)
+    no_auth_needed = True
 
     def on_post(self, req, resp, **kwargs):
         return self.proceed(req, resp, **kwargs)
 
     def apply(self, obj, req, resp, **kwargs):
-        user = auth.get_user_from_token(req.data['token'])
+        user = auth.get_user_from_token(kwargs['token'])
         if user:
-            user.passwd = req.data['password']
+            user.passwd = req.data['passwd']
             ret=user.apply_mail('welcome')
             if ret:
                 self.set_response(resp, responses.OperationErrorResponse(

@@ -596,7 +596,7 @@ class PackageSwitch(BaseModel):
 
     type = Column(ChoiceType(TYPE), default=1)
     sub_type = Column(ChoiceType(SUB_TYPE), nullable=True)
-    switch_uuid = Column(String(128),index=True)
+    #switch_uuid = Column(String(128),index=True)
         #Column(ForeignKey('switch.switch_uuid', ondelete='CASCADE'), index=True)
     switch_port = Column(Integer())
     minute_count = Column(Integer())
@@ -632,6 +632,8 @@ class LicenseSwitch(BaseModel):
     is_enabled = Column(Boolean, default=True)
     duration = Column(ChoiceType(DURATION), server_default='1')
 
+    #switch_uuid = Column(ForeignKey('dnl_license_info.uuid', ondelete='CASCADE'), index=True)
+
     package = relationship('PackageSwitch', uselist=False, back_populates='licenses')
     user = relationship('User')
 
@@ -644,9 +646,11 @@ class LicenseSwitch(BaseModel):
     type = column_property(
         select([PackageSwitch.type]).where(package_switch_uuid == PackageSwitch.package_switch_uuid).correlate_except(
             PackageSwitch))
-    switch_uuid = column_property(
-        select([PackageSwitch.switch_uuid]).where(
-            package_switch_uuid == PackageSwitch.package_switch_uuid).correlate_except(PackageSwitch))
+
+    switch_uuid = Column(String(128), index=True)
+    # switch_uuid = column_property(
+    #     select([PackageSwitch.switch_uuid]).where(
+    #         package_switch_uuid == PackageSwitch.package_switch_uuid).correlate_except(PackageSwitch))
 
     switch_port = column_property(
         select([PackageSwitch.switch_port]).where(
@@ -774,7 +778,7 @@ class DnlLicenseInfo(BaseModel):
     start_date = synonym('start_time')
     expire_date  = synonym('end_time')
     bstatus = column_property(status==1)
-    plan_name = column_property(select([PackageSwitch.package_name]).where(PackageSwitch.switch_uuid==uuid).limit(1))
+    plan_name = column_property(select([LicenseSwitch.package_name]).where(LicenseSwitch.switch_uuid==uuid).limit(1))
 
 
 
@@ -805,7 +809,7 @@ class DnlLcenseInfoRecord(BaseModel):
     flag=Column(CHAR(1))
 
 
-PackageSwitch.switch_ip = column_property(select([DnlLicenseInfo.recv_ip]).where(PackageSwitch.switch_uuid==DnlLicenseInfo.uuid).correlate_except(DnlLicenseInfo))
+LicenseSwitch.switch_ip = column_property(select([DnlLicenseInfo.recv_ip]).where(LicenseSwitch.switch_uuid==DnlLicenseInfo.uuid).correlate_except(DnlLicenseInfo))
 
 
 class DnlLicenseLog(BaseModel):

@@ -147,7 +147,7 @@ def rand_switch(**kwargs):
         return None
     assert (ret.success and len(ret.payload.items))
     it = random.choice(ret.payload.items)
-    return (it.uuid,it,ret.payload.items)
+    return (it.switch_uuid,it,ret.payload.items)
 
 def rand_license_lrn(**kwargs):
     ret = cli_lic.UserApi().license_lrn_list_get(**kwargs)

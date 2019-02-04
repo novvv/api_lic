@@ -31,290 +31,96 @@ class LicenseSwitchGet(object):
                             and the value is json key in definition.
     """
     swagger_types = {
+        'switch_port': 'int',
+        'package': 'PackageSwitch',
+        'type': 'int',
+        'user_uuid': 'str',
+        'license_switch_uuid': 'str',
+        'switch_uuid': 'str',
+        'ip': 'str',
+        'package_switch_uuid': 'str',
+        'duration': 'str',
+        'end_time': 'datetime',
+        'user_email': 'str',
+        'start_time': 'datetime',
+        'minute_count': 'int',
         'enabled': 'bool',
         'amount': 'int',
-        'user_email': 'str',
-        'end_time': 'datetime',
-        'ip': 'str',
-        'license_switch_uuid': 'str',
-        'package': 'PackageSwitch',
-        'package_switch_uuid': 'str',
-        'ordered_amount': 'int',
-        'switch_port': 'int',
-        'duration': 'str',
-        'minute_count': 'int',
-        'start_time': 'datetime',
-        'type': 'int',
-        'user_uuid': 'str'
+        'ordered_amount': 'int'
     }
 
     attribute_map = {
+        'switch_port': 'switch_port',
+        'package': 'package',
+        'type': 'type',
+        'user_uuid': 'user_uuid',
+        'license_switch_uuid': 'license_switch_uuid',
+        'switch_uuid': 'switch_uuid',
+        'ip': 'ip',
+        'package_switch_uuid': 'package_switch_uuid',
+        'duration': 'duration',
+        'end_time': 'end_time',
+        'user_email': 'user_email',
+        'start_time': 'start_time',
+        'minute_count': 'minute_count',
         'enabled': 'enabled',
         'amount': 'amount',
-        'user_email': 'user_email',
-        'end_time': 'end_time',
-        'ip': 'ip',
-        'license_switch_uuid': 'license_switch_uuid',
-        'package': 'package',
-        'package_switch_uuid': 'package_switch_uuid',
-        'ordered_amount': 'ordered_amount',
-        'switch_port': 'switch_port',
-        'duration': 'duration',
-        'minute_count': 'minute_count',
-        'start_time': 'start_time',
-        'type': 'type',
-        'user_uuid': 'user_uuid'
+        'ordered_amount': 'ordered_amount'
     }
 
-    def __init__(self, enabled=None, amount=None, user_email=None, end_time=None, ip=None, license_switch_uuid=None, package=None, package_switch_uuid=None, ordered_amount=None, switch_port=None, duration='1 month', minute_count=None, start_time=None, type=None, user_uuid=None):
+    def __init__(self, switch_port=None, package=None, type=None, user_uuid=None, license_switch_uuid=None, switch_uuid=None, ip=None, package_switch_uuid=None, duration='1 month', end_time=None, user_email=None, start_time=None, minute_count=None, enabled=None, amount=None, ordered_amount=None):
         """
         LicenseSwitchGet - a model defined in Swagger
         """
 
-        self._enabled = None
-        self._amount = None
-        self._user_email = None
-        self._end_time = None
-        self._ip = None
-        self._license_switch_uuid = None
-        self._package = None
-        self._package_switch_uuid = None
-        self._ordered_amount = None
         self._switch_port = None
-        self._duration = None
-        self._minute_count = None
-        self._start_time = None
+        self._package = None
         self._type = None
         self._user_uuid = None
+        self._license_switch_uuid = None
+        self._switch_uuid = None
+        self._ip = None
+        self._package_switch_uuid = None
+        self._duration = None
+        self._end_time = None
+        self._user_email = None
+        self._start_time = None
+        self._minute_count = None
+        self._enabled = None
+        self._amount = None
+        self._ordered_amount = None
 
-        if enabled is not None:
-          self.enabled = enabled
-        if amount is not None:
-          self.amount = amount
-        if user_email is not None:
-          self.user_email = user_email
-        if end_time is not None:
-          self.end_time = end_time
-        self.ip = ip
-        if license_switch_uuid is not None:
-          self.license_switch_uuid = license_switch_uuid
-        if package is not None:
-          self.package = package
-        if package_switch_uuid is not None:
-          self.package_switch_uuid = package_switch_uuid
-        if ordered_amount is not None:
-          self.ordered_amount = ordered_amount
         if switch_port is not None:
           self.switch_port = switch_port
-        if duration is not None:
-          self.duration = duration
-        if minute_count is not None:
-          self.minute_count = minute_count
-        if start_time is not None:
-          self.start_time = start_time
+        if package is not None:
+          self.package = package
         if type is not None:
           self.type = type
         if user_uuid is not None:
           self.user_uuid = user_uuid
-
-    @property
-    def enabled(self):
-        """
-        Gets the enabled of this LicenseSwitchGet.
-
-        :return: The enabled of this LicenseSwitchGet.
-        :rtype: bool
-        """
-        return self._enabled
-
-    @enabled.setter
-    def enabled(self, enabled):
-        """
-        Sets the enabled of this LicenseSwitchGet.
-
-        :param enabled: The enabled of this LicenseSwitchGet.
-        :type: bool
-        """
-
-        self._enabled = enabled
-
-    @property
-    def amount(self):
-        """
-        Gets the amount of this LicenseSwitchGet.
-
-        :return: The amount of this LicenseSwitchGet.
-        :rtype: int
-        """
-        return self._amount
-
-    @amount.setter
-    def amount(self, amount):
-        """
-        Sets the amount of this LicenseSwitchGet.
-
-        :param amount: The amount of this LicenseSwitchGet.
-        :type: int
-        """
-
-        self._amount = amount
-
-    @property
-    def user_email(self):
-        """
-        Gets the user_email of this LicenseSwitchGet.
-
-        :return: The user_email of this LicenseSwitchGet.
-        :rtype: str
-        """
-        return self._user_email
-
-    @user_email.setter
-    def user_email(self, user_email):
-        """
-        Sets the user_email of this LicenseSwitchGet.
-
-        :param user_email: The user_email of this LicenseSwitchGet.
-        :type: str
-        """
-        if user_email is not None and len(user_email) > 128:
-            raise ValueError("Invalid value for `user_email`, length must be less than or equal to `128`")
-
-        self._user_email = user_email
-
-    @property
-    def end_time(self):
-        """
-        Gets the end_time of this LicenseSwitchGet.
-
-        :return: The end_time of this LicenseSwitchGet.
-        :rtype: datetime
-        """
-        return self._end_time
-
-    @end_time.setter
-    def end_time(self, end_time):
-        """
-        Sets the end_time of this LicenseSwitchGet.
-
-        :param end_time: The end_time of this LicenseSwitchGet.
-        :type: datetime
-        """
-
-        self._end_time = end_time
-
-    @property
-    def ip(self):
-        """
-        Gets the ip of this LicenseSwitchGet.
-
-        :return: The ip of this LicenseSwitchGet.
-        :rtype: str
-        """
-        return self._ip
-
-    @ip.setter
-    def ip(self, ip):
-        """
-        Sets the ip of this LicenseSwitchGet.
-
-        :param ip: The ip of this LicenseSwitchGet.
-        :type: str
-        """
-        if ip is None:
-            raise ValueError("Invalid value for `ip`, must not be `None`")
-        if ip is not None and len(ip) > 16:
-            raise ValueError("Invalid value for `ip`, length must be less than or equal to `16`")
-
-        self._ip = ip
-
-    @property
-    def license_switch_uuid(self):
-        """
-        Gets the license_switch_uuid of this LicenseSwitchGet.
-
-        :return: The license_switch_uuid of this LicenseSwitchGet.
-        :rtype: str
-        """
-        return self._license_switch_uuid
-
-    @license_switch_uuid.setter
-    def license_switch_uuid(self, license_switch_uuid):
-        """
-        Sets the license_switch_uuid of this LicenseSwitchGet.
-
-        :param license_switch_uuid: The license_switch_uuid of this LicenseSwitchGet.
-        :type: str
-        """
-        if license_switch_uuid is not None and len(license_switch_uuid) > 36:
-            raise ValueError("Invalid value for `license_switch_uuid`, length must be less than or equal to `36`")
-
-        self._license_switch_uuid = license_switch_uuid
-
-    @property
-    def package(self):
-        """
-        Gets the package of this LicenseSwitchGet.
-
-        :return: The package of this LicenseSwitchGet.
-        :rtype: PackageSwitch
-        """
-        return self._package
-
-    @package.setter
-    def package(self, package):
-        """
-        Sets the package of this LicenseSwitchGet.
-
-        :param package: The package of this LicenseSwitchGet.
-        :type: PackageSwitch
-        """
-
-        self._package = package
-
-    @property
-    def package_switch_uuid(self):
-        """
-        Gets the package_switch_uuid of this LicenseSwitchGet.
-
-        :return: The package_switch_uuid of this LicenseSwitchGet.
-        :rtype: str
-        """
-        return self._package_switch_uuid
-
-    @package_switch_uuid.setter
-    def package_switch_uuid(self, package_switch_uuid):
-        """
-        Sets the package_switch_uuid of this LicenseSwitchGet.
-
-        :param package_switch_uuid: The package_switch_uuid of this LicenseSwitchGet.
-        :type: str
-        """
-        if package_switch_uuid is not None and len(package_switch_uuid) > 36:
-            raise ValueError("Invalid value for `package_switch_uuid`, length must be less than or equal to `36`")
-
-        self._package_switch_uuid = package_switch_uuid
-
-    @property
-    def ordered_amount(self):
-        """
-        Gets the ordered_amount of this LicenseSwitchGet.
-
-        :return: The ordered_amount of this LicenseSwitchGet.
-        :rtype: int
-        """
-        return self._ordered_amount
-
-    @ordered_amount.setter
-    def ordered_amount(self, ordered_amount):
-        """
-        Sets the ordered_amount of this LicenseSwitchGet.
-
-        :param ordered_amount: The ordered_amount of this LicenseSwitchGet.
-        :type: int
-        """
-
-        self._ordered_amount = ordered_amount
+        if license_switch_uuid is not None:
+          self.license_switch_uuid = license_switch_uuid
+        if switch_uuid is not None:
+          self.switch_uuid = switch_uuid
+        self.ip = ip
+        if package_switch_uuid is not None:
+          self.package_switch_uuid = package_switch_uuid
+        if duration is not None:
+          self.duration = duration
+        if end_time is not None:
+          self.end_time = end_time
+        if user_email is not None:
+          self.user_email = user_email
+        if start_time is not None:
+          self.start_time = start_time
+        if minute_count is not None:
+          self.minute_count = minute_count
+        if enabled is not None:
+          self.enabled = enabled
+        if amount is not None:
+          self.amount = amount
+        if ordered_amount is not None:
+          self.ordered_amount = ordered_amount
 
     @property
     def switch_port(self):
@@ -338,73 +144,25 @@ class LicenseSwitchGet(object):
         self._switch_port = switch_port
 
     @property
-    def duration(self):
+    def package(self):
         """
-        Gets the duration of this LicenseSwitchGet.
+        Gets the package of this LicenseSwitchGet.
 
-        :return: The duration of this LicenseSwitchGet.
-        :rtype: str
+        :return: The package of this LicenseSwitchGet.
+        :rtype: PackageSwitch
         """
-        return self._duration
+        return self._package
 
-    @duration.setter
-    def duration(self, duration):
+    @package.setter
+    def package(self, package):
         """
-        Sets the duration of this LicenseSwitchGet.
+        Sets the package of this LicenseSwitchGet.
 
-        :param duration: The duration of this LicenseSwitchGet.
-        :type: str
-        """
-        allowed_values = ["1 month", "3 months", "12 months", "6 months"]
-        if duration not in allowed_values:
-            raise ValueError(
-                "Invalid value for `duration` ({0}), must be one of {1}"
-                .format(duration, allowed_values)
-            )
-
-        self._duration = duration
-
-    @property
-    def minute_count(self):
-        """
-        Gets the minute_count of this LicenseSwitchGet.
-
-        :return: The minute_count of this LicenseSwitchGet.
-        :rtype: int
-        """
-        return self._minute_count
-
-    @minute_count.setter
-    def minute_count(self, minute_count):
-        """
-        Sets the minute_count of this LicenseSwitchGet.
-
-        :param minute_count: The minute_count of this LicenseSwitchGet.
-        :type: int
+        :param package: The package of this LicenseSwitchGet.
+        :type: PackageSwitch
         """
 
-        self._minute_count = minute_count
-
-    @property
-    def start_time(self):
-        """
-        Gets the start_time of this LicenseSwitchGet.
-
-        :return: The start_time of this LicenseSwitchGet.
-        :rtype: datetime
-        """
-        return self._start_time
-
-    @start_time.setter
-    def start_time(self, start_time):
-        """
-        Sets the start_time of this LicenseSwitchGet.
-
-        :param start_time: The start_time of this LicenseSwitchGet.
-        :type: datetime
-        """
-
-        self._start_time = start_time
+        self._package = package
 
     @property
     def type(self):
@@ -449,6 +207,276 @@ class LicenseSwitchGet(object):
             raise ValueError("Invalid value for `user_uuid`, length must be less than or equal to `36`")
 
         self._user_uuid = user_uuid
+
+    @property
+    def license_switch_uuid(self):
+        """
+        Gets the license_switch_uuid of this LicenseSwitchGet.
+
+        :return: The license_switch_uuid of this LicenseSwitchGet.
+        :rtype: str
+        """
+        return self._license_switch_uuid
+
+    @license_switch_uuid.setter
+    def license_switch_uuid(self, license_switch_uuid):
+        """
+        Sets the license_switch_uuid of this LicenseSwitchGet.
+
+        :param license_switch_uuid: The license_switch_uuid of this LicenseSwitchGet.
+        :type: str
+        """
+        if license_switch_uuid is not None and len(license_switch_uuid) > 36:
+            raise ValueError("Invalid value for `license_switch_uuid`, length must be less than or equal to `36`")
+
+        self._license_switch_uuid = license_switch_uuid
+
+    @property
+    def switch_uuid(self):
+        """
+        Gets the switch_uuid of this LicenseSwitchGet.
+
+        :return: The switch_uuid of this LicenseSwitchGet.
+        :rtype: str
+        """
+        return self._switch_uuid
+
+    @switch_uuid.setter
+    def switch_uuid(self, switch_uuid):
+        """
+        Sets the switch_uuid of this LicenseSwitchGet.
+
+        :param switch_uuid: The switch_uuid of this LicenseSwitchGet.
+        :type: str
+        """
+        if switch_uuid is not None and len(switch_uuid) > 64:
+            raise ValueError("Invalid value for `switch_uuid`, length must be less than or equal to `64`")
+
+        self._switch_uuid = switch_uuid
+
+    @property
+    def ip(self):
+        """
+        Gets the ip of this LicenseSwitchGet.
+
+        :return: The ip of this LicenseSwitchGet.
+        :rtype: str
+        """
+        return self._ip
+
+    @ip.setter
+    def ip(self, ip):
+        """
+        Sets the ip of this LicenseSwitchGet.
+
+        :param ip: The ip of this LicenseSwitchGet.
+        :type: str
+        """
+        if ip is None:
+            raise ValueError("Invalid value for `ip`, must not be `None`")
+        if ip is not None and len(ip) > 16:
+            raise ValueError("Invalid value for `ip`, length must be less than or equal to `16`")
+
+        self._ip = ip
+
+    @property
+    def package_switch_uuid(self):
+        """
+        Gets the package_switch_uuid of this LicenseSwitchGet.
+
+        :return: The package_switch_uuid of this LicenseSwitchGet.
+        :rtype: str
+        """
+        return self._package_switch_uuid
+
+    @package_switch_uuid.setter
+    def package_switch_uuid(self, package_switch_uuid):
+        """
+        Sets the package_switch_uuid of this LicenseSwitchGet.
+
+        :param package_switch_uuid: The package_switch_uuid of this LicenseSwitchGet.
+        :type: str
+        """
+        if package_switch_uuid is not None and len(package_switch_uuid) > 36:
+            raise ValueError("Invalid value for `package_switch_uuid`, length must be less than or equal to `36`")
+
+        self._package_switch_uuid = package_switch_uuid
+
+    @property
+    def duration(self):
+        """
+        Gets the duration of this LicenseSwitchGet.
+
+        :return: The duration of this LicenseSwitchGet.
+        :rtype: str
+        """
+        return self._duration
+
+    @duration.setter
+    def duration(self, duration):
+        """
+        Sets the duration of this LicenseSwitchGet.
+
+        :param duration: The duration of this LicenseSwitchGet.
+        :type: str
+        """
+        allowed_values = ["1 month", "3 months", "12 months", "6 months"]
+        if duration not in allowed_values:
+            raise ValueError(
+                "Invalid value for `duration` ({0}), must be one of {1}"
+                .format(duration, allowed_values)
+            )
+
+        self._duration = duration
+
+    @property
+    def end_time(self):
+        """
+        Gets the end_time of this LicenseSwitchGet.
+
+        :return: The end_time of this LicenseSwitchGet.
+        :rtype: datetime
+        """
+        return self._end_time
+
+    @end_time.setter
+    def end_time(self, end_time):
+        """
+        Sets the end_time of this LicenseSwitchGet.
+
+        :param end_time: The end_time of this LicenseSwitchGet.
+        :type: datetime
+        """
+
+        self._end_time = end_time
+
+    @property
+    def user_email(self):
+        """
+        Gets the user_email of this LicenseSwitchGet.
+
+        :return: The user_email of this LicenseSwitchGet.
+        :rtype: str
+        """
+        return self._user_email
+
+    @user_email.setter
+    def user_email(self, user_email):
+        """
+        Sets the user_email of this LicenseSwitchGet.
+
+        :param user_email: The user_email of this LicenseSwitchGet.
+        :type: str
+        """
+        if user_email is not None and len(user_email) > 128:
+            raise ValueError("Invalid value for `user_email`, length must be less than or equal to `128`")
+
+        self._user_email = user_email
+
+    @property
+    def start_time(self):
+        """
+        Gets the start_time of this LicenseSwitchGet.
+
+        :return: The start_time of this LicenseSwitchGet.
+        :rtype: datetime
+        """
+        return self._start_time
+
+    @start_time.setter
+    def start_time(self, start_time):
+        """
+        Sets the start_time of this LicenseSwitchGet.
+
+        :param start_time: The start_time of this LicenseSwitchGet.
+        :type: datetime
+        """
+
+        self._start_time = start_time
+
+    @property
+    def minute_count(self):
+        """
+        Gets the minute_count of this LicenseSwitchGet.
+
+        :return: The minute_count of this LicenseSwitchGet.
+        :rtype: int
+        """
+        return self._minute_count
+
+    @minute_count.setter
+    def minute_count(self, minute_count):
+        """
+        Sets the minute_count of this LicenseSwitchGet.
+
+        :param minute_count: The minute_count of this LicenseSwitchGet.
+        :type: int
+        """
+
+        self._minute_count = minute_count
+
+    @property
+    def enabled(self):
+        """
+        Gets the enabled of this LicenseSwitchGet.
+
+        :return: The enabled of this LicenseSwitchGet.
+        :rtype: bool
+        """
+        return self._enabled
+
+    @enabled.setter
+    def enabled(self, enabled):
+        """
+        Sets the enabled of this LicenseSwitchGet.
+
+        :param enabled: The enabled of this LicenseSwitchGet.
+        :type: bool
+        """
+
+        self._enabled = enabled
+
+    @property
+    def amount(self):
+        """
+        Gets the amount of this LicenseSwitchGet.
+
+        :return: The amount of this LicenseSwitchGet.
+        :rtype: int
+        """
+        return self._amount
+
+    @amount.setter
+    def amount(self, amount):
+        """
+        Sets the amount of this LicenseSwitchGet.
+
+        :param amount: The amount of this LicenseSwitchGet.
+        :type: int
+        """
+
+        self._amount = amount
+
+    @property
+    def ordered_amount(self):
+        """
+        Gets the ordered_amount of this LicenseSwitchGet.
+
+        :return: The ordered_amount of this LicenseSwitchGet.
+        :rtype: int
+        """
+        return self._ordered_amount
+
+    @ordered_amount.setter
+    def ordered_amount(self, ordered_amount):
+        """
+        Sets the ordered_amount of this LicenseSwitchGet.
+
+        :param ordered_amount: The ordered_amount of this LicenseSwitchGet.
+        :type: int
+        """
+
+        self._ordered_amount = ordered_amount
 
     def to_dict(self):
         """

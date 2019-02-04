@@ -31,108 +31,108 @@ class TransactionLogGet(object):
                             and the value is json key in definition.
     """
     swagger_types = {
-        'amount_switch': 'float',
+        'transaction_time': 'datetime',
         'license_switch_uuid': 'str',
+        'status': 'int',
+        'from_ip': 'str',
+        'transaction_type': 'str',
+        'type': 'int',
         'payment_uuid': 'str',
         'license_lrn_uuid': 'str',
         'result': 'str',
-        'status': 'int',
         'amount_lrn': 'float',
+        'amount_switch': 'float',
         'transaction_id': 'str',
-        'transaction_type': 'str',
-        'transaction_time': 'datetime',
-        'type': 'int',
-        'from_ip': 'str',
         'transaction_src': 'object',
         'amount_total': 'float'
     }
 
     attribute_map = {
-        'amount_switch': 'amount_switch',
+        'transaction_time': 'transaction_time',
         'license_switch_uuid': 'license_switch_uuid',
+        'status': 'status',
+        'from_ip': 'from_ip',
+        'transaction_type': 'transaction_type',
+        'type': 'type',
         'payment_uuid': 'payment_uuid',
         'license_lrn_uuid': 'license_lrn_uuid',
         'result': 'result',
-        'status': 'status',
         'amount_lrn': 'amount_lrn',
+        'amount_switch': 'amount_switch',
         'transaction_id': 'transaction_id',
-        'transaction_type': 'transaction_type',
-        'transaction_time': 'transaction_time',
-        'type': 'type',
-        'from_ip': 'from_ip',
         'transaction_src': 'transaction_src',
         'amount_total': 'amount_total'
     }
 
-    def __init__(self, amount_switch=None, license_switch_uuid=None, payment_uuid=None, license_lrn_uuid=None, result=None, status=None, amount_lrn=None, transaction_id=None, transaction_type=None, transaction_time=None, type=None, from_ip=None, transaction_src=None, amount_total=None):
+    def __init__(self, transaction_time=None, license_switch_uuid=None, status=None, from_ip=None, transaction_type=None, type=None, payment_uuid=None, license_lrn_uuid=None, result=None, amount_lrn=None, amount_switch=None, transaction_id=None, transaction_src=None, amount_total=None):
         """
         TransactionLogGet - a model defined in Swagger
         """
 
-        self._amount_switch = None
+        self._transaction_time = None
         self._license_switch_uuid = None
+        self._status = None
+        self._from_ip = None
+        self._transaction_type = None
+        self._type = None
         self._payment_uuid = None
         self._license_lrn_uuid = None
         self._result = None
-        self._status = None
         self._amount_lrn = None
+        self._amount_switch = None
         self._transaction_id = None
-        self._transaction_type = None
-        self._transaction_time = None
-        self._type = None
-        self._from_ip = None
         self._transaction_src = None
         self._amount_total = None
 
-        if amount_switch is not None:
-          self.amount_switch = amount_switch
+        if transaction_time is not None:
+          self.transaction_time = transaction_time
         if license_switch_uuid is not None:
           self.license_switch_uuid = license_switch_uuid
+        if status is not None:
+          self.status = status
+        if from_ip is not None:
+          self.from_ip = from_ip
+        if transaction_type is not None:
+          self.transaction_type = transaction_type
+        if type is not None:
+          self.type = type
         if payment_uuid is not None:
           self.payment_uuid = payment_uuid
         if license_lrn_uuid is not None:
           self.license_lrn_uuid = license_lrn_uuid
         if result is not None:
           self.result = result
-        if status is not None:
-          self.status = status
         if amount_lrn is not None:
           self.amount_lrn = amount_lrn
+        if amount_switch is not None:
+          self.amount_switch = amount_switch
         if transaction_id is not None:
           self.transaction_id = transaction_id
-        if transaction_type is not None:
-          self.transaction_type = transaction_type
-        if transaction_time is not None:
-          self.transaction_time = transaction_time
-        if type is not None:
-          self.type = type
-        if from_ip is not None:
-          self.from_ip = from_ip
         if transaction_src is not None:
           self.transaction_src = transaction_src
         if amount_total is not None:
           self.amount_total = amount_total
 
     @property
-    def amount_switch(self):
+    def transaction_time(self):
         """
-        Gets the amount_switch of this TransactionLogGet.
+        Gets the transaction_time of this TransactionLogGet.
 
-        :return: The amount_switch of this TransactionLogGet.
-        :rtype: float
+        :return: The transaction_time of this TransactionLogGet.
+        :rtype: datetime
         """
-        return self._amount_switch
+        return self._transaction_time
 
-    @amount_switch.setter
-    def amount_switch(self, amount_switch):
+    @transaction_time.setter
+    def transaction_time(self, transaction_time):
         """
-        Sets the amount_switch of this TransactionLogGet.
+        Sets the transaction_time of this TransactionLogGet.
 
-        :param amount_switch: The amount_switch of this TransactionLogGet.
-        :type: float
+        :param transaction_time: The transaction_time of this TransactionLogGet.
+        :type: datetime
         """
 
-        self._amount_switch = amount_switch
+        self._transaction_time = transaction_time
 
     @property
     def license_switch_uuid(self):
@@ -156,6 +156,94 @@ class TransactionLogGet(object):
             raise ValueError("Invalid value for `license_switch_uuid`, length must be less than or equal to `36`")
 
         self._license_switch_uuid = license_switch_uuid
+
+    @property
+    def status(self):
+        """
+        Gets the status of this TransactionLogGet.
+
+        :return: The status of this TransactionLogGet.
+        :rtype: int
+        """
+        return self._status
+
+    @status.setter
+    def status(self, status):
+        """
+        Sets the status of this TransactionLogGet.
+
+        :param status: The status of this TransactionLogGet.
+        :type: int
+        """
+
+        self._status = status
+
+    @property
+    def from_ip(self):
+        """
+        Gets the from_ip of this TransactionLogGet.
+
+        :return: The from_ip of this TransactionLogGet.
+        :rtype: str
+        """
+        return self._from_ip
+
+    @from_ip.setter
+    def from_ip(self, from_ip):
+        """
+        Sets the from_ip of this TransactionLogGet.
+
+        :param from_ip: The from_ip of this TransactionLogGet.
+        :type: str
+        """
+        if from_ip is not None and len(from_ip) > 36:
+            raise ValueError("Invalid value for `from_ip`, length must be less than or equal to `36`")
+
+        self._from_ip = from_ip
+
+    @property
+    def transaction_type(self):
+        """
+        Gets the transaction_type of this TransactionLogGet.
+
+        :return: The transaction_type of this TransactionLogGet.
+        :rtype: str
+        """
+        return self._transaction_type
+
+    @transaction_type.setter
+    def transaction_type(self, transaction_type):
+        """
+        Sets the transaction_type of this TransactionLogGet.
+
+        :param transaction_type: The transaction_type of this TransactionLogGet.
+        :type: str
+        """
+        if transaction_type is not None and len(transaction_type) > 255:
+            raise ValueError("Invalid value for `transaction_type`, length must be less than or equal to `255`")
+
+        self._transaction_type = transaction_type
+
+    @property
+    def type(self):
+        """
+        Gets the type of this TransactionLogGet.
+
+        :return: The type of this TransactionLogGet.
+        :rtype: int
+        """
+        return self._type
+
+    @type.setter
+    def type(self, type):
+        """
+        Sets the type of this TransactionLogGet.
+
+        :param type: The type of this TransactionLogGet.
+        :type: int
+        """
+
+        self._type = type
 
     @property
     def payment_uuid(self):
@@ -225,27 +313,6 @@ class TransactionLogGet(object):
         self._result = result
 
     @property
-    def status(self):
-        """
-        Gets the status of this TransactionLogGet.
-
-        :return: The status of this TransactionLogGet.
-        :rtype: int
-        """
-        return self._status
-
-    @status.setter
-    def status(self, status):
-        """
-        Sets the status of this TransactionLogGet.
-
-        :param status: The status of this TransactionLogGet.
-        :type: int
-        """
-
-        self._status = status
-
-    @property
     def amount_lrn(self):
         """
         Gets the amount_lrn of this TransactionLogGet.
@@ -265,6 +332,27 @@ class TransactionLogGet(object):
         """
 
         self._amount_lrn = amount_lrn
+
+    @property
+    def amount_switch(self):
+        """
+        Gets the amount_switch of this TransactionLogGet.
+
+        :return: The amount_switch of this TransactionLogGet.
+        :rtype: float
+        """
+        return self._amount_switch
+
+    @amount_switch.setter
+    def amount_switch(self, amount_switch):
+        """
+        Sets the amount_switch of this TransactionLogGet.
+
+        :param amount_switch: The amount_switch of this TransactionLogGet.
+        :type: float
+        """
+
+        self._amount_switch = amount_switch
 
     @property
     def transaction_id(self):
@@ -288,94 +376,6 @@ class TransactionLogGet(object):
             raise ValueError("Invalid value for `transaction_id`, length must be less than or equal to `255`")
 
         self._transaction_id = transaction_id
-
-    @property
-    def transaction_type(self):
-        """
-        Gets the transaction_type of this TransactionLogGet.
-
-        :return: The transaction_type of this TransactionLogGet.
-        :rtype: str
-        """
-        return self._transaction_type
-
-    @transaction_type.setter
-    def transaction_type(self, transaction_type):
-        """
-        Sets the transaction_type of this TransactionLogGet.
-
-        :param transaction_type: The transaction_type of this TransactionLogGet.
-        :type: str
-        """
-        if transaction_type is not None and len(transaction_type) > 255:
-            raise ValueError("Invalid value for `transaction_type`, length must be less than or equal to `255`")
-
-        self._transaction_type = transaction_type
-
-    @property
-    def transaction_time(self):
-        """
-        Gets the transaction_time of this TransactionLogGet.
-
-        :return: The transaction_time of this TransactionLogGet.
-        :rtype: datetime
-        """
-        return self._transaction_time
-
-    @transaction_time.setter
-    def transaction_time(self, transaction_time):
-        """
-        Sets the transaction_time of this TransactionLogGet.
-
-        :param transaction_time: The transaction_time of this TransactionLogGet.
-        :type: datetime
-        """
-
-        self._transaction_time = transaction_time
-
-    @property
-    def type(self):
-        """
-        Gets the type of this TransactionLogGet.
-
-        :return: The type of this TransactionLogGet.
-        :rtype: int
-        """
-        return self._type
-
-    @type.setter
-    def type(self, type):
-        """
-        Sets the type of this TransactionLogGet.
-
-        :param type: The type of this TransactionLogGet.
-        :type: int
-        """
-
-        self._type = type
-
-    @property
-    def from_ip(self):
-        """
-        Gets the from_ip of this TransactionLogGet.
-
-        :return: The from_ip of this TransactionLogGet.
-        :rtype: str
-        """
-        return self._from_ip
-
-    @from_ip.setter
-    def from_ip(self, from_ip):
-        """
-        Sets the from_ip of this TransactionLogGet.
-
-        :param from_ip: The from_ip of this TransactionLogGet.
-        :type: str
-        """
-        if from_ip is not None and len(from_ip) > 36:
-            raise ValueError("Invalid value for `from_ip`, length must be less than or equal to `36`")
-
-        self._from_ip = from_ip
 
     @property
     def transaction_src(self):

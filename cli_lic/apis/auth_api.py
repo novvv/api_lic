@@ -439,7 +439,7 @@ class AuthApi(object):
                                         _request_timeout=params.get('_request_timeout'),
                                         collection_formats=collection_formats)
 
-    def auth_reset_password_token_post(self, **kwargs):
+    def auth_reset_password_token_post(self, token, **kwargs):
         """
         
         This method makes a synchronous HTTP request by default. To make an
@@ -448,10 +448,11 @@ class AuthApi(object):
         >>> def callback_function(response):
         >>>     pprint(response)
         >>>
-        >>> thread = api.auth_reset_password_token_post(callback=callback_function)
+        >>> thread = api.auth_reset_password_token_post(token, callback=callback_function)
 
         :param callback function: The callback function
             for asynchronous request. (optional)
+        :param str token: Token from email (required)
         :param UserResetPassword body: User data
         :return: Success
                  If the method is called asynchronously,
@@ -459,12 +460,12 @@ class AuthApi(object):
         """
         kwargs['_return_http_data_only'] = True
         if kwargs.get('callback'):
-            return self.auth_reset_password_token_post_with_http_info(**kwargs)
+            return self.auth_reset_password_token_post_with_http_info(token, **kwargs)
         else:
-            (data) = self.auth_reset_password_token_post_with_http_info(**kwargs)
+            (data) = self.auth_reset_password_token_post_with_http_info(token, **kwargs)
             return data
 
-    def auth_reset_password_token_post_with_http_info(self, **kwargs):
+    def auth_reset_password_token_post_with_http_info(self, token, **kwargs):
         """
         
         This method makes a synchronous HTTP request by default. To make an
@@ -473,17 +474,18 @@ class AuthApi(object):
         >>> def callback_function(response):
         >>>     pprint(response)
         >>>
-        >>> thread = api.auth_reset_password_token_post_with_http_info(callback=callback_function)
+        >>> thread = api.auth_reset_password_token_post_with_http_info(token, callback=callback_function)
 
         :param callback function: The callback function
             for asynchronous request. (optional)
+        :param str token: Token from email (required)
         :param UserResetPassword body: User data
         :return: Success
                  If the method is called asynchronously,
                  returns the request thread.
         """
 
-        all_params = ['body']
+        all_params = ['token', 'body']
         all_params.append('callback')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
@@ -498,11 +500,16 @@ class AuthApi(object):
                 )
             params[key] = val
         del params['kwargs']
+        # verify the required parameter 'token' is set
+        if ('token' not in params) or (params['token'] is None):
+            raise ValueError("Missing the required parameter `token` when calling `auth_reset_password_token_post`")
 
 
         collection_formats = {}
 
         path_params = {}
+        if 'token' in params:
+            path_params['token'] = params['token']
 
         query_params = []
 

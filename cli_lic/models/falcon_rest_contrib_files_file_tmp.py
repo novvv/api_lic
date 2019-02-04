@@ -33,42 +33,42 @@ class FalconRestContribFilesFileTmp(object):
     swagger_types = {
         'uuid': 'str',
         'uploaded_on': 'datetime',
-        'belongs_to_table': 'str',
         'belongs_to_field': 'str',
-        'path': 'str',
-        'public': 'bool'
+        'public': 'bool',
+        'belongs_to_table': 'str',
+        'path': 'str'
     }
 
     attribute_map = {
         'uuid': 'uuid',
         'uploaded_on': 'uploaded_on',
-        'belongs_to_table': 'belongs_to_table',
         'belongs_to_field': 'belongs_to_field',
-        'path': 'path',
-        'public': 'public'
+        'public': 'public',
+        'belongs_to_table': 'belongs_to_table',
+        'path': 'path'
     }
 
-    def __init__(self, uuid=None, uploaded_on=None, belongs_to_table=None, belongs_to_field=None, path=None, public=None):
+    def __init__(self, uuid=None, uploaded_on=None, belongs_to_field=None, public=None, belongs_to_table=None, path=None):
         """
         FalconRestContribFilesFileTmp - a model defined in Swagger
         """
 
         self._uuid = None
         self._uploaded_on = None
-        self._belongs_to_table = None
         self._belongs_to_field = None
-        self._path = None
         self._public = None
+        self._belongs_to_table = None
+        self._path = None
 
         if uuid is not None:
           self.uuid = uuid
         if uploaded_on is not None:
           self.uploaded_on = uploaded_on
-        self.belongs_to_table = belongs_to_table
         self.belongs_to_field = belongs_to_field
-        self.path = path
         if public is not None:
           self.public = public
+        self.belongs_to_table = belongs_to_table
+        self.path = path
 
     @property
     def uuid(self):
@@ -115,31 +115,6 @@ class FalconRestContribFilesFileTmp(object):
         self._uploaded_on = uploaded_on
 
     @property
-    def belongs_to_table(self):
-        """
-        Gets the belongs_to_table of this FalconRestContribFilesFileTmp.
-
-        :return: The belongs_to_table of this FalconRestContribFilesFileTmp.
-        :rtype: str
-        """
-        return self._belongs_to_table
-
-    @belongs_to_table.setter
-    def belongs_to_table(self, belongs_to_table):
-        """
-        Sets the belongs_to_table of this FalconRestContribFilesFileTmp.
-
-        :param belongs_to_table: The belongs_to_table of this FalconRestContribFilesFileTmp.
-        :type: str
-        """
-        if belongs_to_table is None:
-            raise ValueError("Invalid value for `belongs_to_table`, must not be `None`")
-        if belongs_to_table is not None and len(belongs_to_table) > 255:
-            raise ValueError("Invalid value for `belongs_to_table`, length must be less than or equal to `255`")
-
-        self._belongs_to_table = belongs_to_table
-
-    @property
     def belongs_to_field(self):
         """
         Gets the belongs_to_field of this FalconRestContribFilesFileTmp.
@@ -165,6 +140,52 @@ class FalconRestContribFilesFileTmp(object):
         self._belongs_to_field = belongs_to_field
 
     @property
+    def public(self):
+        """
+        Gets the public of this FalconRestContribFilesFileTmp.
+
+        :return: The public of this FalconRestContribFilesFileTmp.
+        :rtype: bool
+        """
+        return self._public
+
+    @public.setter
+    def public(self, public):
+        """
+        Sets the public of this FalconRestContribFilesFileTmp.
+
+        :param public: The public of this FalconRestContribFilesFileTmp.
+        :type: bool
+        """
+
+        self._public = public
+
+    @property
+    def belongs_to_table(self):
+        """
+        Gets the belongs_to_table of this FalconRestContribFilesFileTmp.
+
+        :return: The belongs_to_table of this FalconRestContribFilesFileTmp.
+        :rtype: str
+        """
+        return self._belongs_to_table
+
+    @belongs_to_table.setter
+    def belongs_to_table(self, belongs_to_table):
+        """
+        Sets the belongs_to_table of this FalconRestContribFilesFileTmp.
+
+        :param belongs_to_table: The belongs_to_table of this FalconRestContribFilesFileTmp.
+        :type: str
+        """
+        if belongs_to_table is None:
+            raise ValueError("Invalid value for `belongs_to_table`, must not be `None`")
+        if belongs_to_table is not None and len(belongs_to_table) > 255:
+            raise ValueError("Invalid value for `belongs_to_table`, length must be less than or equal to `255`")
+
+        self._belongs_to_table = belongs_to_table
+
+    @property
     def path(self):
         """
         Gets the path of this FalconRestContribFilesFileTmp.
@@ -188,27 +209,6 @@ class FalconRestContribFilesFileTmp(object):
             raise ValueError("Invalid value for `path`, length must be less than or equal to `1024`")
 
         self._path = path
-
-    @property
-    def public(self):
-        """
-        Gets the public of this FalconRestContribFilesFileTmp.
-
-        :return: The public of this FalconRestContribFilesFileTmp.
-        :rtype: bool
-        """
-        return self._public
-
-    @public.setter
-    def public(self, public):
-        """
-        Sets the public of this FalconRestContribFilesFileTmp.
-
-        :param public: The public of this FalconRestContribFilesFileTmp.
-        :type: bool
-        """
-
-        self._public = public
 
     def to_dict(self):
         """

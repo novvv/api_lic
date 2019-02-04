@@ -200,17 +200,14 @@ class TestUserApi(unittest.TestCase):
 
         """
         auth()
-        package_switch_uuid,p,l = rand_package_switch()
-        switch_uuid = p.switch_uuid
-        if not switch_uuid:
-            switch_uuid = rand_switch()[0]
-            cli_lic.AdminApi().package_switch_package_switch_uuid_patch(package_switch_uuid=package_switch_uuid,body=dict(switch_uuid=switch_uuid))
-        sw=cli_lic.PublicApi().switch_list_get(uuid=switch_uuid)
-        data = dict(package_switch_uuid =package_switch_uuid,ip=sw.payload.items[0].recv_ip,duration='3 months')
+        package_switch_uuid = rand_package_switch()[0]
+        switch_uuid,sw,swl = rand_switch()
+        data = dict(switch_uuid=switch_uuid,package_switch_uuid =package_switch_uuid,ip=sw.switch_ip,duration='3 months')
         auth_user()
         old = self.api.license_switch_list_get(package_switch_uuid=package_switch_uuid)
         if old.payload.items:
             self.api.license_switch_license_switch_uuid_delete(license_switch_uuid=old.payload.items[0].license_switch_uuid)
+        print(data)
         ret = self.api.license_switch_post(body=data)
         assert (ret.success)
         self.license_switch.append(ret.object_uuid)

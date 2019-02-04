@@ -32,31 +32,31 @@ class UnauthenticatedErrorError(object):
     """
     swagger_types = {
         'code': 'int',
-        'message': 'str',
-        'reason': 'str'
+        'reason': 'str',
+        'message': 'str'
     }
 
     attribute_map = {
         'code': 'code',
-        'message': 'message',
-        'reason': 'reason'
+        'reason': 'reason',
+        'message': 'message'
     }
 
-    def __init__(self, code=None, message=None, reason=None):
+    def __init__(self, code=None, reason=None, message=None):
         """
         UnauthenticatedErrorError - a model defined in Swagger
         """
 
         self._code = None
-        self._message = None
         self._reason = None
+        self._message = None
 
         if code is not None:
           self.code = code
-        if message is not None:
-          self.message = message
         if reason is not None:
           self.reason = reason
+        if message is not None:
+          self.message = message
 
     @property
     def code(self):
@@ -80,27 +80,6 @@ class UnauthenticatedErrorError(object):
         self._code = code
 
     @property
-    def message(self):
-        """
-        Gets the message of this UnauthenticatedErrorError.
-
-        :return: The message of this UnauthenticatedErrorError.
-        :rtype: str
-        """
-        return self._message
-
-    @message.setter
-    def message(self, message):
-        """
-        Sets the message of this UnauthenticatedErrorError.
-
-        :param message: The message of this UnauthenticatedErrorError.
-        :type: str
-        """
-
-        self._message = message
-
-    @property
     def reason(self):
         """
         Gets the reason of this UnauthenticatedErrorError.
@@ -120,6 +99,27 @@ class UnauthenticatedErrorError(object):
         """
 
         self._reason = reason
+
+    @property
+    def message(self):
+        """
+        Gets the message of this UnauthenticatedErrorError.
+
+        :return: The message of this UnauthenticatedErrorError.
+        :rtype: str
+        """
+        return self._message
+
+    @message.setter
+    def message(self, message):
+        """
+        Sets the message of this UnauthenticatedErrorError.
+
+        :param message: The message of this UnauthenticatedErrorError.
+        :type: str
+        """
+
+        self._message = message
 
     def to_dict(self):
         """

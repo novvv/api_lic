@@ -118,6 +118,8 @@ class PaymentCreate(Create):
                 raise ValidationError({'license_switch_uuid': ['no such LRN license uuid!']})
             if lic and lic.user_uuid != user.user_uuid:
                 raise ValidationError({'license_lrn_uuid': ['not owned by current user!']})
+            if lic.amount and (not obj.amount_lrn or obj.amount_lrn < lic.amount):
+                raise ValidationError({'amount_lrn': ['not valid. must be equal or more than package price {}'.format(lic.amount)]})
             hist = lic.add_history(obj.type)
             if hist:
                 obj.session().add(hist)
@@ -128,7 +130,8 @@ class PaymentCreate(Create):
                 raise ValidationError({'license_switch_uuid': ['no such switch license uuid!']})
             if lic and lic.user_uuid != user.user_uuid:
                 raise ValidationError({'license_switch_uuid': ['not owned by current user!']})
-
+            if lic.amount and (not obj.amount_lrn or obj.amount_lrn < lic.amount):
+                raise ValidationError({'amount_swich': ['not valid. must be equal or more than package price {}'.format(lic.amount)]})
             hist = lic.add_history(obj.type)
             if hist:
                 obj.session().add(hist)
@@ -452,10 +455,10 @@ class LicenseLrnCreate(Create):
         user = self.get_user(self.req)
         obj.user_uuid = user.user_uuid
         cls = self.model_class
-        q = cls.filter(and_(cls.package_lrn_uuid == obj.package_lrn_uuid, cls.user_uuid == obj.user_uuid)).first()
-        if q:
-            raise ValidationError({'package_lrn_uuid': ['duplicate package uuid {}'.format(obj.package_lrn_uuid)]})
-        # obj.created_by=user.name
+        # q = cls.filter(and_(cls.package_lrn_uuid == obj.package_lrn_uuid, cls.user_uuid == obj.user_uuid)).first()
+        # if q:
+        #     raise ValidationError({'package_lrn_uuid': ['duplicate package uuid {}'.format(obj.package_lrn_uuid)]})
+
         if not obj.start_time:
             obj.start_time = datetime.now(UTC)
         if obj.duration:
@@ -534,19 +537,19 @@ class LicenseSwitchCreate(Create):
         obj.user_uuid = user.user_uuid
         # obj.created_by=user.name
         cls = self.model_class
-        q = cls.filter(and_(cls.package_switch_uuid == obj.package_switch_uuid, cls.user_uuid == obj.user_uuid)).first()
-        if q:
-            raise ValidationError(
-                {'package_switch_uuid': ['duplicate package uuid {}'.format(obj.package_switch_uuid)]})
+        # q = cls.filter(and_(cls.package_switch_uuid == obj.package_switch_uuid, cls.user_uuid == obj.user_uuid)).first()
+        # if q:
+        #     raise ValidationError(
+        #         {'package_switch_uuid': ['duplicate package uuid {}'.format(obj.package_switch_uuid)]})
         if not obj.start_time:
             obj.start_time = datetime.now(UTC)
         if obj.duration:
             obj.end_time = add_months(obj.start_time, obj.dur_months)
         mcls = model.DnlLicenseInfo
-        package = model.PackageSwitch.get(obj.package_switch_uuid)
-        q = mcls.filter(and_(mcls.uuid == package.switch_uuid, mcls.recv_ip == obj.ip)).first()
-        if not q:
-            raise ValidationError({'package_switch_uuid': ['no such switch and ip']})
+        if obj.switch_uuid:
+            q = mcls.filter(and_(mcls.uuid == obj.switch_uuid, mcls.recv_ip == obj.ip)).first()
+            if not q:
+                raise ValidationError({'package_switch_uuid': ['no such switch and ip']})
         return obj
 
     def after_create(self, object_id, req, resp, **kwargs):

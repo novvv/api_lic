@@ -31,37 +31,60 @@ class NotificationGet(object):
                             and the value is json key in definition.
     """
     swagger_types = {
+        'user_uuid': 'str',
         'notification_uuid': 'str',
-        'content': 'str',
         'subject': 'str',
-        'user_uuid': 'str'
+        'content': 'str'
     }
 
     attribute_map = {
+        'user_uuid': 'user_uuid',
         'notification_uuid': 'notification_uuid',
-        'content': 'content',
         'subject': 'subject',
-        'user_uuid': 'user_uuid'
+        'content': 'content'
     }
 
-    def __init__(self, notification_uuid=None, content=None, subject=None, user_uuid=None):
+    def __init__(self, user_uuid=None, notification_uuid=None, subject=None, content=None):
         """
         NotificationGet - a model defined in Swagger
         """
 
-        self._notification_uuid = None
-        self._content = None
-        self._subject = None
         self._user_uuid = None
+        self._notification_uuid = None
+        self._subject = None
+        self._content = None
 
-        if notification_uuid is not None:
-          self.notification_uuid = notification_uuid
-        if content is not None:
-          self.content = content
-        if subject is not None:
-          self.subject = subject
         if user_uuid is not None:
           self.user_uuid = user_uuid
+        if notification_uuid is not None:
+          self.notification_uuid = notification_uuid
+        if subject is not None:
+          self.subject = subject
+        if content is not None:
+          self.content = content
+
+    @property
+    def user_uuid(self):
+        """
+        Gets the user_uuid of this NotificationGet.
+
+        :return: The user_uuid of this NotificationGet.
+        :rtype: str
+        """
+        return self._user_uuid
+
+    @user_uuid.setter
+    def user_uuid(self, user_uuid):
+        """
+        Sets the user_uuid of this NotificationGet.
+
+        :param user_uuid: The user_uuid of this NotificationGet.
+        :type: str
+        """
+        if user_uuid is not None and len(user_uuid) > 36:
+            raise ValueError("Invalid value for `user_uuid`, length must be less than or equal to `36`")
+
+        self._user_uuid = user_uuid
 
     @property
     def notification_uuid(self):
@@ -87,27 +110,6 @@ class NotificationGet(object):
         self._notification_uuid = notification_uuid
 
     @property
-    def content(self):
-        """
-        Gets the content of this NotificationGet.
-
-        :return: The content of this NotificationGet.
-        :rtype: str
-        """
-        return self._content
-
-    @content.setter
-    def content(self, content):
-        """
-        Sets the content of this NotificationGet.
-
-        :param content: The content of this NotificationGet.
-        :type: str
-        """
-
-        self._content = content
-
-    @property
     def subject(self):
         """
         Gets the subject of this NotificationGet.
@@ -131,27 +133,25 @@ class NotificationGet(object):
         self._subject = subject
 
     @property
-    def user_uuid(self):
+    def content(self):
         """
-        Gets the user_uuid of this NotificationGet.
+        Gets the content of this NotificationGet.
 
-        :return: The user_uuid of this NotificationGet.
+        :return: The content of this NotificationGet.
         :rtype: str
         """
-        return self._user_uuid
+        return self._content
 
-    @user_uuid.setter
-    def user_uuid(self, user_uuid):
+    @content.setter
+    def content(self, content):
         """
-        Sets the user_uuid of this NotificationGet.
+        Sets the content of this NotificationGet.
 
-        :param user_uuid: The user_uuid of this NotificationGet.
+        :param content: The content of this NotificationGet.
         :type: str
         """
-        if user_uuid is not None and len(user_uuid) > 36:
-            raise ValueError("Invalid value for `user_uuid`, length must be less than or equal to `36`")
 
-        self._user_uuid = user_uuid
+        self._content = content
 
     def to_dict(self):
         """

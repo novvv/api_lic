@@ -76,7 +76,6 @@ from .models.license_lrn_modify import LicenseLrnModify
 from .models.license_switch import LicenseSwitch
 from .models.license_switch_get import LicenseSwitchGet
 from .models.license_switch_modify import LicenseSwitchModify
-from .models.license_switch_renew import LicenseSwitchRenew
 from .models.notification import Notification
 from .models.notification_get import NotificationGet
 from .models.notification_modify import NotificationModify

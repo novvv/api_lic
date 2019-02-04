@@ -1393,6 +1393,7 @@ class UserApi(object):
         :param int ordered_amount:
         :param str package_switch_uuid:
         :param int switch_port:
+        :param str switch_uuid:
         :param int type:
         :param str user_email:
         :param str user_uuid:
@@ -1439,6 +1440,7 @@ class UserApi(object):
         :param int ordered_amount:
         :param str package_switch_uuid:
         :param int switch_port:
+        :param str switch_uuid:
         :param int type:
         :param str user_email:
         :param str user_uuid:
@@ -1453,7 +1455,7 @@ class UserApi(object):
                  returns the request thread.
         """
 
-        all_params = ['page', 'per_page', 'order_by', 'order_dir', 'amount', 'duration', 'enabled', 'ip', 'license_switch_uuid', 'minute_count', 'ordered_amount', 'package_switch_uuid', 'switch_port', 'type', 'user_email', 'user_uuid', 'cost_gt', 'cost_lt', 'end_time_gt', 'end_time_lt', 'start_time_gt', 'start_time_lt']
+        all_params = ['page', 'per_page', 'order_by', 'order_dir', 'amount', 'duration', 'enabled', 'ip', 'license_switch_uuid', 'minute_count', 'ordered_amount', 'package_switch_uuid', 'switch_port', 'switch_uuid', 'type', 'user_email', 'user_uuid', 'cost_gt', 'cost_lt', 'end_time_gt', 'end_time_lt', 'start_time_gt', 'start_time_lt']
         all_params.append('callback')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
@@ -1501,6 +1503,8 @@ class UserApi(object):
             query_params.append(('package_switch_uuid', params['package_switch_uuid']))
         if 'switch_port' in params:
             query_params.append(('switch_port', params['switch_port']))
+        if 'switch_uuid' in params:
+            query_params.append(('switch_uuid', params['switch_uuid']))
         if 'type' in params:
             query_params.append(('type', params['type']))
         if 'user_email' in params:

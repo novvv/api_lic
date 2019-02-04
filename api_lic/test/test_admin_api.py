@@ -216,7 +216,7 @@ class TestAdminApi(unittest.TestCase):
         """
         if not self.package_switch:
             self.test_package_switch_post()
-        data = dict(switch_ip=rand_switch()[0], package_name='switch_{}'.format(dig(10)), cps=random.randint(10, 1000),
+        data = dict(package_name='switch_{}'.format(dig(10)), cps=random.randint(10, 1000),
                     switch_port=random.randint(1000, 65535),
                     type=random.choice(['switch pay per port', 'switch pay per minute']),
                     minute_count=random.randint(10, 1000), amount=random.randint(10, 1000), enabled=True)
@@ -232,11 +232,13 @@ class TestAdminApi(unittest.TestCase):
 
         """
         auth_user()
-        package_switch_uuid = rand_package_switch()[0]
+        package_switch = rand_package_switch()[1]
+        package_switch_uuid = package_switch.package_switch_uuid
+        ip = package_switch.switch_ip
         user_uuid = TEST_USER_UUID
         ret= cli_lic.UserApi().license_switch_list_get(package_switch_uuid=package_switch_uuid)
         if not ret.payload.items:
-            data = dict(package_switch_uuid = package_switch_uuid, ip=ip())
+            data = dict(package_switch_uuid = package_switch_uuid, ip=ip)
             ret = cli_lic.UserApi().license_switch_post(body=data)
             assert (ret.success)
         print(ret)
@@ -253,7 +255,7 @@ class TestAdminApi(unittest.TestCase):
         auth()
         # if not rand_switch():
         #     self.test_switch_post()
-        data = dict(switch_uuid=rand_switch()[0], package_name='switch_{}'.format(dig(10)), cps=random.randint(10, 1000),
+        data = dict( package_name='switch_{}'.format(dig(10)), cps=random.randint(10, 1000),
                     switch_port=random.randint(1000, 65535),
                     type=random.choice(['switch pay per port', 'switch pay per minute']),
                     minute_count=random.randint(10, 1000), amount=random.randint(10, 1000), enabled=True,

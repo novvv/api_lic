@@ -1092,9 +1092,7 @@ class PublicApi(object):
         :param str package_name:
         :param str package_switch_uuid:
         :param str sub_type:
-        :param str switch_ip:
         :param int switch_port:
-        :param str switch_uuid:
         :param str type:
         :param str create_on_gt:
         :param str create_on_lt:
@@ -1136,9 +1134,7 @@ class PublicApi(object):
         :param str package_name:
         :param str package_switch_uuid:
         :param str sub_type:
-        :param str switch_ip:
         :param int switch_port:
-        :param str switch_uuid:
         :param str type:
         :param str create_on_gt:
         :param str create_on_lt:
@@ -1151,7 +1147,7 @@ class PublicApi(object):
                  returns the request thread.
         """
 
-        all_params = ['page', 'per_page', 'order_by', 'order_dir', 'amount', 'enabled', 'minute_count', 'package_name', 'package_switch_uuid', 'sub_type', 'switch_ip', 'switch_port', 'switch_uuid', 'type', 'create_on_gt', 'create_on_lt', 'expire_date_gt', 'expire_date_lt', 'start_date_gt', 'start_date_lt']
+        all_params = ['page', 'per_page', 'order_by', 'order_dir', 'amount', 'enabled', 'minute_count', 'package_name', 'package_switch_uuid', 'sub_type', 'switch_port', 'type', 'create_on_gt', 'create_on_lt', 'expire_date_gt', 'expire_date_lt', 'start_date_gt', 'start_date_lt']
         all_params.append('callback')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
@@ -1193,12 +1189,8 @@ class PublicApi(object):
             query_params.append(('package_switch_uuid', params['package_switch_uuid']))
         if 'sub_type' in params:
             query_params.append(('sub_type', params['sub_type']))
-        if 'switch_ip' in params:
-            query_params.append(('switch_ip', params['switch_ip']))
         if 'switch_port' in params:
             query_params.append(('switch_port', params['switch_port']))
-        if 'switch_uuid' in params:
-            query_params.append(('switch_uuid', params['switch_uuid']))
         if 'type' in params:
             query_params.append(('type', params['type']))
         if 'create_on_gt' in params:

@@ -31,41 +31,106 @@ class User(object):
                             and the value is json key in definition.
     """
     swagger_types = {
-        'is_active': 'bool',
-        'logo_file_uuid': 'str',
-        'passwd': 'str',
         'email': 'str',
-        'is_admin': 'bool'
+        'passwd': 'str',
+        'is_admin': 'bool',
+        'is_active': 'bool',
+        'logo_file_uuid': 'str'
     }
 
     attribute_map = {
-        'is_active': 'is_active',
-        'logo_file_uuid': 'logo_file_uuid',
-        'passwd': 'passwd',
         'email': 'email',
-        'is_admin': 'is_admin'
+        'passwd': 'passwd',
+        'is_admin': 'is_admin',
+        'is_active': 'is_active',
+        'logo_file_uuid': 'logo_file_uuid'
     }
 
-    def __init__(self, is_active=None, logo_file_uuid=None, passwd=None, email=None, is_admin=None):
+    def __init__(self, email=None, passwd=None, is_admin=None, is_active=None, logo_file_uuid=None):
         """
         User - a model defined in Swagger
         """
 
+        self._email = None
+        self._passwd = None
+        self._is_admin = None
         self._is_active = None
         self._logo_file_uuid = None
-        self._passwd = None
-        self._email = None
-        self._is_admin = None
 
+        self.email = email
+        if passwd is not None:
+          self.passwd = passwd
+        if is_admin is not None:
+          self.is_admin = is_admin
         if is_active is not None:
           self.is_active = is_active
         if logo_file_uuid is not None:
           self.logo_file_uuid = logo_file_uuid
-        if passwd is not None:
-          self.passwd = passwd
-        self.email = email
-        if is_admin is not None:
-          self.is_admin = is_admin
+
+    @property
+    def email(self):
+        """
+        Gets the email of this User.
+
+        :return: The email of this User.
+        :rtype: str
+        """
+        return self._email
+
+    @email.setter
+    def email(self, email):
+        """
+        Sets the email of this User.
+
+        :param email: The email of this User.
+        :type: str
+        """
+        if email is None:
+            raise ValueError("Invalid value for `email`, must not be `None`")
+
+        self._email = email
+
+    @property
+    def passwd(self):
+        """
+        Gets the passwd of this User.
+
+        :return: The passwd of this User.
+        :rtype: str
+        """
+        return self._passwd
+
+    @passwd.setter
+    def passwd(self, passwd):
+        """
+        Sets the passwd of this User.
+
+        :param passwd: The passwd of this User.
+        :type: str
+        """
+
+        self._passwd = passwd
+
+    @property
+    def is_admin(self):
+        """
+        Gets the is_admin of this User.
+
+        :return: The is_admin of this User.
+        :rtype: bool
+        """
+        return self._is_admin
+
+    @is_admin.setter
+    def is_admin(self, is_admin):
+        """
+        Sets the is_admin of this User.
+
+        :param is_admin: The is_admin of this User.
+        :type: bool
+        """
+
+        self._is_admin = is_admin
 
     @property
     def is_active(self):
@@ -108,71 +173,6 @@ class User(object):
         """
 
         self._logo_file_uuid = logo_file_uuid
-
-    @property
-    def passwd(self):
-        """
-        Gets the passwd of this User.
-
-        :return: The passwd of this User.
-        :rtype: str
-        """
-        return self._passwd
-
-    @passwd.setter
-    def passwd(self, passwd):
-        """
-        Sets the passwd of this User.
-
-        :param passwd: The passwd of this User.
-        :type: str
-        """
-
-        self._passwd = passwd
-
-    @property
-    def email(self):
-        """
-        Gets the email of this User.
-
-        :return: The email of this User.
-        :rtype: str
-        """
-        return self._email
-
-    @email.setter
-    def email(self, email):
-        """
-        Sets the email of this User.
-
-        :param email: The email of this User.
-        :type: str
-        """
-        if email is None:
-            raise ValueError("Invalid value for `email`, must not be `None`")
-
-        self._email = email
-
-    @property
-    def is_admin(self):
-        """
-        Gets the is_admin of this User.
-
-        :return: The is_admin of this User.
-        :rtype: bool
-        """
-        return self._is_admin
-
-    @is_admin.setter
-    def is_admin(self, is_admin):
-        """
-        Sets the is_admin of this User.
-
-        :param is_admin: The is_admin of this User.
-        :type: bool
-        """
-
-        self._is_admin = is_admin
 
     def to_dict(self):
         """

@@ -32,31 +32,31 @@ class ForbiddenErrorError(object):
     """
     swagger_types = {
         'message': 'str',
-        'reason': 'str',
-        'code': 'int'
+        'code': 'int',
+        'reason': 'str'
     }
 
     attribute_map = {
         'message': 'message',
-        'reason': 'reason',
-        'code': 'code'
+        'code': 'code',
+        'reason': 'reason'
     }
 
-    def __init__(self, message=None, reason=None, code=None):
+    def __init__(self, message=None, code=None, reason=None):
         """
         ForbiddenErrorError - a model defined in Swagger
         """
 
         self._message = None
-        self._reason = None
         self._code = None
+        self._reason = None
 
         if message is not None:
           self.message = message
-        if reason is not None:
-          self.reason = reason
         if code is not None:
           self.code = code
+        if reason is not None:
+          self.reason = reason
 
     @property
     def message(self):
@@ -80,27 +80,6 @@ class ForbiddenErrorError(object):
         self._message = message
 
     @property
-    def reason(self):
-        """
-        Gets the reason of this ForbiddenErrorError.
-
-        :return: The reason of this ForbiddenErrorError.
-        :rtype: str
-        """
-        return self._reason
-
-    @reason.setter
-    def reason(self, reason):
-        """
-        Sets the reason of this ForbiddenErrorError.
-
-        :param reason: The reason of this ForbiddenErrorError.
-        :type: str
-        """
-
-        self._reason = reason
-
-    @property
     def code(self):
         """
         Gets the code of this ForbiddenErrorError.
@@ -120,6 +99,27 @@ class ForbiddenErrorError(object):
         """
 
         self._code = code
+
+    @property
+    def reason(self):
+        """
+        Gets the reason of this ForbiddenErrorError.
+
+        :return: The reason of this ForbiddenErrorError.
+        :rtype: str
+        """
+        return self._reason
+
+    @reason.setter
+    def reason(self, reason):
+        """
+        Sets the reason of this ForbiddenErrorError.
+
+        :param reason: The reason of this ForbiddenErrorError.
+        :type: str
+        """
+
+        self._reason = reason
 
     def to_dict(self):
         """

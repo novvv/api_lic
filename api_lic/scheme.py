@@ -553,9 +553,6 @@ class PackageSwitchScheme(BaseModelScheme):
     package_name = Str(validate=[validate.Length(max=64)])
     type = Choice()
     sub_type = Choice()
-    switch_uuid = Str(validate=[validate.Length(max=64), lambda value: _valid('DnlLicenseInfo', 'uuid', value)])
-    # switch_uuid = Str(
-    #     validate=[validate.Length(max=36), lambda value: _valid('Switch', 'switch_uuid', value)])
     switch_port = Int()
     minute_count = Int()
     amount = Int()
@@ -563,7 +560,6 @@ class PackageSwitchScheme(BaseModelScheme):
     start_date = DateTime()
     expire_date = DateTime()
     licenses = Nested('LicenseSwitchScheme', many=True)
-    switch_ip = Str()
 
     class Meta:
         model = model.PackageSwitch
@@ -577,11 +573,11 @@ class PackageSwitchSchemeGet(PackageSwitchScheme):
     class Meta:
         model = model.PackageSwitch
         fields = (
-            'package_switch_uuid', 'package_name', 'type', 'sub_type', 'switch_uuid', 'switch_port', 'minute_count',
-            'amount', 'enabled', 'start_date', 'expire_date', 'create_on', 'switch_ip')
+            'package_switch_uuid', 'package_name', 'type', 'sub_type', 'switch_port', 'minute_count',
+            'amount', 'enabled', 'start_date', 'expire_date', 'create_on')
         search_fields = (
-            'package_switch_uuid', 'package_name', 'type', 'sub_type', 'switch_uuid', 'switch_port', 'minute_count',
-            'amount', 'enabled', 'switch_ip')
+            'package_switch_uuid', 'package_name', 'type', 'sub_type', 'switch_port', 'minute_count',
+            'amount', 'enabled')
         query_fields = (
             'start_date_gt', 'start_date_lt', 'expire_date_gt', 'expire_date_lt', 'create_on_gt', 'create_on_lt',)
 
@@ -701,10 +697,10 @@ class LicenseSwitchScheme(BaseModelScheme):
     cost = Float()
     package = Nested('PackageSwitchScheme', many=False)
     enabled = Bool()
-
+    switch_uuid = Str(validate=[validate.Length(max=64), lambda value: _valid('DnlLicenseInfo', 'uuid', value)])
     class Meta:
         model = model.LicenseSwitch
-        fields = ('package_switch_uuid', 'ip', 'start_time', 'duration')
+        fields = ('package_switch_uuid', 'ip', 'start_time', 'duration','switch_uuid')
 
 
 class LicenseSwitchSchemeGet(LicenseSwitchScheme):
@@ -712,10 +708,10 @@ class LicenseSwitchSchemeGet(LicenseSwitchScheme):
         model = model.LicenseSwitch
         fields = ('user_email', 'type', 'ip', 'switch_port', 'minute_count', 'amount', 'license_switch_uuid',
                   'package_switch_uuid', 'user_uuid', 'ordered_amount', 'package', 'enabled', 'start_time', 'end_time',
-                  'duration')
+                  'duration','switch_uuid')
         search_fields = (
             'user_email', 'type', 'ip', 'switch_port', 'minute_count', 'amount', 'license_switch_uuid',
-            'package_switch_uuid', 'user_uuid', 'ordered_amount', 'package', 'enabled', 'duration')
+            'package_switch_uuid', 'user_uuid', 'ordered_amount', 'package', 'enabled', 'duration','switch_uuid')
         query_fields = ('start_time_gt', 'start_time_lt', 'end_time_gt', 'end_time_lt', 'cost_gt', 'cost_lt',)
 
 
@@ -728,10 +724,6 @@ class LicenseSwitchSchemeModify(LicenseSwitchScheme):
         fields = ('package_switch_uuid', 'ip', 'enabled', 'end_time')
 
 
-class LicenseSwitchSchemeRenew(LicenseSwitchScheme):
-    class Meta:
-        model = model.LicenseSwitch
-        fields = ('quantity',)
 # ---LicenseSwitch---
 
 
