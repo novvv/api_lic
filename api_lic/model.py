@@ -389,6 +389,7 @@ class ConfigPayment(BaseModel):
     email_confirm_to = Column(String(64))
     notification_enabled = Column(Boolean())
     email_cc_to = Column(String(64))
+    paypal_client_id = synonym('paypal_pkey')
 
     def init(self):
         pass
@@ -631,6 +632,7 @@ class LicenseSwitch(BaseModel):
     cost = Column(Numeric, nullable=False, server_default='0')
     is_enabled = Column(Boolean, default=True)
     duration = Column(ChoiceType(DURATION), server_default='1')
+
 
     #switch_uuid = Column(ForeignKey('dnl_license_info.uuid', ondelete='CASCADE'), index=True)
 

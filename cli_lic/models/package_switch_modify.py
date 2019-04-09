@@ -31,88 +31,83 @@ class PackageSwitchModify(object):
                             and the value is json key in definition.
     """
     swagger_types = {
-        'switch_port': 'int',
-        'package_name': 'str',
         'enabled': 'bool',
+        'package_name': 'str',
         'sub_type': 'str',
-        'minute_count': 'int',
-        'switch_uuid': 'str',
-        'amount': 'int',
-        'type': 'str',
         'start_date': 'datetime',
+        'type': 'str',
+        'amount': 'int',
+        'minute_count': 'int',
+        'switch_port': 'int',
         'expire_date': 'datetime'
     }
 
     attribute_map = {
-        'switch_port': 'switch_port',
-        'package_name': 'package_name',
         'enabled': 'enabled',
+        'package_name': 'package_name',
         'sub_type': 'sub_type',
-        'minute_count': 'minute_count',
-        'switch_uuid': 'switch_uuid',
-        'amount': 'amount',
-        'type': 'type',
         'start_date': 'start_date',
+        'type': 'type',
+        'amount': 'amount',
+        'minute_count': 'minute_count',
+        'switch_port': 'switch_port',
         'expire_date': 'expire_date'
     }
 
-    def __init__(self, switch_port=None, package_name=None, enabled=None, sub_type='hosted_switch', minute_count=None, switch_uuid=None, amount=None, type='switch pay per port', start_date=None, expire_date=None):
+    def __init__(self, enabled=None, package_name=None, sub_type='hosted_switch', start_date=None, type='switch pay per port', amount=None, minute_count=None, switch_port=None, expire_date=None):
         """
         PackageSwitchModify - a model defined in Swagger
         """
 
-        self._switch_port = None
-        self._package_name = None
         self._enabled = None
+        self._package_name = None
         self._sub_type = None
-        self._minute_count = None
-        self._switch_uuid = None
-        self._amount = None
-        self._type = None
         self._start_date = None
+        self._type = None
+        self._amount = None
+        self._minute_count = None
+        self._switch_port = None
         self._expire_date = None
 
-        if switch_port is not None:
-          self.switch_port = switch_port
-        if package_name is not None:
-          self.package_name = package_name
         if enabled is not None:
           self.enabled = enabled
+        if package_name is not None:
+          self.package_name = package_name
         if sub_type is not None:
           self.sub_type = sub_type
-        if minute_count is not None:
-          self.minute_count = minute_count
-        if switch_uuid is not None:
-          self.switch_uuid = switch_uuid
-        if amount is not None:
-          self.amount = amount
-        if type is not None:
-          self.type = type
         if start_date is not None:
           self.start_date = start_date
+        if type is not None:
+          self.type = type
+        if amount is not None:
+          self.amount = amount
+        if minute_count is not None:
+          self.minute_count = minute_count
+        if switch_port is not None:
+          self.switch_port = switch_port
         if expire_date is not None:
           self.expire_date = expire_date
 
     @property
-    def switch_port(self):
+    def enabled(self):
         """
-        Gets the switch_port of this PackageSwitchModify.
+        Gets the enabled of this PackageSwitchModify.
 
-        :return: The switch_port of this PackageSwitchModify.
-        :rtype: int
+        :return: The enabled of this PackageSwitchModify.
+        :rtype: bool
         """
-        return self._switch_port
+        return self._enabled
 
-    @switch_port.setter
-    def switch_port(self, switch_port):
+    @enabled.setter
+    def enabled(self, enabled):
         """
-        Sets the switch_port of this PackageSwitchModify.
+        Sets the enabled of this PackageSwitchModify.
 
-        :param switch_port: The switch_port of this PackageSwitchModify.
-        :type: int
+        :param enabled: The enabled of this PackageSwitchModify.
+        :type: bool
         """
 
-        self._switch_port = switch_port
+        self._enabled = enabled
 
     @property
     def package_name(self):
@@ -136,27 +131,6 @@ class PackageSwitchModify(object):
             raise ValueError("Invalid value for `package_name`, length must be less than or equal to `64`")
 
         self._package_name = package_name
-
-    @property
-    def enabled(self):
-        """
-        Gets the enabled of this PackageSwitchModify.
-
-        :return: The enabled of this PackageSwitchModify.
-        :rtype: bool
-        """
-        return self._enabled
-
-    @enabled.setter
-    def enabled(self, enabled):
-        """
-        Sets the enabled of this PackageSwitchModify.
-
-        :param enabled: The enabled of this PackageSwitchModify.
-        :type: bool
-        """
-
-        self._enabled = enabled
 
     @property
     def sub_type(self):
@@ -186,67 +160,25 @@ class PackageSwitchModify(object):
         self._sub_type = sub_type
 
     @property
-    def minute_count(self):
+    def start_date(self):
         """
-        Gets the minute_count of this PackageSwitchModify.
+        Gets the start_date of this PackageSwitchModify.
 
-        :return: The minute_count of this PackageSwitchModify.
-        :rtype: int
+        :return: The start_date of this PackageSwitchModify.
+        :rtype: datetime
         """
-        return self._minute_count
+        return self._start_date
 
-    @minute_count.setter
-    def minute_count(self, minute_count):
+    @start_date.setter
+    def start_date(self, start_date):
         """
-        Sets the minute_count of this PackageSwitchModify.
+        Sets the start_date of this PackageSwitchModify.
 
-        :param minute_count: The minute_count of this PackageSwitchModify.
-        :type: int
-        """
-
-        self._minute_count = minute_count
-
-    @property
-    def switch_uuid(self):
-        """
-        Gets the switch_uuid of this PackageSwitchModify.
-
-        :return: The switch_uuid of this PackageSwitchModify.
-        :rtype: str
-        """
-        return self._switch_uuid
-
-    @switch_uuid.setter
-    def switch_uuid(self, switch_uuid):
-        """
-        Sets the switch_uuid of this PackageSwitchModify.
-
-        :param switch_uuid: The switch_uuid of this PackageSwitchModify.
-        :type: str
+        :param start_date: The start_date of this PackageSwitchModify.
+        :type: datetime
         """
 
-        self._switch_uuid = switch_uuid
-
-    @property
-    def amount(self):
-        """
-        Gets the amount of this PackageSwitchModify.
-
-        :return: The amount of this PackageSwitchModify.
-        :rtype: int
-        """
-        return self._amount
-
-    @amount.setter
-    def amount(self, amount):
-        """
-        Sets the amount of this PackageSwitchModify.
-
-        :param amount: The amount of this PackageSwitchModify.
-        :type: int
-        """
-
-        self._amount = amount
+        self._start_date = start_date
 
     @property
     def type(self):
@@ -276,25 +208,67 @@ class PackageSwitchModify(object):
         self._type = type
 
     @property
-    def start_date(self):
+    def amount(self):
         """
-        Gets the start_date of this PackageSwitchModify.
+        Gets the amount of this PackageSwitchModify.
 
-        :return: The start_date of this PackageSwitchModify.
-        :rtype: datetime
+        :return: The amount of this PackageSwitchModify.
+        :rtype: int
         """
-        return self._start_date
+        return self._amount
 
-    @start_date.setter
-    def start_date(self, start_date):
+    @amount.setter
+    def amount(self, amount):
         """
-        Sets the start_date of this PackageSwitchModify.
+        Sets the amount of this PackageSwitchModify.
 
-        :param start_date: The start_date of this PackageSwitchModify.
-        :type: datetime
+        :param amount: The amount of this PackageSwitchModify.
+        :type: int
         """
 
-        self._start_date = start_date
+        self._amount = amount
+
+    @property
+    def minute_count(self):
+        """
+        Gets the minute_count of this PackageSwitchModify.
+
+        :return: The minute_count of this PackageSwitchModify.
+        :rtype: int
+        """
+        return self._minute_count
+
+    @minute_count.setter
+    def minute_count(self, minute_count):
+        """
+        Sets the minute_count of this PackageSwitchModify.
+
+        :param minute_count: The minute_count of this PackageSwitchModify.
+        :type: int
+        """
+
+        self._minute_count = minute_count
+
+    @property
+    def switch_port(self):
+        """
+        Gets the switch_port of this PackageSwitchModify.
+
+        :return: The switch_port of this PackageSwitchModify.
+        :rtype: int
+        """
+        return self._switch_port
+
+    @switch_port.setter
+    def switch_port(self, switch_port):
+        """
+        Sets the switch_port of this PackageSwitchModify.
+
+        :param switch_port: The switch_port of this PackageSwitchModify.
+        :type: int
+        """
+
+        self._switch_port = switch_port
 
     @property
     def expire_date(self):

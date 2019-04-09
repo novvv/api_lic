@@ -31,175 +31,87 @@ class TransactionLog(object):
                             and the value is json key in definition.
     """
     swagger_types = {
-        'transaction_time': 'datetime',
-        'license_switch_uuid': 'str',
-        'status': 'int',
-        'from_ip': 'str',
         'transaction_type': 'str',
+        'amount_total': 'float',
         'type': 'int',
+        'amount_lrn': 'float',
+        'result': 'str',
+        'status': 'int',
+        'transaction_time': 'datetime',
+        'transaction_src': 'object',
+        'transaction_id': 'str',
+        'from_ip': 'str',
+        'amount_switch': 'float',
         'payment_uuid': 'str',
         'license_lrn_uuid': 'str',
-        'result': 'str',
-        'amount_lrn': 'float',
-        'amount_switch': 'float',
-        'transaction_id': 'str',
-        'transaction_src': 'object',
-        'amount_total': 'float'
+        'license_switch_uuid': 'str'
     }
 
     attribute_map = {
-        'transaction_time': 'transaction_time',
-        'license_switch_uuid': 'license_switch_uuid',
-        'status': 'status',
-        'from_ip': 'from_ip',
         'transaction_type': 'transaction_type',
+        'amount_total': 'amount_total',
         'type': 'type',
+        'amount_lrn': 'amount_lrn',
+        'result': 'result',
+        'status': 'status',
+        'transaction_time': 'transaction_time',
+        'transaction_src': 'transaction_src',
+        'transaction_id': 'transaction_id',
+        'from_ip': 'from_ip',
+        'amount_switch': 'amount_switch',
         'payment_uuid': 'payment_uuid',
         'license_lrn_uuid': 'license_lrn_uuid',
-        'result': 'result',
-        'amount_lrn': 'amount_lrn',
-        'amount_switch': 'amount_switch',
-        'transaction_id': 'transaction_id',
-        'transaction_src': 'transaction_src',
-        'amount_total': 'amount_total'
+        'license_switch_uuid': 'license_switch_uuid'
     }
 
-    def __init__(self, transaction_time=None, license_switch_uuid=None, status=None, from_ip=None, transaction_type=None, type=None, payment_uuid=None, license_lrn_uuid=None, result=None, amount_lrn=None, amount_switch=None, transaction_id=None, transaction_src=None, amount_total=None):
+    def __init__(self, transaction_type=None, amount_total=None, type=None, amount_lrn=None, result=None, status=None, transaction_time=None, transaction_src=None, transaction_id=None, from_ip=None, amount_switch=None, payment_uuid=None, license_lrn_uuid=None, license_switch_uuid=None):
         """
         TransactionLog - a model defined in Swagger
         """
 
-        self._transaction_time = None
-        self._license_switch_uuid = None
-        self._status = None
-        self._from_ip = None
         self._transaction_type = None
+        self._amount_total = None
         self._type = None
+        self._amount_lrn = None
+        self._result = None
+        self._status = None
+        self._transaction_time = None
+        self._transaction_src = None
+        self._transaction_id = None
+        self._from_ip = None
+        self._amount_switch = None
         self._payment_uuid = None
         self._license_lrn_uuid = None
-        self._result = None
-        self._amount_lrn = None
-        self._amount_switch = None
-        self._transaction_id = None
-        self._transaction_src = None
-        self._amount_total = None
+        self._license_switch_uuid = None
 
-        if transaction_time is not None:
-          self.transaction_time = transaction_time
-        if license_switch_uuid is not None:
-          self.license_switch_uuid = license_switch_uuid
-        if status is not None:
-          self.status = status
-        if from_ip is not None:
-          self.from_ip = from_ip
         if transaction_type is not None:
           self.transaction_type = transaction_type
+        if amount_total is not None:
+          self.amount_total = amount_total
         if type is not None:
           self.type = type
+        if amount_lrn is not None:
+          self.amount_lrn = amount_lrn
+        if result is not None:
+          self.result = result
+        if status is not None:
+          self.status = status
+        if transaction_time is not None:
+          self.transaction_time = transaction_time
+        if transaction_src is not None:
+          self.transaction_src = transaction_src
+        if transaction_id is not None:
+          self.transaction_id = transaction_id
+        if from_ip is not None:
+          self.from_ip = from_ip
+        if amount_switch is not None:
+          self.amount_switch = amount_switch
         if payment_uuid is not None:
           self.payment_uuid = payment_uuid
         if license_lrn_uuid is not None:
           self.license_lrn_uuid = license_lrn_uuid
-        if result is not None:
-          self.result = result
-        if amount_lrn is not None:
-          self.amount_lrn = amount_lrn
-        if amount_switch is not None:
-          self.amount_switch = amount_switch
-        if transaction_id is not None:
-          self.transaction_id = transaction_id
-        if transaction_src is not None:
-          self.transaction_src = transaction_src
-        if amount_total is not None:
-          self.amount_total = amount_total
-
-    @property
-    def transaction_time(self):
-        """
-        Gets the transaction_time of this TransactionLog.
-
-        :return: The transaction_time of this TransactionLog.
-        :rtype: datetime
-        """
-        return self._transaction_time
-
-    @transaction_time.setter
-    def transaction_time(self, transaction_time):
-        """
-        Sets the transaction_time of this TransactionLog.
-
-        :param transaction_time: The transaction_time of this TransactionLog.
-        :type: datetime
-        """
-
-        self._transaction_time = transaction_time
-
-    @property
-    def license_switch_uuid(self):
-        """
-        Gets the license_switch_uuid of this TransactionLog.
-
-        :return: The license_switch_uuid of this TransactionLog.
-        :rtype: str
-        """
-        return self._license_switch_uuid
-
-    @license_switch_uuid.setter
-    def license_switch_uuid(self, license_switch_uuid):
-        """
-        Sets the license_switch_uuid of this TransactionLog.
-
-        :param license_switch_uuid: The license_switch_uuid of this TransactionLog.
-        :type: str
-        """
-        if license_switch_uuid is not None and len(license_switch_uuid) > 36:
-            raise ValueError("Invalid value for `license_switch_uuid`, length must be less than or equal to `36`")
-
-        self._license_switch_uuid = license_switch_uuid
-
-    @property
-    def status(self):
-        """
-        Gets the status of this TransactionLog.
-
-        :return: The status of this TransactionLog.
-        :rtype: int
-        """
-        return self._status
-
-    @status.setter
-    def status(self, status):
-        """
-        Sets the status of this TransactionLog.
-
-        :param status: The status of this TransactionLog.
-        :type: int
-        """
-
-        self._status = status
-
-    @property
-    def from_ip(self):
-        """
-        Gets the from_ip of this TransactionLog.
-
-        :return: The from_ip of this TransactionLog.
-        :rtype: str
-        """
-        return self._from_ip
-
-    @from_ip.setter
-    def from_ip(self, from_ip):
-        """
-        Sets the from_ip of this TransactionLog.
-
-        :param from_ip: The from_ip of this TransactionLog.
-        :type: str
-        """
-        if from_ip is not None and len(from_ip) > 36:
-            raise ValueError("Invalid value for `from_ip`, length must be less than or equal to `36`")
-
-        self._from_ip = from_ip
+        if license_switch_uuid is not None:
+          self.license_switch_uuid = license_switch_uuid
 
     @property
     def transaction_type(self):
@@ -225,6 +137,27 @@ class TransactionLog(object):
         self._transaction_type = transaction_type
 
     @property
+    def amount_total(self):
+        """
+        Gets the amount_total of this TransactionLog.
+
+        :return: The amount_total of this TransactionLog.
+        :rtype: float
+        """
+        return self._amount_total
+
+    @amount_total.setter
+    def amount_total(self, amount_total):
+        """
+        Sets the amount_total of this TransactionLog.
+
+        :param amount_total: The amount_total of this TransactionLog.
+        :type: float
+        """
+
+        self._amount_total = amount_total
+
+    @property
     def type(self):
         """
         Gets the type of this TransactionLog.
@@ -244,6 +177,178 @@ class TransactionLog(object):
         """
 
         self._type = type
+
+    @property
+    def amount_lrn(self):
+        """
+        Gets the amount_lrn of this TransactionLog.
+
+        :return: The amount_lrn of this TransactionLog.
+        :rtype: float
+        """
+        return self._amount_lrn
+
+    @amount_lrn.setter
+    def amount_lrn(self, amount_lrn):
+        """
+        Sets the amount_lrn of this TransactionLog.
+
+        :param amount_lrn: The amount_lrn of this TransactionLog.
+        :type: float
+        """
+
+        self._amount_lrn = amount_lrn
+
+    @property
+    def result(self):
+        """
+        Gets the result of this TransactionLog.
+
+        :return: The result of this TransactionLog.
+        :rtype: str
+        """
+        return self._result
+
+    @result.setter
+    def result(self, result):
+        """
+        Sets the result of this TransactionLog.
+
+        :param result: The result of this TransactionLog.
+        :type: str
+        """
+
+        self._result = result
+
+    @property
+    def status(self):
+        """
+        Gets the status of this TransactionLog.
+
+        :return: The status of this TransactionLog.
+        :rtype: int
+        """
+        return self._status
+
+    @status.setter
+    def status(self, status):
+        """
+        Sets the status of this TransactionLog.
+
+        :param status: The status of this TransactionLog.
+        :type: int
+        """
+
+        self._status = status
+
+    @property
+    def transaction_time(self):
+        """
+        Gets the transaction_time of this TransactionLog.
+
+        :return: The transaction_time of this TransactionLog.
+        :rtype: datetime
+        """
+        return self._transaction_time
+
+    @transaction_time.setter
+    def transaction_time(self, transaction_time):
+        """
+        Sets the transaction_time of this TransactionLog.
+
+        :param transaction_time: The transaction_time of this TransactionLog.
+        :type: datetime
+        """
+
+        self._transaction_time = transaction_time
+
+    @property
+    def transaction_src(self):
+        """
+        Gets the transaction_src of this TransactionLog.
+
+        :return: The transaction_src of this TransactionLog.
+        :rtype: object
+        """
+        return self._transaction_src
+
+    @transaction_src.setter
+    def transaction_src(self, transaction_src):
+        """
+        Sets the transaction_src of this TransactionLog.
+
+        :param transaction_src: The transaction_src of this TransactionLog.
+        :type: object
+        """
+
+        self._transaction_src = transaction_src
+
+    @property
+    def transaction_id(self):
+        """
+        Gets the transaction_id of this TransactionLog.
+
+        :return: The transaction_id of this TransactionLog.
+        :rtype: str
+        """
+        return self._transaction_id
+
+    @transaction_id.setter
+    def transaction_id(self, transaction_id):
+        """
+        Sets the transaction_id of this TransactionLog.
+
+        :param transaction_id: The transaction_id of this TransactionLog.
+        :type: str
+        """
+        if transaction_id is not None and len(transaction_id) > 255:
+            raise ValueError("Invalid value for `transaction_id`, length must be less than or equal to `255`")
+
+        self._transaction_id = transaction_id
+
+    @property
+    def from_ip(self):
+        """
+        Gets the from_ip of this TransactionLog.
+
+        :return: The from_ip of this TransactionLog.
+        :rtype: str
+        """
+        return self._from_ip
+
+    @from_ip.setter
+    def from_ip(self, from_ip):
+        """
+        Sets the from_ip of this TransactionLog.
+
+        :param from_ip: The from_ip of this TransactionLog.
+        :type: str
+        """
+        if from_ip is not None and len(from_ip) > 36:
+            raise ValueError("Invalid value for `from_ip`, length must be less than or equal to `36`")
+
+        self._from_ip = from_ip
+
+    @property
+    def amount_switch(self):
+        """
+        Gets the amount_switch of this TransactionLog.
+
+        :return: The amount_switch of this TransactionLog.
+        :rtype: float
+        """
+        return self._amount_switch
+
+    @amount_switch.setter
+    def amount_switch(self, amount_switch):
+        """
+        Sets the amount_switch of this TransactionLog.
+
+        :param amount_switch: The amount_switch of this TransactionLog.
+        :type: float
+        """
+
+        self._amount_switch = amount_switch
 
     @property
     def payment_uuid(self):
@@ -292,132 +397,27 @@ class TransactionLog(object):
         self._license_lrn_uuid = license_lrn_uuid
 
     @property
-    def result(self):
+    def license_switch_uuid(self):
         """
-        Gets the result of this TransactionLog.
+        Gets the license_switch_uuid of this TransactionLog.
 
-        :return: The result of this TransactionLog.
+        :return: The license_switch_uuid of this TransactionLog.
         :rtype: str
         """
-        return self._result
+        return self._license_switch_uuid
 
-    @result.setter
-    def result(self, result):
+    @license_switch_uuid.setter
+    def license_switch_uuid(self, license_switch_uuid):
         """
-        Sets the result of this TransactionLog.
+        Sets the license_switch_uuid of this TransactionLog.
 
-        :param result: The result of this TransactionLog.
+        :param license_switch_uuid: The license_switch_uuid of this TransactionLog.
         :type: str
         """
+        if license_switch_uuid is not None and len(license_switch_uuid) > 36:
+            raise ValueError("Invalid value for `license_switch_uuid`, length must be less than or equal to `36`")
 
-        self._result = result
-
-    @property
-    def amount_lrn(self):
-        """
-        Gets the amount_lrn of this TransactionLog.
-
-        :return: The amount_lrn of this TransactionLog.
-        :rtype: float
-        """
-        return self._amount_lrn
-
-    @amount_lrn.setter
-    def amount_lrn(self, amount_lrn):
-        """
-        Sets the amount_lrn of this TransactionLog.
-
-        :param amount_lrn: The amount_lrn of this TransactionLog.
-        :type: float
-        """
-
-        self._amount_lrn = amount_lrn
-
-    @property
-    def amount_switch(self):
-        """
-        Gets the amount_switch of this TransactionLog.
-
-        :return: The amount_switch of this TransactionLog.
-        :rtype: float
-        """
-        return self._amount_switch
-
-    @amount_switch.setter
-    def amount_switch(self, amount_switch):
-        """
-        Sets the amount_switch of this TransactionLog.
-
-        :param amount_switch: The amount_switch of this TransactionLog.
-        :type: float
-        """
-
-        self._amount_switch = amount_switch
-
-    @property
-    def transaction_id(self):
-        """
-        Gets the transaction_id of this TransactionLog.
-
-        :return: The transaction_id of this TransactionLog.
-        :rtype: str
-        """
-        return self._transaction_id
-
-    @transaction_id.setter
-    def transaction_id(self, transaction_id):
-        """
-        Sets the transaction_id of this TransactionLog.
-
-        :param transaction_id: The transaction_id of this TransactionLog.
-        :type: str
-        """
-        if transaction_id is not None and len(transaction_id) > 255:
-            raise ValueError("Invalid value for `transaction_id`, length must be less than or equal to `255`")
-
-        self._transaction_id = transaction_id
-
-    @property
-    def transaction_src(self):
-        """
-        Gets the transaction_src of this TransactionLog.
-
-        :return: The transaction_src of this TransactionLog.
-        :rtype: object
-        """
-        return self._transaction_src
-
-    @transaction_src.setter
-    def transaction_src(self, transaction_src):
-        """
-        Sets the transaction_src of this TransactionLog.
-
-        :param transaction_src: The transaction_src of this TransactionLog.
-        :type: object
-        """
-
-        self._transaction_src = transaction_src
-
-    @property
-    def amount_total(self):
-        """
-        Gets the amount_total of this TransactionLog.
-
-        :return: The amount_total of this TransactionLog.
-        :rtype: float
-        """
-        return self._amount_total
-
-    @amount_total.setter
-    def amount_total(self, amount_total):
-        """
-        Sets the amount_total of this TransactionLog.
-
-        :param amount_total: The amount_total of this TransactionLog.
-        :type: float
-        """
-
-        self._amount_total = amount_total
+        self._license_switch_uuid = license_switch_uuid
 
     def to_dict(self):
         """

@@ -14,7 +14,7 @@ from falcon_rest import schemes, swagger, responses
 from falcon_rest.responses import errors,SuccessResponseObjectInfo,SuccessResponseObjectsList,\
     SuccessResponse,SuccessResponseJustOk,ValidationErrorResponse
 from falcon_rest.helpers import check_permission
-from falcon_rest.resources.base_resource import BaseResource,OperationalError
+from falcon_rest.resources.base_resource import BaseResource
 from falcon_rest.logger import log
 from falcon_rest.resources.resources import Create as _Create,Resource as _Resource,List as _List,\
     CustomAction as _CustomAction,CustomPatchAction as _CustomPatchAction,\
@@ -40,6 +40,11 @@ import uuid
 def generate_uuid_str():
     return lambda: str(uuid.uuid4())
 
+def OperationalError(e):
+    msg=str(e).split('\n')
+    if len(msg) > 3:
+      msg=msg[0:2]
+    return responses.OperationErrorResponse(data=responses.errors.Error(40,msg,e.__class__.__name__ ) )
 
 class SuccessResponseJustOk201(responses.SuccessResponseJustOk):
     status_code = 201

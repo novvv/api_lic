@@ -31,53 +31,32 @@ class AttributeNotExists(object):
                             and the value is json key in definition.
     """
     swagger_types = {
-        'attribute': 'str',
         'success': 'bool',
+        'attribute': 'str',
         'error_type': 'str'
     }
 
     attribute_map = {
-        'attribute': 'attribute',
         'success': 'success',
+        'attribute': 'attribute',
         'error_type': 'error_type'
     }
 
-    def __init__(self, attribute=None, success=False, error_type='attribute_not_exists'):
+    def __init__(self, success=False, attribute=None, error_type='attribute_not_exists'):
         """
         AttributeNotExists - a model defined in Swagger
         """
 
-        self._attribute = None
         self._success = None
+        self._attribute = None
         self._error_type = None
 
-        if attribute is not None:
-          self.attribute = attribute
         if success is not None:
           self.success = success
+        if attribute is not None:
+          self.attribute = attribute
         if error_type is not None:
           self.error_type = error_type
-
-    @property
-    def attribute(self):
-        """
-        Gets the attribute of this AttributeNotExists.
-
-        :return: The attribute of this AttributeNotExists.
-        :rtype: str
-        """
-        return self._attribute
-
-    @attribute.setter
-    def attribute(self, attribute):
-        """
-        Sets the attribute of this AttributeNotExists.
-
-        :param attribute: The attribute of this AttributeNotExists.
-        :type: str
-        """
-
-        self._attribute = attribute
 
     @property
     def success(self):
@@ -99,6 +78,27 @@ class AttributeNotExists(object):
         """
 
         self._success = success
+
+    @property
+    def attribute(self):
+        """
+        Gets the attribute of this AttributeNotExists.
+
+        :return: The attribute of this AttributeNotExists.
+        :rtype: str
+        """
+        return self._attribute
+
+    @attribute.setter
+    def attribute(self, attribute):
+        """
+        Sets the attribute of this AttributeNotExists.
+
+        :param attribute: The attribute of this AttributeNotExists.
+        :type: str
+        """
+
+        self._attribute = attribute
 
     @property
     def error_type(self):

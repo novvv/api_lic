@@ -33,34 +33,34 @@ class LicenseLrn(object):
     swagger_types = {
         'duration': 'str',
         'package_lrn_uuid': 'str',
-        'start_time': 'datetime',
-        'ip': 'str'
+        'ip': 'str',
+        'start_time': 'datetime'
     }
 
     attribute_map = {
         'duration': 'duration',
         'package_lrn_uuid': 'package_lrn_uuid',
-        'start_time': 'start_time',
-        'ip': 'ip'
+        'ip': 'ip',
+        'start_time': 'start_time'
     }
 
-    def __init__(self, duration='1 month', package_lrn_uuid=None, start_time=None, ip=None):
+    def __init__(self, duration='1 month', package_lrn_uuid=None, ip=None, start_time=None):
         """
         LicenseLrn - a model defined in Swagger
         """
 
         self._duration = None
         self._package_lrn_uuid = None
-        self._start_time = None
         self._ip = None
+        self._start_time = None
 
         if duration is not None:
           self.duration = duration
         if package_lrn_uuid is not None:
           self.package_lrn_uuid = package_lrn_uuid
+        self.ip = ip
         if start_time is not None:
           self.start_time = start_time
-        self.ip = ip
 
     @property
     def duration(self):
@@ -113,27 +113,6 @@ class LicenseLrn(object):
         self._package_lrn_uuid = package_lrn_uuid
 
     @property
-    def start_time(self):
-        """
-        Gets the start_time of this LicenseLrn.
-
-        :return: The start_time of this LicenseLrn.
-        :rtype: datetime
-        """
-        return self._start_time
-
-    @start_time.setter
-    def start_time(self, start_time):
-        """
-        Sets the start_time of this LicenseLrn.
-
-        :param start_time: The start_time of this LicenseLrn.
-        :type: datetime
-        """
-
-        self._start_time = start_time
-
-    @property
     def ip(self):
         """
         Gets the ip of this LicenseLrn.
@@ -157,6 +136,27 @@ class LicenseLrn(object):
             raise ValueError("Invalid value for `ip`, length must be less than or equal to `16`")
 
         self._ip = ip
+
+    @property
+    def start_time(self):
+        """
+        Gets the start_time of this LicenseLrn.
+
+        :return: The start_time of this LicenseLrn.
+        :rtype: datetime
+        """
+        return self._start_time
+
+    @start_time.setter
+    def start_time(self, start_time):
+        """
+        Sets the start_time of this LicenseLrn.
+
+        :param start_time: The start_time of this LicenseLrn.
+        :type: datetime
+        """
+
+        self._start_time = start_time
 
     def to_dict(self):
         """

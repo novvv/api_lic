@@ -25,7 +25,6 @@ from falcon_rest import schemes, resources, responses
 from falcon_rest.db.errors import IntegrityError, FkConstraintViolation, NoResultFound
 from falcon_rest.helpers import check_permission, get_request_ip
 from falcon_rest.logger import log
-from falcon_rest.resources.base_resource import OperationalError
 from falcon_rest.resources.resources import swagger, ResourcesBaseClass, ATTRIBUTE_ERROR_RE
 from falcon_rest.responses import errors
 # from .tasks import *
@@ -34,7 +33,7 @@ from api_lic import settings
 from .auth import DEFAULT_SECURITY
 from ..scheme import *
 from ..scheme import _valid
-from ..resources.resources import Create, Resource, List, CustomAction, CustomPostAction, CustomPatchAction
+from ..resources.resources import Create, Resource, List, CustomAction, CustomPostAction, CustomPatchAction,OperationalError
 from ..rbac.rbac_role import UserRole, AdminRole
 import paypalrestsdk
 import stripe
@@ -118,20 +117,21 @@ class PaymentCreate(Create):
                 raise ValidationError({'license_switch_uuid': ['no such LRN license uuid!']})
             if lic and lic.user_uuid != user.user_uuid:
                 raise ValidationError({'license_lrn_uuid': ['not owned by current user!']})
-            if lic.amount and (not obj.amount_lrn or obj.amount_lrn < lic.amount):
-                raise ValidationError({'amount_lrn': ['not valid. must be equal or more than package price {}'.format(lic.amount)]})
+            if lic.amount and (not obj.amount_lrn or obj.amount_lrn < lic.amount*lic.dur_months):
+                raise ValidationError({'amount_lrn': ['not valid. must be equal or more than package price {}'.format(lic.amount*lic.dur_months)]})
             hist = lic.add_history(obj.type)
             if hist:
                 obj.session().add(hist)
 
         if obj.license_switch_uuid:
             lic = model.LicenseSwitch.get(obj.license_switch_uuid)
+
             if not lic:
                 raise ValidationError({'license_switch_uuid': ['no such switch license uuid!']})
             if lic and lic.user_uuid != user.user_uuid:
                 raise ValidationError({'license_switch_uuid': ['not owned by current user!']})
-            if lic.amount and (not obj.amount_lrn or obj.amount_lrn < lic.amount):
-                raise ValidationError({'amount_swich': ['not valid. must be equal or more than package price {}'.format(lic.amount)]})
+            if lic.amount and (not obj.amount_switch or obj.amount_switch < lic.amount*lic.dur_months):
+                raise ValidationError({'amount_swich': ['not valid. must be equal or more than package price {}'.format(lic.amount*lic.dur_months)]})
             hist = lic.add_history(obj.type)
             if hist:
                 obj.session().add(hist)
@@ -495,6 +495,9 @@ class LicenseLrnRenewResource(CustomPatchAction):
     body_parameters = ()
 
     def apply(self, obj, req, resp, **kwargs):
+        lic = self.model_class.get(kwargs['license_lrn_uuid'])
+        if not lic:
+            raise ValidationError({'license_lrn_uuid': ['license_lrn_uuid not found']})
         obj.renew()
         obj.save()
         self.scheme_class.get_object_created_response()
@@ -580,6 +583,9 @@ class LicenseSwitchRenewResource(CustomPatchAction):
     restrict = ()
 
     def apply(self, obj, req, resp, **kwargs):
+        lic=self.model_class.get(kwargs['license_switch_uuid'])
+        if not lic:
+            raise ValidationError({'license_switch_uuid': ['license_switch_uuid not found']})
         obj.renew()
         obj.save()
         self.scheme_class.get_object_created_response()

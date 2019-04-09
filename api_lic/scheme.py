@@ -286,7 +286,7 @@ class ConfigPaymentScheme(BaseModelScheme):
     stripe_test_mode = Bool()
     paypal_email = Str(validate=[validate.Length(max=64)])
     paypal_skey = Str(validate=[validate.Length(max=128)])
-    paypal_pkey = Str(validate=[validate.Length(max=128)])
+    paypal_client_id = Str(validate=[validate.Length(max=128)])
     paypal_svc_charge = Float()
     paypal_test_mode = Bool()
     confirm_enabled = Bool()
@@ -296,19 +296,19 @@ class ConfigPaymentScheme(BaseModelScheme):
 
     class Meta:
         model = model.ConfigPayment
-        fields = ('charge_type', 'stripe_email', 'stripe_skey',
+        fields = ('charge_type', 'stripe_skey',
                   'stripe_pkey', 'stripe_svc_charge', 'stripe_test_mode',
-                  'paypal_email', 'paypal_skey', 'paypal_pkey', 'paypal_svc_charge', 'paypal_test_mode',
+                  'paypal_email', 'paypal_skey', 'paypal_client_id', 'paypal_svc_charge', 'paypal_test_mode',
                   'confirm_enabled', 'email_confirm_to', 'notification_enabled', 'email_cc_to',)
 
 
 class ConfigPaymentSchemeGet(ConfigPaymentScheme):
     class Meta:
         model = model.ConfigPayment
-        fields = ('charge_type', 'stripe_email',  # 'stripe_skey',
+        fields = ('charge_type', #'stripe_email',  'stripe_skey',
                   'stripe_pkey', 'stripe_svc_charge', 'stripe_test_mode',
                   'paypal_email',  # 'paypal_skey',
-                  'paypal_pkey', 'paypal_svc_charge', 'paypal_test_mode',
+                  'paypal_client_id', 'paypal_svc_charge', 'paypal_test_mode',
                   'confirm_enabled', 'email_confirm_to', 'notification_enabled', 'email_cc_to',)
 
 
@@ -563,7 +563,7 @@ class PackageSwitchScheme(BaseModelScheme):
 
     class Meta:
         model = model.PackageSwitch
-        fields = ('package_name', 'type', 'sub_type', 'switch_uuid', 'switch_port', 'minute_count', 'amount', 'enabled',
+        fields = ('package_name', 'type', 'sub_type', 'switch_port', 'minute_count', 'amount', 'enabled',
                   'start_date', 'expire_date')
 
 
@@ -704,6 +704,7 @@ class LicenseSwitchScheme(BaseModelScheme):
 
 
 class LicenseSwitchSchemeGet(LicenseSwitchScheme):
+    package = Nested('PackageSwitchSchemeGet', many=False)
     class Meta:
         model = model.LicenseSwitch
         fields = ('user_email', 'type', 'ip', 'switch_port', 'minute_count', 'amount', 'license_switch_uuid',

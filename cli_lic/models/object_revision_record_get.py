@@ -32,30 +32,30 @@ class ObjectRevisionRecordGet(object):
     """
     swagger_types = {
         'field_name': 'str',
-        'old_value': 'str',
-        'new_value': 'str'
+        'new_value': 'str',
+        'old_value': 'str'
     }
 
     attribute_map = {
         'field_name': 'field_name',
-        'old_value': 'old_value',
-        'new_value': 'new_value'
+        'new_value': 'new_value',
+        'old_value': 'old_value'
     }
 
-    def __init__(self, field_name=None, old_value=None, new_value=None):
+    def __init__(self, field_name=None, new_value=None, old_value=None):
         """
         ObjectRevisionRecordGet - a model defined in Swagger
         """
 
         self._field_name = None
-        self._old_value = None
         self._new_value = None
+        self._old_value = None
 
         self.field_name = field_name
-        if old_value is not None:
-          self.old_value = old_value
         if new_value is not None:
           self.new_value = new_value
+        if old_value is not None:
+          self.old_value = old_value
 
     @property
     def field_name(self):
@@ -83,27 +83,6 @@ class ObjectRevisionRecordGet(object):
         self._field_name = field_name
 
     @property
-    def old_value(self):
-        """
-        Gets the old_value of this ObjectRevisionRecordGet.
-
-        :return: The old_value of this ObjectRevisionRecordGet.
-        :rtype: str
-        """
-        return self._old_value
-
-    @old_value.setter
-    def old_value(self, old_value):
-        """
-        Sets the old_value of this ObjectRevisionRecordGet.
-
-        :param old_value: The old_value of this ObjectRevisionRecordGet.
-        :type: str
-        """
-
-        self._old_value = old_value
-
-    @property
     def new_value(self):
         """
         Gets the new_value of this ObjectRevisionRecordGet.
@@ -123,6 +102,27 @@ class ObjectRevisionRecordGet(object):
         """
 
         self._new_value = new_value
+
+    @property
+    def old_value(self):
+        """
+        Gets the old_value of this ObjectRevisionRecordGet.
+
+        :return: The old_value of this ObjectRevisionRecordGet.
+        :rtype: str
+        """
+        return self._old_value
+
+    @old_value.setter
+    def old_value(self, old_value):
+        """
+        Sets the old_value of this ObjectRevisionRecordGet.
+
+        :param old_value: The old_value of this ObjectRevisionRecordGet.
+        :type: str
+        """
+
+        self._old_value = old_value
 
     def to_dict(self):
         """

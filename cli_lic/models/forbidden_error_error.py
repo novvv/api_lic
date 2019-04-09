@@ -31,53 +31,32 @@ class ForbiddenErrorError(object):
                             and the value is json key in definition.
     """
     swagger_types = {
-        'message': 'str',
         'code': 'int',
+        'message': 'str',
         'reason': 'str'
     }
 
     attribute_map = {
-        'message': 'message',
         'code': 'code',
+        'message': 'message',
         'reason': 'reason'
     }
 
-    def __init__(self, message=None, code=None, reason=None):
+    def __init__(self, code=None, message=None, reason=None):
         """
         ForbiddenErrorError - a model defined in Swagger
         """
 
-        self._message = None
         self._code = None
+        self._message = None
         self._reason = None
 
-        if message is not None:
-          self.message = message
         if code is not None:
           self.code = code
+        if message is not None:
+          self.message = message
         if reason is not None:
           self.reason = reason
-
-    @property
-    def message(self):
-        """
-        Gets the message of this ForbiddenErrorError.
-
-        :return: The message of this ForbiddenErrorError.
-        :rtype: str
-        """
-        return self._message
-
-    @message.setter
-    def message(self, message):
-        """
-        Sets the message of this ForbiddenErrorError.
-
-        :param message: The message of this ForbiddenErrorError.
-        :type: str
-        """
-
-        self._message = message
 
     @property
     def code(self):
@@ -99,6 +78,27 @@ class ForbiddenErrorError(object):
         """
 
         self._code = code
+
+    @property
+    def message(self):
+        """
+        Gets the message of this ForbiddenErrorError.
+
+        :return: The message of this ForbiddenErrorError.
+        :rtype: str
+        """
+        return self._message
+
+    @message.setter
+    def message(self, message):
+        """
+        Sets the message of this ForbiddenErrorError.
+
+        :param message: The message of this ForbiddenErrorError.
+        :type: str
+        """
+
+        self._message = message
 
     @property
     def reason(self):
