@@ -727,5 +727,12 @@ class LicenseSwitchSchemeModify(LicenseSwitchScheme):
 
 # ---LicenseSwitch---
 
+class LicenseScheme(Schema):
+    license_lrn = Nested(LicenseLrnScheme)
+    license_switch = Nested(LicenseSwitchScheme)
+
+class LicenseResponseScheme(Schema):
+    license_lrn_uuid = Str()
+    license_switch_uuid = Str()
 
 ### end ###

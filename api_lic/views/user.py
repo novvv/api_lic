@@ -26,7 +26,7 @@ from falcon_rest.db.errors import IntegrityError, FkConstraintViolation, NoResul
 from falcon_rest.helpers import check_permission, get_request_ip
 from falcon_rest.logger import log
 from falcon_rest.resources.resources import swagger, ResourcesBaseClass, ATTRIBUTE_ERROR_RE
-from falcon_rest.responses import errors
+from falcon_rest.responses import errors,SuccessResponseObjectInfo
 # from .tasks import *
 from api_lic import model
 from api_lic import settings
@@ -441,6 +441,40 @@ class StripeWebhook(CustomPostAction):
             return False
         return True
 
+#Multi license create
+class LicenseCreate(CustomPostAction):
+    scheme_class = LicenseScheme
+    scheme_class_get = LicenseResponseScheme
+    model_class = model.LicenseLrn
+    entity = 'LicenseLrn_LicenseSwitch'
+    path_parameters = ()
+    security = (DEFAULT_SECURITY)
+    restrict = ()
+    body_parameters = ('Create both LRN and swith licenses',scheme_class,)
+    additional_responses = (SuccessResponseObjectInfo(payload_scheme=scheme_class_get),)
+
+    def apply(self, obj, req, resp, **kwargs):
+        license_lrn_uuid = None
+        license_switch_uuid = None
+        errors=self.scheme_class().validate(req.data)
+        if errors:
+            raise ValidationError(errors)
+        if 'license_lrn' in req.data:
+            req_data=req.data['license_lrn']
+            scheme=LicenseLrnScheme().load(req_data)
+            license_lrn_uuid =scheme.data.save()
+        try:
+            if 'license_switch' in req.data:
+                req_data=req.data['license_switch']
+                scheme=LicenseSwitchScheme().load(req_data)
+                license_switch_uuid = scheme.data.save()
+        except Exception as e:
+            if license_lrn_uuid:
+                model.LicenseLrn.get(license_lrn_uuid).delete()
+            raise e
+        data=dict(license_lrn_uuid=license_lrn_uuid,license_switch_uuid=license_switch_uuid)
+        self.set_response(resp,SuccessResponseObjectInfo(payload_scheme=self.scheme_class_get,data=data))
+        pass
 
 # +++LicenseLrn+++
 class LicenseLrnCreate(Create):

@@ -31,81 +31,58 @@ class Notification(object):
                             and the value is json key in definition.
     """
     swagger_types = {
-        'subject': 'str',
-        'created_on': 'datetime',
+        'content': 'str',
         'user_uuid': 'str',
-        'content': 'str'
+        'created_on': 'datetime',
+        'subject': 'str'
     }
 
     attribute_map = {
-        'subject': 'subject',
-        'created_on': 'created_on',
+        'content': 'content',
         'user_uuid': 'user_uuid',
-        'content': 'content'
+        'created_on': 'created_on',
+        'subject': 'subject'
     }
 
-    def __init__(self, subject=None, created_on=None, user_uuid=None, content=None):
+    def __init__(self, content=None, user_uuid=None, created_on=None, subject=None):
         """
         Notification - a model defined in Swagger
         """
 
-        self._subject = None
-        self._created_on = None
-        self._user_uuid = None
         self._content = None
+        self._user_uuid = None
+        self._created_on = None
+        self._subject = None
 
-        if subject is not None:
-          self.subject = subject
-        if created_on is not None:
-          self.created_on = created_on
-        if user_uuid is not None:
-          self.user_uuid = user_uuid
         if content is not None:
           self.content = content
+        if user_uuid is not None:
+          self.user_uuid = user_uuid
+        if created_on is not None:
+          self.created_on = created_on
+        if subject is not None:
+          self.subject = subject
 
     @property
-    def subject(self):
+    def content(self):
         """
-        Gets the subject of this Notification.
+        Gets the content of this Notification.
 
-        :return: The subject of this Notification.
+        :return: The content of this Notification.
         :rtype: str
         """
-        return self._subject
+        return self._content
 
-    @subject.setter
-    def subject(self, subject):
+    @content.setter
+    def content(self, content):
         """
-        Sets the subject of this Notification.
+        Sets the content of this Notification.
 
-        :param subject: The subject of this Notification.
+        :param content: The content of this Notification.
         :type: str
         """
-        if subject is not None and len(subject) > 64:
-            raise ValueError("Invalid value for `subject`, length must be less than or equal to `64`")
 
-        self._subject = subject
-
-    @property
-    def created_on(self):
-        """
-        Gets the created_on of this Notification.
-
-        :return: The created_on of this Notification.
-        :rtype: datetime
-        """
-        return self._created_on
-
-    @created_on.setter
-    def created_on(self, created_on):
-        """
-        Sets the created_on of this Notification.
-
-        :param created_on: The created_on of this Notification.
-        :type: datetime
-        """
-
-        self._created_on = created_on
+        self._content = content
 
     @property
     def user_uuid(self):
@@ -131,25 +108,48 @@ class Notification(object):
         self._user_uuid = user_uuid
 
     @property
-    def content(self):
+    def created_on(self):
         """
-        Gets the content of this Notification.
+        Gets the created_on of this Notification.
 
-        :return: The content of this Notification.
+        :return: The created_on of this Notification.
+        :rtype: datetime
+        """
+        return self._created_on
+
+    @created_on.setter
+    def created_on(self, created_on):
+        """
+        Sets the created_on of this Notification.
+
+        :param created_on: The created_on of this Notification.
+        :type: datetime
+        """
+
+        self._created_on = created_on
+
+    @property
+    def subject(self):
+        """
+        Gets the subject of this Notification.
+
+        :return: The subject of this Notification.
         :rtype: str
         """
-        return self._content
+        return self._subject
 
-    @content.setter
-    def content(self, content):
+    @subject.setter
+    def subject(self, subject):
         """
-        Sets the content of this Notification.
+        Sets the subject of this Notification.
 
-        :param content: The content of this Notification.
+        :param subject: The subject of this Notification.
         :type: str
         """
+        if subject is not None and len(subject) > 64:
+            raise ValueError("Invalid value for `subject`, length must be less than or equal to `64`")
 
-        self._content = content
+        self._subject = subject
 
     def to_dict(self):
         """

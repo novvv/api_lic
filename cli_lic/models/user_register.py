@@ -32,33 +32,33 @@ class UserRegister(object):
     """
     swagger_types = {
         'last_name': 'str',
-        'email': 'str',
         'passwd': 'str',
+        'email': 'str',
         'first_name': 'str'
     }
 
     attribute_map = {
         'last_name': 'last_name',
-        'email': 'email',
         'passwd': 'passwd',
+        'email': 'email',
         'first_name': 'first_name'
     }
 
-    def __init__(self, last_name=None, email=None, passwd=None, first_name=None):
+    def __init__(self, last_name=None, passwd=None, email=None, first_name=None):
         """
         UserRegister - a model defined in Swagger
         """
 
         self._last_name = None
-        self._email = None
         self._passwd = None
+        self._email = None
         self._first_name = None
 
         if last_name is not None:
           self.last_name = last_name
-        self.email = email
         if passwd is not None:
           self.passwd = passwd
+        self.email = email
         if first_name is not None:
           self.first_name = first_name
 
@@ -86,6 +86,27 @@ class UserRegister(object):
         self._last_name = last_name
 
     @property
+    def passwd(self):
+        """
+        Gets the passwd of this UserRegister.
+
+        :return: The passwd of this UserRegister.
+        :rtype: str
+        """
+        return self._passwd
+
+    @passwd.setter
+    def passwd(self, passwd):
+        """
+        Sets the passwd of this UserRegister.
+
+        :param passwd: The passwd of this UserRegister.
+        :type: str
+        """
+
+        self._passwd = passwd
+
+    @property
     def email(self):
         """
         Gets the email of this UserRegister.
@@ -107,27 +128,6 @@ class UserRegister(object):
             raise ValueError("Invalid value for `email`, must not be `None`")
 
         self._email = email
-
-    @property
-    def passwd(self):
-        """
-        Gets the passwd of this UserRegister.
-
-        :return: The passwd of this UserRegister.
-        :rtype: str
-        """
-        return self._passwd
-
-    @passwd.setter
-    def passwd(self, passwd):
-        """
-        Sets the passwd of this UserRegister.
-
-        :param passwd: The passwd of this UserRegister.
-        :type: str
-        """
-
-        self._passwd = passwd
 
     @property
     def first_name(self):

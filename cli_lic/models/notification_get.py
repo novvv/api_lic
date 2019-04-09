@@ -31,37 +31,58 @@ class NotificationGet(object):
                             and the value is json key in definition.
     """
     swagger_types = {
+        'content': 'str',
         'notification_uuid': 'str',
-        'subject': 'str',
         'user_uuid': 'str',
-        'content': 'str'
+        'subject': 'str'
     }
 
     attribute_map = {
+        'content': 'content',
         'notification_uuid': 'notification_uuid',
-        'subject': 'subject',
         'user_uuid': 'user_uuid',
-        'content': 'content'
+        'subject': 'subject'
     }
 
-    def __init__(self, notification_uuid=None, subject=None, user_uuid=None, content=None):
+    def __init__(self, content=None, notification_uuid=None, user_uuid=None, subject=None):
         """
         NotificationGet - a model defined in Swagger
         """
 
-        self._notification_uuid = None
-        self._subject = None
-        self._user_uuid = None
         self._content = None
+        self._notification_uuid = None
+        self._user_uuid = None
+        self._subject = None
 
-        if notification_uuid is not None:
-          self.notification_uuid = notification_uuid
-        if subject is not None:
-          self.subject = subject
-        if user_uuid is not None:
-          self.user_uuid = user_uuid
         if content is not None:
           self.content = content
+        if notification_uuid is not None:
+          self.notification_uuid = notification_uuid
+        if user_uuid is not None:
+          self.user_uuid = user_uuid
+        if subject is not None:
+          self.subject = subject
+
+    @property
+    def content(self):
+        """
+        Gets the content of this NotificationGet.
+
+        :return: The content of this NotificationGet.
+        :rtype: str
+        """
+        return self._content
+
+    @content.setter
+    def content(self, content):
+        """
+        Sets the content of this NotificationGet.
+
+        :param content: The content of this NotificationGet.
+        :type: str
+        """
+
+        self._content = content
 
     @property
     def notification_uuid(self):
@@ -87,29 +108,6 @@ class NotificationGet(object):
         self._notification_uuid = notification_uuid
 
     @property
-    def subject(self):
-        """
-        Gets the subject of this NotificationGet.
-
-        :return: The subject of this NotificationGet.
-        :rtype: str
-        """
-        return self._subject
-
-    @subject.setter
-    def subject(self, subject):
-        """
-        Sets the subject of this NotificationGet.
-
-        :param subject: The subject of this NotificationGet.
-        :type: str
-        """
-        if subject is not None and len(subject) > 64:
-            raise ValueError("Invalid value for `subject`, length must be less than or equal to `64`")
-
-        self._subject = subject
-
-    @property
     def user_uuid(self):
         """
         Gets the user_uuid of this NotificationGet.
@@ -133,25 +131,27 @@ class NotificationGet(object):
         self._user_uuid = user_uuid
 
     @property
-    def content(self):
+    def subject(self):
         """
-        Gets the content of this NotificationGet.
+        Gets the subject of this NotificationGet.
 
-        :return: The content of this NotificationGet.
+        :return: The subject of this NotificationGet.
         :rtype: str
         """
-        return self._content
+        return self._subject
 
-    @content.setter
-    def content(self, content):
+    @subject.setter
+    def subject(self, subject):
         """
-        Sets the content of this NotificationGet.
+        Sets the subject of this NotificationGet.
 
-        :param content: The content of this NotificationGet.
+        :param subject: The subject of this NotificationGet.
         :type: str
         """
+        if subject is not None and len(subject) > 64:
+            raise ValueError("Invalid value for `subject`, length must be less than or equal to `64`")
 
-        self._content = content
+        self._subject = subject
 
     def to_dict(self):
         """

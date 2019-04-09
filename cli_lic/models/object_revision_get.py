@@ -31,58 +31,171 @@ class ObjectRevisionGet(object):
                             and the value is json key in definition.
     """
     swagger_types = {
-        'action': 'str',
-        'id': 'int',
         'changes': 'list[ObjectRevisionRecordGet]',
+        'restored_from_revision_id': 'int',
+        'user_id': 'int',
+        'revision_number': 'int',
+        'entity_name': 'str',
+        'action': 'str',
         'entity_pk': 'str',
         'revision_time': 'datetime',
-        'restored_from_revision_id': 'int',
-        'entity_name': 'str',
-        'user_id': 'int',
-        'revision_number': 'int'
+        'id': 'int'
     }
 
     attribute_map = {
-        'action': 'action',
-        'id': 'id',
         'changes': 'changes',
+        'restored_from_revision_id': 'restored_from_revision_id',
+        'user_id': 'user_id',
+        'revision_number': 'revision_number',
+        'entity_name': 'entity_name',
+        'action': 'action',
         'entity_pk': 'entity_pk',
         'revision_time': 'revision_time',
-        'restored_from_revision_id': 'restored_from_revision_id',
-        'entity_name': 'entity_name',
-        'user_id': 'user_id',
-        'revision_number': 'revision_number'
+        'id': 'id'
     }
 
-    def __init__(self, action=None, id=None, changes=None, entity_pk=None, revision_time=None, restored_from_revision_id=None, entity_name=None, user_id=None, revision_number=None):
+    def __init__(self, changes=None, restored_from_revision_id=None, user_id=None, revision_number=None, entity_name=None, action=None, entity_pk=None, revision_time=None, id=None):
         """
         ObjectRevisionGet - a model defined in Swagger
         """
 
-        self._action = None
-        self._id = None
         self._changes = None
-        self._entity_pk = None
-        self._revision_time = None
         self._restored_from_revision_id = None
-        self._entity_name = None
         self._user_id = None
         self._revision_number = None
+        self._entity_name = None
+        self._action = None
+        self._entity_pk = None
+        self._revision_time = None
+        self._id = None
 
-        if action is not None:
-          self.action = action
-        if id is not None:
-          self.id = id
         if changes is not None:
           self.changes = changes
+        if restored_from_revision_id is not None:
+          self.restored_from_revision_id = restored_from_revision_id
+        self.user_id = user_id
+        self.revision_number = revision_number
+        self.entity_name = entity_name
+        if action is not None:
+          self.action = action
         self.entity_pk = entity_pk
         if revision_time is not None:
           self.revision_time = revision_time
-        if restored_from_revision_id is not None:
-          self.restored_from_revision_id = restored_from_revision_id
-        self.entity_name = entity_name
-        self.user_id = user_id
-        self.revision_number = revision_number
+        if id is not None:
+          self.id = id
+
+    @property
+    def changes(self):
+        """
+        Gets the changes of this ObjectRevisionGet.
+
+        :return: The changes of this ObjectRevisionGet.
+        :rtype: list[ObjectRevisionRecordGet]
+        """
+        return self._changes
+
+    @changes.setter
+    def changes(self, changes):
+        """
+        Sets the changes of this ObjectRevisionGet.
+
+        :param changes: The changes of this ObjectRevisionGet.
+        :type: list[ObjectRevisionRecordGet]
+        """
+
+        self._changes = changes
+
+    @property
+    def restored_from_revision_id(self):
+        """
+        Gets the restored_from_revision_id of this ObjectRevisionGet.
+
+        :return: The restored_from_revision_id of this ObjectRevisionGet.
+        :rtype: int
+        """
+        return self._restored_from_revision_id
+
+    @restored_from_revision_id.setter
+    def restored_from_revision_id(self, restored_from_revision_id):
+        """
+        Sets the restored_from_revision_id of this ObjectRevisionGet.
+
+        :param restored_from_revision_id: The restored_from_revision_id of this ObjectRevisionGet.
+        :type: int
+        """
+
+        self._restored_from_revision_id = restored_from_revision_id
+
+    @property
+    def user_id(self):
+        """
+        Gets the user_id of this ObjectRevisionGet.
+
+        :return: The user_id of this ObjectRevisionGet.
+        :rtype: int
+        """
+        return self._user_id
+
+    @user_id.setter
+    def user_id(self, user_id):
+        """
+        Sets the user_id of this ObjectRevisionGet.
+
+        :param user_id: The user_id of this ObjectRevisionGet.
+        :type: int
+        """
+        if user_id is None:
+            raise ValueError("Invalid value for `user_id`, must not be `None`")
+
+        self._user_id = user_id
+
+    @property
+    def revision_number(self):
+        """
+        Gets the revision_number of this ObjectRevisionGet.
+
+        :return: The revision_number of this ObjectRevisionGet.
+        :rtype: int
+        """
+        return self._revision_number
+
+    @revision_number.setter
+    def revision_number(self, revision_number):
+        """
+        Sets the revision_number of this ObjectRevisionGet.
+
+        :param revision_number: The revision_number of this ObjectRevisionGet.
+        :type: int
+        """
+        if revision_number is None:
+            raise ValueError("Invalid value for `revision_number`, must not be `None`")
+
+        self._revision_number = revision_number
+
+    @property
+    def entity_name(self):
+        """
+        Gets the entity_name of this ObjectRevisionGet.
+
+        :return: The entity_name of this ObjectRevisionGet.
+        :rtype: str
+        """
+        return self._entity_name
+
+    @entity_name.setter
+    def entity_name(self, entity_name):
+        """
+        Sets the entity_name of this ObjectRevisionGet.
+
+        :param entity_name: The entity_name of this ObjectRevisionGet.
+        :type: str
+        """
+        if entity_name is None:
+            raise ValueError("Invalid value for `entity_name`, must not be `None`")
+        if entity_name is not None and len(entity_name) > 64:
+            raise ValueError("Invalid value for `entity_name`, length must be less than or equal to `64`")
+
+        self._entity_name = entity_name
 
     @property
     def action(self):
@@ -110,48 +223,6 @@ class ObjectRevisionGet(object):
             )
 
         self._action = action
-
-    @property
-    def id(self):
-        """
-        Gets the id of this ObjectRevisionGet.
-
-        :return: The id of this ObjectRevisionGet.
-        :rtype: int
-        """
-        return self._id
-
-    @id.setter
-    def id(self, id):
-        """
-        Sets the id of this ObjectRevisionGet.
-
-        :param id: The id of this ObjectRevisionGet.
-        :type: int
-        """
-
-        self._id = id
-
-    @property
-    def changes(self):
-        """
-        Gets the changes of this ObjectRevisionGet.
-
-        :return: The changes of this ObjectRevisionGet.
-        :rtype: list[ObjectRevisionRecordGet]
-        """
-        return self._changes
-
-    @changes.setter
-    def changes(self, changes):
-        """
-        Sets the changes of this ObjectRevisionGet.
-
-        :param changes: The changes of this ObjectRevisionGet.
-        :type: list[ObjectRevisionRecordGet]
-        """
-
-        self._changes = changes
 
     @property
     def entity_pk(self):
@@ -200,96 +271,25 @@ class ObjectRevisionGet(object):
         self._revision_time = revision_time
 
     @property
-    def restored_from_revision_id(self):
+    def id(self):
         """
-        Gets the restored_from_revision_id of this ObjectRevisionGet.
+        Gets the id of this ObjectRevisionGet.
 
-        :return: The restored_from_revision_id of this ObjectRevisionGet.
+        :return: The id of this ObjectRevisionGet.
         :rtype: int
         """
-        return self._restored_from_revision_id
+        return self._id
 
-    @restored_from_revision_id.setter
-    def restored_from_revision_id(self, restored_from_revision_id):
+    @id.setter
+    def id(self, id):
         """
-        Sets the restored_from_revision_id of this ObjectRevisionGet.
+        Sets the id of this ObjectRevisionGet.
 
-        :param restored_from_revision_id: The restored_from_revision_id of this ObjectRevisionGet.
+        :param id: The id of this ObjectRevisionGet.
         :type: int
         """
 
-        self._restored_from_revision_id = restored_from_revision_id
-
-    @property
-    def entity_name(self):
-        """
-        Gets the entity_name of this ObjectRevisionGet.
-
-        :return: The entity_name of this ObjectRevisionGet.
-        :rtype: str
-        """
-        return self._entity_name
-
-    @entity_name.setter
-    def entity_name(self, entity_name):
-        """
-        Sets the entity_name of this ObjectRevisionGet.
-
-        :param entity_name: The entity_name of this ObjectRevisionGet.
-        :type: str
-        """
-        if entity_name is None:
-            raise ValueError("Invalid value for `entity_name`, must not be `None`")
-        if entity_name is not None and len(entity_name) > 64:
-            raise ValueError("Invalid value for `entity_name`, length must be less than or equal to `64`")
-
-        self._entity_name = entity_name
-
-    @property
-    def user_id(self):
-        """
-        Gets the user_id of this ObjectRevisionGet.
-
-        :return: The user_id of this ObjectRevisionGet.
-        :rtype: int
-        """
-        return self._user_id
-
-    @user_id.setter
-    def user_id(self, user_id):
-        """
-        Sets the user_id of this ObjectRevisionGet.
-
-        :param user_id: The user_id of this ObjectRevisionGet.
-        :type: int
-        """
-        if user_id is None:
-            raise ValueError("Invalid value for `user_id`, must not be `None`")
-
-        self._user_id = user_id
-
-    @property
-    def revision_number(self):
-        """
-        Gets the revision_number of this ObjectRevisionGet.
-
-        :return: The revision_number of this ObjectRevisionGet.
-        :rtype: int
-        """
-        return self._revision_number
-
-    @revision_number.setter
-    def revision_number(self, revision_number):
-        """
-        Sets the revision_number of this ObjectRevisionGet.
-
-        :param revision_number: The revision_number of this ObjectRevisionGet.
-        :type: int
-        """
-        if revision_number is None:
-            raise ValueError("Invalid value for `revision_number`, must not be `None`")
-
-        self._revision_number = revision_number
+        self._id = id
 
     def to_dict(self):
         """

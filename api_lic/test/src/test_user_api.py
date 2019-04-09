@@ -95,6 +95,14 @@ class TestUserApi(unittest.TestCase):
         """
         pass
 
+    def test_license_post(self):
+        """
+        Test case for license_post
+
+        
+        """
+        pass
+
     def test_license_switch_license_switch_uuid_delete(self):
         """
         Test case for license_switch_license_switch_uuid_delete

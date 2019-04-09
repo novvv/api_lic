@@ -31,68 +31,41 @@ class LicenseSwitch(object):
                             and the value is json key in definition.
     """
     swagger_types = {
-        'duration': 'str',
         'start_time': 'datetime',
+        'package_switch_uuid': 'str',
         'ip': 'str',
         'switch_uuid': 'str',
-        'package_switch_uuid': 'str'
+        'duration': 'str'
     }
 
     attribute_map = {
-        'duration': 'duration',
         'start_time': 'start_time',
+        'package_switch_uuid': 'package_switch_uuid',
         'ip': 'ip',
         'switch_uuid': 'switch_uuid',
-        'package_switch_uuid': 'package_switch_uuid'
+        'duration': 'duration'
     }
 
-    def __init__(self, duration='1 month', start_time=None, ip=None, switch_uuid=None, package_switch_uuid=None):
+    def __init__(self, start_time=None, package_switch_uuid=None, ip=None, switch_uuid=None, duration='1 month'):
         """
         LicenseSwitch - a model defined in Swagger
         """
 
-        self._duration = None
         self._start_time = None
+        self._package_switch_uuid = None
         self._ip = None
         self._switch_uuid = None
-        self._package_switch_uuid = None
+        self._duration = None
 
-        if duration is not None:
-          self.duration = duration
         if start_time is not None:
           self.start_time = start_time
+        if package_switch_uuid is not None:
+          self.package_switch_uuid = package_switch_uuid
         self.ip = ip
         if switch_uuid is not None:
           self.switch_uuid = switch_uuid
-        if package_switch_uuid is not None:
-          self.package_switch_uuid = package_switch_uuid
-
-    @property
-    def duration(self):
-        """
-        Gets the duration of this LicenseSwitch.
-
-        :return: The duration of this LicenseSwitch.
-        :rtype: str
-        """
-        return self._duration
-
-    @duration.setter
-    def duration(self, duration):
-        """
-        Sets the duration of this LicenseSwitch.
-
-        :param duration: The duration of this LicenseSwitch.
-        :type: str
-        """
-        allowed_values = ["1 month", "3 months", "12 months", "6 months"]
-        if duration not in allowed_values:
-            raise ValueError(
-                "Invalid value for `duration` ({0}), must be one of {1}"
-                .format(duration, allowed_values)
-            )
-
-        self._duration = duration
+        if duration is not None:
+          self.duration = duration
 
     @property
     def start_time(self):
@@ -114,6 +87,29 @@ class LicenseSwitch(object):
         """
 
         self._start_time = start_time
+
+    @property
+    def package_switch_uuid(self):
+        """
+        Gets the package_switch_uuid of this LicenseSwitch.
+
+        :return: The package_switch_uuid of this LicenseSwitch.
+        :rtype: str
+        """
+        return self._package_switch_uuid
+
+    @package_switch_uuid.setter
+    def package_switch_uuid(self, package_switch_uuid):
+        """
+        Sets the package_switch_uuid of this LicenseSwitch.
+
+        :param package_switch_uuid: The package_switch_uuid of this LicenseSwitch.
+        :type: str
+        """
+        if package_switch_uuid is not None and len(package_switch_uuid) > 36:
+            raise ValueError("Invalid value for `package_switch_uuid`, length must be less than or equal to `36`")
+
+        self._package_switch_uuid = package_switch_uuid
 
     @property
     def ip(self):
@@ -164,27 +160,31 @@ class LicenseSwitch(object):
         self._switch_uuid = switch_uuid
 
     @property
-    def package_switch_uuid(self):
+    def duration(self):
         """
-        Gets the package_switch_uuid of this LicenseSwitch.
+        Gets the duration of this LicenseSwitch.
 
-        :return: The package_switch_uuid of this LicenseSwitch.
+        :return: The duration of this LicenseSwitch.
         :rtype: str
         """
-        return self._package_switch_uuid
+        return self._duration
 
-    @package_switch_uuid.setter
-    def package_switch_uuid(self, package_switch_uuid):
+    @duration.setter
+    def duration(self, duration):
         """
-        Sets the package_switch_uuid of this LicenseSwitch.
+        Sets the duration of this LicenseSwitch.
 
-        :param package_switch_uuid: The package_switch_uuid of this LicenseSwitch.
+        :param duration: The duration of this LicenseSwitch.
         :type: str
         """
-        if package_switch_uuid is not None and len(package_switch_uuid) > 36:
-            raise ValueError("Invalid value for `package_switch_uuid`, length must be less than or equal to `36`")
+        allowed_values = ["1 month", "3 months", "12 months", "6 months"]
+        if duration not in allowed_values:
+            raise ValueError(
+                "Invalid value for `duration` ({0}), must be one of {1}"
+                .format(duration, allowed_values)
+            )
 
-        self._package_switch_uuid = package_switch_uuid
+        self._duration = duration
 
     def to_dict(self):
         """

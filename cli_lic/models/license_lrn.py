@@ -31,86 +31,57 @@ class LicenseLrn(object):
                             and the value is json key in definition.
     """
     swagger_types = {
-        'duration': 'str',
-        'package_lrn_uuid': 'str',
+        'start_time': 'datetime',
         'ip': 'str',
-        'start_time': 'datetime'
+        'package_lrn_uuid': 'str',
+        'duration': 'str'
     }
 
     attribute_map = {
-        'duration': 'duration',
-        'package_lrn_uuid': 'package_lrn_uuid',
+        'start_time': 'start_time',
         'ip': 'ip',
-        'start_time': 'start_time'
+        'package_lrn_uuid': 'package_lrn_uuid',
+        'duration': 'duration'
     }
 
-    def __init__(self, duration='1 month', package_lrn_uuid=None, ip=None, start_time=None):
+    def __init__(self, start_time=None, ip=None, package_lrn_uuid=None, duration='1 month'):
         """
         LicenseLrn - a model defined in Swagger
         """
 
-        self._duration = None
-        self._package_lrn_uuid = None
-        self._ip = None
         self._start_time = None
+        self._ip = None
+        self._package_lrn_uuid = None
+        self._duration = None
 
-        if duration is not None:
-          self.duration = duration
-        if package_lrn_uuid is not None:
-          self.package_lrn_uuid = package_lrn_uuid
-        self.ip = ip
         if start_time is not None:
           self.start_time = start_time
+        self.ip = ip
+        if package_lrn_uuid is not None:
+          self.package_lrn_uuid = package_lrn_uuid
+        if duration is not None:
+          self.duration = duration
 
     @property
-    def duration(self):
+    def start_time(self):
         """
-        Gets the duration of this LicenseLrn.
+        Gets the start_time of this LicenseLrn.
 
-        :return: The duration of this LicenseLrn.
-        :rtype: str
+        :return: The start_time of this LicenseLrn.
+        :rtype: datetime
         """
-        return self._duration
+        return self._start_time
 
-    @duration.setter
-    def duration(self, duration):
+    @start_time.setter
+    def start_time(self, start_time):
         """
-        Sets the duration of this LicenseLrn.
+        Sets the start_time of this LicenseLrn.
 
-        :param duration: The duration of this LicenseLrn.
-        :type: str
+        :param start_time: The start_time of this LicenseLrn.
+        :type: datetime
         """
-        allowed_values = ["1 month", "3 months", "12 months", "6 months"]
-        if duration not in allowed_values:
-            raise ValueError(
-                "Invalid value for `duration` ({0}), must be one of {1}"
-                .format(duration, allowed_values)
-            )
 
-        self._duration = duration
-
-    @property
-    def package_lrn_uuid(self):
-        """
-        Gets the package_lrn_uuid of this LicenseLrn.
-
-        :return: The package_lrn_uuid of this LicenseLrn.
-        :rtype: str
-        """
-        return self._package_lrn_uuid
-
-    @package_lrn_uuid.setter
-    def package_lrn_uuid(self, package_lrn_uuid):
-        """
-        Sets the package_lrn_uuid of this LicenseLrn.
-
-        :param package_lrn_uuid: The package_lrn_uuid of this LicenseLrn.
-        :type: str
-        """
-        if package_lrn_uuid is not None and len(package_lrn_uuid) > 36:
-            raise ValueError("Invalid value for `package_lrn_uuid`, length must be less than or equal to `36`")
-
-        self._package_lrn_uuid = package_lrn_uuid
+        self._start_time = start_time
 
     @property
     def ip(self):
@@ -138,25 +109,54 @@ class LicenseLrn(object):
         self._ip = ip
 
     @property
-    def start_time(self):
+    def package_lrn_uuid(self):
         """
-        Gets the start_time of this LicenseLrn.
+        Gets the package_lrn_uuid of this LicenseLrn.
 
-        :return: The start_time of this LicenseLrn.
-        :rtype: datetime
+        :return: The package_lrn_uuid of this LicenseLrn.
+        :rtype: str
         """
-        return self._start_time
+        return self._package_lrn_uuid
 
-    @start_time.setter
-    def start_time(self, start_time):
+    @package_lrn_uuid.setter
+    def package_lrn_uuid(self, package_lrn_uuid):
         """
-        Sets the start_time of this LicenseLrn.
+        Sets the package_lrn_uuid of this LicenseLrn.
 
-        :param start_time: The start_time of this LicenseLrn.
-        :type: datetime
+        :param package_lrn_uuid: The package_lrn_uuid of this LicenseLrn.
+        :type: str
         """
+        if package_lrn_uuid is not None and len(package_lrn_uuid) > 36:
+            raise ValueError("Invalid value for `package_lrn_uuid`, length must be less than or equal to `36`")
 
-        self._start_time = start_time
+        self._package_lrn_uuid = package_lrn_uuid
+
+    @property
+    def duration(self):
+        """
+        Gets the duration of this LicenseLrn.
+
+        :return: The duration of this LicenseLrn.
+        :rtype: str
+        """
+        return self._duration
+
+    @duration.setter
+    def duration(self, duration):
+        """
+        Sets the duration of this LicenseLrn.
+
+        :param duration: The duration of this LicenseLrn.
+        :type: str
+        """
+        allowed_values = ["1 month", "3 months", "12 months", "6 months"]
+        if duration not in allowed_values:
+            raise ValueError(
+                "Invalid value for `duration` ({0}), must be one of {1}"
+                .format(duration, allowed_values)
+            )
+
+        self._duration = duration
 
     def to_dict(self):
         """

@@ -5,7 +5,7 @@ from .admin import PlanCreate, PlanResource, NotificationCreate, NotificationRes
     LicenseSwitchAdminResource, LicenseLrnAdminResource,TransactionLogResource,TransactionLogList
 from .config import ConfigPaymentResource, EmailTemplateResource, EmailTemplateList
 from .public import SimpleFileCreate, SimpleFileGet, PackageSwitchPortTableResource, PackageSwitchMinuteTableResource
-from .user import NotificationList, PaymentCreate, \
+from .user import NotificationList, PaymentCreate, LicenseCreate,\
     PaymentResource, PaymentList, PaypalWebhook, StripeWebhook, LicenseLrnCreate, LicenseLrnResource, \
     LicenseLrnRenewResource, LicenseLrnList, LicenseSwitchCreate, LicenseSwitchResource, LicenseSwitchRenewResource, \
     LicenseSwitchList

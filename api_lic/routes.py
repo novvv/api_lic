@@ -73,6 +73,7 @@ _User = [
     dict(path='/payment/list', method='get', resource=api_lic.views.user.PaymentList()),
     dict(path='/payment/paypal', method='post', resource=api_lic.views.user.PaypalWebhook()),
     dict(path='/payment/stripe', method='post', resource=api_lic.views.user.StripeWebhook()),
+    dict(path='/license', method='post', resource=views.LicenseCreate()),
     dict(path='/license_lrn', method='post', resource=views.LicenseLrnCreate()),
     dict(path='/license_lrn/{license_lrn_uuid}', method='path', resource=views.LicenseLrnResource()),
     dict(path='/license_lrn/{license_lrn_uuid}/renew', method='path', resource=views.LicenseLrnRenewResource()),

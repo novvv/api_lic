@@ -32,71 +32,71 @@ class PackageSwitchGet(object):
     """
     swagger_types = {
         'enabled': 'bool',
-        'package_name': 'str',
+        'switch_port': 'int',
         'sub_type': 'str',
-        'start_date': 'datetime',
-        'type': 'str',
-        'create_on': 'datetime',
-        'amount': 'int',
         'package_switch_uuid': 'str',
         'minute_count': 'int',
-        'switch_port': 'int',
-        'expire_date': 'datetime'
+        'amount': 'int',
+        'package_name': 'str',
+        'create_on': 'datetime',
+        'type': 'str',
+        'expire_date': 'datetime',
+        'start_date': 'datetime'
     }
 
     attribute_map = {
         'enabled': 'enabled',
-        'package_name': 'package_name',
+        'switch_port': 'switch_port',
         'sub_type': 'sub_type',
-        'start_date': 'start_date',
-        'type': 'type',
-        'create_on': 'create_on',
-        'amount': 'amount',
         'package_switch_uuid': 'package_switch_uuid',
         'minute_count': 'minute_count',
-        'switch_port': 'switch_port',
-        'expire_date': 'expire_date'
+        'amount': 'amount',
+        'package_name': 'package_name',
+        'create_on': 'create_on',
+        'type': 'type',
+        'expire_date': 'expire_date',
+        'start_date': 'start_date'
     }
 
-    def __init__(self, enabled=None, package_name=None, sub_type='hosted_switch', start_date=None, type='switch pay per port', create_on=None, amount=None, package_switch_uuid=None, minute_count=None, switch_port=None, expire_date=None):
+    def __init__(self, enabled=None, switch_port=None, sub_type='hosted_switch', package_switch_uuid=None, minute_count=None, amount=None, package_name=None, create_on=None, type='switch pay per port', expire_date=None, start_date=None):
         """
         PackageSwitchGet - a model defined in Swagger
         """
 
         self._enabled = None
-        self._package_name = None
+        self._switch_port = None
         self._sub_type = None
-        self._start_date = None
-        self._type = None
-        self._create_on = None
-        self._amount = None
         self._package_switch_uuid = None
         self._minute_count = None
-        self._switch_port = None
+        self._amount = None
+        self._package_name = None
+        self._create_on = None
+        self._type = None
         self._expire_date = None
+        self._start_date = None
 
         if enabled is not None:
           self.enabled = enabled
-        if package_name is not None:
-          self.package_name = package_name
+        if switch_port is not None:
+          self.switch_port = switch_port
         if sub_type is not None:
           self.sub_type = sub_type
-        if start_date is not None:
-          self.start_date = start_date
-        if type is not None:
-          self.type = type
-        if create_on is not None:
-          self.create_on = create_on
-        if amount is not None:
-          self.amount = amount
         if package_switch_uuid is not None:
           self.package_switch_uuid = package_switch_uuid
         if minute_count is not None:
           self.minute_count = minute_count
-        if switch_port is not None:
-          self.switch_port = switch_port
+        if amount is not None:
+          self.amount = amount
+        if package_name is not None:
+          self.package_name = package_name
+        if create_on is not None:
+          self.create_on = create_on
+        if type is not None:
+          self.type = type
         if expire_date is not None:
           self.expire_date = expire_date
+        if start_date is not None:
+          self.start_date = start_date
 
     @property
     def enabled(self):
@@ -120,27 +120,25 @@ class PackageSwitchGet(object):
         self._enabled = enabled
 
     @property
-    def package_name(self):
+    def switch_port(self):
         """
-        Gets the package_name of this PackageSwitchGet.
+        Gets the switch_port of this PackageSwitchGet.
 
-        :return: The package_name of this PackageSwitchGet.
-        :rtype: str
+        :return: The switch_port of this PackageSwitchGet.
+        :rtype: int
         """
-        return self._package_name
+        return self._switch_port
 
-    @package_name.setter
-    def package_name(self, package_name):
+    @switch_port.setter
+    def switch_port(self, switch_port):
         """
-        Sets the package_name of this PackageSwitchGet.
+        Sets the switch_port of this PackageSwitchGet.
 
-        :param package_name: The package_name of this PackageSwitchGet.
-        :type: str
+        :param switch_port: The switch_port of this PackageSwitchGet.
+        :type: int
         """
-        if package_name is not None and len(package_name) > 64:
-            raise ValueError("Invalid value for `package_name`, length must be less than or equal to `64`")
 
-        self._package_name = package_name
+        self._switch_port = switch_port
 
     @property
     def sub_type(self):
@@ -168,96 +166,6 @@ class PackageSwitchGet(object):
             )
 
         self._sub_type = sub_type
-
-    @property
-    def start_date(self):
-        """
-        Gets the start_date of this PackageSwitchGet.
-
-        :return: The start_date of this PackageSwitchGet.
-        :rtype: datetime
-        """
-        return self._start_date
-
-    @start_date.setter
-    def start_date(self, start_date):
-        """
-        Sets the start_date of this PackageSwitchGet.
-
-        :param start_date: The start_date of this PackageSwitchGet.
-        :type: datetime
-        """
-
-        self._start_date = start_date
-
-    @property
-    def type(self):
-        """
-        Gets the type of this PackageSwitchGet.
-
-        :return: The type of this PackageSwitchGet.
-        :rtype: str
-        """
-        return self._type
-
-    @type.setter
-    def type(self, type):
-        """
-        Sets the type of this PackageSwitchGet.
-
-        :param type: The type of this PackageSwitchGet.
-        :type: str
-        """
-        allowed_values = ["switch pay per port", "switch pay per minute"]
-        if type not in allowed_values:
-            raise ValueError(
-                "Invalid value for `type` ({0}), must be one of {1}"
-                .format(type, allowed_values)
-            )
-
-        self._type = type
-
-    @property
-    def create_on(self):
-        """
-        Gets the create_on of this PackageSwitchGet.
-
-        :return: The create_on of this PackageSwitchGet.
-        :rtype: datetime
-        """
-        return self._create_on
-
-    @create_on.setter
-    def create_on(self, create_on):
-        """
-        Sets the create_on of this PackageSwitchGet.
-
-        :param create_on: The create_on of this PackageSwitchGet.
-        :type: datetime
-        """
-
-        self._create_on = create_on
-
-    @property
-    def amount(self):
-        """
-        Gets the amount of this PackageSwitchGet.
-
-        :return: The amount of this PackageSwitchGet.
-        :rtype: int
-        """
-        return self._amount
-
-    @amount.setter
-    def amount(self, amount):
-        """
-        Sets the amount of this PackageSwitchGet.
-
-        :param amount: The amount of this PackageSwitchGet.
-        :type: int
-        """
-
-        self._amount = amount
 
     @property
     def package_switch_uuid(self):
@@ -304,25 +212,96 @@ class PackageSwitchGet(object):
         self._minute_count = minute_count
 
     @property
-    def switch_port(self):
+    def amount(self):
         """
-        Gets the switch_port of this PackageSwitchGet.
+        Gets the amount of this PackageSwitchGet.
 
-        :return: The switch_port of this PackageSwitchGet.
+        :return: The amount of this PackageSwitchGet.
         :rtype: int
         """
-        return self._switch_port
+        return self._amount
 
-    @switch_port.setter
-    def switch_port(self, switch_port):
+    @amount.setter
+    def amount(self, amount):
         """
-        Sets the switch_port of this PackageSwitchGet.
+        Sets the amount of this PackageSwitchGet.
 
-        :param switch_port: The switch_port of this PackageSwitchGet.
+        :param amount: The amount of this PackageSwitchGet.
         :type: int
         """
 
-        self._switch_port = switch_port
+        self._amount = amount
+
+    @property
+    def package_name(self):
+        """
+        Gets the package_name of this PackageSwitchGet.
+
+        :return: The package_name of this PackageSwitchGet.
+        :rtype: str
+        """
+        return self._package_name
+
+    @package_name.setter
+    def package_name(self, package_name):
+        """
+        Sets the package_name of this PackageSwitchGet.
+
+        :param package_name: The package_name of this PackageSwitchGet.
+        :type: str
+        """
+        if package_name is not None and len(package_name) > 64:
+            raise ValueError("Invalid value for `package_name`, length must be less than or equal to `64`")
+
+        self._package_name = package_name
+
+    @property
+    def create_on(self):
+        """
+        Gets the create_on of this PackageSwitchGet.
+
+        :return: The create_on of this PackageSwitchGet.
+        :rtype: datetime
+        """
+        return self._create_on
+
+    @create_on.setter
+    def create_on(self, create_on):
+        """
+        Sets the create_on of this PackageSwitchGet.
+
+        :param create_on: The create_on of this PackageSwitchGet.
+        :type: datetime
+        """
+
+        self._create_on = create_on
+
+    @property
+    def type(self):
+        """
+        Gets the type of this PackageSwitchGet.
+
+        :return: The type of this PackageSwitchGet.
+        :rtype: str
+        """
+        return self._type
+
+    @type.setter
+    def type(self, type):
+        """
+        Sets the type of this PackageSwitchGet.
+
+        :param type: The type of this PackageSwitchGet.
+        :type: str
+        """
+        allowed_values = ["switch pay per port", "switch pay per minute"]
+        if type not in allowed_values:
+            raise ValueError(
+                "Invalid value for `type` ({0}), must be one of {1}"
+                .format(type, allowed_values)
+            )
+
+        self._type = type
 
     @property
     def expire_date(self):
@@ -344,6 +323,27 @@ class PackageSwitchGet(object):
         """
 
         self._expire_date = expire_date
+
+    @property
+    def start_date(self):
+        """
+        Gets the start_date of this PackageSwitchGet.
+
+        :return: The start_date of this PackageSwitchGet.
+        :rtype: datetime
+        """
+        return self._start_date
+
+    @start_date.setter
+    def start_date(self, start_date):
+        """
+        Sets the start_date of this PackageSwitchGet.
+
+        :param start_date: The start_date of this PackageSwitchGet.
+        :type: datetime
+        """
+
+        self._start_date = start_date
 
     def to_dict(self):
         """

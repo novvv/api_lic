@@ -1,4 +1,7 @@
 api_lic ver 1.0.17
+
+not agreed/tested <-- registerong email LLP-145
+POST/payment <-- complex LRN and switch lisence create LLP-147
 POST/payment <-- fix license price validation LLP-148
 POST,GET/config/payment <--remove "stripe_email" change "paypal_pkey" to "paypal_client_id" LLP-150
 answered <-- wrong use PATCH/license_switch/{license_switch_uuid}/renew LLP-156

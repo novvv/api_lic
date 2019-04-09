@@ -33,35 +33,35 @@ class LicenseSwitchModify(object):
     swagger_types = {
         'enabled': 'bool',
         'package_switch_uuid': 'str',
-        'ip': 'str',
-        'end_time': 'datetime'
+        'end_time': 'datetime',
+        'ip': 'str'
     }
 
     attribute_map = {
         'enabled': 'enabled',
         'package_switch_uuid': 'package_switch_uuid',
-        'ip': 'ip',
-        'end_time': 'end_time'
+        'end_time': 'end_time',
+        'ip': 'ip'
     }
 
-    def __init__(self, enabled=None, package_switch_uuid=None, ip=None, end_time=None):
+    def __init__(self, enabled=None, package_switch_uuid=None, end_time=None, ip=None):
         """
         LicenseSwitchModify - a model defined in Swagger
         """
 
         self._enabled = None
         self._package_switch_uuid = None
-        self._ip = None
         self._end_time = None
+        self._ip = None
 
         if enabled is not None:
           self.enabled = enabled
         if package_switch_uuid is not None:
           self.package_switch_uuid = package_switch_uuid
-        if ip is not None:
-          self.ip = ip
         if end_time is not None:
           self.end_time = end_time
+        if ip is not None:
+          self.ip = ip
 
     @property
     def enabled(self):
@@ -108,6 +108,27 @@ class LicenseSwitchModify(object):
         self._package_switch_uuid = package_switch_uuid
 
     @property
+    def end_time(self):
+        """
+        Gets the end_time of this LicenseSwitchModify.
+
+        :return: The end_time of this LicenseSwitchModify.
+        :rtype: datetime
+        """
+        return self._end_time
+
+    @end_time.setter
+    def end_time(self, end_time):
+        """
+        Sets the end_time of this LicenseSwitchModify.
+
+        :param end_time: The end_time of this LicenseSwitchModify.
+        :type: datetime
+        """
+
+        self._end_time = end_time
+
+    @property
     def ip(self):
         """
         Gets the ip of this LicenseSwitchModify.
@@ -129,27 +150,6 @@ class LicenseSwitchModify(object):
             raise ValueError("Invalid value for `ip`, length must be less than or equal to `16`")
 
         self._ip = ip
-
-    @property
-    def end_time(self):
-        """
-        Gets the end_time of this LicenseSwitchModify.
-
-        :return: The end_time of this LicenseSwitchModify.
-        :rtype: datetime
-        """
-        return self._end_time
-
-    @end_time.setter
-    def end_time(self, end_time):
-        """
-        Sets the end_time of this LicenseSwitchModify.
-
-        :param end_time: The end_time of this LicenseSwitchModify.
-        :type: datetime
-        """
-
-        self._end_time = end_time
 
     def to_dict(self):
         """
