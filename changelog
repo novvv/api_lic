@@ -1,5 +1,7 @@
 api_lic ver 1.0.17
-
+GET/transaction/log <-- add fields 'license_lrn_plan_name','license_switch_plan_name' LLP-142
+answered <-- wrong use of POST/payment LLP-140
+GET/license_switch/list <-- fixed LLP-129
 not agreed/tested <-- registerong email LLP-145
 POST/payment <-- complex LRN and switch lisence create LLP-147
 POST/payment <-- fix license price validation LLP-148

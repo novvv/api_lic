@@ -31,63 +31,42 @@ class PackageSwitchPort(object):
                             and the value is json key in definition.
     """
     swagger_types = {
-        'enabled': 'bool',
         'rate_per_port': 'float',
         'package_switch_uuid': 'str',
+        'package_name': 'str',
         'amount': 'int',
-        'package_name': 'str'
+        'enabled': 'bool'
     }
 
     attribute_map = {
-        'enabled': 'enabled',
         'rate_per_port': 'rate_per_port',
         'package_switch_uuid': 'package_switch_uuid',
+        'package_name': 'package_name',
         'amount': 'amount',
-        'package_name': 'package_name'
+        'enabled': 'enabled'
     }
 
-    def __init__(self, enabled=None, rate_per_port=None, package_switch_uuid=None, amount=None, package_name=None):
+    def __init__(self, rate_per_port=None, package_switch_uuid=None, package_name=None, amount=None, enabled=None):
         """
         PackageSwitchPort - a model defined in Swagger
         """
 
-        self._enabled = None
         self._rate_per_port = None
         self._package_switch_uuid = None
-        self._amount = None
         self._package_name = None
+        self._amount = None
+        self._enabled = None
 
-        if enabled is not None:
-          self.enabled = enabled
         if rate_per_port is not None:
           self.rate_per_port = rate_per_port
         if package_switch_uuid is not None:
           self.package_switch_uuid = package_switch_uuid
-        if amount is not None:
-          self.amount = amount
         if package_name is not None:
           self.package_name = package_name
-
-    @property
-    def enabled(self):
-        """
-        Gets the enabled of this PackageSwitchPort.
-
-        :return: The enabled of this PackageSwitchPort.
-        :rtype: bool
-        """
-        return self._enabled
-
-    @enabled.setter
-    def enabled(self, enabled):
-        """
-        Sets the enabled of this PackageSwitchPort.
-
-        :param enabled: The enabled of this PackageSwitchPort.
-        :type: bool
-        """
-
-        self._enabled = enabled
+        if amount is not None:
+          self.amount = amount
+        if enabled is not None:
+          self.enabled = enabled
 
     @property
     def rate_per_port(self):
@@ -134,27 +113,6 @@ class PackageSwitchPort(object):
         self._package_switch_uuid = package_switch_uuid
 
     @property
-    def amount(self):
-        """
-        Gets the amount of this PackageSwitchPort.
-
-        :return: The amount of this PackageSwitchPort.
-        :rtype: int
-        """
-        return self._amount
-
-    @amount.setter
-    def amount(self, amount):
-        """
-        Sets the amount of this PackageSwitchPort.
-
-        :param amount: The amount of this PackageSwitchPort.
-        :type: int
-        """
-
-        self._amount = amount
-
-    @property
     def package_name(self):
         """
         Gets the package_name of this PackageSwitchPort.
@@ -176,6 +134,48 @@ class PackageSwitchPort(object):
             raise ValueError("Invalid value for `package_name`, length must be less than or equal to `64`")
 
         self._package_name = package_name
+
+    @property
+    def amount(self):
+        """
+        Gets the amount of this PackageSwitchPort.
+
+        :return: The amount of this PackageSwitchPort.
+        :rtype: int
+        """
+        return self._amount
+
+    @amount.setter
+    def amount(self, amount):
+        """
+        Sets the amount of this PackageSwitchPort.
+
+        :param amount: The amount of this PackageSwitchPort.
+        :type: int
+        """
+
+        self._amount = amount
+
+    @property
+    def enabled(self):
+        """
+        Gets the enabled of this PackageSwitchPort.
+
+        :return: The enabled of this PackageSwitchPort.
+        :rtype: bool
+        """
+        return self._enabled
+
+    @enabled.setter
+    def enabled(self, enabled):
+        """
+        Sets the enabled of this PackageSwitchPort.
+
+        :param enabled: The enabled of this PackageSwitchPort.
+        :type: bool
+        """
+
+        self._enabled = enabled
 
     def to_dict(self):
         """

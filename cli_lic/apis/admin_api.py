@@ -1950,7 +1950,9 @@ class AdminApi(object):
         :param str amount_lrn:
         :param str amount_switch:
         :param str from_ip:
+        :param str license_lrn_plan_name:
         :param str license_lrn_uuid:
+        :param str license_switch_plan_name:
         :param str license_switch_uuid:
         :param str payment_uuid:
         :param str result:
@@ -1993,7 +1995,9 @@ class AdminApi(object):
         :param str amount_lrn:
         :param str amount_switch:
         :param str from_ip:
+        :param str license_lrn_plan_name:
         :param str license_lrn_uuid:
+        :param str license_switch_plan_name:
         :param str license_switch_uuid:
         :param str payment_uuid:
         :param str result:
@@ -2010,7 +2014,7 @@ class AdminApi(object):
                  returns the request thread.
         """
 
-        all_params = ['page', 'per_page', 'order_by', 'order_dir', 'amount_lrn', 'amount_switch', 'from_ip', 'license_lrn_uuid', 'license_switch_uuid', 'payment_uuid', 'result', 'status', 'transaction_id', 'transaction_type', 'type', 'amount_total_gt', 'amount_total_lt', 'transaction_time_gt', 'transaction_time_lt']
+        all_params = ['page', 'per_page', 'order_by', 'order_dir', 'amount_lrn', 'amount_switch', 'from_ip', 'license_lrn_plan_name', 'license_lrn_uuid', 'license_switch_plan_name', 'license_switch_uuid', 'payment_uuid', 'result', 'status', 'transaction_id', 'transaction_type', 'type', 'amount_total_gt', 'amount_total_lt', 'transaction_time_gt', 'transaction_time_lt']
         all_params.append('callback')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
@@ -2046,8 +2050,12 @@ class AdminApi(object):
             query_params.append(('amount_switch', params['amount_switch']))
         if 'from_ip' in params:
             query_params.append(('from_ip', params['from_ip']))
+        if 'license_lrn_plan_name' in params:
+            query_params.append(('license_lrn_plan_name', params['license_lrn_plan_name']))
         if 'license_lrn_uuid' in params:
             query_params.append(('license_lrn_uuid', params['license_lrn_uuid']))
+        if 'license_switch_plan_name' in params:
+            query_params.append(('license_switch_plan_name', params['license_switch_plan_name']))
         if 'license_switch_uuid' in params:
             query_params.append(('license_switch_uuid', params['license_switch_uuid']))
         if 'payment_uuid' in params:

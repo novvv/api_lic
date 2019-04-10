@@ -708,6 +708,8 @@ class LicenseSwitch(BaseModel):
 Payment.switch_package_name = column_property(
         select([LicenseSwitch.package_name]).where(Payment.license_switch_uuid == LicenseSwitch.license_switch_uuid).correlate_except(LicenseSwitch))
 
+TransactionLog.license_lrn_plan_name = column_property(select([LicenseLrn.package_name]).where(TransactionLog.license_lrn_uuid==LicenseLrn.license_lrn_uuid).correlate_except(LicenseLrn))
+TransactionLog.license_switch_plan_name = column_property(select([LicenseSwitch.package_name]).where(TransactionLog.license_switch_uuid==LicenseSwitch.license_switch_uuid).correlate_except(LicenseSwitch))
 
 class LicenseUpdateHistory(BaseModel):
     __tablename__ = 'license_update_history'

@@ -31,63 +31,63 @@ class PackageSwitchMinute(object):
                             and the value is json key in definition.
     """
     swagger_types = {
-        'enabled': 'bool',
-        'package_switch_uuid': 'str',
         'rate_per_minute': 'float',
+        'package_switch_uuid': 'str',
         'package_name': 'str',
-        'amount': 'int'
+        'amount': 'int',
+        'enabled': 'bool'
     }
 
     attribute_map = {
-        'enabled': 'enabled',
-        'package_switch_uuid': 'package_switch_uuid',
         'rate_per_minute': 'rate_per_minute',
+        'package_switch_uuid': 'package_switch_uuid',
         'package_name': 'package_name',
-        'amount': 'amount'
+        'amount': 'amount',
+        'enabled': 'enabled'
     }
 
-    def __init__(self, enabled=None, package_switch_uuid=None, rate_per_minute=None, package_name=None, amount=None):
+    def __init__(self, rate_per_minute=None, package_switch_uuid=None, package_name=None, amount=None, enabled=None):
         """
         PackageSwitchMinute - a model defined in Swagger
         """
 
-        self._enabled = None
-        self._package_switch_uuid = None
         self._rate_per_minute = None
+        self._package_switch_uuid = None
         self._package_name = None
         self._amount = None
+        self._enabled = None
 
-        if enabled is not None:
-          self.enabled = enabled
-        if package_switch_uuid is not None:
-          self.package_switch_uuid = package_switch_uuid
         if rate_per_minute is not None:
           self.rate_per_minute = rate_per_minute
+        if package_switch_uuid is not None:
+          self.package_switch_uuid = package_switch_uuid
         if package_name is not None:
           self.package_name = package_name
         if amount is not None:
           self.amount = amount
+        if enabled is not None:
+          self.enabled = enabled
 
     @property
-    def enabled(self):
+    def rate_per_minute(self):
         """
-        Gets the enabled of this PackageSwitchMinute.
+        Gets the rate_per_minute of this PackageSwitchMinute.
 
-        :return: The enabled of this PackageSwitchMinute.
-        :rtype: bool
+        :return: The rate_per_minute of this PackageSwitchMinute.
+        :rtype: float
         """
-        return self._enabled
+        return self._rate_per_minute
 
-    @enabled.setter
-    def enabled(self, enabled):
+    @rate_per_minute.setter
+    def rate_per_minute(self, rate_per_minute):
         """
-        Sets the enabled of this PackageSwitchMinute.
+        Sets the rate_per_minute of this PackageSwitchMinute.
 
-        :param enabled: The enabled of this PackageSwitchMinute.
-        :type: bool
+        :param rate_per_minute: The rate_per_minute of this PackageSwitchMinute.
+        :type: float
         """
 
-        self._enabled = enabled
+        self._rate_per_minute = rate_per_minute
 
     @property
     def package_switch_uuid(self):
@@ -111,27 +111,6 @@ class PackageSwitchMinute(object):
             raise ValueError("Invalid value for `package_switch_uuid`, length must be less than or equal to `36`")
 
         self._package_switch_uuid = package_switch_uuid
-
-    @property
-    def rate_per_minute(self):
-        """
-        Gets the rate_per_minute of this PackageSwitchMinute.
-
-        :return: The rate_per_minute of this PackageSwitchMinute.
-        :rtype: float
-        """
-        return self._rate_per_minute
-
-    @rate_per_minute.setter
-    def rate_per_minute(self, rate_per_minute):
-        """
-        Sets the rate_per_minute of this PackageSwitchMinute.
-
-        :param rate_per_minute: The rate_per_minute of this PackageSwitchMinute.
-        :type: float
-        """
-
-        self._rate_per_minute = rate_per_minute
 
     @property
     def package_name(self):
@@ -176,6 +155,27 @@ class PackageSwitchMinute(object):
         """
 
         self._amount = amount
+
+    @property
+    def enabled(self):
+        """
+        Gets the enabled of this PackageSwitchMinute.
+
+        :return: The enabled of this PackageSwitchMinute.
+        :rtype: bool
+        """
+        return self._enabled
+
+    @enabled.setter
+    def enabled(self, enabled):
+        """
+        Sets the enabled of this PackageSwitchMinute.
+
+        :param enabled: The enabled of this PackageSwitchMinute.
+        :type: bool
+        """
+
+        self._enabled = enabled
 
     def to_dict(self):
         """

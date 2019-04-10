@@ -31,91 +31,265 @@ class LicenseLrnGet(object):
                             and the value is json key in definition.
     """
     swagger_types = {
-        'enabled': 'bool',
-        'user_email': 'str',
-        'dip_count': 'int',
-        'package_lrn_uuid': 'str',
-        'user_uuid': 'str',
         'lrn_port': 'int',
-        'cps': 'int',
+        'type': 'int',
+        'ip': 'str',
         'package': 'PackageLrn',
-        'duration': 'str',
+        'dip_count': 'int',
         'amount': 'int',
         'end_time': 'datetime',
-        'start_time': 'datetime',
-        'ip': 'str',
-        'type': 'int',
-        'license_lrn_uuid': 'str'
+        'license_lrn_uuid': 'str',
+        'enabled': 'bool',
+        'duration': 'str',
+        'package_lrn_uuid': 'str',
+        'user_uuid': 'str',
+        'cps': 'int',
+        'user_email': 'str',
+        'start_time': 'datetime'
     }
 
     attribute_map = {
-        'enabled': 'enabled',
-        'user_email': 'user_email',
-        'dip_count': 'dip_count',
-        'package_lrn_uuid': 'package_lrn_uuid',
-        'user_uuid': 'user_uuid',
         'lrn_port': 'lrn_port',
-        'cps': 'cps',
+        'type': 'type',
+        'ip': 'ip',
         'package': 'package',
-        'duration': 'duration',
+        'dip_count': 'dip_count',
         'amount': 'amount',
         'end_time': 'end_time',
-        'start_time': 'start_time',
-        'ip': 'ip',
-        'type': 'type',
-        'license_lrn_uuid': 'license_lrn_uuid'
+        'license_lrn_uuid': 'license_lrn_uuid',
+        'enabled': 'enabled',
+        'duration': 'duration',
+        'package_lrn_uuid': 'package_lrn_uuid',
+        'user_uuid': 'user_uuid',
+        'cps': 'cps',
+        'user_email': 'user_email',
+        'start_time': 'start_time'
     }
 
-    def __init__(self, enabled=None, user_email=None, dip_count=None, package_lrn_uuid=None, user_uuid=None, lrn_port=None, cps=None, package=None, duration='1 month', amount=None, end_time=None, start_time=None, ip=None, type=None, license_lrn_uuid=None):
+    def __init__(self, lrn_port=None, type=None, ip=None, package=None, dip_count=None, amount=None, end_time=None, license_lrn_uuid=None, enabled=None, duration='1 month', package_lrn_uuid=None, user_uuid=None, cps=None, user_email=None, start_time=None):
         """
         LicenseLrnGet - a model defined in Swagger
         """
 
-        self._enabled = None
-        self._user_email = None
-        self._dip_count = None
-        self._package_lrn_uuid = None
-        self._user_uuid = None
         self._lrn_port = None
-        self._cps = None
+        self._type = None
+        self._ip = None
         self._package = None
-        self._duration = None
+        self._dip_count = None
         self._amount = None
         self._end_time = None
-        self._start_time = None
-        self._ip = None
-        self._type = None
         self._license_lrn_uuid = None
+        self._enabled = None
+        self._duration = None
+        self._package_lrn_uuid = None
+        self._user_uuid = None
+        self._cps = None
+        self._user_email = None
+        self._start_time = None
 
-        if enabled is not None:
-          self.enabled = enabled
-        if user_email is not None:
-          self.user_email = user_email
-        if dip_count is not None:
-          self.dip_count = dip_count
-        if package_lrn_uuid is not None:
-          self.package_lrn_uuid = package_lrn_uuid
-        if user_uuid is not None:
-          self.user_uuid = user_uuid
         if lrn_port is not None:
           self.lrn_port = lrn_port
-        if cps is not None:
-          self.cps = cps
+        if type is not None:
+          self.type = type
+        self.ip = ip
         if package is not None:
           self.package = package
-        if duration is not None:
-          self.duration = duration
+        if dip_count is not None:
+          self.dip_count = dip_count
         if amount is not None:
           self.amount = amount
         if end_time is not None:
           self.end_time = end_time
-        if start_time is not None:
-          self.start_time = start_time
-        self.ip = ip
-        if type is not None:
-          self.type = type
         if license_lrn_uuid is not None:
           self.license_lrn_uuid = license_lrn_uuid
+        if enabled is not None:
+          self.enabled = enabled
+        if duration is not None:
+          self.duration = duration
+        if package_lrn_uuid is not None:
+          self.package_lrn_uuid = package_lrn_uuid
+        if user_uuid is not None:
+          self.user_uuid = user_uuid
+        if cps is not None:
+          self.cps = cps
+        if user_email is not None:
+          self.user_email = user_email
+        if start_time is not None:
+          self.start_time = start_time
+
+    @property
+    def lrn_port(self):
+        """
+        Gets the lrn_port of this LicenseLrnGet.
+
+        :return: The lrn_port of this LicenseLrnGet.
+        :rtype: int
+        """
+        return self._lrn_port
+
+    @lrn_port.setter
+    def lrn_port(self, lrn_port):
+        """
+        Sets the lrn_port of this LicenseLrnGet.
+
+        :param lrn_port: The lrn_port of this LicenseLrnGet.
+        :type: int
+        """
+
+        self._lrn_port = lrn_port
+
+    @property
+    def type(self):
+        """
+        Gets the type of this LicenseLrnGet.
+
+        :return: The type of this LicenseLrnGet.
+        :rtype: int
+        """
+        return self._type
+
+    @type.setter
+    def type(self, type):
+        """
+        Sets the type of this LicenseLrnGet.
+
+        :param type: The type of this LicenseLrnGet.
+        :type: int
+        """
+
+        self._type = type
+
+    @property
+    def ip(self):
+        """
+        Gets the ip of this LicenseLrnGet.
+
+        :return: The ip of this LicenseLrnGet.
+        :rtype: str
+        """
+        return self._ip
+
+    @ip.setter
+    def ip(self, ip):
+        """
+        Sets the ip of this LicenseLrnGet.
+
+        :param ip: The ip of this LicenseLrnGet.
+        :type: str
+        """
+        if ip is None:
+            raise ValueError("Invalid value for `ip`, must not be `None`")
+        if ip is not None and len(ip) > 16:
+            raise ValueError("Invalid value for `ip`, length must be less than or equal to `16`")
+
+        self._ip = ip
+
+    @property
+    def package(self):
+        """
+        Gets the package of this LicenseLrnGet.
+
+        :return: The package of this LicenseLrnGet.
+        :rtype: PackageLrn
+        """
+        return self._package
+
+    @package.setter
+    def package(self, package):
+        """
+        Sets the package of this LicenseLrnGet.
+
+        :param package: The package of this LicenseLrnGet.
+        :type: PackageLrn
+        """
+
+        self._package = package
+
+    @property
+    def dip_count(self):
+        """
+        Gets the dip_count of this LicenseLrnGet.
+
+        :return: The dip_count of this LicenseLrnGet.
+        :rtype: int
+        """
+        return self._dip_count
+
+    @dip_count.setter
+    def dip_count(self, dip_count):
+        """
+        Sets the dip_count of this LicenseLrnGet.
+
+        :param dip_count: The dip_count of this LicenseLrnGet.
+        :type: int
+        """
+
+        self._dip_count = dip_count
+
+    @property
+    def amount(self):
+        """
+        Gets the amount of this LicenseLrnGet.
+
+        :return: The amount of this LicenseLrnGet.
+        :rtype: int
+        """
+        return self._amount
+
+    @amount.setter
+    def amount(self, amount):
+        """
+        Sets the amount of this LicenseLrnGet.
+
+        :param amount: The amount of this LicenseLrnGet.
+        :type: int
+        """
+
+        self._amount = amount
+
+    @property
+    def end_time(self):
+        """
+        Gets the end_time of this LicenseLrnGet.
+
+        :return: The end_time of this LicenseLrnGet.
+        :rtype: datetime
+        """
+        return self._end_time
+
+    @end_time.setter
+    def end_time(self, end_time):
+        """
+        Sets the end_time of this LicenseLrnGet.
+
+        :param end_time: The end_time of this LicenseLrnGet.
+        :type: datetime
+        """
+
+        self._end_time = end_time
+
+    @property
+    def license_lrn_uuid(self):
+        """
+        Gets the license_lrn_uuid of this LicenseLrnGet.
+
+        :return: The license_lrn_uuid of this LicenseLrnGet.
+        :rtype: str
+        """
+        return self._license_lrn_uuid
+
+    @license_lrn_uuid.setter
+    def license_lrn_uuid(self, license_lrn_uuid):
+        """
+        Sets the license_lrn_uuid of this LicenseLrnGet.
+
+        :param license_lrn_uuid: The license_lrn_uuid of this LicenseLrnGet.
+        :type: str
+        """
+        if license_lrn_uuid is not None and len(license_lrn_uuid) > 36:
+            raise ValueError("Invalid value for `license_lrn_uuid`, length must be less than or equal to `36`")
+
+        self._license_lrn_uuid = license_lrn_uuid
 
     @property
     def enabled(self):
@@ -139,48 +313,31 @@ class LicenseLrnGet(object):
         self._enabled = enabled
 
     @property
-    def user_email(self):
+    def duration(self):
         """
-        Gets the user_email of this LicenseLrnGet.
+        Gets the duration of this LicenseLrnGet.
 
-        :return: The user_email of this LicenseLrnGet.
+        :return: The duration of this LicenseLrnGet.
         :rtype: str
         """
-        return self._user_email
+        return self._duration
 
-    @user_email.setter
-    def user_email(self, user_email):
+    @duration.setter
+    def duration(self, duration):
         """
-        Sets the user_email of this LicenseLrnGet.
+        Sets the duration of this LicenseLrnGet.
 
-        :param user_email: The user_email of this LicenseLrnGet.
+        :param duration: The duration of this LicenseLrnGet.
         :type: str
         """
-        if user_email is not None and len(user_email) > 128:
-            raise ValueError("Invalid value for `user_email`, length must be less than or equal to `128`")
+        allowed_values = ["1 month", "3 months", "12 months", "6 months"]
+        if duration not in allowed_values:
+            raise ValueError(
+                "Invalid value for `duration` ({0}), must be one of {1}"
+                .format(duration, allowed_values)
+            )
 
-        self._user_email = user_email
-
-    @property
-    def dip_count(self):
-        """
-        Gets the dip_count of this LicenseLrnGet.
-
-        :return: The dip_count of this LicenseLrnGet.
-        :rtype: int
-        """
-        return self._dip_count
-
-    @dip_count.setter
-    def dip_count(self, dip_count):
-        """
-        Sets the dip_count of this LicenseLrnGet.
-
-        :param dip_count: The dip_count of this LicenseLrnGet.
-        :type: int
-        """
-
-        self._dip_count = dip_count
+        self._duration = duration
 
     @property
     def package_lrn_uuid(self):
@@ -229,27 +386,6 @@ class LicenseLrnGet(object):
         self._user_uuid = user_uuid
 
     @property
-    def lrn_port(self):
-        """
-        Gets the lrn_port of this LicenseLrnGet.
-
-        :return: The lrn_port of this LicenseLrnGet.
-        :rtype: int
-        """
-        return self._lrn_port
-
-    @lrn_port.setter
-    def lrn_port(self, lrn_port):
-        """
-        Sets the lrn_port of this LicenseLrnGet.
-
-        :param lrn_port: The lrn_port of this LicenseLrnGet.
-        :type: int
-        """
-
-        self._lrn_port = lrn_port
-
-    @property
     def cps(self):
         """
         Gets the cps of this LicenseLrnGet.
@@ -271,94 +407,27 @@ class LicenseLrnGet(object):
         self._cps = cps
 
     @property
-    def package(self):
+    def user_email(self):
         """
-        Gets the package of this LicenseLrnGet.
+        Gets the user_email of this LicenseLrnGet.
 
-        :return: The package of this LicenseLrnGet.
-        :rtype: PackageLrn
-        """
-        return self._package
-
-    @package.setter
-    def package(self, package):
-        """
-        Sets the package of this LicenseLrnGet.
-
-        :param package: The package of this LicenseLrnGet.
-        :type: PackageLrn
-        """
-
-        self._package = package
-
-    @property
-    def duration(self):
-        """
-        Gets the duration of this LicenseLrnGet.
-
-        :return: The duration of this LicenseLrnGet.
+        :return: The user_email of this LicenseLrnGet.
         :rtype: str
         """
-        return self._duration
+        return self._user_email
 
-    @duration.setter
-    def duration(self, duration):
+    @user_email.setter
+    def user_email(self, user_email):
         """
-        Sets the duration of this LicenseLrnGet.
+        Sets the user_email of this LicenseLrnGet.
 
-        :param duration: The duration of this LicenseLrnGet.
+        :param user_email: The user_email of this LicenseLrnGet.
         :type: str
         """
-        allowed_values = ["1 month", "3 months", "12 months", "6 months"]
-        if duration not in allowed_values:
-            raise ValueError(
-                "Invalid value for `duration` ({0}), must be one of {1}"
-                .format(duration, allowed_values)
-            )
+        if user_email is not None and len(user_email) > 128:
+            raise ValueError("Invalid value for `user_email`, length must be less than or equal to `128`")
 
-        self._duration = duration
-
-    @property
-    def amount(self):
-        """
-        Gets the amount of this LicenseLrnGet.
-
-        :return: The amount of this LicenseLrnGet.
-        :rtype: int
-        """
-        return self._amount
-
-    @amount.setter
-    def amount(self, amount):
-        """
-        Sets the amount of this LicenseLrnGet.
-
-        :param amount: The amount of this LicenseLrnGet.
-        :type: int
-        """
-
-        self._amount = amount
-
-    @property
-    def end_time(self):
-        """
-        Gets the end_time of this LicenseLrnGet.
-
-        :return: The end_time of this LicenseLrnGet.
-        :rtype: datetime
-        """
-        return self._end_time
-
-    @end_time.setter
-    def end_time(self, end_time):
-        """
-        Sets the end_time of this LicenseLrnGet.
-
-        :param end_time: The end_time of this LicenseLrnGet.
-        :type: datetime
-        """
-
-        self._end_time = end_time
+        self._user_email = user_email
 
     @property
     def start_time(self):
@@ -380,75 +449,6 @@ class LicenseLrnGet(object):
         """
 
         self._start_time = start_time
-
-    @property
-    def ip(self):
-        """
-        Gets the ip of this LicenseLrnGet.
-
-        :return: The ip of this LicenseLrnGet.
-        :rtype: str
-        """
-        return self._ip
-
-    @ip.setter
-    def ip(self, ip):
-        """
-        Sets the ip of this LicenseLrnGet.
-
-        :param ip: The ip of this LicenseLrnGet.
-        :type: str
-        """
-        if ip is None:
-            raise ValueError("Invalid value for `ip`, must not be `None`")
-        if ip is not None and len(ip) > 16:
-            raise ValueError("Invalid value for `ip`, length must be less than or equal to `16`")
-
-        self._ip = ip
-
-    @property
-    def type(self):
-        """
-        Gets the type of this LicenseLrnGet.
-
-        :return: The type of this LicenseLrnGet.
-        :rtype: int
-        """
-        return self._type
-
-    @type.setter
-    def type(self, type):
-        """
-        Sets the type of this LicenseLrnGet.
-
-        :param type: The type of this LicenseLrnGet.
-        :type: int
-        """
-
-        self._type = type
-
-    @property
-    def license_lrn_uuid(self):
-        """
-        Gets the license_lrn_uuid of this LicenseLrnGet.
-
-        :return: The license_lrn_uuid of this LicenseLrnGet.
-        :rtype: str
-        """
-        return self._license_lrn_uuid
-
-    @license_lrn_uuid.setter
-    def license_lrn_uuid(self, license_lrn_uuid):
-        """
-        Sets the license_lrn_uuid of this LicenseLrnGet.
-
-        :param license_lrn_uuid: The license_lrn_uuid of this LicenseLrnGet.
-        :type: str
-        """
-        if license_lrn_uuid is not None and len(license_lrn_uuid) > 36:
-            raise ValueError("Invalid value for `license_lrn_uuid`, length must be less than or equal to `36`")
-
-        self._license_lrn_uuid = license_lrn_uuid
 
     def to_dict(self):
         """

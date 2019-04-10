@@ -32,31 +32,31 @@ class UnauthenticatedErrorError(object):
     """
     swagger_types = {
         'code': 'int',
-        'reason': 'str',
-        'message': 'str'
+        'message': 'str',
+        'reason': 'str'
     }
 
     attribute_map = {
         'code': 'code',
-        'reason': 'reason',
-        'message': 'message'
+        'message': 'message',
+        'reason': 'reason'
     }
 
-    def __init__(self, code=None, reason=None, message=None):
+    def __init__(self, code=None, message=None, reason=None):
         """
         UnauthenticatedErrorError - a model defined in Swagger
         """
 
         self._code = None
-        self._reason = None
         self._message = None
+        self._reason = None
 
         if code is not None:
           self.code = code
-        if reason is not None:
-          self.reason = reason
         if message is not None:
           self.message = message
+        if reason is not None:
+          self.reason = reason
 
     @property
     def code(self):
@@ -80,27 +80,6 @@ class UnauthenticatedErrorError(object):
         self._code = code
 
     @property
-    def reason(self):
-        """
-        Gets the reason of this UnauthenticatedErrorError.
-
-        :return: The reason of this UnauthenticatedErrorError.
-        :rtype: str
-        """
-        return self._reason
-
-    @reason.setter
-    def reason(self, reason):
-        """
-        Sets the reason of this UnauthenticatedErrorError.
-
-        :param reason: The reason of this UnauthenticatedErrorError.
-        :type: str
-        """
-
-        self._reason = reason
-
-    @property
     def message(self):
         """
         Gets the message of this UnauthenticatedErrorError.
@@ -120,6 +99,27 @@ class UnauthenticatedErrorError(object):
         """
 
         self._message = message
+
+    @property
+    def reason(self):
+        """
+        Gets the reason of this UnauthenticatedErrorError.
+
+        :return: The reason of this UnauthenticatedErrorError.
+        :rtype: str
+        """
+        return self._reason
+
+    @reason.setter
+    def reason(self, reason):
+        """
+        Sets the reason of this UnauthenticatedErrorError.
+
+        :param reason: The reason of this UnauthenticatedErrorError.
+        :type: str
+        """
+
+        self._reason = reason
 
     def to_dict(self):
         """

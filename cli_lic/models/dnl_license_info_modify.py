@@ -31,151 +31,107 @@ class DnlLicenseInfoModify(object):
                             and the value is json key in definition.
     """
     swagger_types = {
-        'ss_name': 'str',
-        'expires': 'int',
         'ss_bind_port': 'int',
-        'carrier_name': 'str',
-        'create_time': 'datetime',
-        'ss_type': 'int',
         'max_cps': 'int',
-        'create_user': 'int',
-        'update_time': 'datetime',
-        'recv_port': 'int',
+        'ss_type': 'int',
         'uuid': 'str',
+        'create_user': 'int',
+        'ss_name': 'str',
         'recv_ip': 'str',
         'end_time': 'datetime',
+        'create_time': 'datetime',
         'ss_bind_mac': 'str',
-        'max_cap': 'int',
-        'start_time': 'datetime',
+        'carrier_name': 'str',
+        'ss_bind_ip': 'str',
+        'recv_port': 'int',
         'status': 'int',
-        'ss_bind_ip': 'str'
+        'expires': 'int',
+        'update_time': 'datetime',
+        'max_cap': 'int',
+        'start_time': 'datetime'
     }
 
     attribute_map = {
-        'ss_name': 'ss_name',
-        'expires': 'expires',
         'ss_bind_port': 'ss_bind_port',
-        'carrier_name': 'carrier_name',
-        'create_time': 'create_time',
-        'ss_type': 'ss_type',
         'max_cps': 'max_cps',
-        'create_user': 'create_user',
-        'update_time': 'update_time',
-        'recv_port': 'recv_port',
+        'ss_type': 'ss_type',
         'uuid': 'uuid',
+        'create_user': 'create_user',
+        'ss_name': 'ss_name',
         'recv_ip': 'recv_ip',
         'end_time': 'end_time',
+        'create_time': 'create_time',
         'ss_bind_mac': 'ss_bind_mac',
-        'max_cap': 'max_cap',
-        'start_time': 'start_time',
+        'carrier_name': 'carrier_name',
+        'ss_bind_ip': 'ss_bind_ip',
+        'recv_port': 'recv_port',
         'status': 'status',
-        'ss_bind_ip': 'ss_bind_ip'
+        'expires': 'expires',
+        'update_time': 'update_time',
+        'max_cap': 'max_cap',
+        'start_time': 'start_time'
     }
 
-    def __init__(self, ss_name=None, expires=None, ss_bind_port=None, carrier_name=None, create_time=None, ss_type=None, max_cps=None, create_user=None, update_time=None, recv_port=None, uuid=None, recv_ip=None, end_time=None, ss_bind_mac=None, max_cap=None, start_time=None, status=None, ss_bind_ip=None):
+    def __init__(self, ss_bind_port=None, max_cps=None, ss_type=None, uuid=None, create_user=None, ss_name=None, recv_ip=None, end_time=None, create_time=None, ss_bind_mac=None, carrier_name=None, ss_bind_ip=None, recv_port=None, status=None, expires=None, update_time=None, max_cap=None, start_time=None):
         """
         DnlLicenseInfoModify - a model defined in Swagger
         """
 
-        self._ss_name = None
-        self._expires = None
         self._ss_bind_port = None
-        self._carrier_name = None
-        self._create_time = None
-        self._ss_type = None
         self._max_cps = None
-        self._create_user = None
-        self._update_time = None
-        self._recv_port = None
+        self._ss_type = None
         self._uuid = None
+        self._create_user = None
+        self._ss_name = None
         self._recv_ip = None
         self._end_time = None
+        self._create_time = None
         self._ss_bind_mac = None
+        self._carrier_name = None
+        self._ss_bind_ip = None
+        self._recv_port = None
+        self._status = None
+        self._expires = None
+        self._update_time = None
         self._max_cap = None
         self._start_time = None
-        self._status = None
-        self._ss_bind_ip = None
 
-        if ss_name is not None:
-          self.ss_name = ss_name
-        if expires is not None:
-          self.expires = expires
         if ss_bind_port is not None:
           self.ss_bind_port = ss_bind_port
-        if carrier_name is not None:
-          self.carrier_name = carrier_name
-        if create_time is not None:
-          self.create_time = create_time
-        if ss_type is not None:
-          self.ss_type = ss_type
         if max_cps is not None:
           self.max_cps = max_cps
-        if create_user is not None:
-          self.create_user = create_user
-        if update_time is not None:
-          self.update_time = update_time
-        if recv_port is not None:
-          self.recv_port = recv_port
+        if ss_type is not None:
+          self.ss_type = ss_type
         if uuid is not None:
           self.uuid = uuid
+        if create_user is not None:
+          self.create_user = create_user
+        if ss_name is not None:
+          self.ss_name = ss_name
         if recv_ip is not None:
           self.recv_ip = recv_ip
         if end_time is not None:
           self.end_time = end_time
+        if create_time is not None:
+          self.create_time = create_time
         if ss_bind_mac is not None:
           self.ss_bind_mac = ss_bind_mac
+        if carrier_name is not None:
+          self.carrier_name = carrier_name
+        if ss_bind_ip is not None:
+          self.ss_bind_ip = ss_bind_ip
+        if recv_port is not None:
+          self.recv_port = recv_port
+        if status is not None:
+          self.status = status
+        if expires is not None:
+          self.expires = expires
+        if update_time is not None:
+          self.update_time = update_time
         if max_cap is not None:
           self.max_cap = max_cap
         if start_time is not None:
           self.start_time = start_time
-        if status is not None:
-          self.status = status
-        if ss_bind_ip is not None:
-          self.ss_bind_ip = ss_bind_ip
-
-    @property
-    def ss_name(self):
-        """
-        Gets the ss_name of this DnlLicenseInfoModify.
-
-        :return: The ss_name of this DnlLicenseInfoModify.
-        :rtype: str
-        """
-        return self._ss_name
-
-    @ss_name.setter
-    def ss_name(self, ss_name):
-        """
-        Sets the ss_name of this DnlLicenseInfoModify.
-
-        :param ss_name: The ss_name of this DnlLicenseInfoModify.
-        :type: str
-        """
-        if ss_name is not None and len(ss_name) > 100:
-            raise ValueError("Invalid value for `ss_name`, length must be less than or equal to `100`")
-
-        self._ss_name = ss_name
-
-    @property
-    def expires(self):
-        """
-        Gets the expires of this DnlLicenseInfoModify.
-
-        :return: The expires of this DnlLicenseInfoModify.
-        :rtype: int
-        """
-        return self._expires
-
-    @expires.setter
-    def expires(self, expires):
-        """
-        Sets the expires of this DnlLicenseInfoModify.
-
-        :param expires: The expires of this DnlLicenseInfoModify.
-        :type: int
-        """
-
-        self._expires = expires
 
     @property
     def ss_bind_port(self):
@@ -199,48 +155,25 @@ class DnlLicenseInfoModify(object):
         self._ss_bind_port = ss_bind_port
 
     @property
-    def carrier_name(self):
+    def max_cps(self):
         """
-        Gets the carrier_name of this DnlLicenseInfoModify.
+        Gets the max_cps of this DnlLicenseInfoModify.
 
-        :return: The carrier_name of this DnlLicenseInfoModify.
-        :rtype: str
+        :return: The max_cps of this DnlLicenseInfoModify.
+        :rtype: int
         """
-        return self._carrier_name
+        return self._max_cps
 
-    @carrier_name.setter
-    def carrier_name(self, carrier_name):
+    @max_cps.setter
+    def max_cps(self, max_cps):
         """
-        Sets the carrier_name of this DnlLicenseInfoModify.
+        Sets the max_cps of this DnlLicenseInfoModify.
 
-        :param carrier_name: The carrier_name of this DnlLicenseInfoModify.
-        :type: str
-        """
-        if carrier_name is not None and len(carrier_name) > 100:
-            raise ValueError("Invalid value for `carrier_name`, length must be less than or equal to `100`")
-
-        self._carrier_name = carrier_name
-
-    @property
-    def create_time(self):
-        """
-        Gets the create_time of this DnlLicenseInfoModify.
-
-        :return: The create_time of this DnlLicenseInfoModify.
-        :rtype: datetime
-        """
-        return self._create_time
-
-    @create_time.setter
-    def create_time(self, create_time):
-        """
-        Sets the create_time of this DnlLicenseInfoModify.
-
-        :param create_time: The create_time of this DnlLicenseInfoModify.
-        :type: datetime
+        :param max_cps: The max_cps of this DnlLicenseInfoModify.
+        :type: int
         """
 
-        self._create_time = create_time
+        self._max_cps = max_cps
 
     @property
     def ss_type(self):
@@ -264,25 +197,27 @@ class DnlLicenseInfoModify(object):
         self._ss_type = ss_type
 
     @property
-    def max_cps(self):
+    def uuid(self):
         """
-        Gets the max_cps of this DnlLicenseInfoModify.
+        Gets the uuid of this DnlLicenseInfoModify.
 
-        :return: The max_cps of this DnlLicenseInfoModify.
-        :rtype: int
+        :return: The uuid of this DnlLicenseInfoModify.
+        :rtype: str
         """
-        return self._max_cps
+        return self._uuid
 
-    @max_cps.setter
-    def max_cps(self, max_cps):
+    @uuid.setter
+    def uuid(self, uuid):
         """
-        Sets the max_cps of this DnlLicenseInfoModify.
+        Sets the uuid of this DnlLicenseInfoModify.
 
-        :param max_cps: The max_cps of this DnlLicenseInfoModify.
-        :type: int
+        :param uuid: The uuid of this DnlLicenseInfoModify.
+        :type: str
         """
+        if uuid is not None and len(uuid) > 128:
+            raise ValueError("Invalid value for `uuid`, length must be less than or equal to `128`")
 
-        self._max_cps = max_cps
+        self._uuid = uuid
 
     @property
     def create_user(self):
@@ -306,69 +241,27 @@ class DnlLicenseInfoModify(object):
         self._create_user = create_user
 
     @property
-    def update_time(self):
+    def ss_name(self):
         """
-        Gets the update_time of this DnlLicenseInfoModify.
+        Gets the ss_name of this DnlLicenseInfoModify.
 
-        :return: The update_time of this DnlLicenseInfoModify.
-        :rtype: datetime
-        """
-        return self._update_time
-
-    @update_time.setter
-    def update_time(self, update_time):
-        """
-        Sets the update_time of this DnlLicenseInfoModify.
-
-        :param update_time: The update_time of this DnlLicenseInfoModify.
-        :type: datetime
-        """
-
-        self._update_time = update_time
-
-    @property
-    def recv_port(self):
-        """
-        Gets the recv_port of this DnlLicenseInfoModify.
-
-        :return: The recv_port of this DnlLicenseInfoModify.
-        :rtype: int
-        """
-        return self._recv_port
-
-    @recv_port.setter
-    def recv_port(self, recv_port):
-        """
-        Sets the recv_port of this DnlLicenseInfoModify.
-
-        :param recv_port: The recv_port of this DnlLicenseInfoModify.
-        :type: int
-        """
-
-        self._recv_port = recv_port
-
-    @property
-    def uuid(self):
-        """
-        Gets the uuid of this DnlLicenseInfoModify.
-
-        :return: The uuid of this DnlLicenseInfoModify.
+        :return: The ss_name of this DnlLicenseInfoModify.
         :rtype: str
         """
-        return self._uuid
+        return self._ss_name
 
-    @uuid.setter
-    def uuid(self, uuid):
+    @ss_name.setter
+    def ss_name(self, ss_name):
         """
-        Sets the uuid of this DnlLicenseInfoModify.
+        Sets the ss_name of this DnlLicenseInfoModify.
 
-        :param uuid: The uuid of this DnlLicenseInfoModify.
+        :param ss_name: The ss_name of this DnlLicenseInfoModify.
         :type: str
         """
-        if uuid is not None and len(uuid) > 128:
-            raise ValueError("Invalid value for `uuid`, length must be less than or equal to `128`")
+        if ss_name is not None and len(ss_name) > 100:
+            raise ValueError("Invalid value for `ss_name`, length must be less than or equal to `100`")
 
-        self._uuid = uuid
+        self._ss_name = ss_name
 
     @property
     def recv_ip(self):
@@ -415,6 +308,27 @@ class DnlLicenseInfoModify(object):
         self._end_time = end_time
 
     @property
+    def create_time(self):
+        """
+        Gets the create_time of this DnlLicenseInfoModify.
+
+        :return: The create_time of this DnlLicenseInfoModify.
+        :rtype: datetime
+        """
+        return self._create_time
+
+    @create_time.setter
+    def create_time(self, create_time):
+        """
+        Sets the create_time of this DnlLicenseInfoModify.
+
+        :param create_time: The create_time of this DnlLicenseInfoModify.
+        :type: datetime
+        """
+
+        self._create_time = create_time
+
+    @property
     def ss_bind_mac(self):
         """
         Gets the ss_bind_mac of this DnlLicenseInfoModify.
@@ -436,6 +350,136 @@ class DnlLicenseInfoModify(object):
             raise ValueError("Invalid value for `ss_bind_mac`, length must be less than or equal to `18`")
 
         self._ss_bind_mac = ss_bind_mac
+
+    @property
+    def carrier_name(self):
+        """
+        Gets the carrier_name of this DnlLicenseInfoModify.
+
+        :return: The carrier_name of this DnlLicenseInfoModify.
+        :rtype: str
+        """
+        return self._carrier_name
+
+    @carrier_name.setter
+    def carrier_name(self, carrier_name):
+        """
+        Sets the carrier_name of this DnlLicenseInfoModify.
+
+        :param carrier_name: The carrier_name of this DnlLicenseInfoModify.
+        :type: str
+        """
+        if carrier_name is not None and len(carrier_name) > 100:
+            raise ValueError("Invalid value for `carrier_name`, length must be less than or equal to `100`")
+
+        self._carrier_name = carrier_name
+
+    @property
+    def ss_bind_ip(self):
+        """
+        Gets the ss_bind_ip of this DnlLicenseInfoModify.
+
+        :return: The ss_bind_ip of this DnlLicenseInfoModify.
+        :rtype: str
+        """
+        return self._ss_bind_ip
+
+    @ss_bind_ip.setter
+    def ss_bind_ip(self, ss_bind_ip):
+        """
+        Sets the ss_bind_ip of this DnlLicenseInfoModify.
+
+        :param ss_bind_ip: The ss_bind_ip of this DnlLicenseInfoModify.
+        :type: str
+        """
+        if ss_bind_ip is not None and len(ss_bind_ip) > 16:
+            raise ValueError("Invalid value for `ss_bind_ip`, length must be less than or equal to `16`")
+
+        self._ss_bind_ip = ss_bind_ip
+
+    @property
+    def recv_port(self):
+        """
+        Gets the recv_port of this DnlLicenseInfoModify.
+
+        :return: The recv_port of this DnlLicenseInfoModify.
+        :rtype: int
+        """
+        return self._recv_port
+
+    @recv_port.setter
+    def recv_port(self, recv_port):
+        """
+        Sets the recv_port of this DnlLicenseInfoModify.
+
+        :param recv_port: The recv_port of this DnlLicenseInfoModify.
+        :type: int
+        """
+
+        self._recv_port = recv_port
+
+    @property
+    def status(self):
+        """
+        Gets the status of this DnlLicenseInfoModify.
+
+        :return: The status of this DnlLicenseInfoModify.
+        :rtype: int
+        """
+        return self._status
+
+    @status.setter
+    def status(self, status):
+        """
+        Sets the status of this DnlLicenseInfoModify.
+
+        :param status: The status of this DnlLicenseInfoModify.
+        :type: int
+        """
+
+        self._status = status
+
+    @property
+    def expires(self):
+        """
+        Gets the expires of this DnlLicenseInfoModify.
+
+        :return: The expires of this DnlLicenseInfoModify.
+        :rtype: int
+        """
+        return self._expires
+
+    @expires.setter
+    def expires(self, expires):
+        """
+        Sets the expires of this DnlLicenseInfoModify.
+
+        :param expires: The expires of this DnlLicenseInfoModify.
+        :type: int
+        """
+
+        self._expires = expires
+
+    @property
+    def update_time(self):
+        """
+        Gets the update_time of this DnlLicenseInfoModify.
+
+        :return: The update_time of this DnlLicenseInfoModify.
+        :rtype: datetime
+        """
+        return self._update_time
+
+    @update_time.setter
+    def update_time(self, update_time):
+        """
+        Sets the update_time of this DnlLicenseInfoModify.
+
+        :param update_time: The update_time of this DnlLicenseInfoModify.
+        :type: datetime
+        """
+
+        self._update_time = update_time
 
     @property
     def max_cap(self):
@@ -478,50 +522,6 @@ class DnlLicenseInfoModify(object):
         """
 
         self._start_time = start_time
-
-    @property
-    def status(self):
-        """
-        Gets the status of this DnlLicenseInfoModify.
-
-        :return: The status of this DnlLicenseInfoModify.
-        :rtype: int
-        """
-        return self._status
-
-    @status.setter
-    def status(self, status):
-        """
-        Sets the status of this DnlLicenseInfoModify.
-
-        :param status: The status of this DnlLicenseInfoModify.
-        :type: int
-        """
-
-        self._status = status
-
-    @property
-    def ss_bind_ip(self):
-        """
-        Gets the ss_bind_ip of this DnlLicenseInfoModify.
-
-        :return: The ss_bind_ip of this DnlLicenseInfoModify.
-        :rtype: str
-        """
-        return self._ss_bind_ip
-
-    @ss_bind_ip.setter
-    def ss_bind_ip(self, ss_bind_ip):
-        """
-        Sets the ss_bind_ip of this DnlLicenseInfoModify.
-
-        :param ss_bind_ip: The ss_bind_ip of this DnlLicenseInfoModify.
-        :type: str
-        """
-        if ss_bind_ip is not None and len(ss_bind_ip) > 16:
-            raise ValueError("Invalid value for `ss_bind_ip`, length must be less than or equal to `16`")
-
-        self._ss_bind_ip = ss_bind_ip
 
     def to_dict(self):
         """

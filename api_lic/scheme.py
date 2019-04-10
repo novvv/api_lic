@@ -411,7 +411,8 @@ class TransactionLogScheme(BaseModelScheme):
     status = Int()
     result = Str()
     payment_uuid = Str(validate=[validate.Length(max=36)])
-
+    license_lrn_plan_name =Str()
+    license_switch_plan_name = Str()
     class Meta:
         model = model.TransactionLog
         fields = ('transaction_time', 'license_lrn_uuid', 'license_switch_uuid', 'type', 'amount_total', 'amount_lrn',
@@ -425,10 +426,10 @@ class TransactionLogSchemeGet(TransactionLogScheme):
         fields = ('transaction_time', 'license_lrn_uuid', 'license_switch_uuid', 'type', 'amount_lrn', 'amount_switch',
                   'amount_total',
                   'transaction_id', 'transaction_type', 'from_ip', 'transaction_src', 'status', 'result',
-                  'payment_uuid',)
+                  'payment_uuid','license_lrn_plan_name','license_switch_plan_name')
         search_fields = ('license_lrn_uuid', 'license_switch_uuid', 'type', 'amount_lrn', 'amount_switch',
                          'transaction_id', 'transaction_type', 'from_ip', 'status', 'result',
-                         'payment_uuid',)
+                         'payment_uuid','license_lrn_plan_name','license_switch_plan_name')
         query_fields = ('transaction_time_gt', 'transaction_time_lt', 'amount_total_lt', 'amount_total_gt')
 
 

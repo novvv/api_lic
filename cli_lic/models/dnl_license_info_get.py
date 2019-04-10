@@ -31,151 +31,107 @@ class DnlLicenseInfoGet(object):
                             and the value is json key in definition.
     """
     swagger_types = {
-        'ss_name': 'str',
-        'expires': 'int',
         'ss_bind_port': 'int',
-        'switch_ip': 'str',
-        'plan_name': 'str',
-        'ss_bind_mac': 'str',
-        'expire_date': 'datetime',
-        'ss_type': 'int',
         'max_cps': 'int',
         'switch_uuid': 'str',
-        'port_limit': 'int',
-        'recv_port': 'int',
-        'start_date': 'datetime',
-        'carrier_name': 'str',
         'create_user': 'int',
-        'status': 'bool',
+        'port_limit': 'int',
+        'ss_name': 'str',
+        'switch_ip': 'str',
+        'expire_date': 'datetime',
+        'id': 'int',
+        'ss_bind_mac': 'str',
+        'carrier_name': 'str',
         'ss_bind_ip': 'str',
-        'id': 'int'
+        'recv_port': 'int',
+        'status': 'bool',
+        'expires': 'int',
+        'plan_name': 'str',
+        'start_date': 'datetime',
+        'ss_type': 'int'
     }
 
     attribute_map = {
-        'ss_name': 'ss_name',
-        'expires': 'expires',
         'ss_bind_port': 'ss_bind_port',
-        'switch_ip': 'switch_ip',
-        'plan_name': 'plan_name',
-        'ss_bind_mac': 'ss_bind_mac',
-        'expire_date': 'expire_date',
-        'ss_type': 'ss_type',
         'max_cps': 'max_cps',
         'switch_uuid': 'switch_uuid',
-        'port_limit': 'port_limit',
-        'recv_port': 'recv_port',
-        'start_date': 'start_date',
-        'carrier_name': 'carrier_name',
         'create_user': 'create_user',
-        'status': 'status',
+        'port_limit': 'port_limit',
+        'ss_name': 'ss_name',
+        'switch_ip': 'switch_ip',
+        'expire_date': 'expire_date',
+        'id': 'id',
+        'ss_bind_mac': 'ss_bind_mac',
+        'carrier_name': 'carrier_name',
         'ss_bind_ip': 'ss_bind_ip',
-        'id': 'id'
+        'recv_port': 'recv_port',
+        'status': 'status',
+        'expires': 'expires',
+        'plan_name': 'plan_name',
+        'start_date': 'start_date',
+        'ss_type': 'ss_type'
     }
 
-    def __init__(self, ss_name=None, expires=None, ss_bind_port=None, switch_ip=None, plan_name=None, ss_bind_mac=None, expire_date=None, ss_type=None, max_cps=None, switch_uuid=None, port_limit=None, recv_port=None, start_date=None, carrier_name=None, create_user=None, status=None, ss_bind_ip=None, id=None):
+    def __init__(self, ss_bind_port=None, max_cps=None, switch_uuid=None, create_user=None, port_limit=None, ss_name=None, switch_ip=None, expire_date=None, id=None, ss_bind_mac=None, carrier_name=None, ss_bind_ip=None, recv_port=None, status=None, expires=None, plan_name=None, start_date=None, ss_type=None):
         """
         DnlLicenseInfoGet - a model defined in Swagger
         """
 
-        self._ss_name = None
-        self._expires = None
         self._ss_bind_port = None
-        self._switch_ip = None
-        self._plan_name = None
-        self._ss_bind_mac = None
-        self._expire_date = None
-        self._ss_type = None
         self._max_cps = None
         self._switch_uuid = None
-        self._port_limit = None
-        self._recv_port = None
-        self._start_date = None
-        self._carrier_name = None
         self._create_user = None
-        self._status = None
-        self._ss_bind_ip = None
+        self._port_limit = None
+        self._ss_name = None
+        self._switch_ip = None
+        self._expire_date = None
         self._id = None
+        self._ss_bind_mac = None
+        self._carrier_name = None
+        self._ss_bind_ip = None
+        self._recv_port = None
+        self._status = None
+        self._expires = None
+        self._plan_name = None
+        self._start_date = None
+        self._ss_type = None
 
-        if ss_name is not None:
-          self.ss_name = ss_name
-        if expires is not None:
-          self.expires = expires
         if ss_bind_port is not None:
           self.ss_bind_port = ss_bind_port
-        if switch_ip is not None:
-          self.switch_ip = switch_ip
-        if plan_name is not None:
-          self.plan_name = plan_name
-        if ss_bind_mac is not None:
-          self.ss_bind_mac = ss_bind_mac
-        if expire_date is not None:
-          self.expire_date = expire_date
-        if ss_type is not None:
-          self.ss_type = ss_type
         if max_cps is not None:
           self.max_cps = max_cps
         if switch_uuid is not None:
           self.switch_uuid = switch_uuid
-        if port_limit is not None:
-          self.port_limit = port_limit
-        if recv_port is not None:
-          self.recv_port = recv_port
-        if start_date is not None:
-          self.start_date = start_date
-        if carrier_name is not None:
-          self.carrier_name = carrier_name
         if create_user is not None:
           self.create_user = create_user
-        if status is not None:
-          self.status = status
-        if ss_bind_ip is not None:
-          self.ss_bind_ip = ss_bind_ip
+        if port_limit is not None:
+          self.port_limit = port_limit
+        if ss_name is not None:
+          self.ss_name = ss_name
+        if switch_ip is not None:
+          self.switch_ip = switch_ip
+        if expire_date is not None:
+          self.expire_date = expire_date
         if id is not None:
           self.id = id
-
-    @property
-    def ss_name(self):
-        """
-        Gets the ss_name of this DnlLicenseInfoGet.
-
-        :return: The ss_name of this DnlLicenseInfoGet.
-        :rtype: str
-        """
-        return self._ss_name
-
-    @ss_name.setter
-    def ss_name(self, ss_name):
-        """
-        Sets the ss_name of this DnlLicenseInfoGet.
-
-        :param ss_name: The ss_name of this DnlLicenseInfoGet.
-        :type: str
-        """
-        if ss_name is not None and len(ss_name) > 100:
-            raise ValueError("Invalid value for `ss_name`, length must be less than or equal to `100`")
-
-        self._ss_name = ss_name
-
-    @property
-    def expires(self):
-        """
-        Gets the expires of this DnlLicenseInfoGet.
-
-        :return: The expires of this DnlLicenseInfoGet.
-        :rtype: int
-        """
-        return self._expires
-
-    @expires.setter
-    def expires(self, expires):
-        """
-        Sets the expires of this DnlLicenseInfoGet.
-
-        :param expires: The expires of this DnlLicenseInfoGet.
-        :type: int
-        """
-
-        self._expires = expires
+        if ss_bind_mac is not None:
+          self.ss_bind_mac = ss_bind_mac
+        if carrier_name is not None:
+          self.carrier_name = carrier_name
+        if ss_bind_ip is not None:
+          self.ss_bind_ip = ss_bind_ip
+        if recv_port is not None:
+          self.recv_port = recv_port
+        if status is not None:
+          self.status = status
+        if expires is not None:
+          self.expires = expires
+        if plan_name is not None:
+          self.plan_name = plan_name
+        if start_date is not None:
+          self.start_date = start_date
+        if ss_type is not None:
+          self.ss_type = ss_type
 
     @property
     def ss_bind_port(self):
@@ -197,113 +153,6 @@ class DnlLicenseInfoGet(object):
         """
 
         self._ss_bind_port = ss_bind_port
-
-    @property
-    def switch_ip(self):
-        """
-        Gets the switch_ip of this DnlLicenseInfoGet.
-
-        :return: The switch_ip of this DnlLicenseInfoGet.
-        :rtype: str
-        """
-        return self._switch_ip
-
-    @switch_ip.setter
-    def switch_ip(self, switch_ip):
-        """
-        Sets the switch_ip of this DnlLicenseInfoGet.
-
-        :param switch_ip: The switch_ip of this DnlLicenseInfoGet.
-        :type: str
-        """
-
-        self._switch_ip = switch_ip
-
-    @property
-    def plan_name(self):
-        """
-        Gets the plan_name of this DnlLicenseInfoGet.
-
-        :return: The plan_name of this DnlLicenseInfoGet.
-        :rtype: str
-        """
-        return self._plan_name
-
-    @plan_name.setter
-    def plan_name(self, plan_name):
-        """
-        Sets the plan_name of this DnlLicenseInfoGet.
-
-        :param plan_name: The plan_name of this DnlLicenseInfoGet.
-        :type: str
-        """
-
-        self._plan_name = plan_name
-
-    @property
-    def ss_bind_mac(self):
-        """
-        Gets the ss_bind_mac of this DnlLicenseInfoGet.
-
-        :return: The ss_bind_mac of this DnlLicenseInfoGet.
-        :rtype: str
-        """
-        return self._ss_bind_mac
-
-    @ss_bind_mac.setter
-    def ss_bind_mac(self, ss_bind_mac):
-        """
-        Sets the ss_bind_mac of this DnlLicenseInfoGet.
-
-        :param ss_bind_mac: The ss_bind_mac of this DnlLicenseInfoGet.
-        :type: str
-        """
-        if ss_bind_mac is not None and len(ss_bind_mac) > 18:
-            raise ValueError("Invalid value for `ss_bind_mac`, length must be less than or equal to `18`")
-
-        self._ss_bind_mac = ss_bind_mac
-
-    @property
-    def expire_date(self):
-        """
-        Gets the expire_date of this DnlLicenseInfoGet.
-
-        :return: The expire_date of this DnlLicenseInfoGet.
-        :rtype: datetime
-        """
-        return self._expire_date
-
-    @expire_date.setter
-    def expire_date(self, expire_date):
-        """
-        Sets the expire_date of this DnlLicenseInfoGet.
-
-        :param expire_date: The expire_date of this DnlLicenseInfoGet.
-        :type: datetime
-        """
-
-        self._expire_date = expire_date
-
-    @property
-    def ss_type(self):
-        """
-        Gets the ss_type of this DnlLicenseInfoGet.
-
-        :return: The ss_type of this DnlLicenseInfoGet.
-        :rtype: int
-        """
-        return self._ss_type
-
-    @ss_type.setter
-    def ss_type(self, ss_type):
-        """
-        Sets the ss_type of this DnlLicenseInfoGet.
-
-        :param ss_type: The ss_type of this DnlLicenseInfoGet.
-        :type: int
-        """
-
-        self._ss_type = ss_type
 
     @property
     def max_cps(self):
@@ -348,6 +197,27 @@ class DnlLicenseInfoGet(object):
         self._switch_uuid = switch_uuid
 
     @property
+    def create_user(self):
+        """
+        Gets the create_user of this DnlLicenseInfoGet.
+
+        :return: The create_user of this DnlLicenseInfoGet.
+        :rtype: int
+        """
+        return self._create_user
+
+    @create_user.setter
+    def create_user(self, create_user):
+        """
+        Sets the create_user of this DnlLicenseInfoGet.
+
+        :param create_user: The create_user of this DnlLicenseInfoGet.
+        :type: int
+        """
+
+        self._create_user = create_user
+
+    @property
     def port_limit(self):
         """
         Gets the port_limit of this DnlLicenseInfoGet.
@@ -369,46 +239,113 @@ class DnlLicenseInfoGet(object):
         self._port_limit = port_limit
 
     @property
-    def recv_port(self):
+    def ss_name(self):
         """
-        Gets the recv_port of this DnlLicenseInfoGet.
+        Gets the ss_name of this DnlLicenseInfoGet.
 
-        :return: The recv_port of this DnlLicenseInfoGet.
-        :rtype: int
+        :return: The ss_name of this DnlLicenseInfoGet.
+        :rtype: str
         """
-        return self._recv_port
+        return self._ss_name
 
-    @recv_port.setter
-    def recv_port(self, recv_port):
+    @ss_name.setter
+    def ss_name(self, ss_name):
         """
-        Sets the recv_port of this DnlLicenseInfoGet.
+        Sets the ss_name of this DnlLicenseInfoGet.
 
-        :param recv_port: The recv_port of this DnlLicenseInfoGet.
-        :type: int
+        :param ss_name: The ss_name of this DnlLicenseInfoGet.
+        :type: str
         """
+        if ss_name is not None and len(ss_name) > 100:
+            raise ValueError("Invalid value for `ss_name`, length must be less than or equal to `100`")
 
-        self._recv_port = recv_port
+        self._ss_name = ss_name
 
     @property
-    def start_date(self):
+    def switch_ip(self):
         """
-        Gets the start_date of this DnlLicenseInfoGet.
+        Gets the switch_ip of this DnlLicenseInfoGet.
 
-        :return: The start_date of this DnlLicenseInfoGet.
+        :return: The switch_ip of this DnlLicenseInfoGet.
+        :rtype: str
+        """
+        return self._switch_ip
+
+    @switch_ip.setter
+    def switch_ip(self, switch_ip):
+        """
+        Sets the switch_ip of this DnlLicenseInfoGet.
+
+        :param switch_ip: The switch_ip of this DnlLicenseInfoGet.
+        :type: str
+        """
+
+        self._switch_ip = switch_ip
+
+    @property
+    def expire_date(self):
+        """
+        Gets the expire_date of this DnlLicenseInfoGet.
+
+        :return: The expire_date of this DnlLicenseInfoGet.
         :rtype: datetime
         """
-        return self._start_date
+        return self._expire_date
 
-    @start_date.setter
-    def start_date(self, start_date):
+    @expire_date.setter
+    def expire_date(self, expire_date):
         """
-        Sets the start_date of this DnlLicenseInfoGet.
+        Sets the expire_date of this DnlLicenseInfoGet.
 
-        :param start_date: The start_date of this DnlLicenseInfoGet.
+        :param expire_date: The expire_date of this DnlLicenseInfoGet.
         :type: datetime
         """
 
-        self._start_date = start_date
+        self._expire_date = expire_date
+
+    @property
+    def id(self):
+        """
+        Gets the id of this DnlLicenseInfoGet.
+
+        :return: The id of this DnlLicenseInfoGet.
+        :rtype: int
+        """
+        return self._id
+
+    @id.setter
+    def id(self, id):
+        """
+        Sets the id of this DnlLicenseInfoGet.
+
+        :param id: The id of this DnlLicenseInfoGet.
+        :type: int
+        """
+
+        self._id = id
+
+    @property
+    def ss_bind_mac(self):
+        """
+        Gets the ss_bind_mac of this DnlLicenseInfoGet.
+
+        :return: The ss_bind_mac of this DnlLicenseInfoGet.
+        :rtype: str
+        """
+        return self._ss_bind_mac
+
+    @ss_bind_mac.setter
+    def ss_bind_mac(self, ss_bind_mac):
+        """
+        Sets the ss_bind_mac of this DnlLicenseInfoGet.
+
+        :param ss_bind_mac: The ss_bind_mac of this DnlLicenseInfoGet.
+        :type: str
+        """
+        if ss_bind_mac is not None and len(ss_bind_mac) > 18:
+            raise ValueError("Invalid value for `ss_bind_mac`, length must be less than or equal to `18`")
+
+        self._ss_bind_mac = ss_bind_mac
 
     @property
     def carrier_name(self):
@@ -434,48 +371,6 @@ class DnlLicenseInfoGet(object):
         self._carrier_name = carrier_name
 
     @property
-    def create_user(self):
-        """
-        Gets the create_user of this DnlLicenseInfoGet.
-
-        :return: The create_user of this DnlLicenseInfoGet.
-        :rtype: int
-        """
-        return self._create_user
-
-    @create_user.setter
-    def create_user(self, create_user):
-        """
-        Sets the create_user of this DnlLicenseInfoGet.
-
-        :param create_user: The create_user of this DnlLicenseInfoGet.
-        :type: int
-        """
-
-        self._create_user = create_user
-
-    @property
-    def status(self):
-        """
-        Gets the status of this DnlLicenseInfoGet.
-
-        :return: The status of this DnlLicenseInfoGet.
-        :rtype: bool
-        """
-        return self._status
-
-    @status.setter
-    def status(self, status):
-        """
-        Sets the status of this DnlLicenseInfoGet.
-
-        :param status: The status of this DnlLicenseInfoGet.
-        :type: bool
-        """
-
-        self._status = status
-
-    @property
     def ss_bind_ip(self):
         """
         Gets the ss_bind_ip of this DnlLicenseInfoGet.
@@ -499,25 +394,130 @@ class DnlLicenseInfoGet(object):
         self._ss_bind_ip = ss_bind_ip
 
     @property
-    def id(self):
+    def recv_port(self):
         """
-        Gets the id of this DnlLicenseInfoGet.
+        Gets the recv_port of this DnlLicenseInfoGet.
 
-        :return: The id of this DnlLicenseInfoGet.
+        :return: The recv_port of this DnlLicenseInfoGet.
         :rtype: int
         """
-        return self._id
+        return self._recv_port
 
-    @id.setter
-    def id(self, id):
+    @recv_port.setter
+    def recv_port(self, recv_port):
         """
-        Sets the id of this DnlLicenseInfoGet.
+        Sets the recv_port of this DnlLicenseInfoGet.
 
-        :param id: The id of this DnlLicenseInfoGet.
+        :param recv_port: The recv_port of this DnlLicenseInfoGet.
         :type: int
         """
 
-        self._id = id
+        self._recv_port = recv_port
+
+    @property
+    def status(self):
+        """
+        Gets the status of this DnlLicenseInfoGet.
+
+        :return: The status of this DnlLicenseInfoGet.
+        :rtype: bool
+        """
+        return self._status
+
+    @status.setter
+    def status(self, status):
+        """
+        Sets the status of this DnlLicenseInfoGet.
+
+        :param status: The status of this DnlLicenseInfoGet.
+        :type: bool
+        """
+
+        self._status = status
+
+    @property
+    def expires(self):
+        """
+        Gets the expires of this DnlLicenseInfoGet.
+
+        :return: The expires of this DnlLicenseInfoGet.
+        :rtype: int
+        """
+        return self._expires
+
+    @expires.setter
+    def expires(self, expires):
+        """
+        Sets the expires of this DnlLicenseInfoGet.
+
+        :param expires: The expires of this DnlLicenseInfoGet.
+        :type: int
+        """
+
+        self._expires = expires
+
+    @property
+    def plan_name(self):
+        """
+        Gets the plan_name of this DnlLicenseInfoGet.
+
+        :return: The plan_name of this DnlLicenseInfoGet.
+        :rtype: str
+        """
+        return self._plan_name
+
+    @plan_name.setter
+    def plan_name(self, plan_name):
+        """
+        Sets the plan_name of this DnlLicenseInfoGet.
+
+        :param plan_name: The plan_name of this DnlLicenseInfoGet.
+        :type: str
+        """
+
+        self._plan_name = plan_name
+
+    @property
+    def start_date(self):
+        """
+        Gets the start_date of this DnlLicenseInfoGet.
+
+        :return: The start_date of this DnlLicenseInfoGet.
+        :rtype: datetime
+        """
+        return self._start_date
+
+    @start_date.setter
+    def start_date(self, start_date):
+        """
+        Sets the start_date of this DnlLicenseInfoGet.
+
+        :param start_date: The start_date of this DnlLicenseInfoGet.
+        :type: datetime
+        """
+
+        self._start_date = start_date
+
+    @property
+    def ss_type(self):
+        """
+        Gets the ss_type of this DnlLicenseInfoGet.
+
+        :return: The ss_type of this DnlLicenseInfoGet.
+        :rtype: int
+        """
+        return self._ss_type
+
+    @ss_type.setter
+    def ss_type(self, ss_type):
+        """
+        Sets the ss_type of this DnlLicenseInfoGet.
+
+        :param ss_type: The ss_type of this DnlLicenseInfoGet.
+        :type: int
+        """
+
+        self._ss_type = ss_type
 
     def to_dict(self):
         """

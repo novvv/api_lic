@@ -31,58 +31,58 @@ class LicenseSwitchModify(object):
                             and the value is json key in definition.
     """
     swagger_types = {
-        'enabled': 'bool',
-        'package_switch_uuid': 'str',
         'end_time': 'datetime',
-        'ip': 'str'
+        'package_switch_uuid': 'str',
+        'ip': 'str',
+        'enabled': 'bool'
     }
 
     attribute_map = {
-        'enabled': 'enabled',
-        'package_switch_uuid': 'package_switch_uuid',
         'end_time': 'end_time',
-        'ip': 'ip'
+        'package_switch_uuid': 'package_switch_uuid',
+        'ip': 'ip',
+        'enabled': 'enabled'
     }
 
-    def __init__(self, enabled=None, package_switch_uuid=None, end_time=None, ip=None):
+    def __init__(self, end_time=None, package_switch_uuid=None, ip=None, enabled=None):
         """
         LicenseSwitchModify - a model defined in Swagger
         """
 
-        self._enabled = None
-        self._package_switch_uuid = None
         self._end_time = None
+        self._package_switch_uuid = None
         self._ip = None
+        self._enabled = None
 
-        if enabled is not None:
-          self.enabled = enabled
-        if package_switch_uuid is not None:
-          self.package_switch_uuid = package_switch_uuid
         if end_time is not None:
           self.end_time = end_time
+        if package_switch_uuid is not None:
+          self.package_switch_uuid = package_switch_uuid
         if ip is not None:
           self.ip = ip
+        if enabled is not None:
+          self.enabled = enabled
 
     @property
-    def enabled(self):
+    def end_time(self):
         """
-        Gets the enabled of this LicenseSwitchModify.
+        Gets the end_time of this LicenseSwitchModify.
 
-        :return: The enabled of this LicenseSwitchModify.
-        :rtype: bool
+        :return: The end_time of this LicenseSwitchModify.
+        :rtype: datetime
         """
-        return self._enabled
+        return self._end_time
 
-    @enabled.setter
-    def enabled(self, enabled):
+    @end_time.setter
+    def end_time(self, end_time):
         """
-        Sets the enabled of this LicenseSwitchModify.
+        Sets the end_time of this LicenseSwitchModify.
 
-        :param enabled: The enabled of this LicenseSwitchModify.
-        :type: bool
+        :param end_time: The end_time of this LicenseSwitchModify.
+        :type: datetime
         """
 
-        self._enabled = enabled
+        self._end_time = end_time
 
     @property
     def package_switch_uuid(self):
@@ -108,27 +108,6 @@ class LicenseSwitchModify(object):
         self._package_switch_uuid = package_switch_uuid
 
     @property
-    def end_time(self):
-        """
-        Gets the end_time of this LicenseSwitchModify.
-
-        :return: The end_time of this LicenseSwitchModify.
-        :rtype: datetime
-        """
-        return self._end_time
-
-    @end_time.setter
-    def end_time(self, end_time):
-        """
-        Sets the end_time of this LicenseSwitchModify.
-
-        :param end_time: The end_time of this LicenseSwitchModify.
-        :type: datetime
-        """
-
-        self._end_time = end_time
-
-    @property
     def ip(self):
         """
         Gets the ip of this LicenseSwitchModify.
@@ -150,6 +129,27 @@ class LicenseSwitchModify(object):
             raise ValueError("Invalid value for `ip`, length must be less than or equal to `16`")
 
         self._ip = ip
+
+    @property
+    def enabled(self):
+        """
+        Gets the enabled of this LicenseSwitchModify.
+
+        :return: The enabled of this LicenseSwitchModify.
+        :rtype: bool
+        """
+        return self._enabled
+
+    @enabled.setter
+    def enabled(self, enabled):
+        """
+        Sets the enabled of this LicenseSwitchModify.
+
+        :param enabled: The enabled of this LicenseSwitchModify.
+        :type: bool
+        """
+
+        self._enabled = enabled
 
     def to_dict(self):
         """

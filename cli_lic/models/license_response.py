@@ -31,48 +31,27 @@ class LicenseResponse(object):
                             and the value is json key in definition.
     """
     swagger_types = {
-        'license_switch_uuid': 'str',
-        'license_lrn_uuid': 'str'
+        'license_lrn_uuid': 'str',
+        'license_switch_uuid': 'str'
     }
 
     attribute_map = {
-        'license_switch_uuid': 'license_switch_uuid',
-        'license_lrn_uuid': 'license_lrn_uuid'
+        'license_lrn_uuid': 'license_lrn_uuid',
+        'license_switch_uuid': 'license_switch_uuid'
     }
 
-    def __init__(self, license_switch_uuid=None, license_lrn_uuid=None):
+    def __init__(self, license_lrn_uuid=None, license_switch_uuid=None):
         """
         LicenseResponse - a model defined in Swagger
         """
 
-        self._license_switch_uuid = None
         self._license_lrn_uuid = None
+        self._license_switch_uuid = None
 
-        if license_switch_uuid is not None:
-          self.license_switch_uuid = license_switch_uuid
         if license_lrn_uuid is not None:
           self.license_lrn_uuid = license_lrn_uuid
-
-    @property
-    def license_switch_uuid(self):
-        """
-        Gets the license_switch_uuid of this LicenseResponse.
-
-        :return: The license_switch_uuid of this LicenseResponse.
-        :rtype: str
-        """
-        return self._license_switch_uuid
-
-    @license_switch_uuid.setter
-    def license_switch_uuid(self, license_switch_uuid):
-        """
-        Sets the license_switch_uuid of this LicenseResponse.
-
-        :param license_switch_uuid: The license_switch_uuid of this LicenseResponse.
-        :type: str
-        """
-
-        self._license_switch_uuid = license_switch_uuid
+        if license_switch_uuid is not None:
+          self.license_switch_uuid = license_switch_uuid
 
     @property
     def license_lrn_uuid(self):
@@ -94,6 +73,27 @@ class LicenseResponse(object):
         """
 
         self._license_lrn_uuid = license_lrn_uuid
+
+    @property
+    def license_switch_uuid(self):
+        """
+        Gets the license_switch_uuid of this LicenseResponse.
+
+        :return: The license_switch_uuid of this LicenseResponse.
+        :rtype: str
+        """
+        return self._license_switch_uuid
+
+    @license_switch_uuid.setter
+    def license_switch_uuid(self, license_switch_uuid):
+        """
+        Sets the license_switch_uuid of this LicenseResponse.
+
+        :param license_switch_uuid: The license_switch_uuid of this LicenseResponse.
+        :type: str
+        """
+
+        self._license_switch_uuid = license_switch_uuid
 
     def to_dict(self):
         """

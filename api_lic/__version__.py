@@ -1,3 +1,3 @@
 __version__ = '1.0.14'
-__minor__ = '6a9e1a4767ea0ae5cf31baaa5aee035ee0563ed5'
-__date__ = '2019-04-09 19:42:40'
+__minor__ = '656e18a72bac2fe7b99c2b1e82d18efa02fd4525'
+__date__ = '2019-04-10 13:11:00'

@@ -31,48 +31,27 @@ class License(object):
                             and the value is json key in definition.
     """
     swagger_types = {
-        'license_switch': 'LicenseSwitch',
-        'license_lrn': 'LicenseLrn'
+        'license_lrn': 'LicenseLrn',
+        'license_switch': 'LicenseSwitch'
     }
 
     attribute_map = {
-        'license_switch': 'license_switch',
-        'license_lrn': 'license_lrn'
+        'license_lrn': 'license_lrn',
+        'license_switch': 'license_switch'
     }
 
-    def __init__(self, license_switch=None, license_lrn=None):
+    def __init__(self, license_lrn=None, license_switch=None):
         """
         License - a model defined in Swagger
         """
 
-        self._license_switch = None
         self._license_lrn = None
+        self._license_switch = None
 
-        if license_switch is not None:
-          self.license_switch = license_switch
         if license_lrn is not None:
           self.license_lrn = license_lrn
-
-    @property
-    def license_switch(self):
-        """
-        Gets the license_switch of this License.
-
-        :return: The license_switch of this License.
-        :rtype: LicenseSwitch
-        """
-        return self._license_switch
-
-    @license_switch.setter
-    def license_switch(self, license_switch):
-        """
-        Sets the license_switch of this License.
-
-        :param license_switch: The license_switch of this License.
-        :type: LicenseSwitch
-        """
-
-        self._license_switch = license_switch
+        if license_switch is not None:
+          self.license_switch = license_switch
 
     @property
     def license_lrn(self):
@@ -94,6 +73,27 @@ class License(object):
         """
 
         self._license_lrn = license_lrn
+
+    @property
+    def license_switch(self):
+        """
+        Gets the license_switch of this License.
+
+        :return: The license_switch of this License.
+        :rtype: LicenseSwitch
+        """
+        return self._license_switch
+
+    @license_switch.setter
+    def license_switch(self, license_switch):
+        """
+        Sets the license_switch of this License.
+
+        :param license_switch: The license_switch of this License.
+        :type: LicenseSwitch
+        """
+
+        self._license_switch = license_switch
 
     def to_dict(self):
         """
