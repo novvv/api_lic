@@ -1,4 +1,5 @@
-95d13495228a -> 5824b1c6a0c6 (head), license_switch switch_uuid
+5824b1c6a0c6 -> b07f61c2b5e5 (head), license_swict license_lrn del uniq
+95d13495228a -> 5824b1c6a0c6, license_switch switch_uuid
 f11572091a96 -> 95d13495228a, transaction_log amount
 ca11a5c702c2 -> f11572091a96, transaction_log fee
 17220f13141b -> ca11a5c702c2, transaction_log

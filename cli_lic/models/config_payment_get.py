@@ -31,77 +31,100 @@ class ConfigPaymentGet(object):
                             and the value is json key in definition.
     """
     swagger_types = {
+        'stripe_pkey': 'str',
         'paypal_svc_charge': 'float',
-        'paypal_email': 'str',
-        'email_cc_to': 'str',
-        'paypal_client_id': 'str',
         'stripe_svc_charge': 'float',
-        'paypal_test_mode': 'bool',
+        'paypal_client_id': 'str',
+        'email_confirm_to': 'str',
+        'paypal_email': 'str',
         'charge_type': 'str',
+        'confirm_enabled': 'bool',
+        'email_cc_to': 'str',
         'notification_enabled': 'bool',
         'stripe_test_mode': 'bool',
-        'confirm_enabled': 'bool',
-        'email_confirm_to': 'str',
-        'stripe_pkey': 'str'
+        'paypal_test_mode': 'bool'
     }
 
     attribute_map = {
+        'stripe_pkey': 'stripe_pkey',
         'paypal_svc_charge': 'paypal_svc_charge',
-        'paypal_email': 'paypal_email',
-        'email_cc_to': 'email_cc_to',
-        'paypal_client_id': 'paypal_client_id',
         'stripe_svc_charge': 'stripe_svc_charge',
-        'paypal_test_mode': 'paypal_test_mode',
+        'paypal_client_id': 'paypal_client_id',
+        'email_confirm_to': 'email_confirm_to',
+        'paypal_email': 'paypal_email',
         'charge_type': 'charge_type',
+        'confirm_enabled': 'confirm_enabled',
+        'email_cc_to': 'email_cc_to',
         'notification_enabled': 'notification_enabled',
         'stripe_test_mode': 'stripe_test_mode',
-        'confirm_enabled': 'confirm_enabled',
-        'email_confirm_to': 'email_confirm_to',
-        'stripe_pkey': 'stripe_pkey'
+        'paypal_test_mode': 'paypal_test_mode'
     }
 
-    def __init__(self, paypal_svc_charge=None, paypal_email=None, email_cc_to=None, paypal_client_id=None, stripe_svc_charge=None, paypal_test_mode=None, charge_type='actual received', notification_enabled=None, stripe_test_mode=None, confirm_enabled=None, email_confirm_to=None, stripe_pkey=None):
+    def __init__(self, stripe_pkey=None, paypal_svc_charge=None, stripe_svc_charge=None, paypal_client_id=None, email_confirm_to=None, paypal_email=None, charge_type='actual received', confirm_enabled=None, email_cc_to=None, notification_enabled=None, stripe_test_mode=None, paypal_test_mode=None):
         """
         ConfigPaymentGet - a model defined in Swagger
         """
 
+        self._stripe_pkey = None
         self._paypal_svc_charge = None
-        self._paypal_email = None
-        self._email_cc_to = None
-        self._paypal_client_id = None
         self._stripe_svc_charge = None
-        self._paypal_test_mode = None
+        self._paypal_client_id = None
+        self._email_confirm_to = None
+        self._paypal_email = None
         self._charge_type = None
+        self._confirm_enabled = None
+        self._email_cc_to = None
         self._notification_enabled = None
         self._stripe_test_mode = None
-        self._confirm_enabled = None
-        self._email_confirm_to = None
-        self._stripe_pkey = None
+        self._paypal_test_mode = None
 
+        if stripe_pkey is not None:
+          self.stripe_pkey = stripe_pkey
         if paypal_svc_charge is not None:
           self.paypal_svc_charge = paypal_svc_charge
-        if paypal_email is not None:
-          self.paypal_email = paypal_email
-        if email_cc_to is not None:
-          self.email_cc_to = email_cc_to
-        if paypal_client_id is not None:
-          self.paypal_client_id = paypal_client_id
         if stripe_svc_charge is not None:
           self.stripe_svc_charge = stripe_svc_charge
-        if paypal_test_mode is not None:
-          self.paypal_test_mode = paypal_test_mode
+        if paypal_client_id is not None:
+          self.paypal_client_id = paypal_client_id
+        if email_confirm_to is not None:
+          self.email_confirm_to = email_confirm_to
+        if paypal_email is not None:
+          self.paypal_email = paypal_email
         if charge_type is not None:
           self.charge_type = charge_type
+        if confirm_enabled is not None:
+          self.confirm_enabled = confirm_enabled
+        if email_cc_to is not None:
+          self.email_cc_to = email_cc_to
         if notification_enabled is not None:
           self.notification_enabled = notification_enabled
         if stripe_test_mode is not None:
           self.stripe_test_mode = stripe_test_mode
-        if confirm_enabled is not None:
-          self.confirm_enabled = confirm_enabled
-        if email_confirm_to is not None:
-          self.email_confirm_to = email_confirm_to
-        if stripe_pkey is not None:
-          self.stripe_pkey = stripe_pkey
+        if paypal_test_mode is not None:
+          self.paypal_test_mode = paypal_test_mode
+
+    @property
+    def stripe_pkey(self):
+        """
+        Gets the stripe_pkey of this ConfigPaymentGet.
+
+        :return: The stripe_pkey of this ConfigPaymentGet.
+        :rtype: str
+        """
+        return self._stripe_pkey
+
+    @stripe_pkey.setter
+    def stripe_pkey(self, stripe_pkey):
+        """
+        Sets the stripe_pkey of this ConfigPaymentGet.
+
+        :param stripe_pkey: The stripe_pkey of this ConfigPaymentGet.
+        :type: str
+        """
+        if stripe_pkey is not None and len(stripe_pkey) > 64:
+            raise ValueError("Invalid value for `stripe_pkey`, length must be less than or equal to `64`")
+
+        self._stripe_pkey = stripe_pkey
 
     @property
     def paypal_svc_charge(self):
@@ -125,50 +148,25 @@ class ConfigPaymentGet(object):
         self._paypal_svc_charge = paypal_svc_charge
 
     @property
-    def paypal_email(self):
+    def stripe_svc_charge(self):
         """
-        Gets the paypal_email of this ConfigPaymentGet.
+        Gets the stripe_svc_charge of this ConfigPaymentGet.
 
-        :return: The paypal_email of this ConfigPaymentGet.
-        :rtype: str
+        :return: The stripe_svc_charge of this ConfigPaymentGet.
+        :rtype: float
         """
-        return self._paypal_email
+        return self._stripe_svc_charge
 
-    @paypal_email.setter
-    def paypal_email(self, paypal_email):
+    @stripe_svc_charge.setter
+    def stripe_svc_charge(self, stripe_svc_charge):
         """
-        Sets the paypal_email of this ConfigPaymentGet.
+        Sets the stripe_svc_charge of this ConfigPaymentGet.
 
-        :param paypal_email: The paypal_email of this ConfigPaymentGet.
-        :type: str
+        :param stripe_svc_charge: The stripe_svc_charge of this ConfigPaymentGet.
+        :type: float
         """
-        if paypal_email is not None and len(paypal_email) > 64:
-            raise ValueError("Invalid value for `paypal_email`, length must be less than or equal to `64`")
 
-        self._paypal_email = paypal_email
-
-    @property
-    def email_cc_to(self):
-        """
-        Gets the email_cc_to of this ConfigPaymentGet.
-
-        :return: The email_cc_to of this ConfigPaymentGet.
-        :rtype: str
-        """
-        return self._email_cc_to
-
-    @email_cc_to.setter
-    def email_cc_to(self, email_cc_to):
-        """
-        Sets the email_cc_to of this ConfigPaymentGet.
-
-        :param email_cc_to: The email_cc_to of this ConfigPaymentGet.
-        :type: str
-        """
-        if email_cc_to is not None and len(email_cc_to) > 64:
-            raise ValueError("Invalid value for `email_cc_to`, length must be less than or equal to `64`")
-
-        self._email_cc_to = email_cc_to
+        self._stripe_svc_charge = stripe_svc_charge
 
     @property
     def paypal_client_id(self):
@@ -194,46 +192,50 @@ class ConfigPaymentGet(object):
         self._paypal_client_id = paypal_client_id
 
     @property
-    def stripe_svc_charge(self):
+    def email_confirm_to(self):
         """
-        Gets the stripe_svc_charge of this ConfigPaymentGet.
+        Gets the email_confirm_to of this ConfigPaymentGet.
 
-        :return: The stripe_svc_charge of this ConfigPaymentGet.
-        :rtype: float
+        :return: The email_confirm_to of this ConfigPaymentGet.
+        :rtype: str
         """
-        return self._stripe_svc_charge
+        return self._email_confirm_to
 
-    @stripe_svc_charge.setter
-    def stripe_svc_charge(self, stripe_svc_charge):
+    @email_confirm_to.setter
+    def email_confirm_to(self, email_confirm_to):
         """
-        Sets the stripe_svc_charge of this ConfigPaymentGet.
+        Sets the email_confirm_to of this ConfigPaymentGet.
 
-        :param stripe_svc_charge: The stripe_svc_charge of this ConfigPaymentGet.
-        :type: float
+        :param email_confirm_to: The email_confirm_to of this ConfigPaymentGet.
+        :type: str
         """
+        if email_confirm_to is not None and len(email_confirm_to) > 64:
+            raise ValueError("Invalid value for `email_confirm_to`, length must be less than or equal to `64`")
 
-        self._stripe_svc_charge = stripe_svc_charge
+        self._email_confirm_to = email_confirm_to
 
     @property
-    def paypal_test_mode(self):
+    def paypal_email(self):
         """
-        Gets the paypal_test_mode of this ConfigPaymentGet.
+        Gets the paypal_email of this ConfigPaymentGet.
 
-        :return: The paypal_test_mode of this ConfigPaymentGet.
-        :rtype: bool
+        :return: The paypal_email of this ConfigPaymentGet.
+        :rtype: str
         """
-        return self._paypal_test_mode
+        return self._paypal_email
 
-    @paypal_test_mode.setter
-    def paypal_test_mode(self, paypal_test_mode):
+    @paypal_email.setter
+    def paypal_email(self, paypal_email):
         """
-        Sets the paypal_test_mode of this ConfigPaymentGet.
+        Sets the paypal_email of this ConfigPaymentGet.
 
-        :param paypal_test_mode: The paypal_test_mode of this ConfigPaymentGet.
-        :type: bool
+        :param paypal_email: The paypal_email of this ConfigPaymentGet.
+        :type: str
         """
+        if paypal_email is not None and len(paypal_email) > 64:
+            raise ValueError("Invalid value for `paypal_email`, length must be less than or equal to `64`")
 
-        self._paypal_test_mode = paypal_test_mode
+        self._paypal_email = paypal_email
 
     @property
     def charge_type(self):
@@ -261,6 +263,50 @@ class ConfigPaymentGet(object):
             )
 
         self._charge_type = charge_type
+
+    @property
+    def confirm_enabled(self):
+        """
+        Gets the confirm_enabled of this ConfigPaymentGet.
+
+        :return: The confirm_enabled of this ConfigPaymentGet.
+        :rtype: bool
+        """
+        return self._confirm_enabled
+
+    @confirm_enabled.setter
+    def confirm_enabled(self, confirm_enabled):
+        """
+        Sets the confirm_enabled of this ConfigPaymentGet.
+
+        :param confirm_enabled: The confirm_enabled of this ConfigPaymentGet.
+        :type: bool
+        """
+
+        self._confirm_enabled = confirm_enabled
+
+    @property
+    def email_cc_to(self):
+        """
+        Gets the email_cc_to of this ConfigPaymentGet.
+
+        :return: The email_cc_to of this ConfigPaymentGet.
+        :rtype: str
+        """
+        return self._email_cc_to
+
+    @email_cc_to.setter
+    def email_cc_to(self, email_cc_to):
+        """
+        Sets the email_cc_to of this ConfigPaymentGet.
+
+        :param email_cc_to: The email_cc_to of this ConfigPaymentGet.
+        :type: str
+        """
+        if email_cc_to is not None and len(email_cc_to) > 64:
+            raise ValueError("Invalid value for `email_cc_to`, length must be less than or equal to `64`")
+
+        self._email_cc_to = email_cc_to
 
     @property
     def notification_enabled(self):
@@ -305,71 +351,25 @@ class ConfigPaymentGet(object):
         self._stripe_test_mode = stripe_test_mode
 
     @property
-    def confirm_enabled(self):
+    def paypal_test_mode(self):
         """
-        Gets the confirm_enabled of this ConfigPaymentGet.
+        Gets the paypal_test_mode of this ConfigPaymentGet.
 
-        :return: The confirm_enabled of this ConfigPaymentGet.
+        :return: The paypal_test_mode of this ConfigPaymentGet.
         :rtype: bool
         """
-        return self._confirm_enabled
+        return self._paypal_test_mode
 
-    @confirm_enabled.setter
-    def confirm_enabled(self, confirm_enabled):
+    @paypal_test_mode.setter
+    def paypal_test_mode(self, paypal_test_mode):
         """
-        Sets the confirm_enabled of this ConfigPaymentGet.
+        Sets the paypal_test_mode of this ConfigPaymentGet.
 
-        :param confirm_enabled: The confirm_enabled of this ConfigPaymentGet.
+        :param paypal_test_mode: The paypal_test_mode of this ConfigPaymentGet.
         :type: bool
         """
 
-        self._confirm_enabled = confirm_enabled
-
-    @property
-    def email_confirm_to(self):
-        """
-        Gets the email_confirm_to of this ConfigPaymentGet.
-
-        :return: The email_confirm_to of this ConfigPaymentGet.
-        :rtype: str
-        """
-        return self._email_confirm_to
-
-    @email_confirm_to.setter
-    def email_confirm_to(self, email_confirm_to):
-        """
-        Sets the email_confirm_to of this ConfigPaymentGet.
-
-        :param email_confirm_to: The email_confirm_to of this ConfigPaymentGet.
-        :type: str
-        """
-        if email_confirm_to is not None and len(email_confirm_to) > 64:
-            raise ValueError("Invalid value for `email_confirm_to`, length must be less than or equal to `64`")
-
-        self._email_confirm_to = email_confirm_to
-
-    @property
-    def stripe_pkey(self):
-        """
-        Gets the stripe_pkey of this ConfigPaymentGet.
-
-        :return: The stripe_pkey of this ConfigPaymentGet.
-        :rtype: str
-        """
-        return self._stripe_pkey
-
-    @stripe_pkey.setter
-    def stripe_pkey(self, stripe_pkey):
-        """
-        Sets the stripe_pkey of this ConfigPaymentGet.
-
-        :param stripe_pkey: The stripe_pkey of this ConfigPaymentGet.
-        :type: str
-        """
-        if stripe_pkey is not None and len(stripe_pkey) > 64:
-            raise ValueError("Invalid value for `stripe_pkey`, length must be less than or equal to `64`")
-
-        self._stripe_pkey = stripe_pkey
+        self._paypal_test_mode = paypal_test_mode
 
     def to_dict(self):
         """

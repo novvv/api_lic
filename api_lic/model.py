@@ -508,9 +508,9 @@ class PackageLrn(BaseModel):
 
 class LicenseLrn(BaseModel):
     __tablename__ = 'license_lrn'
-    __table_args__ = (
-        UniqueConstraint('package_lrn_uuid', 'user_uuid', name='uq_license_lrn_package_lrn_uuid_user_uuid'),
-    )
+    # __table_args__ = (
+    #     UniqueConstraint('package_lrn_uuid', 'user_uuid', name='uq_license_lrn_package_lrn_uuid_user_uuid'),
+    # )
     DURATION ={1:'1 month',3:'3 months',6:'6 months',12:'12 months'}
     license_lrn_uuid = Column \
         (String(36), primary_key=True, default=generate_uuid_str(),
@@ -616,9 +616,9 @@ class PackageSwitch(BaseModel):
 
 class LicenseSwitch(BaseModel):
     __tablename__ = 'license_switch'
-    __table_args__ = (
-        UniqueConstraint('package_switch_uuid', 'user_uuid', name='uq_license_switch_package_switch_uuid_user_uuid'),
-    )
+    # __table_args__ = (
+    #     UniqueConstraint('package_switch_uuid', 'user_uuid', name='uq_license_switch_package_switch_uuid_user_uuid'),
+    # )
     DURATION = {1: '1 month', 3: '3 months', 6: '6 months', 12: '12 months'}
     license_switch_uuid = Column \
         (String(36), primary_key=True, default=generate_uuid_str(),

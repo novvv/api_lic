@@ -31,42 +31,63 @@ class UserModify(object):
                             and the value is json key in definition.
     """
     swagger_types = {
+        'is_active': 'bool',
         'logo_file_uuid': 'str',
-        'passwd': 'str',
         'is_admin': 'bool',
-        'email': 'str',
-        'is_active': 'bool'
+        'passwd': 'str',
+        'email': 'str'
     }
 
     attribute_map = {
+        'is_active': 'is_active',
         'logo_file_uuid': 'logo_file_uuid',
-        'passwd': 'passwd',
         'is_admin': 'is_admin',
-        'email': 'email',
-        'is_active': 'is_active'
+        'passwd': 'passwd',
+        'email': 'email'
     }
 
-    def __init__(self, logo_file_uuid=None, passwd=None, is_admin=None, email=None, is_active=None):
+    def __init__(self, is_active=None, logo_file_uuid=None, is_admin=None, passwd=None, email=None):
         """
         UserModify - a model defined in Swagger
         """
 
-        self._logo_file_uuid = None
-        self._passwd = None
-        self._is_admin = None
-        self._email = None
         self._is_active = None
+        self._logo_file_uuid = None
+        self._is_admin = None
+        self._passwd = None
+        self._email = None
 
-        if logo_file_uuid is not None:
-          self.logo_file_uuid = logo_file_uuid
-        if passwd is not None:
-          self.passwd = passwd
-        if is_admin is not None:
-          self.is_admin = is_admin
-        if email is not None:
-          self.email = email
         if is_active is not None:
           self.is_active = is_active
+        if logo_file_uuid is not None:
+          self.logo_file_uuid = logo_file_uuid
+        if is_admin is not None:
+          self.is_admin = is_admin
+        if passwd is not None:
+          self.passwd = passwd
+        if email is not None:
+          self.email = email
+
+    @property
+    def is_active(self):
+        """
+        Gets the is_active of this UserModify.
+
+        :return: The is_active of this UserModify.
+        :rtype: bool
+        """
+        return self._is_active
+
+    @is_active.setter
+    def is_active(self, is_active):
+        """
+        Sets the is_active of this UserModify.
+
+        :param is_active: The is_active of this UserModify.
+        :type: bool
+        """
+
+        self._is_active = is_active
 
     @property
     def logo_file_uuid(self):
@@ -90,27 +111,6 @@ class UserModify(object):
         self._logo_file_uuid = logo_file_uuid
 
     @property
-    def passwd(self):
-        """
-        Gets the passwd of this UserModify.
-
-        :return: The passwd of this UserModify.
-        :rtype: str
-        """
-        return self._passwd
-
-    @passwd.setter
-    def passwd(self, passwd):
-        """
-        Sets the passwd of this UserModify.
-
-        :param passwd: The passwd of this UserModify.
-        :type: str
-        """
-
-        self._passwd = passwd
-
-    @property
     def is_admin(self):
         """
         Gets the is_admin of this UserModify.
@@ -132,6 +132,27 @@ class UserModify(object):
         self._is_admin = is_admin
 
     @property
+    def passwd(self):
+        """
+        Gets the passwd of this UserModify.
+
+        :return: The passwd of this UserModify.
+        :rtype: str
+        """
+        return self._passwd
+
+    @passwd.setter
+    def passwd(self, passwd):
+        """
+        Sets the passwd of this UserModify.
+
+        :param passwd: The passwd of this UserModify.
+        :type: str
+        """
+
+        self._passwd = passwd
+
+    @property
     def email(self):
         """
         Gets the email of this UserModify.
@@ -151,27 +172,6 @@ class UserModify(object):
         """
 
         self._email = email
-
-    @property
-    def is_active(self):
-        """
-        Gets the is_active of this UserModify.
-
-        :return: The is_active of this UserModify.
-        :rtype: bool
-        """
-        return self._is_active
-
-    @is_active.setter
-    def is_active(self, is_active):
-        """
-        Sets the is_active of this UserModify.
-
-        :param is_active: The is_active of this UserModify.
-        :type: bool
-        """
-
-        self._is_active = is_active
 
     def to_dict(self):
         """

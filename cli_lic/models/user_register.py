@@ -31,80 +31,36 @@ class UserRegister(object):
                             and the value is json key in definition.
     """
     swagger_types = {
-        'passwd': 'str',
-        'email': 'str',
         'first_name': 'str',
-        'last_name': 'str'
+        'last_name': 'str',
+        'passwd': 'str',
+        'email': 'str'
     }
 
     attribute_map = {
-        'passwd': 'passwd',
-        'email': 'email',
         'first_name': 'first_name',
-        'last_name': 'last_name'
+        'last_name': 'last_name',
+        'passwd': 'passwd',
+        'email': 'email'
     }
 
-    def __init__(self, passwd=None, email=None, first_name=None, last_name=None):
+    def __init__(self, first_name=None, last_name=None, passwd=None, email=None):
         """
         UserRegister - a model defined in Swagger
         """
 
-        self._passwd = None
-        self._email = None
         self._first_name = None
         self._last_name = None
+        self._passwd = None
+        self._email = None
 
-        if passwd is not None:
-          self.passwd = passwd
-        self.email = email
         if first_name is not None:
           self.first_name = first_name
         if last_name is not None:
           self.last_name = last_name
-
-    @property
-    def passwd(self):
-        """
-        Gets the passwd of this UserRegister.
-
-        :return: The passwd of this UserRegister.
-        :rtype: str
-        """
-        return self._passwd
-
-    @passwd.setter
-    def passwd(self, passwd):
-        """
-        Sets the passwd of this UserRegister.
-
-        :param passwd: The passwd of this UserRegister.
-        :type: str
-        """
-
-        self._passwd = passwd
-
-    @property
-    def email(self):
-        """
-        Gets the email of this UserRegister.
-
-        :return: The email of this UserRegister.
-        :rtype: str
-        """
-        return self._email
-
-    @email.setter
-    def email(self, email):
-        """
-        Sets the email of this UserRegister.
-
-        :param email: The email of this UserRegister.
-        :type: str
-        """
-        if email is None:
-            raise ValueError("Invalid value for `email`, must not be `None`")
-
-        self._email = email
+        if passwd is not None:
+          self.passwd = passwd
+        self.email = email
 
     @property
     def first_name(self):
@@ -151,6 +107,50 @@ class UserRegister(object):
             raise ValueError("Invalid value for `last_name`, length must be less than or equal to `32`")
 
         self._last_name = last_name
+
+    @property
+    def passwd(self):
+        """
+        Gets the passwd of this UserRegister.
+
+        :return: The passwd of this UserRegister.
+        :rtype: str
+        """
+        return self._passwd
+
+    @passwd.setter
+    def passwd(self, passwd):
+        """
+        Sets the passwd of this UserRegister.
+
+        :param passwd: The passwd of this UserRegister.
+        :type: str
+        """
+
+        self._passwd = passwd
+
+    @property
+    def email(self):
+        """
+        Gets the email of this UserRegister.
+
+        :return: The email of this UserRegister.
+        :rtype: str
+        """
+        return self._email
+
+    @email.setter
+    def email(self, email):
+        """
+        Sets the email of this UserRegister.
+
+        :param email: The email of this UserRegister.
+        :type: str
+        """
+        if email is None:
+            raise ValueError("Invalid value for `email`, must not be `None`")
+
+        self._email = email
 
     def to_dict(self):
         """

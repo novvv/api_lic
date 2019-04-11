@@ -31,83 +31,62 @@ class UserInfoModify(object):
                             and the value is json key in definition.
     """
     swagger_types = {
-        'alert_license_purchased': 'bool',
         'alert_license_expired': 'bool',
+        'alert_license_purchased': 'bool',
         'passwd': 'str',
-        'email': 'str',
-        'logo_file_uuid': 'str',
         'alert_payment_received': 'bool',
-        'last_name': 'str',
+        'alert_license_will_expired': 'bool',
         'first_name': 'str',
-        'alert_license_will_expired': 'bool'
+        'email': 'str',
+        'last_name': 'str',
+        'logo_file_uuid': 'str'
     }
 
     attribute_map = {
-        'alert_license_purchased': 'alert_license_purchased',
         'alert_license_expired': 'alert_license_expired',
+        'alert_license_purchased': 'alert_license_purchased',
         'passwd': 'passwd',
-        'email': 'email',
-        'logo_file_uuid': 'logo_file_uuid',
         'alert_payment_received': 'alert_payment_received',
-        'last_name': 'last_name',
+        'alert_license_will_expired': 'alert_license_will_expired',
         'first_name': 'first_name',
-        'alert_license_will_expired': 'alert_license_will_expired'
+        'email': 'email',
+        'last_name': 'last_name',
+        'logo_file_uuid': 'logo_file_uuid'
     }
 
-    def __init__(self, alert_license_purchased=None, alert_license_expired=None, passwd=None, email=None, logo_file_uuid=None, alert_payment_received=None, last_name=None, first_name=None, alert_license_will_expired=None):
+    def __init__(self, alert_license_expired=None, alert_license_purchased=None, passwd=None, alert_payment_received=None, alert_license_will_expired=None, first_name=None, email=None, last_name=None, logo_file_uuid=None):
         """
         UserInfoModify - a model defined in Swagger
         """
 
-        self._alert_license_purchased = None
         self._alert_license_expired = None
+        self._alert_license_purchased = None
         self._passwd = None
-        self._email = None
-        self._logo_file_uuid = None
         self._alert_payment_received = None
-        self._last_name = None
-        self._first_name = None
         self._alert_license_will_expired = None
+        self._first_name = None
+        self._email = None
+        self._last_name = None
+        self._logo_file_uuid = None
 
-        if alert_license_purchased is not None:
-          self.alert_license_purchased = alert_license_purchased
         if alert_license_expired is not None:
           self.alert_license_expired = alert_license_expired
+        if alert_license_purchased is not None:
+          self.alert_license_purchased = alert_license_purchased
         if passwd is not None:
           self.passwd = passwd
-        if email is not None:
-          self.email = email
-        if logo_file_uuid is not None:
-          self.logo_file_uuid = logo_file_uuid
         if alert_payment_received is not None:
           self.alert_payment_received = alert_payment_received
-        if last_name is not None:
-          self.last_name = last_name
-        if first_name is not None:
-          self.first_name = first_name
         if alert_license_will_expired is not None:
           self.alert_license_will_expired = alert_license_will_expired
-
-    @property
-    def alert_license_purchased(self):
-        """
-        Gets the alert_license_purchased of this UserInfoModify.
-
-        :return: The alert_license_purchased of this UserInfoModify.
-        :rtype: bool
-        """
-        return self._alert_license_purchased
-
-    @alert_license_purchased.setter
-    def alert_license_purchased(self, alert_license_purchased):
-        """
-        Sets the alert_license_purchased of this UserInfoModify.
-
-        :param alert_license_purchased: The alert_license_purchased of this UserInfoModify.
-        :type: bool
-        """
-
-        self._alert_license_purchased = alert_license_purchased
+        if first_name is not None:
+          self.first_name = first_name
+        if email is not None:
+          self.email = email
+        if last_name is not None:
+          self.last_name = last_name
+        if logo_file_uuid is not None:
+          self.logo_file_uuid = logo_file_uuid
 
     @property
     def alert_license_expired(self):
@@ -131,6 +110,27 @@ class UserInfoModify(object):
         self._alert_license_expired = alert_license_expired
 
     @property
+    def alert_license_purchased(self):
+        """
+        Gets the alert_license_purchased of this UserInfoModify.
+
+        :return: The alert_license_purchased of this UserInfoModify.
+        :rtype: bool
+        """
+        return self._alert_license_purchased
+
+    @alert_license_purchased.setter
+    def alert_license_purchased(self, alert_license_purchased):
+        """
+        Sets the alert_license_purchased of this UserInfoModify.
+
+        :param alert_license_purchased: The alert_license_purchased of this UserInfoModify.
+        :type: bool
+        """
+
+        self._alert_license_purchased = alert_license_purchased
+
+    @property
     def passwd(self):
         """
         Gets the passwd of this UserInfoModify.
@@ -150,48 +150,6 @@ class UserInfoModify(object):
         """
 
         self._passwd = passwd
-
-    @property
-    def email(self):
-        """
-        Gets the email of this UserInfoModify.
-
-        :return: The email of this UserInfoModify.
-        :rtype: str
-        """
-        return self._email
-
-    @email.setter
-    def email(self, email):
-        """
-        Sets the email of this UserInfoModify.
-
-        :param email: The email of this UserInfoModify.
-        :type: str
-        """
-
-        self._email = email
-
-    @property
-    def logo_file_uuid(self):
-        """
-        Gets the logo_file_uuid of this UserInfoModify.
-
-        :return: The logo_file_uuid of this UserInfoModify.
-        :rtype: str
-        """
-        return self._logo_file_uuid
-
-    @logo_file_uuid.setter
-    def logo_file_uuid(self, logo_file_uuid):
-        """
-        Sets the logo_file_uuid of this UserInfoModify.
-
-        :param logo_file_uuid: The logo_file_uuid of this UserInfoModify.
-        :type: str
-        """
-
-        self._logo_file_uuid = logo_file_uuid
 
     @property
     def alert_payment_received(self):
@@ -215,27 +173,25 @@ class UserInfoModify(object):
         self._alert_payment_received = alert_payment_received
 
     @property
-    def last_name(self):
+    def alert_license_will_expired(self):
         """
-        Gets the last_name of this UserInfoModify.
+        Gets the alert_license_will_expired of this UserInfoModify.
 
-        :return: The last_name of this UserInfoModify.
-        :rtype: str
+        :return: The alert_license_will_expired of this UserInfoModify.
+        :rtype: bool
         """
-        return self._last_name
+        return self._alert_license_will_expired
 
-    @last_name.setter
-    def last_name(self, last_name):
+    @alert_license_will_expired.setter
+    def alert_license_will_expired(self, alert_license_will_expired):
         """
-        Sets the last_name of this UserInfoModify.
+        Sets the alert_license_will_expired of this UserInfoModify.
 
-        :param last_name: The last_name of this UserInfoModify.
-        :type: str
+        :param alert_license_will_expired: The alert_license_will_expired of this UserInfoModify.
+        :type: bool
         """
-        if last_name is not None and len(last_name) > 32:
-            raise ValueError("Invalid value for `last_name`, length must be less than or equal to `32`")
 
-        self._last_name = last_name
+        self._alert_license_will_expired = alert_license_will_expired
 
     @property
     def first_name(self):
@@ -261,25 +217,69 @@ class UserInfoModify(object):
         self._first_name = first_name
 
     @property
-    def alert_license_will_expired(self):
+    def email(self):
         """
-        Gets the alert_license_will_expired of this UserInfoModify.
+        Gets the email of this UserInfoModify.
 
-        :return: The alert_license_will_expired of this UserInfoModify.
-        :rtype: bool
+        :return: The email of this UserInfoModify.
+        :rtype: str
         """
-        return self._alert_license_will_expired
+        return self._email
 
-    @alert_license_will_expired.setter
-    def alert_license_will_expired(self, alert_license_will_expired):
+    @email.setter
+    def email(self, email):
         """
-        Sets the alert_license_will_expired of this UserInfoModify.
+        Sets the email of this UserInfoModify.
 
-        :param alert_license_will_expired: The alert_license_will_expired of this UserInfoModify.
-        :type: bool
+        :param email: The email of this UserInfoModify.
+        :type: str
         """
 
-        self._alert_license_will_expired = alert_license_will_expired
+        self._email = email
+
+    @property
+    def last_name(self):
+        """
+        Gets the last_name of this UserInfoModify.
+
+        :return: The last_name of this UserInfoModify.
+        :rtype: str
+        """
+        return self._last_name
+
+    @last_name.setter
+    def last_name(self, last_name):
+        """
+        Sets the last_name of this UserInfoModify.
+
+        :param last_name: The last_name of this UserInfoModify.
+        :type: str
+        """
+        if last_name is not None and len(last_name) > 32:
+            raise ValueError("Invalid value for `last_name`, length must be less than or equal to `32`")
+
+        self._last_name = last_name
+
+    @property
+    def logo_file_uuid(self):
+        """
+        Gets the logo_file_uuid of this UserInfoModify.
+
+        :return: The logo_file_uuid of this UserInfoModify.
+        :rtype: str
+        """
+        return self._logo_file_uuid
+
+    @logo_file_uuid.setter
+    def logo_file_uuid(self, logo_file_uuid):
+        """
+        Sets the logo_file_uuid of this UserInfoModify.
+
+        :param logo_file_uuid: The logo_file_uuid of this UserInfoModify.
+        :type: str
+        """
+
+        self._logo_file_uuid = logo_file_uuid
 
     def to_dict(self):
         """
