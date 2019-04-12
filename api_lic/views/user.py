@@ -283,6 +283,7 @@ class PaypalWebhook(CustomPostAction):
 												description=pay_id
 												)
 							pay_uuid = pay.save()
+							l.user_uuid = u.user_uuid
 							l.payment_uuid = pay_uuid
 							l.result = 'ok'
 							l.status = 'success'
@@ -414,6 +415,7 @@ class StripeWebhook(CustomPostAction):
 											description=charge_id
 											)
 						pay_uuid = pay.save()
+						l.user_uuid=u.user_uuid
 						l.payment_uuid = pay_uuid
 						l.result = 'ok'
 						l.status = 'success'
@@ -540,6 +542,11 @@ class LicenseLrnResource(Resource):
 	path_parameters = ()
 	restrict = ()
 
+	def before_update(self, obj, req):
+		if obj.end_time < datetime.now(UTC):
+			raise ValidationError({'enabled':'cannot change ended license. end time {obj.end_time}'})
+		return obj
+
 
 class LicenseLrnRenewResource(CustomPatchAction):
 	model_class = model.LicenseLrn
@@ -630,6 +637,10 @@ class LicenseSwitchResource(Resource):
 	path_parameters = ()
 	restrict = ()
 
+	def before_update(self, obj, req):
+		if obj.end_time < datetime.now(UTC):
+			raise ValidationError({'enabled':'cannot change ended license. end time {obj.end_time}'})
+		return obj
 
 class LicenseSwitchRenewResource(CustomPatchAction):
 	model_class = model.LicenseSwitch

@@ -430,6 +430,7 @@ class TransactionLog(BaseModel):
     transaction_time = Column(DateTime(True), nullable=False, server_default=func.now())
     license_lrn_uuid = Column(String(36))
     license_switch_uuid = Column(String(36))
+    user_uuid = Column(ForeignKey('user.user_uuid', ondelete='CASCADE'), nullable=True, index=True)
     type = Column(ChoiceType(TYPE), default=1)
     amount_total = Column(Numeric, nullable=False, server_default='0')
     amount_lrn = Column(Numeric, nullable=False, server_default='0')
@@ -442,6 +443,8 @@ class TransactionLog(BaseModel):
     status = Column(ChoiceType(STATUS), default=-1)
     result = Column(Text())
     payment_uuid = Column(ForeignKey('payment.payment_uuid', ondelete='CASCADE'), index=True)
+
+    user_name=column_property(select([User.name]).where(user_uuid==User.user_uuid).correlate_except(User))
 
 
 class Payment(BaseModel):
@@ -570,6 +573,7 @@ class LicenseLrn(BaseModel):
 
 Payment.lrn_package_name = column_property(
         select([LicenseLrn.package_name]).where(Payment.license_lrn_uuid == LicenseLrn.license_lrn_uuid).correlate_except(LicenseLrn))
+
 
 class Switch(BaseModel):
     __tablename__ = 'switch'

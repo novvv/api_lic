@@ -1,3 +1,9 @@
+api_lic ver 1.0.19
+GET/transaction/log <-- add fields 'user_uuid','user_name' LLP-162
+PATCH/license_lrn <-- fix ended license LLP-166
+answered <-- transaction issue (no paypal settings) LLP-158
+
+
 api_lic ver 1.0.18
 POST/license_switch <-- fix unique constraint  LLP-158
 
