@@ -48,34 +48,11 @@
     `/usr/local/bin/api_dnl_beat` <-- exec celery schedule task service
  
 ##standalone upgrade version
-1. `git archive --remote=ssh://git@stash.denovolab.com:7999/clas6/webbackend.git HEAD:dist api-dnl-head.tar.gz | tar -x` 
-2. `pip install --upgrade builds/api-dnl-head.tar.gz`
-3. `cd /opt/denovolab_v6/api_dnl`
+1. `git archive --remote=ssh://stash.denovolab.com:7999/cls/license-portal-api.git HEAD:dist api_lic-head.tar.gz | tar -x` 
+2. `pip install --upgrade builds/api_lic-head.tar.gz`
+3. `cd /opt/denovolab/api_lic`
 4. `sudo /usr/local/bin/alembic upgrade head`
  
-##pjsua installation (needed for api_dnl_pjsipcall)
-`sudo apt-get update`
-
-`sudo apt-get -y install build-essential python-dev libpjsua2 libssl-dev libasound2-dev`
-
-`wget http://www.pjsip.org/release/2.7.1/pjproject-2.7.1.tar.bz2`
-
-`tar -xf pjproject-2.7.1.tar.bz2 && cd pjproject-2.7.1/`
-`export CFLAGS="$CFLAGS -fPIC"`
-
-`./configure --enable-shared --disable-video --disable-ffmpeg --disable-v4l2 --disable-libwebrtc`
-`./configure && make dep && make`
-`cd pjsip-apps/src/`
-`git clone https://github.com/mgwilliams/python3-pjsip.git`
-`cd python3-pjsip`
-`sudo python3 setup.py install`
-
-##wsocket libs (needed for api_dnl_ws_broker)
-`pip install git+https://github.com/dpallot/simple-websocket-server.git`
-
-`pip install websocket-client`
- 
-
 ## Run
 `cd /opt/denovo`
 
